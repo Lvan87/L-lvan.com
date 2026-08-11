@@ -384,6 +384,11 @@ header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdro
   .site-footer .sf-inner{gap:6px;font-size:11px}
 }
 
+/* cloud status dot */
+.cloud-dot{width:9px;height:9px;border-radius:50%;background:var(--ink4);flex-shrink:0;transition:background .3s}
+.cloud-dot.on{background:var(--ok)}
+.cloud-dot.err{background:var(--err)}
+
 </style>
 </head>
 <body>
@@ -399,6 +404,7 @@ header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdro
     装裱设计台<span>Framing Studio v2</span>
   </div>
   <div class="hbar-r">
+    <span class="cloud-dot" id="cloudDot" title="未连接云端"></span>
     <button class="btn btn-outline btn-sm" id="btnExport" title="导出 JSON 备份">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg><span>导出备份</span></button>
     <button class="btn btn-outline btn-sm" id="btnImport" title="导入恢复">
@@ -477,6 +483,7 @@ header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdro
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 /* ================================================================
    装裱设计台 v2 · Framing Studio
@@ -520,7 +527,66 @@ const ICONS = {
 function loadData(key){
   try{ const r=localStorage.getItem(PFX+key); return r?JSON.parse(r):null }catch(e){return null}
 }
-function saveData(key,val){ localStorage.setItem(PFX+key,JSON.stringify(val)) }
+function saveLocal(key,val){ try{ localStorage.setItem(PFX+key,JSON.stringify(val)) }catch(e){ console.warn("local save failed",e) } }
+function saveData(key,val){
+  saveLocal(key,val);
+  if(SB){
+    SB.from("app_sync").upsert({id:key, data:val, updated_at:new Date().toISOString()}).then(({error})=>{
+      if(error){ console.warn("cloud save failed ("+key+"):", error.message); setCloud("err"); }
+    });
+  }
+}
+
+/* ---- 云同步（Supabase，可选） ---- */
+const SB_URL = "https://optzqmawhmkfrooqkuj.supabase.co";
+const SB_KEY = "sb_publishable_pNd6OWFo9znQDxMARX-83w_v3KSvl7y";
+let SB = null;
+function setCloud(state){
+  const d=$("cloudDot"); if(!d)return;
+  d.className="cloud-dot "+(state||"");
+  d.title = state==="on" ? "已同步到云端" : state==="err" ? "云端同步出错" : "未连接云端";
+}
+function assignMem(key,val){
+  if(key==="products") PRODUCTS = val||[];
+  else if(key==="reviews") REVIEWS = val||[];
+  else if(key==="chats") CHATS = val||[];
+}
+async function cloudInit(){
+  if(typeof supabase==="undefined"){ console.warn("supabase-js 未加载"); return null; }
+  try{
+    const c = supabase.createClient(SB_URL, SB_KEY);
+    const {error} = await c.from("app_sync").select("id").limit(1);
+    if(error){ console.warn("Supabase 表未就绪:", error.message); setCloud("err"); return null; }
+    return c;
+  }catch(e){ console.warn("Supabase 初始化失败:", e); setCloud("err"); return null; }
+}
+async function cloudSyncAll(){
+  SB = await cloudInit();
+  if(!SB) return;
+  const keys=["products","reviews","chats"];
+  let pulled=0;
+  for(const key of keys){
+    try{
+      const {data,error} = await SB.from("app_sync").select("data").eq("id",key).maybeSingle();
+      if(error){ console.warn("pull "+key+" err:", error.message); continue; }
+      const local = loadData(key);
+      if(data && data.data!=null){
+        const json = (typeof data.data==="string") ? JSON.parse(data.data) : data.data;
+        saveLocal(key, json); assignMem(key, json); pulled++;
+      } else if(local!=null){
+        await SB.from("app_sync").upsert({id:key, data:local, updated_at:new Date().toISOString()});
+      }
+    }catch(e){ console.warn("sync "+key+" failed:", e); }
+  }
+  setCloud("on");
+  render();
+  if(pulled>0) showToast("已从云端同步 "+pulled+" 项数据");
+}
+function waitForSupabase(cb, tries){
+  if(typeof supabase!=="undefined"){ cb(); return; }
+  if((tries||0)>25){ console.warn("supabase-js 加载超时（云同步已禁用，本地模式运行）"); return; }
+  setTimeout(()=>waitForSupabase(cb,(tries||0)+1), 200);
+}
 
 // Products
 let PRODUCTS = loadData("products") || [];
@@ -2473,6 +2539,8 @@ function showToast(msg,duration){
 try{ initSampleData(); }catch(err){ console.error("initSampleData error:",err); }
 try{ switchTab(); }catch(err){ console.error("switchTab error:",err); }
 setTimeout(function(){ try{ switchTab(); }catch(e){ console.error("retry switchTab:",e); } },200);
+// 云同步（异步，不阻塞界面；库未加载完会自动重试）
+waitForSupabase(function(){ cloudSyncAll(); });
 
 </script>
 </body>
