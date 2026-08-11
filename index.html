@@ -80,6 +80,10 @@ header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdro
   padding:1px 7px;border-radius:99px;font-weight:600}
 .main{padding:16px 20px;min-width:0;min-height:400px;grid-row:2}
 
+/* 无侧边栏全宽模式（二级页面统一风格） */
+.layout.no-sidebar{grid-template-columns:1fr}
+.layout.no-sidebar .sidebar{display:none}
+
 /* ---- module header ---- */
 .mhdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
 .mhdr h2{font-size:18px;font-weight:700;letter-spacing:-.3px}
@@ -485,7 +489,7 @@ header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdro
 .gal-cat:hover{border-color:#ccc;transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.07)}
 .gal-cat .gc-icon{width:52px;height:52px;border-radius:14px;background:var(--soft);
   display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
-.gal-cat .gc-icon svg{width:26px;height:26px;color:var(--accent)}
+.gal-cat .gc-icon svg{width:26px;height:26px;color:var(--ink)}
 .gal-cat h3{font-size:15px;font-weight:700;margin-bottom:6px}
 .gal-cat p{font-size:12px;color:var(--ink3);line-height:1.5}
 .gal-cat .gc-count{margin-top:10px;font-size:11px;color:var(--ink3);
@@ -1766,8 +1770,8 @@ function enterWorkbench(tab){
   var sidebar = $("sidebar");
   var pt = $("pageTitle");
   if(home) home.style.display = "none";
-  if(layout) layout.classList.remove("hidden");
-  if(sidebar) sidebar.classList.remove("hidden");
+  if(layout) { layout.classList.remove("hidden"); layout.classList.add("no-sidebar"); }
+  if(sidebar) sidebar.classList.add("hidden");
   if(pt) pt.textContent = pageTitles[tab] || '';
   curTab = tab || "products";
   switchTab();
@@ -1782,7 +1786,7 @@ function goHome(){
   var sidebar = $("sidebar");
   var gal = $("galleryView");
   if(home) home.style.display = "";
-  if(layout) layout.classList.add("hidden");
+  if(layout) { layout.classList.add("hidden"); layout.classList.remove("no-sidebar"); }
   if(sidebar) sidebar.classList.add("hidden");
   if(gal) gal.classList.remove("active");
   renderHomePage();
