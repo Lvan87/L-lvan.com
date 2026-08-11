@@ -1,0 +1,2456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>装裱设计台 · Framing Studio</title>
+<style>
+:root{
+  --bg:#fff;--soft:#f5f5f5;--ink:#0a0a0a;--ink2:#555;--ink3:#999;--ink4:#ccc;
+  --line:#e8e8e8;--line2:#d0d0d0;
+  --accent:#e60023;--accent-soft:#fff0f2;
+  --chip:#f2f2f2;--ok:#1a7f37;--ok-bg:#e6f4ea;--warn:#d97706;--warn-bg:#fef3c7;--err:#cf2e2e;--err-bg:#fdecea;
+  --radius:12px;--radius-sm:8px;--tap:44px;--shadow:0 1px 3px rgba(0,0,0,.06);
+  --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:14px}
+body{font-family:var(--font);background:var(--soft);color:var(--ink);line-height:1.55;
+  padding-bottom:env(safe-area-inset-bottom);min-height:100vh;}
+button,input,textarea,select{font-family:inherit;font-size:14px}
+button{cursor:pointer;border:none;background:none}
+a{color:inherit}
+img{max-width:100%}
+
+/* ---- header ---- */
+header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);padding:10px 16px;padding-top:max(10px,env(safe-area-inset-top));}
+.hbar{max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:8px;font-weight:700;font-size:15px;letter-spacing:-.3px}
+.brand svg{width:24px;height:24px;flex-shrink:0}
+.brand span{opacity:.45;font-size:9px;text-transform:uppercase;letter-spacing:1.5px;font-weight:500}
+.hbar-r{margin-left:auto;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:var(--radius-sm);
+  font-size:13px;font-weight:500;transition:all .15s;min-height:36px}
+.btn-sm{padding:5px 10px;font-size:12px;min-height:32px}
+.btn-primary{background:var(--ink);color:#fff}.btn-primary:hover{background:#222}
+.btn-outline{border:1px solid var(--line2);background:#fff;color:var(--ink)}.btn-outline:hover{border-color:var(--ink)}
+.btn-danger{background:var(--err);color:#fff}.btn-danger:hover{background:#b91c1c}
+.btn-ghost{color:var(--ink2)}.btn-ghost:hover{background:var(--chip)}
+.btn svg{width:15px;height:15px;flex-shrink:0}
+
+/* ---- today panel ---- */
+.today-panel{max-width:1280px;margin:0 auto;padding:12px 16px 0}
+.today-card{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);
+  padding:14px 16px;margin-bottom:12px;box-shadow:var(--shadow)}
+.today-h{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.today-h .t{font-weight:700;font-size:14px}
+.today-h .badge{background:var(--accent);color:#fff;font-size:11px;font-weight:600;
+  padding:1px 8px;border-radius:99px}
+.today-list{display:flex;flex-direction:column;gap:6px}
+.today-item{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:var(--radius-sm);
+  background:var(--soft);font-size:13px;transition:background .15s}
+.today-item:hover{background:var(--chip)}
+.today-item.overdue{background:var(--err-bg);border-left:3px solid var(--err)}
+.today-item .tag{font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;flex-shrink:0}
+.today-item .tag-red{background:var(--err);color:#fff}
+.today-item .tag-warn{background:var(--warn);color:#fff}
+.today-item .tag-blue{background:#dbeafe;color:#1d4ed8}
+.today-item .ti-txt{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.today-item .ti-action{flex-shrink:0}
+
+/* ---- layout ---- */
+.layout{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:220px 1fr;gap:0;
+  min-height:calc(100vh - 140px)}
+.sidebar{background:var(--bg);border-right:1px solid var(--line);padding:12px 8px;
+  display:flex;flex-direction:column;gap:2px;position:sticky;top:64px;height:calc(100vh - 64px);overflow-y:auto}
+.nav-item{display:flex;align-items:center;gap:10px;width:100%;padding:11px 14px;border-radius:var(--radius-sm);
+  font-size:14px;font-weight:500;color:var(--ink2);text-align:left;transition:all .15s}
+.nav-item:hover{background:var(--chip);color:var(--ink)}
+.nav-item.active{background:var(--ink);color:#fff}
+.nav-item svg{width:18px;height:18px;flex-shrink:0;opacity:.65}
+.nav-item.active svg{opacity:1;color:#fff}
+.nav-item .ni-badge{margin-left:auto;font-size:11px;background:var(--accent);color:#fff;
+  padding:1px 7px;border-radius:99px;font-weight:600}
+.main{padding:16px 20px;min-width:0;min-height:400px}
+
+/* ---- module header ---- */
+.mhdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+.mhdr h2{font-size:18px;font-weight:700;letter-spacing:-.3px}
+.mhdr-actions{display:flex;gap:6px;flex-wrap:wrap}
+
+/* ---- products ---- */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.pcard{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden;cursor:pointer;transition:all .2s;box-shadow:var(--shadow)}
+.pcard:hover{border-color:var(--line2);box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.pcard .pc-top{height:120px;background:linear-gradient(135deg,#111,#333);display:flex;align-items:center;justify-content:center;
+  padding:16px;color:#fff;text-align:center}
+.pcard .pc-top .pc-brand{font-size:11px;opacity:.5;text-transform:uppercase;letter-spacing:1.5px}
+.pcard .pc-top .pc-model{font-size:22px;font-weight:800;letter-spacing:-.5px}
+.pcard .pc-top .pc-cat{font-size:11px;opacity:.6;margin-top:4px}
+.pcard .pc-body{padding:14px}
+.pcard .pc-row{display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px}
+.pcard .pc-label{color:var(--ink3)}
+.pcard .pc-val{font-weight:500}
+.pcard .pc-tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:10px}
+.pcard .pc-tag{font-size:10px;padding:2px 8px;border-radius:99px;background:var(--chip);color:var(--ink3)}
+
+/* product detail */
+.pdetail{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+.pdetail-back{display:inline-flex;align-items:center;gap:6px;color:var(--ink3);font-size:13px;
+  margin-bottom:18px;cursor:pointer;padding:6px 10px;border-radius:var(--radius-sm)}
+.pdetail-back:hover{background:var(--chip);color:var(--ink)}
+.pd-hero{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px}
+.pd-info h1{font-size:26px;font-weight:800;letter-spacing:-.5px;margin-bottom:4px}
+.pd-info .pd-sub{color:var(--ink3);font-size:14px;margin-bottom:16px}
+.pd-gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:8px}
+.pd-g-item{position:relative;border:1px solid var(--line2);border-radius:var(--radius-sm);overflow:hidden}
+.pd-g-item img:hover{opacity:0.9}
+.pd-g-del{position:absolute;top:6px;right:6px;width:26px;height:26px;border:none;background:rgba(0,0,0,0.6);color:#fff;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;opacity:0;transition:opacity 0.15s}
+.pd-g-del:hover{background:rgba(220,38,38,0.85)}
+.pd-g-item:hover .pd-g-del{opacity:1}
+.pd-count{font-size:12px;color:var(--ink3);font-weight:normal}
+.pd-specs{width:100%;border-collapse:collapse;font-size:13px}
+.pd-specs th{text-align:left;background:var(--soft);padding:8px 12px;font-weight:600;border-bottom:2px solid var(--line);
+  color:var(--ink);width:30%}
+.pd-specs td{padding:8px 12px;border-bottom:1px solid var(--line);color:var(--ink2)}
+.pd-specs tr:last-child td{border-bottom:none}
+.pd-section{margin-bottom:24px}
+.pd-section h3{font-size:15px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.pd-section h3::before{content:"";width:3px;height:16px;background:var(--accent);border-radius:2px}
+.pd-notes{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.pd-note{background:var(--soft);padding:12px;border-radius:var(--radius-sm);font-size:13px}
+.pd-note .pn-label{font-size:11px;color:var(--ink3);margin-bottom:4px}
+.pd-note .pn-val{font-weight:500}
+.pd-gallery{display:flex;gap:8px;flex-wrap:wrap}
+.pd-gallery img{width:80px;height:80px;object-fit:cover;border-radius:var(--radius-sm);border:1px solid var(--line);cursor:pointer}
+.pd-gallery img:hover{border-color:var(--accent)}
+.pd-parts{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+.pd-part{background:var(--soft);border-radius:var(--radius-sm);padding:10px 12px;border-left:3px solid var(--accent)}
+.pd-part-name{font-weight:600;font-size:13px}
+.pd-part-en{font-weight:400;color:var(--ink3);font-size:12px;margin-left:4px}
+.pd-part-note{color:var(--ink2);font-size:12px;margin-top:5px;line-height:1.5}
+
+/* ---- reference gallery ---- */
+.ref-toolbar{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center}
+.ref-tree{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);
+  padding:10px;margin-bottom:14px;max-height:300px;overflow:auto}
+.ref-node{padding:4px 0}
+.ref-row{display:flex;align-items:center;gap:6px;padding:5px 10px;border-radius:6px;cursor:pointer;font-size:13px}
+.ref-row:hover,.ref-row.active{background:var(--chip)}
+.ref-row.active{font-weight:600}
+.ref-row .rc{width:14px;height:14px;transition:transform .15s}
+.ref-row .rc.open{transform:rotate(90deg)}
+.ref-kids{margin-left:18px;border-left:1px solid var(--line);padding-left:4px}
+.ref-cnt{margin-left:auto;font-size:11px;color:var(--ink3)}
+.ref-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
+.ref-card{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius-sm);overflow:hidden;
+  cursor:pointer;transition:all .15s}
+.ref-card:hover{border-color:var(--line2)}
+.ref-card .ri{aspect-ratio:1;background:var(--soft);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.ref-card .ri img{width:100%;height:100%;object-fit:cover}
+.ref-card .ri .err-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:var(--ink3)}
+.ref-card .rn{padding:6px 8px;font-size:11px;color:var(--ink3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ref-empty{padding:50px;text-align:center;color:var(--ink3)}
+
+/* ---- reviews ---- */
+.rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+/* ---- review image styles ---- */
+.rv-card{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);transition:all .15s}
+.rv-card:hover{border-color:var(--line2)}
+.rv-hdr{display:flex;justify-content:space-between;align-items:start;padding:16px;border-bottom:1px solid var(--line)}
+.rv-hdr h4{font-size:15px;font-weight:700}
+.rv-body{padding:16px}
+.rv-img-area{background:var(--soft);border:2px dashed var(--line2);border-radius:var(--radius-sm);
+  min-height:200px;display:flex;flex-direction-column;align-items:center;justify-content:center;gap:10px;
+  cursor:pointer;transition:border-color .15s;position:relative;margin-bottom:14px}
+.rv-img-area:hover{border-color:var(--ink2)}
+.rv-img-area.has-img{min-height:auto;border-style:solid;padding:0;overflow:hidden}
+.rv-img-area img{width:100%;max-height:400px;object-fit:contain;display:block}
+.rv-img-area .rv-replace{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.6);color:#fff;
+  padding:4px 10px;border-radius:var(--radius-sm);font-size:11px;display:none;cursor:pointer}
+.rv-img-area:hover .rv-replace{display:inline-block}
+.rv-result{background:var(--soft);border-radius:var(--radius-sm);padding:14px;font-size:13px;line-height:1.7;
+  margin-top:12px;border-left:3px solid var(--accent)}
+.rv-result-empty{color:var(--ink3);font-size:12px;text-align:center;padding:20px}
+.rv-concl{margin-top:12px}
+.rv-result-input{width:100%;border:1px solid var(--line2);border-radius:var(--radius-sm);
+  padding:10px;font-size:13px;line-height:1.6;font-family:inherit;resize:vertical;margin-top:8px;
+  outline:none;box-sizing:border-box}
+.rv-result-input:focus{border-color:var(--ink2)}
+.rv-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+
+/* ---- AI assistant ---- */
+.ai-layout{display:grid;grid-template-columns:360px 1fr;gap:16px;min-height:500px}
+.ai-input-panel{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);
+  padding:18px;box-shadow:var(--shadow);height:fit-content}
+.aip-section{margin-bottom:16px}
+.aip-section label{display:block;font-size:12px;font-weight:600;color:var(--ink3);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+.aip-section input,.aip-section textarea,.aip-section select{width:100%;
+  border:1px solid var(--line2);border-radius:var(--radius-sm);padding:9px 12px;font-size:14px;
+  outline:none;transition:border-color .15s}
+.aip-section input:focus,.aip-section textarea:focus{border-color:var(--ink)}
+.aip-section textarea{resize:vertical;min-height:70px}
+.ai-img-preview{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.ai-img-thumb{width:60px;height:60px;border-radius:var(--radius-sm);object-fit:cover;border:1px solid var(--line);
+  position:relative;cursor:pointer}
+.ai-img-thumb .rm-btn{position:absolute;top:-5px;right:-5px;width:18px;height:18px;border-radius:50%;
+  background:var(--err);color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center;
+  border:none;cursor:pointer}
+.prompt-box{background:var(--soft);border:1px solid var(--line);border-radius:var(--radius-sm);
+  padding:12px;font-size:12px;line-height:1.6;white-space:pre-wrap;word-break:break-all;max-height:200px;overflow:auto;
+  margin-top:8px;display:none}
+.prompt-box.show{display:block}
+
+/* chat area */
+.ai-chat{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);display:flex;flex-direction:column;height:calc(100vh - 200px);min-height:500px}
+.chat-msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px}
+.msg{max-width:80%;padding:12px 16px;border-radius:var(--radius);font-size:14px;line-height:1.65}
+.msg-user{align-self:end;background:var(--ink);color:#fff;border-bottom-right-radius:4px}
+.msg-ai{align-self:start;background:var(--soft);border:1px solid var(--line);border-bottom-left-radius:4px}
+.msg-meta{font-size:10px;color:var(--ink3);margin-top:4px}
+.msg-ai .msg-meta{color:var(--ink4)}
+.chat-input-area{padding:12px 16px;border-top:1px solid var(--line);display:flex;gap:8px;align-items:flex-end}
+.chat-input-area textarea{flex:1;border:1px solid var(--line2);border-radius:var(--radius-sm);
+  padding:10px 14px;font-size:14px;resize:none;min-height:44px;max-height:120px;outline:none}
+.chat-input-area textarea:focus{border-color:var(--ink)}
+.chat-send{width:44px;height:44px;border-radius:var(--radius-sm);background:var(--ink);color:#fff;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.chat-send:hover{background:#222}
+.chat-send svg{width:20px;height:20px}
+.chat-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--ink3);gap:12px}
+.chat-empty svg{width:48px;height:48px;opacity:.25}
+.chat-empty p{font-size:14px}
+.chat-empty .sub{font-size:12px}
+
+/* ---- modals ---- */
+.modal-overlay{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.show{display:flex}
+.modal{background:var(--bg);border-radius:var(--radius);width:100%;max-width:640px;max-height:85vh;
+  overflow-y:auto;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.modal-header h3{font-size:18px;font-weight:700}
+.modal-close{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  color:var(--ink3);transition:all .15s}
+.modal-close:hover{background:var(--chip);color:var(--ink)}
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:12px;font-weight:600;color:var(--ink3);margin-bottom:5px}
+.form-group input,.form-group textarea,.form-group select{width:100%;
+  border:1px solid var(--line2);border-radius:var(--radius-sm);padding:9px 12px;font-size:14px;outline:none}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--ink)}
+.spec-rows{border:1px solid var(--line);border-radius:var(--radius-sm)}
+.spec-row{display:flex;gap:6px;padding:6px 8px;border-bottom:1px solid var(--line);align-items:center}
+.spec-row:last-child{border-bottom:none}
+.spec-row input{flex:1;font-size:13px;padding:6px 10px;border:1px solid var(--line2);border-radius:4px}
+.spec-row button{color:var(--ink3);padding:4px 8px}
+.spec-row button:hover{color:var(--err)}
+
+/* lightbox - full rewrite with zoom/download/nav */
+.lb{position:fixed;inset:0;z-index:90;background:rgba(0,0,0,.92);display:none;flex-direction:column}
+.lb.show{display:flex}
+.lb-bar{display:flex;align-items:center;justify-content:flex-end;gap:8px;padding:12px 16px;flex-shrink:0}
+.lb-close{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.15);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s}
+.lb-close:hover{background:rgba(255,255,255,.28)}
+.lb-btn{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;transition:background .15s}
+.lb-btn:hover{background:rgba(255,255,255,.25)}
+.lb-btn svg{width:18px;height:18px}
+.lb-body{flex:1;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;min-height:0}
+.lb-wrap{position:relative;max-width:100%;max-height:100%;display:flex;align-items:center;justify-content:center;cursor:grab;transition:transform .2s ease}
+.lb-wrap:active{cursor:grabbing}
+.lb-wrap img{max-width:100%;max-height:100%;object-fit:contain;border-radius:4px;display:block;user-select:none;-webkit-user-drag:none}
+.lb-cap{position:absolute;bottom:0;left:0;right:0;text-align:center;color:#ccc;font-size:13px;padding:10px;background:linear-gradient(transparent,rgba(0,0,0,.5));pointer-events:none}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;z-index:5}
+.lb-nav:hover{background:rgba(255,255,255,.28)}
+.lb-nav-prev{left:16px}
+.lb-nav-next{right:16px}
+.lb-zoom-hint{position:absolute;top:12px;left:16px;color:rgba(255,255,255,.45);font-size:12px;pointer-events:none}
+
+/* protocol warn */
+.proto-warn{background:var(--warn-bg);border:1px solid var(--warn-border);border-radius:var(--radius-sm);
+  padding:10px 14px;margin-bottom:14px;font-size:13px;color:var(--warn);line-height:1.6}
+.proto-warn code{background:rgba(0,0,0,.06);padding:1px 6px;border-radius:3px;font-size:12px}
+
+/* data count hint */
+.data-hint{font-size:12px;color:var(--ink3);text-align:center;padding:10px}
+
+/* responsive */
+@media(max-width:900px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{display:none;position:fixed;inset:0;z-index:40;background:var(--bg);padding:16px;width:260px;
+    box-shadow:4px 0 20px rgba(0,0,0,.1)}
+  .sidebar.show{display:block}
+  .ai-layout{grid-template-columns:1fr}
+  .pd-hero{grid-template-columns:1fr}
+  .pgrid{grid-template-columns:1fr}
+  .rgrid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .main{padding:12px}
+  .hbar-r .btn{padding:6px 10px;font-size:12px}
+  .hbar-r .btn span{display:none}
+  .ref-grid{grid-template-columns:repeat(auto-fill,minmax(110px,1fr))}
+  .menu-toggle{display:flex!important}
+  input,textarea,select{font-size:16px}
+}
+.menu-toggle{display:none;align-items:center;justify-content:center;width:var(--tap);height:var(--tap);
+  border:1px solid var(--line2);border-radius:var(--radius-sm);background:#fff}
+.menu-toggle svg{width:20px;height:20px;color:var(--ink)}
+
+/* scrollbar */
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--ink4);border-radius:3px}
+
+/* ---- product catalog hero & rich detail (Nothing style) ---- */
+.pd-catalog-hero{background:var(--bg);border:1px solid var(--line);color:var(--ink);
+  border-radius:var(--radius);padding:36px 32px;margin-bottom:28px;text-align:center;position:relative;overflow:hidden}
+.pd-catalog-hero::before{content:"";position:absolute;top:-40%;right:-20%;width:300px;height:300px;
+  background:radial-gradient(circle,rgba(230,0,35,.06) 0%,transparent 70%);border-radius:50%}
+.pd-catalog-hero .pch-badge{display:inline-block;background:var(--ink);color:var(--bg);font-size:11px;font-weight:700;
+  letter-spacing:1.5px;text-transform:uppercase;padding:4px 16px;border-radius:99px;margin-bottom:14px}
+.pd-catalog-hero h1{font-size:28px;font-weight:800;letter-spacing:-.5px;margin-bottom:8px}
+.pd-catalog-hero .pch-sub{font-size:14px;color:var(--ink3);margin-bottom:4px}
+.pd-catalog-hero .pch-meta{font-size:12px;color:var(--ink4);margin-top:12px;letter-spacing:.5px}
+
+.pd-tag-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.pd-tag{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:99px;
+  font-size:12px;font-weight:500;background:var(--soft);color:var(--ink2);border:1px solid var(--line);
+  transition:all .15s}
+.pd-tag:hover{border-color:var(--accent);color:var(--accent)}
+.pd-tag svg{width:13px;height:13px;opacity:.6}
+
+.pd-timeline{margin-bottom:28px}
+.pd-timeline h3{font-size:15px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.pd-timeline h3::before{content:"";width:3px;height:16px;background:var(--accent);border-radius:2px}
+.pd-tl-list{position:relative;padding-left:24px}
+.pd-tl-list::before{content:"";position:absolute;left:7px;top:0;bottom:0;width:2px;background:var(--line)}
+.pd-tl-item{position:relative;margin-bottom:18px}
+.pd-tl-item::before{content:"";position:absolute;left:-20px;top:6px;width:10px;height:10px;border-radius:50%;
+  background:var(--bg);border:2px solid var(--accent)}
+.pd-tl-date{font-size:13px;font-weight:700;color:var(--accent);margin-bottom:2px}
+.pd-tl-title{font-size:14px;font-weight:600;margin-bottom:3px}
+.pd-tl-desc{font-size:13px;color:var(--ink2);line-height:1.55}
+.pd-tl-en{font-size:12px;color:var(--ink3);font-style:italic;margin-top:3px;line-height:1.45}
+
+.pd-cat-section{margin-bottom:28px}
+.pd-cat-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:8px;
+  border-bottom:1px solid var(--line)}
+.pd-cat-icon{width:32px;height:32px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;
+  font-size:14px;flex-shrink:0;background:var(--ink);color:var(--bg)}
+.pd-cat-title{font-size:17px;font-weight:800;letter-spacing:-.3px}
+.pd-cat-sub{font-size:12px;color:var(--ink3);margin-left:auto}
+
+.pd-cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.pd-cat-card{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);
+  padding:16px;transition:all .15s}
+.pd-cat-card:hover{border-color:var(--ink2);box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.pd-cc-name{font-size:14px;font-weight:700;margin-bottom:2px}
+.pd-cc-en{font-size:12px;color:var(--ink3);margin-bottom:8px}
+.pd-cc-desc{font-size:13px;color:var(--ink2);line-height:1.6;margin-bottom:8px}
+.pd-cc-desc-en{font-size:12px;color:var(--ink3);line-height:1.5;margin-bottom:8px;
+  padding-left:10px;border-left:2px solid var(--chip)}
+.pd-cc-note{background:var(--warn-bg);border-radius:6px;padding:8px 10px;font-size:12px;
+  color:var(--warn);line-height:1.5;margin-bottom:8px}
+.pd-cc-tag{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;
+  background:var(--accent-soft);color:var(--accent);margin-right:4px;margin-bottom:4px}
+.pd-cc-note-en{font-size:11px;color:var(--ink3);line-height:1.5;margin-bottom:8px;
+  padding-left:10px;border-left:2px solid var(--chip);font-style:italic}
+.pd-cc-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.pd-usage-notes{background:var(--soft);border:1px solid var(--line);
+  border-radius:var(--radius);padding:16px 20px;margin-top:28px}
+.pd-un-header{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.pd-un-icon{font-size:16px;color:var(--accent)}
+.pd-un-body{font-size:13px;color:var(--ink2);line-height:1.7}
+
+@media(max-width:768px){
+  .pd-catalog-hero{padding:24px 16px}
+  .pd-catalog-hero h1{font-size:22px}
+  .pd-cat-grid{grid-template-columns:1fr}
+  .pd-tag-chips{gap:6px}
+  .pd-tag{font-size:11px;padding:4px 10px}
+}
+
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+<div class="hbar">
+  <button class="menu-toggle" id="menuToggle">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+  </button>
+  <div class="brand">
+    <svg viewBox="0 0 32 32" fill="none"><rect x="3" y="3" width="26" height="26" rx="5" stroke="#0a0a0a" stroke-width="2"/><circle cx="16" cy="16" r="4" fill="#e60023"/><path d="M10 16h12" stroke="#0a0a0a" stroke-width="1.5"/></svg>
+    装裱设计台<span>Framing Studio v2</span>
+  </div>
+  <div class="hbar-r">
+    <button class="btn btn-outline btn-sm" id="btnExport" title="导出 JSON 备份">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg><span>导出备份</span></button>
+    <button class="btn btn-outline btn-sm" id="btnImport" title="导入恢复">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg><span>导入恢复</span></button>
+    <button class="btn btn-outline btn-sm" id="btnClear" title="清空所有数据">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg><span>清空数据</span></button>
+    <input type="file" id="importFile" accept=".json" style="display:none">
+  </div>
+</div>
+</header>
+
+<!-- ===== TODAY PANEL ===== -->
+<div class="today-panel" id="todayPanel"></div>
+
+<!-- ===== LAYOUT ===== -->
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+  <button class="nav-item active" data-tab="products">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+    产品资料库
+  </button>
+  <button class="nav-item" data-tab="reference">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+    灵感参考
+  </button>
+  <button class="nav-item" data-tab="reviews">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+    设计稿审核
+    <span class="ni-badge" id="reviewBadge"></span>
+  </button>
+  <button class="nav-item" data-tab="assistant">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 017 7c0 2.38-1.19 4.47-3 5.74V17a2 2 0 01-2 2H10a2 2 0 01-2-2v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 017-7z"/><path d="M9 21h6"/></svg>
+    AI 助手
+  </button>
+</nav>
+
+<main class="main" id="mainContent"></main>
+</div>
+
+<!-- ===== LIGHTBOX ===== -->
+<div class="lb" id="lightbox">
+  <div class="lb-bar">
+    <span class="lb-zoom-hint" id="lbZoomHint"></span>
+    <div style="flex:1"></div>
+    <button class="lb-btn" onclick="lbZoomOut()" title="缩小"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35M8 11h6"/></svg></button>
+    <button class="lb-btn" onclick="lbZoomIn()" title="放大"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/></svg></button>
+    <button class="lb-btn" onclick="lbZoomReset()" title="重置大小"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></button>
+    <button class="lb-btn" onclick="lbDownload()" title="下载原图"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></button>
+    <button class="lb-nav lb-nav-prev" onclick="lbPrev()" title="上一张" id="lbPrevBtn" style="display:none"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 18l-6-6 6-6"/></svg></button>
+    <button class="lb-nav lb-nav-next" onclick="lbNext()" title="下一张" id="lbNextBtn" style="display:none"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 18l6-6-6-6"/></svg></button>
+    <button class="lb-close" onclick="closeLb()">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div class="lb-body">
+    <div class="lb-wrap" id="lbWrap">
+      <img id="lbImg" alt="" draggable="false">
+    </div>
+  </div>
+  <div class="lb-cap" id="lbCap"></div>
+</div>
+
+<!-- ===== MODALS ===== -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modalContent"></div>
+</div>
+
+<script>
+/* ================================================================
+   装裱设计台 v2 · Framing Studio
+   四模块合一：产品资料库 / 灵感参考 / 设计稿审核 / AI助手
+   全内联零外链 · localStorage 持久化
+   ================================================================ */
+
+const PFX = "wb_framing_v2_";
+const $ = s => document.getElementById(s);
+
+/* ---- 参考库服务器配置（根目录 = F:\） ---- */
+const REF_BASE = "http://localhost:8001/%E7%94%B0%E9%80%B8%E5%87%A1/%E7%94%B0%E9%80%B8%E5%87%A1/%E8%A3%85%E8%A3%B1%E8%AE%BE%E8%AE%A1/%E5%8F%82%E8%80%83";
+const REF_JSON = REF_BASE + "/_reflib/library.json";
+const REF_GALLERY = REF_BASE + "/_reflib/gallery.html";
+
+/* ---- utils ---- */
+function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,8) }
+function ymd(d){ d=d||new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0") }
+function daysAgo(n){ const d=new Date(); d.setDate(d.getDate()-n); return ymd(d) }
+function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[c]) }
+function safeUrl(src){ if(!src)return""; const enc=src.split("/").map(s=>encodeURIComponent(s)).join("/"); return REF_BASE+"/"+enc }
+
+/* ---- SVG icons (inline) ---- */
+const ICONS = {
+  plus:'<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>',
+  edit:'<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>',
+  trash:'<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>',
+  send:'<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>',
+  copy:'<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>',
+  image:'<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>',
+  check:'<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>',
+  chevronR:'<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>',
+  alert:'<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
+  upload:'<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>'
+};
+
+/* ================================================================
+   DATA LAYER
+   ================================================================ */
+
+function loadData(key){
+  try{ const r=localStorage.getItem(PFX+key); return r?JSON.parse(r):null }catch(e){return null}
+}
+function saveData(key,val){ localStorage.setItem(PFX+key,JSON.stringify(val)) }
+
+// Products
+let PRODUCTS = loadData("products") || [];
+// Reviews
+let REVIEWS = loadData("reviews") || [];
+// AI Chats
+let CHATS = loadData("chats") || [];
+// Reference data (loaded from library.json or embedded)
+let REF_DATA = null;
+
+/* ---- sample data (first run only) ---- */
+function initSampleData(){
+  
+  const yesterday = daysAgo(1);
+  const today = ymd();
+  const SAMPLE_PRODUCTS = [
+    {
+      id:"p001", brand:"Canon", model:"EOS 40D", category:"数码单反相机", size:"146 × 108 × 74 mm",
+      basicInfo:{ releaseDate:"2007年8月20日发布 / 2007年8月30日开售", origin:"日本", sensor:"APS-C CMOS 1050万有效像素", processor:"DIGIC III", viewfinder:"眼平五棱镜 0.95x / 95%覆盖率" },
+      specs:[
+        {key:"有效像素",value:"10.1 MP — Effective Pixels"},
+        {key:"总像素",value:"10.5 MP — Total Pixels"},
+        {key:"传感器类型",value:"CMOS — APS-C, 22.2×14.8 mm"},
+        {key:"像素尺寸",value:"5.7 μm — Pixel Pitch"},
+        {key:"色彩滤镜",value:"RGB 原色 — Primary Color Filter"},
+        {key:"低通滤镜",value:"OLPF 内置 — Optical Low-Pass Filter"},
+        {key:"处理器",value:"DIGIC III — 14-bit A/D 转换"},
+        {key:"感光度",value:"ISO 100-1600（可扩展 H:3200）, 1/3 级步进"},
+        {key:"对焦点数",value:"9 点全十字 — 9 Cross-type Points"},
+        {key:"中央对焦",value:"F2.8 双十字高精度 — Center Dual Cross"},
+        {key:"测光系统",value:"35 区评价测光 — 35-zone Evaluative"},
+        {key:"测光范围",value:"EV -0.5 ~ 18 — at ISO 100, 23°C"},
+        {key:"对焦模式",value:"One-Shot / AI Servo / AI Focus / MF"},
+        {key:"曝光模式",value:"P / Tv / Av / M / A-DEP / 场景智能自动"},
+        {key:"曝光补偿",value:"±2 EV, 1/3 级 — Exposure Compensation"},
+        {key:"包围曝光",value:"AEB ±2 EV — Auto Exposure Bracketing"},
+        {key:"快门速度",value:"1/8000 ~ 30s + B 门"},
+        {key:"闪光同步",value:"1/250s — X-Sync Speed"},
+        {key:"高速连拍",value:"6.5 张/秒 — High Continuous"},
+        {key:"低速连拍",value:"3 张/秒 — Low Continuous"},
+        {key:"连拍缓冲",value:"约 17 张 RAW / 75 张 JPEG（UDMA）"},
+        {key:"快门寿命",value:">100,000 次 — Shutter Durability"},
+        {key:"自拍定时",value:"2 秒 / 10 秒 — Self-timer"},
+        {key:"反光板预升",value:"支持 — Mirror Lock-up"},
+        {key:"景深预览",value:"支持 — Depth-of-field Preview"},
+        {key:"取景器",value:"眼平五棱镜, 0.95× 放大率, 95% 视野覆盖率"},
+        {key:"取景器屈光度",value:"-3.0 ~ +1.0 dpt — Dioptric Adjustment"},
+        {key:"对焦屏",value:"可更换 Ef-A / Ef-D / Ef-S"},
+        {key:"主屏幕",value:"2.5 英寸 TFT LCD, 23 万点, 视野率 100%"},
+        {key:"顶部 LCD",value:"单色液晶屏, 绿色背光, 显示主要拍摄参数"},
+        {key:"实时取景",value:"Live View — 首载佳能中端单反"},
+        {key:"回放变焦",value:"1.5× ~ 10× — Playback Zoom"},
+        {key:"直方图",value:"亮度 + RGB — Histogram"},
+        {key:"高光警告",value:"支持 — Highlight Alert"},
+        {key:"白平衡",value:"自动 + 6 预设 + 自定义 — White Balance"},
+        {key:"色彩空间",value:"sRGB / Adobe RGB"},
+        {key:"文件格式",value:"RAW(CR2) / sRAW1 / sRAW2 / JPEG"},
+        {key:"存储介质",value:"CF 卡 Type I/II（支持 UDMA）"},
+        {key:"电池",value:"BP-511A / BP-511 锂离子, CIPA 约 1100 张"},
+        {key:"外接手柄",value:"BG-E2N 电池手柄 — Battery Grip"},
+        {key:"接口",value:"USB 2.0 Mini-B / 视频 RCA / 遥控 N3 / PC 闪光灯端子"},
+        {key:"遥控",value:"RC-1 / RC-5 / RS-80N3"},
+        {key:"内置闪光灯",value:"E-TTL II 弹出式, GN 13 @ ISO100, 涵盖 17mm"},
+        {key:"热靴",value:"ISO 518 — 支持 EX 系列外接闪光灯"},
+        {key:"镜头卡口",value:"Canon EF 卡口（兼容 EF / EF-S 全系列镜头）"},
+        {key:"除尘系统",value:"集成式超声波自清洁感应器 — Self Cleaning Sensor Unit"},
+        {key:"机身构造",value:"镁合金骨架 + 工程塑料外壳, 防滴防尘"},
+        {key:"尺寸",value:"146 × 108 × 74 mm（仅机身）"},
+        {key:"重量",value:"约 740g（仅机身）/ 822g（含电池）"},
+        {key:"视频输出",value:"NTSC / PAL 切换 — Video Out"},
+        {key:"语言",value:"23 种含简体中文 — 菜单语言"},
+        {key:"工作温度",value:"0 ~ 40 °C — Operating Temperature"}
+      ],
+      features:"EOS 40D 是佳能于 2007 年 8 月 20 日正式发布、8 月 30 日开售的中端数码单反相机，为 EOS 30D 的升级型号，定位介于入门级 EOS 400D 与准专业级 EOS 50D 之间。它继承了佳能旗舰机型（如 EOS-1D Mark III）的核心技术——包括 9 点十字型对焦系统、DIGIC III 影像处理器和 14 位 A/D 转换，提供卓越的色彩深度与高 ISO 表现。\n\n对于装裱展示而言，40D 的价值在于其机械美学：镁合金骨架提供坚固的内部结构，大量独立部件（模式转盘、热靴、取景器五棱镜、双向拨轮、机顶信息屏）形成丰富的视觉层次。拆解后可清晰呈现镜头卡口的红圈标识、主板上的 DIGIC III 芯片、以及精密的机械快门组件。建议以俯视展开图为主视角，配合局部放大特写页与部件中英双语标注卡。",
+      featureTags:[
+        "DIGIC III 处理器","6.5张/秒高速连拍","9点全十字 AF",
+        "Live View 实时取景(首载中端)","EOS 综合除尘系统",
+        "sRAW / 14-bit A/D 转换","镁合金防滴防尘机身","反光板预升",
+        "可更换对焦屏 Ef 系列","E-TTL II 闪光","ISO 100-1600 可扩 3200","23 种菜单语言"
+      ],
+      timeline:[
+        {date:"2007.08.20",title:"佳能正式发布 EOS 40D",
+          desc:"佳能正式发布 EOS 40D，为 EOS 30D 的升级型号，定位中端单反市场，首次在中端机型引入 Live View 实时取景。",
+          en:"Canon officially announces EOS 40D as successor to the EOS 30D, targeting mid-range DSLR segment — first mid-range EOS with Live View."},
+        {date:"2007.08.30",title:"EOS 40D 正式开售",
+          desc:"EOS 40D 正式开售，是佳能首款支持 Live View 实时取景的数码单反相机，标志着中端产品线进入转型阶段。",
+          en:"Sales begin — first Canon mid-range DSLR with Live View; marks a key transition for the product line."},
+        {date:"2007.11.20",title:"固件升级 v1.0.5 发布",
+          desc:"修正了自动关机后回放、遥控拍摄显示、韩文/西班牙语菜单错误等问题。",
+          en:"Firmware v1.0.5 released — fixes auto power-off playback, remote shooting display, and localization bugs."},
+        {date:"2009.01.21",title:"最终固件 v1.1.1 发布",
+          desc:"修正电池误报、除尘 Err 06、打印色彩校正等关键问题。此后产品逐渐停产，由 EOS 50D 接替。",
+          en:"Final firmware v1.1.1 — fixes battery warning, dust cleaning Err 06, print color correction. Later discontinued, succeeded by EOS 50D."}
+      ],
+      categories:[
+        {name:"规格总览",en:"Specifications",icon:"📋",color:"#1e3a5f",
+          components:[
+            {name:"影像核心",en:"Imaging Core",
+             desc:"有效像素 10.1MP，APS-C CMOS 传感器（22.2×14.8 mm，像素尺寸 5.7μm），总像素 10.5MP，RGB 原色滤镜阵列 + OLPF 低通滤镜。DIGIC III 影像处理器提供 14-bit A/D 模数转换与 sRAW 格式支持。",
+             descEn:"10.1MP effective pixels on APS-C CMOS sensor (22.2×14.8 mm, 5.7μm pitch). 10.5MP total. RGB primary color filter + OLPF. DIGIC III delivers 14-bit A/D conversion and sRAW support.",
+             tag:null},
+            {name:"自动对焦",en:"Autofocus System",
+             desc:"9 点全十字型自动对焦系统（中央双十字高精度，支持 F2.8），35 区评价测光，测光范围 EV -0.5~18（ISO 100, 23°C）。对焦模式：单次 One-Shot / 连续 AI SERVO / 智能 AI FOCUS / 手动 MF。",
+             descEn:"9 cross-type AF points (center dual-cross at F2.8), 35-zone evaluative metering, range EV -0.5~18. Modes: One-Shot / AI SERVO / AI FOCUS / Manual MF.",
+             tag:null},
+            {name:"快门驱动",en:"Shutter & Drive",
+             desc:"快门速度 1/8000~30 秒 + B 门；高速连拍 6.5 张/秒，低速 3 张/秒；连拍缓冲约 17 张 RAW 或 75 张 JPEG（UDMA 卡）；快门寿命 >100,000 次；闪光同步速度 1/250 秒。",
+             descEn:"Shutter 1/8000~30s + Bulb. High 6.5 fps / Low 3 fps. Buffer ~17 RAW / 75 JPEG (UDMA). Durability >100,000 cycles. X-sync 1/250s.",
+             tag:null},
+            {name:"机身构造",en:"Body Construction",
+             desc:"镁合金压铸骨架提供结构刚性与电磁屏蔽，外层为工程塑料外壳（防滴防尘处理）。尺寸 146×108×74 mm，仅机身约 740g，含电池约 822g。",
+             descEn:"Die-cast magnesium alloy skeleton for rigidity and EM shielding; engineering-plastic outer shell with drip/dust resistance. 146×108×74 mm, ~740g body only / 822g with battery.",
+             tag:null}
+          ]},
+        {name:"外壳覆盖",en:"Body Shell",icon:"🔲",color:"#c0392b",
+          components:[
+            {name:"顶盖",en:"Top Cover",
+             desc:"承载模式转盘（P/Tv/Av/M 及场景模式）、快门按钮（两级行程）、电源开关、热靴接口、顶部 LCD 窗口。材质为工程塑料，表面磨砂处理。是 40D 最具辨识度的外观部件之一。",
+             descEn:"Carries Mode Dial (P/Tv/Av/M + scene modes), 2-stage Shutter Button, Power Switch, Hot Shoe mount, and Top LCD window. Engineering plastic with matte finish. One of the most recognizable exterior parts of the 40D.",
+             tag:"工程塑料 / ABS"},
+            {name:"前壳 / 前面板",en:"Front Body Shell",
+             desc:"包含手柄（Ergonomic Grip，内藏 BP-511A 电池仓）、镜头卡口（Canon EF 卡口，红色对焦指示点）、自拍定时灯、景深预览键、辅助对焦灯。手柄区有防滑橡胶蒙皮，握感厚实是 40D 标志性手感特征。",
+             descEn:"Includes Ergonomic Grip (conceals BP-511A battery compartment), Lens Mount (Canon EF bayonet with red alignment dot), Self-timer lamp, Depth-of-field Preview button, and AF Assist lamp. Rubberized grip — a signature tactile feature.",
+             tag:"橡胶蒙皮 / Rubber Grip"},
+            {name:"后壳 / 后面板",en:"Rear Body Shell",
+             desc:"包含主 LCD 屏（2.5 英寸 TFT）、眼平取景器目镜罩、方向键组（四向导航 + SET 键）、菜单/回放/删除/JUMP 键、屈光度调节拨轮。右侧为一体化橡胶接口盖板组。",
+             descEn:"Houses Main LCD (2.5-inch TFT), Viewfinder eyecup, 4-way Directional Pad + SET button, Menu/Play/Delete/JUMP buttons, and Dioptric adjustment dial. Right side integrates rubber I/O port cover set.",
+             tag:null},
+            {name:"底板 / 底座",en:"Bottom Plate / Chassis",
+             desc:"包含电池仓盖（BP-511A 滑盖式）、三脚架螺孔（1/4 英寸-20 UNC）、CF 卡槽盖（推拉式）。底板为金属框架核心承重区域，连接前后壳体形成完整骨架。",
+             descEn:"Battery chamber cover (BP-511A slide-type), Tripod socket (1/4-inch-20 UNC), CF card slot cover (push-pull). Metal frame core load-bearing area connecting front and rear shells.",
+             tag:"金属框架 / Metal Frame"},
+            {name:"眼罩",en:"Eyecup (Eb)",
+             desc:"卡扣式橡胶眼罩，遮光并贴合眼眶，提升取景舒适度，可向下翻起或更换为屈光度校正镜。",
+             descEn:"Clip-on rubber eyecup that blocks stray light and conforms to the eye socket; flips down or can be swapped for dioptric correction lens.",
+             tag:"可更换 / Replaceable"},
+            {name:"肩带环",en:"Strap Lugs",
+             desc:"机身左右两侧的金属挂点，用于固定背带环扣，承重设计可配合专业级长焦镜头使用。",
+             descEn:"Metal anchor points on both sides of the body for strap mounts; load-rated for use with professional telephoto lenses.",
+             tag:"金属 / Metal"}
+          ]},
+        {name:"光学系统",en:"Optical System",icon:"🔍",color:"#2980b9",
+          components:[
+            {name:"五棱镜",en:"Penta Prism",
+             desc:"一块精密研磨的玻璃五棱镜，将反光镜向上反射的光线翻转 90° 并正立成像到取景器目镜。放大倍率 0.95x。光学取景器 OVF 的核心——相比入门级的五面镜，五棱镜透光率更高、取景更明亮。40D 的五棱镜体积大、用料足。",
+             descEn:"Precision-ground glass pentaprism flipping mirror-reflected light 90° upright into the eyepiece. Magnification 0.95x. Core of the OVF — higher transmittance and brighter than entry-level pentamirror.",
+             note:"光学取景器(OVF)的核心。相比入门级的五面镜，五棱镜透光率更高、取景更明亮。40D 的五棱镜体积大、用料足。",
+             tag:"光学玻璃 / Optical Glass"},
+            {name:"对焦屏",en:"Focusing Screen (Ef-A)",
+             desc:"位于五棱镜下方的毛玻璃/微棱镜屏幕，光线经反光镜反射后在此成像，再经五棱镜传导到目镜。刻有 9 个对焦点标记。40D 支持更换对焦屏（标准 Ef-A / 网格线 Ef-D / 易看点 Ef-S）。",
+             descEn:"Ground glass/microprism screen below the pentaprism. Mirror-reflected light forms an image here, then routes through the prism to the eyepiece. Etched with 9 AF point markings. Interchangeable (Ef-A / Ef-D / Ef-S).",
+             tag:"可更换 / Interchangeable"},
+            {name:"主反光镜",en:"Main Mirror",
+             desc:"一块 45° 倾斜的半透明反光镜，将镜头射入的光线大部分反射到五棱镜（取景），小部分透过到副反光镜（AF）。",
+             descEn:"45° semi-transparent mirror reflecting most lens light upward to the pentaprism (viewing), transmitting a portion to the sub-mirror (AF).",
+             tag:null},
+            {name:"副反光镜",en:"Sub Mirror",
+             desc:"位于主反光镜后方的小型反光镜，将透过主反光镜的光线再次反射向下，导向底部 AF 传感器模块。自动对焦的光路桥梁——没有它，AF 传感器就收不到光线。",
+             descEn:"Small secondary mirror behind the main mirror, re-reflecting transmitted light downward toward the AF sensor module. The optical bridge for autofocus.",
+             note:"自动对焦的光路桥梁。没有它，AF 传感器就收不到光线。",
+             tag:null},
+            {name:"取景器目镜",en:"Eyepiece Lens",
+             desc:"位于五棱镜后方的光学镜片组，将成像传导至人眼。可调屈光度 -3.0 ~ +1.0 dpt，配合眼罩使用。",
+             descEn:"Optical lens group behind the pentaprism delivering the image to the eye. Dioptric adjustment -3.0 ~ +1.0 dpt, used with the eyecup.",
+             tag:null},
+            {name:"屈光度调节轮",en:"Dioptric Adjustment Dial",
+             desc:"后壳上的滚轮，调节取景器屈光度以适配不同视力用户，免去戴镜取景。",
+             descEn:"Rear dial adjusting viewfinder diopter for users with varying eyesight, eliminating the need for glasses while shooting.",
+             tag:null}
+          ]},
+        {name:"影像核心",en:"Imaging Core",icon:"📷",color:"#8e44ad",
+          components:[
+            {name:"CMOS 图像传感器",en:"CMOS Image Sensor",
+             desc:"APS-C 规格 CMOS，22.2×14.8 mm，1050 万有效像素，像素尺寸 5.7μm。RGB 原色滤镜阵列，前置低通滤波器（OLPF）。通过柔性排线连接至主板 DIGIC III 处理器。",
+             descEn:"APS-C CMOS, 22.2×14.8 mm, 10.1MP effective, 5.7μm pitch. RGB primary color filter array with OLPF. Connected via flex cable to main board DIGIC III.",
+             tag:"APS-C / 22.2×14.8mm"},
+            {name:"DIGIC III 处理器",en:"DIGIC III Image Processor",
+             desc:"佳能第三代数字影像处理器，BGA 封装焊接于主板。负责 14-bit A/D 模数转换、色彩处理、降噪、sRAW 格式编码。相比前代 DIGIC II，高 ISO 表现显著提升，色彩深度从 12-bit 提升至 14-bit。",
+             descEn:"Canon 3rd-gen processor, BGA mounted on main board. Handles 14-bit A/D conversion, color processing, noise reduction, sRAW encoding. Major high-ISO gain over DIGIC II; 12-bit to 14-bit color depth.",
+             note:"相比前代 DIGIC II，高 ISO 表现显著提升，色彩深度从 12-bit 提升至 14-bit。",
+             tag:"BGA 封装 / 14-bit"},
+            {name:"低通滤波器 / OLPF",en:"Optical Low-Pass Filter",
+             desc:"安装在 CMOS 传感器正前方的一层薄石英晶体，用于消除摩尔纹（Moiré）和伪彩色。两层晶体以极微小角度错开，产生微量模糊换取无锯齿图像。",
+             descEn:"Thin quartz crystal layer in front of CMOS to eliminate Moiré and false colors. Two crystal layers offset at microscopic angle, trading minute blur for aliasing-free images.",
+             tag:"石英晶体 / Quartz Crystal"},
+            {name:"自清洁感应器单元",en:"Self Cleaning Sensor Unit",
+             desc:"传感器前方的压电元件，在开机/关机时以高频振动抖落灰尘，配合机身防尘涂层降低污点附着。即 EOS 综合除尘系统。",
+             descEn:"Piezo element in front of the sensor vibrates at high frequency on power on/off to shake off dust, paired with anti-static coating. The EOS Integrated Cleaning System.",
+             tag:"超声波振动 / Ultrasonic"}
+          ]},
+        {name:"电子电路",en:"Electronics",icon:"🔌",color:"#27ae60",
+          components:[
+            {name:"主板 / PCB 总成",en:"Main Board (PCB Assembly)",
+             desc:"双层 FR-4 主板，L 形布局占据机身中下部空间。核心元件：DIGIC III（BGA+散热垫）、CMOS 排线接口、SDRAM 缓存、USB 2.0 接口 IC、电源管理 IC、闪光灯驱动电路。是整机的「大脑」。",
+             descEn:"Dual-layer FR-4 main board, L-shaped layout occupying lower-middle body. Core: DIGIC III (BGA + thermal pad), CMOS flex connector, SDRAM cache, USB 2.0 IC, power management IC, flash drive circuitry. The brain of the system.",
+             tag:"双层 FR-4 / L形布局"},
+            {name:"SDRAM 缓存芯片",en:"SDRAM Buffer Memory",
+             desc:"高速缓存芯片，临时存储 RAW 数据在 DIGIC III 处理过程中的中间结果。容量约 16-32MB，工作频率与处理器同步，决定连拍缓冲深度。",
+             descEn:"High-speed buffer storing RAW intermediate results during DIGIC III processing. ~16-32MB, clocked with the processor; determines burst buffer depth.",
+             tag:null},
+            {name:"电源管理 IC",en:"Power Management IC",
+             desc:"负责电池电压调节、各子系统供电分配、电量检测与低电量保护逻辑。电压低于阈值时触发自动关机和电池警告提示。",
+             descEn:"Battery voltage regulation, power distribution, battery level detection and low-power protection. Triggers auto-shutdown and warning below threshold.",
+             tag:null},
+            {name:"闪光灯驱动板",en:"Flash Control Board",
+             desc:"位于热靴下方的子板，处理 E-TTL II 通信时序与内置闪光灯触发，协调外接 EX 系列闪光灯的同步信号。",
+             descEn:"Sub-board below the hot shoe handling E-TTL II timing and built-in flash trigger, coordinating sync with external EX-series flashes.",
+             tag:"E-TTL II"}
+          ]},
+        {name:"机械驱动",en:"Mechanism",icon:"⚙️",color:"#d35400",
+          components:[
+            {name:"焦平面快门单元",en:"Focal Plane Shutter Unit",
+             desc:"电磁控制纵走式焦平面快门，帘幕材料为铝合金/碳纤维复合材料。速度范围 30s~1/8000s + B 门。半按快门 = AF 对焦 + 测光启动；全按 = 释放快门。寿命标称 >100,000 次。",
+             descEn:"Electromagnetically controlled vertical-travel focal plane shutter. Curtain: aluminum alloy/carbon fiber composite. 30s~1/8000s + Bulb. Half-press = AF + metering; full press = release. Rated >100,000 cycles.",
+             note:"寿命标称 >100,000 次。电磁控制纵走式结构。",
+             tag:">100K 次寿命"},
+            {name:"反光板驱动机构",en:"Mirror Drive Mechanism",
+             desc:"由电磁马达驱动的杠杆连杆系统，控制主反光镜和副反光镜的同步升降。支持反光板预升（Mirror Lock-up）模式以减少震动。动作噪音明显——单反标志性的机械声来源。",
+             descEn:"Electromagnetic motor-driven lever linkage controlling synchronized raise/lower of main and sub mirrors. Supports Mirror Lock-up to reduce vibration. The iconic DSLR mechanical sound source.",
+             tag:"电磁驱动 / Electromagnetic"},
+            {name:"镜头光圈联动杆",en:"Aperture Coupling Lever",
+             desc:"位于镜头卡口底部的一根细长金属杠杆，与 Canon EF 镜头内的光圈叶片机械耦合。按下快门时收缩使光圈收至预设值，释放后回弹至全开以便取景。",
+             descEn:"Thin metal lever at lens mount bottom, coupled to aperture blades inside EF lens. Contracts to stop down on shutter press, springs back to wide-open on release.",
+             tag:"机械耦合 / Mechanical"},
+            {name:"自拍 / 反光板计时机构",en:"Self-timer & Mirror Timer",
+             desc:"由独立计时电路与电磁释放机构组成，实现 2 秒 / 10 秒自拍延时与反光板预升后的延时释放。",
+             descEn:"Independent timing circuit and electromagnetic release enabling 2s/10s self-timer and delayed release after mirror lock-up.",
+             tag:null}
+          ]},
+        {name:"控制界面",en:"Controls & UI",icon:"🎮",color:"#16a085",
+          components:[
+            {name:"模式转盘",en:"Mode Dial",
+             desc:"旋转式选择开关，档位：全自动（绿色框）/ P 程序 / Tv 快门优先 / Av 光圈优先 / M 手动 / A-DEP 景深自动 / 人像 / 风景 / 微距 / 运动 / 禁止闪光。有中央锁定按钮防误触。",
+             descEn:"Rotary selector. Positions: Full Auto (green box) / P / Tv / Av / M / A-DEP / Portrait / Landscape / Macro / Sports / No Flash. Center lock prevents accidental rotation.",
+             tag:"11 档位 / 11 Positions"},
+            {name:"主拨轮",en:"Main Dial",
+             desc:"位于机身右上方的拇指拨轮，用于快速调整快门速度、光圈、曝光补偿等参数，盲操手感明确。",
+             descEn:"Thumb dial on upper-right body for quick adjustment of shutter speed, aperture, exposure compensation. Distinct tactile feedback.",
+             tag:null},
+            {name:"速控拨轮",en:"Quick Control Dial",
+             desc:"后壳上的副拨轮（部分固件/手柄联动），与方向键组合实现快速参数切换，提升操作效率。",
+             descEn:"Secondary rear dial combined with the directional pad for fast parameter switching, improving operation efficiency.",
+             tag:null},
+            {name:"方向键组 + SET 键",en:"Directional Pad + SET Button",
+             desc:"四向导航键（上/下/左/右）+ 中央 SET 确认键，用于菜单导航和对焦区域选择。按键有明确段落感，盲操友好。",
+             descEn:"4-way navigation pad + central SET for menu navigation and AF zone selection. Tactile clicks, blind-operation friendly.",
+             tag:null},
+            {name:"顶部信息屏",en:"Top LCD Panel",
+             desc:"单色液晶显示屏，显示：快门速度、光圈值（F 值）、ISO 感光度、剩余可拍张数、电池电量等级、白平衡模式、驱动模式（单拍/连拍/定时）。绿色背光照明，功耗极低。",
+             descEn:"Monochrome LCD: shutter speed, aperture, ISO, remaining shots, battery level, white balance, drive mode. Green backlight, extremely low power.",
+             tag:"绿色背光 / Green EL"},
+            {name:"景深预览键",en:"Depth-of-field Preview",
+             desc:"前壳上的按钮，按下时镜头光圈收缩至实际设定值，便于在取景器中预览合焦范围与背景虚化。",
+             descEn:"Front button that stops the lens down to the set aperture, letting you preview depth of field and background blur in the viewfinder.",
+             tag:null},
+            {name:"电源开关",en:"Power Switch",
+             desc:"位于模式转盘外侧的拨杆，三段式（OFF / ON / 视频预览），与快门按钮相邻，单手即可操作。",
+             descEn:"Lever around the mode dial, 3-position (OFF / ON / preview), adjacent to the shutter button for one-hand operation.",
+             tag:null}
+          ]},
+        {name:"接口存储",en:"I/O & Storage",icon:"💾",color:"#2c3e50",
+          components:[
+            {name:"CF 卡槽",en:"CompactFlash Slot",
+             desc:"Type I/II 双规格 CF 卡槽，支持 Ultra II / Extreme III 及 UDMA 高速卡。推拉式舱门设计。支持 32GB+ 卡（取决于文件系统）。写入速度影响连拍持续时间。",
+             descEn:"Dual Type I/II CF slot supporting Ultra II / Extreme III and UDMA. Push-pull door. 32GB+ supported (filesystem dependent). Write speed affects burst.",
+             tag:"UDMA 支持"},
+            {name:"接口盖板组",en:"I/O Port Cover Set",
+             desc:"机身右侧橡胶一体式接口盖，内含：Mini USB 2.0 接口（数据传输 + PTP 控制）、视频 RCA 输出（NTSC/PAL 切换）、遥控端子 N3（3.5mm 三芯）、PC 闪光灯同步端子。",
+             descEn:"Right-side integrated rubber port cover: Mini USB 2.0 (data + PTP), Video RCA (NTSC/PAL), Remote N3 (3.5mm 3-pin), PC flash sync terminal.",
+             tag:"一体式橡胶盖"},
+            {name:"热靴",en:"Hot Shoe Accessory Mount",
+             desc:"标准 ISO 518 热靴，支持 EX 系列闪光灯 E-TTL II 同步通信。触点布局：中心大触点（X 触发）+ 四周 4 小触点（E-TTL II 数据通信）。金属导轨 + 塑料基座。",
+             descEn:"Standard ISO 518 hot shoe supporting EX-series flash E-TTL II sync. Center large contact (X trigger) + 4 peripheral contacts (E-TTL II data). Metal rails + plastic base.",
+             tag:"ISO 518 / E-TTL II"}
+          ]},
+        {name:"电源系统",en:"Power System",icon:"\u{1f50b}",color:"#e67e22",
+          components:[
+            {name:"BP-511A 锂电池",en:"BP-511A Li-ion Battery Pack",
+             desc:"7.4V 1390mAh 锂离子可充电池，为整台相机提供主电源。续航约 800\u20131100 张（视温度和使用习惯）。",
+             descEn:"7.4V 1390mAh Lithium-ion rechargeable battery supplying main power to the entire camera. Approx. 800\u20131100 shots per charge (temperature/usage dependent).",
+             note:"40D 的能量来源。与 20D/30D/300D/500D/5D 等机型通用。BP-511A 是加容版（比 BP-511 多 15% 电量）。",
+             noteEn:"40D\'s power source. Interchangeable with 20D/30D/300D/500D/5D models. BP-511A is the higher-capacity variant (+15% over original BP-511).",
+             tags:["7.4V","1390mAh"]},
+            {name:"日期/时间备用电池",en:"Date/Time Backup Battery (CR2016)",
+             desc:"一颗 CR2016 纽扣电池，位于电池仓内的小槽中。在主电池取出时维持时钟和部分设置不丢失。",
+             descEn:"CR2016 coin cell battery in a small slot inside the battery compartment. Maintains clock and settings when main battery is removed.",
+             note:"相机的\"记忆电池\"。没了会导致每次换电池后日期时间重置。寿命约 5 年。",
+             noteEn:"Camera\'s \'memory battery\'. When depleted, date/time resets after every battery swap. Service life approximately 5 years.",
+             tags:["CR2016","3V"]},
+            {name:"BG-E2N 电池手柄",en:"BG-E2N Battery Grip",
+             desc:"可选外接手柄，可装入第二块 BP-511A/BP-514 或 6 节 AA 电池，提供竖拍快门与额外拨轮。",
+             descEn:"Optional grip holding a 2nd BP-511A/BP-514 or 6\u00d7 AA batteries, adding vertical shutter and extra dial.",
+             note:null, noteEn:null,
+             tags:["可选","Optional"]},
+            {name:"电源管理电路",en:"Power Management Circuit",
+             desc:"DC-DC 降压转换器将电池 7.2V 降至各子系统所需电压（3.3V/5V/12V 等）。含过流保护与温度监测逻辑。",
+             descEn:"DC-DC buck converter steps 7.2V down to subsystem voltages. Overcurrent protection and temperature monitoring.",
+             note:null, noteEn:null,
+             tags:null},
+            {name:"电池仓触点",en:"Battery Compartment Contacts",
+             desc:"电池仓内的金属触点组，连接 BP-511A 电池的正负极和温度传感端子到 DC/DC 电源板。",
+             descEn:"Metal contact set inside the battery compartment, connecting BP-511A positive/negative terminals and temperature sensing pins to DC/DC power board.",
+             note:"电力传输的物理接口。含温度检测触点，防止电池过热。",
+             noteEn:"Physical interface for power transmission. Includes temperature detection contacts to prevent battery overheating.",
+             tags:["镀金触点","Gold-plated Contacts"]},
+            {name:"闪光灯储能电容",en:"Flash Capacitor",
+             desc:"顶盖内的大容量电解电容，将电池低压升压至 \u2248300V 储存，闪光时瞬间释放驱动氙气灯管。",
+             descEn:"Large electrolytic capacitor inside the top cover, stepping up low voltage from battery to \u2248300V for storage, releasing instantly to drive xenon tube on flash discharge.",
+             note:"闪光灯的能量蓄水池。\u26a0\ufe0f 即使相机断电，电容仍可能保有致命高压！拆解前必须放电！",
+             noteEn:"Energy reservoir for the flash unit. \u26a0\ufe0f Capacitor may retain lethal voltage even after camera power-off! Must be discharged before disassembly!",
+             tags:["\u26a0\ufe0f -300V 高压"]}
+          ]},
+        {name:"结构件",en:"Structural Components",icon:"\u{1f527}",color:"#7f8c8d",
+          components:[
+            {name:"镁合金主骨架",en:"Magnesium Alloy Main Chassis",
+             desc:"机身内部的镁合金一体铸造骨架，是所有内部部件的安装基座。固定反光镜箱、CMOS、PCB、卡口和三脚架螺孔。",
+             descEn:"Internal magnesium alloy monolithic cast chassis serving as the mounting base for all internal components. Secures mirror box, CMOS, PCB, mount and tripod socket.",
+             note:"整台相机的\"脊骨\"。决定了机身刚性、抗扭强度和精度基准。40D 的镁合金骨架是其\"中端机\"定位的标志。",
+             noteEn:"Camera\'s \'skeleton.\' Determines body rigidity, torsional strength and precision datum. The magnesium chassis marks 40D\'s \'mid-range\' positioning.",
+             tags:["镁合金一体铸造","Monolithic Mg Cast"]},
+            {name:"EF 卡口环",en:"EF Mount Ring",
+             desc:"不锈钢卡口环，口径 54mm，含 8 个电子触点。安装镜头的物理接口，同时提供镜头与机身的电子通讯通道。",
+             descEn:"Stainless steel mount ring, 54mm diameter, with 8 electronic contacts. Physical interface for lens attachment while providing electronic communication channel between lens and body.",
+             note:"连接镜头与机的核心结构件。EF 卡口自 1987 年沿用至今，是佳能 EOS 系统的基石。兼容 EF 和 EF-S 镜头。",
+             noteEn:"Core structural component connecting lens and body. EF mount in use since 1987 \u2014 foundation of the Canon EOS system. Compatible with EF and EF-S lenses.",
+             tags:["不锈钢","54mm","Stainless Steel","54mm"]},
+            {name:"三脚架螺孔衬套",en:"Tripod Mount Insert",
+             desc:"底座中央的 1/4 英寸标准三脚架螺孔衬套，嵌入式固定在镁合金骨架上。连接三脚架或快装板。",
+             descEn:"Standard 1/4\"-20 tripod socket insert embedded centrally in the magnesium alloy chassis. Connects tripod or quick-release plate.",
+             note:"三脚架安装的承力点。嵌入骨架确保强度，不会因频繁装卸而滑丝。",
+             noteEn:"Load-bearing point for tripod mounting. Embedded in chassis ensures strength; won\'t strip from frequent mounting/dismounting cycles.",
+             tags:["1/4\"-20 UNC"]},
+            {name:"接地线",en:"Grounding Wire",
+             desc:"一根黑色细线，用防静电胶粘在主板芯片附近，连接主芯片接地端到机身金属骨架。",
+             descEn:"Thin black wire bonded with anti-static adhesive near the mainboard chip, connecting chip ground terminal to the metal chassis frame.",
+             note:"防静电保护 \u2014 释放主芯片上积聚的静电荷，稳定连拍时的成像质量。拆时不要随意拔除！",
+             noteEn:"ESD protection \u2014 dissipates static charge buildup on the main chip, stabilizing image quality during burst shooting. Do not remove arbitrarily during teardown!",
+             tags:["防静电接地","ESD Ground"]},
+            {name:"螺丝组",en:"Screw Set (Various)",
+             desc:"全机数十颗不同长度/直径/头型的精密螺丝，固定外壳、PCB、反光镜箱等所有组件。多数为 JIS（日本工业标准）十字头。",
+             descEn:"Dozens of precision screws varying in length, diameter and head type, securing shell, PCB, mirror box and other assemblies. Mostly JIS (Japanese Industrial Standard) Phillips head.",
+             note:"看似不起眼但至关重要 \u2014 不同位置的螺丝长度不同，装错可能顶穿内部组件。拆机时务必按步骤分类存放。",
+             noteEn:"Seemingly insignificant but critically important \u2014 screw lengths vary by location, wrong placement can pierce internal components. Must be sorted by step during teardown.",
+             tags:null},
+            {name:"密封胶条/垫圈",en:"Sealing Gaskets / O-Rings",
+             desc:"各外壳接缝处和按钮周围的橡胶密封圈/条，提供防尘防滴溅能力。",
+             descEn:"Rubber sealing gaskets/O-rings around shell seams and button perimeters, providing dust and splash resistance.",
+             note:"40D 防尘防滴设计的执行件。接缝处、按键轴、按钮柱、卡口周围都有密封。老化后的密封性能下降。",
+             noteEn:"Execution elements of 40D\'s dust/weather sealing design. Sealing present at seams, button shafts, pushers and mount perimeter. Sealing degrades with age.",
+             tags:["橡胶密封件","Rubber Seals"]},
+            {name:"手柄橡胶蒙皮",en:"Grip Rubber Cover",
+             desc:"人体工学曲线防滑橡胶蒙皮，覆盖右手握持区。表面细微颗粒纹理增强摩擦力。可自行更换（需拆下几颗螺丝）。",
+             descEn:"Ergonomically curved anti-slip rubber grip covering right hand area. Fine granular texture enhances friction. User-replaceable (requires removing several screws).",
+             note:"40D 握感厚实是其标志性手感特征。",
+             noteEn:"Signature substantial grip feel of the 40D.",
+             tags:["可更换","Replaceable"]}
+          ]}
+      ],
+      parts:[
+        {name:"顶盖",en:"Top Cover",note:"包含模式转盘（P/Tv/Av/M 及场景模式）、快门按钮（两级行程）、电源开关、热靴接口、顶部 LCD 窗口。材质为工程塑料，表面磨砂处理。"},
+        {name:"前壳 / 前面板",en:"Front Body Shell",note:"包含手柄（Ergonomic Grip，内置 BP-511A 电池仓）、镜头卡口（Canon EF 卡口，红色对焦指示点）、自拍定时灯、景深预览键、辅助对焦灯。手柄区有防滑橡胶蒙皮。"},
+        {name:"后壳 / 后面板",en:"Rear Body Shell",note:"包含主 LCD 屏（2.5 英寸 TFT）、眼平取景器目镜、方向键组（四向导航 + SET 键）、菜单键、回放键、删除键、JUMP 跳转键、屈光度调节拨轮。接口盖板在右侧。"},
+        {name:"底板",en:"Bottom Plate / Chassis",note:"包含电池仓盖（BP-511A）、三脚架螺孔（1/4 英寸-20 UNC）、CF 卡槽盖（推拉式）。底板为金属框架核心承重区域。"},
+        {name:"热靴",en:"Hot Shoe Accessory Mount",note:"标准 ISO 518 热靴，支持 EX 系列闪光灯同步。触点：中心大触点 + 四周四小触点（E-TTL II 通信）。金属导轨 + 塑料基座。"},
+        {name:"主屏幕",en:"Main LCD Monitor",note:"2.5 英寸 TFT LCD，23 万点分辨率。用于实时取景、菜单操作、照片回放（放大 10×）。背光 LED 侧光式。"},
+        {name:"顶部信息屏",en:"Top LCD Panel",note:"单色液晶屏，显示：快门速度、光圈值（F 值）、ISO、剩余张数、电池电量、白平衡、驱动模式。绿色背光照明。"},
+        {name:"取景器组件",en:"Viewfinder Assembly",note:"眼平五棱镜（Pentaprism）光学系统，放大率 0.95×（-1 m⁻¹），视野覆盖率 95%。内置可更换对焦屏（Ef 系列）、屈光度调节轮（-3.0 ~ +1.0 dpt）、DK 眼罩。"},
+        {name:"模式转盘",en:"Mode Dial",note:"旋转式选择开关，档位：全自动/P/Tv/Av/M/A-DEP/人像/风景/微距/运动/禁止闪光。中央锁定按钮防误触。"},
+        {name:"快门按钮组件",en:"Shutter Button Assembly",note:"电磁控制纵走式焦平面快门。半按 = AF + 测光启动；全按 = 释放快门。寿命标称约 10 万次。按钮凸起纹理便于盲操。"},
+        {name:"手柄 / 握把",en:"Ergonomic Grip",note:"右手握持区，人体工学曲线。防滑橡胶蒙皮（可更换），内藏 BP-511A 电池仓和 CF 卡槽下半部分。握感厚实是 40D 的标志性特征。"},
+        {name:"主板 / PCB 总成",en:"Main Board (PCB Assembly)",note:"双层 FR-4 主板，核心元件：DIGIC III（BGA 封装+散热垫）、CMOS 排线接口、SDRAM 缓存、USB IC、电源管理 IC。L 形布局占据机身中下部。"},
+        {name:"反光板组件",en:"Mirror Box Assembly",note:"半透明半反光镜（允许部分光线到达相位差 AF 传感器）。支持预升模式减少震动。动作噪音明显——单反标志性机械声来源。"},
+        {name:"接口盖板组",en:"I/O Port Cover Set",note:"右侧橡胶一体式接口盖：Mini USB（数据+PTP）、视频 RCA（NTSC/PAL）、遥控 N3（3.5mm 三芯）、PC 闪光灯同步端子。"},
+        {name:"CMOS 传感器",en:"CMOS Image Sensor",note:"APS-C CMOS，22.2×14.8 mm，1050 万有效像素，像素尺寸 5.7μm。前置 OLPF 低通滤镜与 RGB 原色滤镜阵列。"},
+        {name:"DIGIC III 处理器",en:"DIGIC III Processor",note:"佳能第三代影像处理器，BGA 封装焊接于主板，负责 14-bit A/D 转换、色彩处理、降噪与 sRAW 编码。"}
+      ],
+      framingNotes:{ canDisassemble:true, recommendedFrame:"铝合金窄边哑黑框 / 实木深色胡桃木框", frameSize:"外框 A3+（420×297 mm），内衬根据部件展开图定制镂空开孔", customFrame:true, notes:"装裱设计重点建议：(1) Hero 区域用深色渐变背景突出产品型号标题；(2) 10 大分类用不同颜色图标区分；(3) 五棱镜 / DIGIC III / 快门单元做立体浮雕或 UV 上光突出层次；(4) 发展时间线作为叙事线索贯穿页面；(5) 整体采用深色背景衬托银色/黑色部件质感；(6) 镜头卡口红圈是视觉焦点，建议居中偏上放置；(7) 部件卡片采用中英双语对照，黄色高亮框标注关键说明；(8) 预留参考图区与制作完成图区，项目交付后补入实拍装裱照。" },
+      pinterestLinks:["https://www.pinterest.com/search/pins/?q=canon%2040D%20teardown"],
+      images:[], framedPhotos:[],
+      createdAt:today, status:"completed",
+      usageNotes:"本图鉴按功能分为 9 大类、40+ 组件，中英双语对照。装裱时可按类别分组排列，每组配一张功能说明卡。\n\n如果你的拆解中有图鉴未覆盖到的零件，告诉我具体长什么样，我来补充对应的功能说明！\n\nIf you have parts not covered here, describe them and I'll add their descriptions!"
+    }
+    ,{id:"p002", brand:"Nokia", model:"N95", category:"智能手机", size:"99 × 53 × 21 mm",
+      basicInfo:{ releaseDate:"2007年3月", origin:"芬兰" },
+      specs:[], features:"", parts:[],
+      framingNotes:{ canDisassemble:true, recommendedFrame:"", frameSize:"", customFrame:false, notes:"" },
+      pinterestLinks:[], images:[], framedPhotos:[],
+      createdAt:today, status:"draft"
+    },
+    {
+      id:"p003", brand:"Apple", model:"MacBook (A1181)", category:"笔记本电脑", size:"325 × 227 × 27.5 mm",
+      basicInfo:{ releaseDate:"2006年5月", origin:"中国/美国" },
+      specs:[
+        {key:"型号 Model",value:"A1181"},
+        {key:"EMC 编号 EMC",value:"2092"},
+        {key:"机型标识符 ID",value:"MacBook1,1"},
+        {key:"订单号 Order",value:"MA255LL/A（美版白色 2.0GHz 高配）"},
+        {key:"发布时间 Release",value:"2006 年 5 月（2006 Mid）"},
+        {key:"处理器 CPU",value:"Intel Core Duo T2500 @ 2.0 GHz"},
+        {key:"核心数 Cores",value:"双核 Dual-Core（Yonah 架构）"},
+        {key:"制程工艺 Process",value:"65 nm"},
+        {key:"架构位宽 Arch",value:"32 位（不支持 64 位 / VT-x / SSE4）"},
+        {key:"二级缓存 L2",value:"2 MB 双核共享"},
+        {key:"前端总线 FSB",value:"667 MHz"},
+        {key:"TDP 功耗",value:"31 W（直接焊接 BGA，不可更换）"},
+        {key:"芯片组 Chipset",value:"Intel 945GM 北桥 + ICH7-M 南桥"},
+        {key:"显卡 GPU",value:"Intel GMA 950 集成显卡"},
+        {key:"显存 VRAM",value:"64 MB 共享系统内存（最高动态 224 MB）"},
+        {key:"内存 Memory",value:"2 GB DDR2-667（原装 512MB 升级，2×1GB 海盗船）"},
+        {key:"内存类型 Type",value:"PC2-5300 DDR2 SO-DIMM"},
+        {key:"内存插槽 Slots",value:"2× SO-DIMM（键盘下方，用户可换）"},
+        {key:"显示屏 Display",value:"13.3 英寸 TFT LCD"},
+        {key:"分辨率 Resolution",value:"1280 × 800"},
+        {key:"摄像头 Camera",value:"iSight 640×480（VGA，屏幕上方）"},
+        {key:"硬盘 HDD",value:"250 GB 2.5 英寸 5400RPM（原 60/80GB 升级，希捷 ST9250827AS）"},
+        {key:"硬盘接口 I/F",value:"主板 PATA(IDE) 经桥接驱动 SATA 硬盘"},
+        {key:"光驱 ODD",value:"8× SuperDrive 吸入式（Panasonic UJ-857C，DVD±R DL）"},
+        {key:"无线 WiFi",value:"AirPort Extreme 802.11a/b/g（Broadcom BCM43xx）"},
+        {key:"蓝牙 Bluetooth",value:"2.0 + EDR"},
+        {key:"以太网 Ethernet",value:"10/100/1000Base-T 千兆（Marvell 88E8053）"},
+        {key:"音频接口 Audio",value:"3.5mm Combo（模拟 + 光纤数字 TOSLINK 24bit/96kHz）"},
+        {key:"扬声器 Speaker",value:"2× 1 W"},
+        {key:"电池 Battery",value:"55 Wh 锂聚合物（A1185，6 芯可拆卸，约 5100mAh）"},
+        {key:"续航 Battery Life",value:"最长 6 小时（轻度）/ DVD 2.5h / 开 WiFi 3.5h"},
+        {key:"电源适配器 PSU",value:"60W MagSafe（A1184，16.5V 3.65A 磁吸）"},
+        {key:"尺寸 Dimensions",value:"325 × 227 × 27.5 mm"},
+        {key:"重量 Weight",value:"2.36 kg"},
+        {key:"预装系统 OS",value:"macOS 10.4.6 Tiger"},
+        {key:"最高系统 Max OS",value:"macOS 10.6.8 Snow Leopard"},
+        {key:"键盘 Keyboard",value:"78 键 美式 剪刀脚（无背光）"},
+        {key:"触控板 Trackpad",value:"一体化 72×52 mm 点击式"},
+        {key:"USB",value:"2× USB 2.0（480 Mbps）"},
+        {key:"视频输出 Video",value:"Mini-DVI（转 VGA/DVI 需转接器）"},
+        {key:"FireWire",value:"1× FW400（IEEE 1394a，6-pin，支持 Target Disk Mode）"},
+        {key:"红外 IR",value:"Apple Remote 接收（Front Row）"},
+        {key:"防盗锁 Security",value:"Kensington 锁孔"},
+        {key:"外壳材质 Shell",value:"白色聚碳酸酯（Polycarbonate，会自然泛黄）"},
+        {key:"散热 Cooling",value:"铜热管 + 铝鳍片 + 离心风扇（主动散热）"},
+        {key:"散热风扇 Fan",value:"SUNON MagLev GB0506PGB1-A（50mm，5V 1.9W）"},
+        {key:"序列号 S/N",value:"4H6368NU9C（本机）"},
+        {key:"FCC ID",value:"BCGA1181"},
+        {key:"CMII ID",value:"2005DJ0116"}
+      ],
+      features:"MacBook A1181（EMC 2092）是苹果 2006 年 5 月发布的第一代 MacBook，标志着 Mac 电脑从 PowerPC 全面转向 Intel 架构，取代此前的 iBook G4，成为面向大众市场的首款 Intel Mac 笔记本，也是首款内置 iSight 摄像头的 Mac。本机为白色高配版（订单号 MA255LL/A），搭载 Intel Core Duo T2500 2.0GHz 双核处理器、2GB DDR2 内存与 SuperDrive 双层 DVD 刻录机，是当时中高端的主流配置。\n\n作为装裱题材，A1181 有独特的历史价值：它是苹果 Intel 转型的'开篇之作'，聚碳酸酯白壳随年代自然泛黄的'古董白'色泽成为复古苹果美学的标志性特征；内部 SuperDrive 光驱、初代 MagSafe 磁吸电源、FireWire 400、剪刀脚键盘与一体化触控板等都是 2006 年笔记本工业设计的重要标本，适合以拆解信息图表方式呈现技术演进。",
+      parts:[
+        {name:"Intel Core Duo T2500 处理器",en:"Intel Core Duo T2500 CPU",note:"本机'心脏'，2006 年第 25 周制造（批号 L6275B89）。直接 BGA 焊接在主板上，不可单独更换升级。"},
+        {name:"13.3 英寸 TFT 显示屏",en:"13.3-inch TFT LCD",note:"分辨率 1280×800，整机尺寸 325×227×27.5mm。"},
+        {name:"SuperDrive 光驱",en:"SuperDrive (UJ-857C)",note:"Panasonic UJ-857C 8× 吸入式双层 DVD 刻录机，Apple 部件号 678-0256E，2006 年 8 月印尼制造。"},
+        {name:"55Wh 锂离子电池",en:"55Wh Li-Poly Battery (A1185)",note:"6 芯可拆卸设计，带外部 5 颗 LED 电量指示灯，按下即可查看剩余电量无需开机。"},
+        {name:"60W MagSafe 电源适配器",en:"60W MagSafe Adapter (A1184)",note:"苹果初代磁吸电源，绊线时安全断开，琥珀色充电中 / 绿色已充满。"},
+        {name:"78 键剪刀脚键盘",en:"78-key Scissor Keyboard",note:"美式 US English 布局，无背光，右上角带标志性的光驱弹出键 ⏏。"},
+        {name:"一体化触控板",en:"Clickable Trackpad",note:"整个板面可按下，2006 年先进的一体化按键设计，尺寸约 72×52mm。"},
+        {name:"iSight 摄像头",en:"iSight Camera",note:"640×480 VGA，位于屏幕上方边框，是首款内置 iSight 的 Mac。"},
+        {name:"AirPort Extreme 无线模块",en:"AirPort Extreme WiFi",note:"型号 AACR8MB，Broadcom BCM43xx，Mini PCIe 半高卡，支持 802.11a/b/g。"},
+        {name:"散热器总成",en:"Heatsink Assembly",note:"Foxconn 607-0143 / Apple 076-1243，双铜导热垫 + U 形铜热管 + 约 40-50 片铝鳍片，重约 454g。"},
+        {name:"离心风扇",en:"Centrifugal Fan (SUNON)",note:"SUNON MagLev GB0506PGB1-A 磁悬浮轴承，50mm 直径，5V 1.9W，2000-5500 RPM 自动调速。"},
+        {name:"白色聚碳酸酯外壳",en:"White Polycarbonate Shell",note:"顶盖与底盖为白色聚碳酸酯，随年代自然泛黄形成'古董白'特征。"}
+      ],
+      framingNotes:{ canDisassemble:true, recommendedFrame:"深色哑光铝合金窄边框 / 黑色实木框（衬托白色机身与金属部件）", frameSize:"外框 A2（420×594 mm），内衬按部件展开图定制镂空开孔", customFrame:true, notes:"装裱设计重点建议：(1) Hero 区域用深色背景突出 A1181 型号与'Intel 转型开篇'历史定位；(2) 10 大分类用不同颜色图标区分（处理器/显示/存储/无线/音频/电源/输入/接口/散热/机身）；(3) 标志性部件——SuperDrive 光驱、初代 MagSafe、FireWire 400、剪刀脚键盘——做立体浮雕或 UV 上光突出层次；(4) 产品发展历程时间线作为叙事线索贯穿页面；(5) 白色聚碳酸酯泛黄质感是视觉焦点，建议居中偏上放置实拍机身；(6) 部件卡片采用中英双语对照，黄色高亮框标注关键说明（焊接不可换/年代泛黄/首款内置等）；(7) 预留参考图区与制作完成图区，项目交付后补入实拍装裱照。" },
+      featureTags:["Intel Core Duo T2500","初代 MagSafe","白色聚碳酸酯","iSight 摄像头","SuperDrive 光驱","Mini-DVI","FireWire 400","剪刀脚键盘","Intel 转型标志","复古苹果美学"],
+      timeline:[
+        {year:"2005-06",text:"WWDC 上乔布斯宣布 Mac 将在约 2 年内从 PowerPC 全面转向 Intel 处理器，开启苹果史上最大胆的架构转型。"},
+        {year:"2006-01",text:"首批 Intel Mac 发布：iMac Core Duo 与 MacBook Pro 15 英寸，Intel Core Duo 首次进入苹果产品。"},
+        {year:"2006-05",text:"MacBook A1181 正式发布，取代 iBook G4，成为首款面向大众市场的 Intel Mac 笔记本，也是首款内置 iSight 的 Mac；提供白/黑两种配色。"},
+        {year:"2006-11",text:"MacBook 更新至 Core 2 Duo（Merom 架构，支持 64 位），显卡仍为 GMA 950，内存官方最大支持提升至 3GB。"},
+        {year:"2007",text:"A1181 持续销售，外壳基本不变；白色聚碳酸酯的泛黄问题开始被部分用户注意到。"},
+        {year:"2008-10",text:"重新设计的 Unibody 铝壳 MacBook（A1278）发布，A1181 聚碳酸酯外壳被淘汰，库存售至 2009 年中。"},
+        {year:"2009",text:"A1181 正式停产，'纯白聚碳酸酯 + 白色键盘'时代结束，由聚碳酸酯 Unibody（A1342）接替。"},
+        {year:"2026",text:"A1181 成为收藏品与装裱材料，白色泛黄的'古董白'成为复古苹果美学标志；本机拆解文档化以保留技术历史。"}
+      ],
+      categories:[
+        {name:"处理器与平台",en:"Processor & Platform",icon:"🔧",color:"#1e3a5f",
+          components:[
+            {name:"Intel Core Duo T2500 处理器",en:"Intel Core Duo T2500 CPU",
+             desc:"本机处理器，Yonah 微架构 65nm 双核，主频 2.0GHz，2MB 双核共享 L2 缓存，667MHz 前端总线，31W TDP。直接 BGA 焊接在主板上，不可单独更换。芯片实拍标签批号 L6275B89 对应 2006 年第 25 周制造，与 A1181 2006 Mid 发布时间吻合。",
+             descEn:"The machine's CPU: Yonah 65nm dual-core at 2.0GHz, 2MB shared L2, 667MHz FSB, 31W TDP. Soldered BGA onto the logic board, not user-replaceable. Laser batch L6275B89 dates to week 25 of 2006, matching the A1181 2006 Mid launch.",
+             note:"32 位架构最大限制——无法运行 64 位系统（10.7 Lion 起需 64 位），不支持 VT-x 虚拟化与 SSE4。这是 A1181 最高只能跑 macOS 10.6.8 雪豹的根本原因。",
+             noteEn:"Key limitation: 32-bit only — cannot run macOS 10.7+ (requires 64-bit), no VT-x, no SSE4. This caps the A1181 at macOS 10.6.8 Snow Leopard.",
+             tags:["Yonah 65nm","焊接不可换 / Soldered BGA","32-bit"]},
+            {name:"Intel 945GM 北桥",en:"Intel 945GM Northbridge",
+             desc:"集成 GMA 950 显卡的北桥芯片，连接 CPU、内存与显示。支持 DDR2-667 双通道，与 667MHz FSB 匹配。",
+             descEn:"Northbridge integrating the GMA 950 GPU, linking CPU, memory and display. Supports DDR2-667 dual-channel, matched to the 667MHz FSB.",
+             note:"集成显卡无独立显存，从系统内存分配 64MB；双通道内存下集成显卡性能提升约 10-15%。",
+             noteEn:"Integrated GPU with no dedicated VRAM, drawing 64MB from system memory; dual-channel RAM boosts iGPU performance ~10-15%.",
+             tags:["集成显卡 / Integrated GFX","DDR2-667"]},
+            {name:"ICH7-M 南桥",en:"ICH7-M Southbridge",
+             desc:"I/O 控制器中枢，管理 SATA/PATA、USB 2.0、音频、PCIe 等外设通道，与 945GM 北桥协同工作。",
+             descEn:"I/O hub managing SATA/PATA, USB 2.0, audio and PCIe channels, working with the 945GM northbridge.",
+             note:"负责硬盘 IDE 接口与主板原生 PATA 信号输出，本机 SATA 硬盘靠桥接芯片转换。",
+             noteEn:"Drives the native PATA/IDE disk interface; the SATA HDD relies on a bridge chip.",
+             tags:["I/O 中枢 / I/O Hub"]},
+            {name:"内存插槽",en:"DDR2 SO-DIMM Slots",
+             desc:"2 个 200-pin SO-DIMM 插槽位于键盘下方，用户可自行更换升级。本机实装 2×1GB Corsair VS1GSDS667D2 组成双通道，为 Apple 官方支持上限 2GB。",
+             descEn:"Two 200-pin SO-DIMM slots beneath the keyboard, user-replaceable. Fitted with 2×1GB Corsair VS1GSDS667D2 in dual-channel — Apple's official 2GB ceiling.",
+             note:"成对安装同型号内存可启用双通道，带宽从 5.3GB/s 翻倍至 10.6GB/s；32 位 CPU 实际可寻址仅约 3.2-3.5GB。",
+             noteEn:"Paired modules enable dual-channel (5.3→10.6GB/s); the 32-bit CPU can only address ~3.2-3.5GB total.",
+             tags:["用户可换 / User-replaceable","双通道 / Dual-channel"]},
+            {name:"主板 Logic Board",en:"Logic Board",
+             desc:"MacBook1,1 集成式主板，承载 CPU、芯片组、内存插槽、无线模块、各种接口与排线座。集成度极高，是整机的功能核心。",
+             descEn:"The MacBook1,1 integrated board hosting CPU, chipset, memory slots, wireless module and all ports. Highly integrated — the functional core.",
+             note:"拆机时所有排线需按序断开，螺丝长度各异须分类存放，否则装回易顶穿内部组件。",
+             noteEn:"During teardown disconnect all flex cables in order; sort varied screw lengths or risk piercing internals on reassembly.",
+             tags:["功能核心 / Core","高集成 / High integration"]}
+          ]},
+        {name:"显示与影像",en:"Display & Imaging",icon:"🖥️",color:"#2980b9",
+          components:[
+            {name:"13.3 英寸 TFT 显示屏",en:"13.3-inch TFT LCD",
+             desc:"13.3 英寸薄膜晶体管液晶屏，分辨率 1280×800，16:10 比例。面板供应商含 LG Philips 与三星，参数略有差异。",
+             descEn:"13.3-inch TFT panel at 1280×800 (16:10). Suppliers included LG Philips and Samsung with minor spec differences.",
+             note:"屏线经顶部铰链走线连接主板，拆装需小心排线卡扣，避免折断。",
+             noteEn:"Display cable routes through the top hinge to the board; handle the latch carefully to avoid snapping it.",
+             tags:["1280×800","16:10"]},
+            {name:"iSight 摄像头",en:"iSight Camera",
+             desc:"屏幕上方边框内置的 640×480（VGA）网络摄像头，是 MacBook 首次在笔记本上标配的 iSight。",
+             descEn:"640×480 (VGA) webcam built into the top bezel — the first iSight standard on a Mac notebook.",
+             note:"iSight 旁边并排布置了 WiFi/蓝牙共享天线，是整机无线信号的收发前端。",
+             noteEn:"Shares the bezel with the WiFi/Bluetooth antenna array — the wireless front-end.",
+             tags:["首款内置 / First built-in","VGA 640×480"]},
+            {name:"环境光传感器",en:"Ambient Light Sensor",
+             desc:"屏幕上方边框的感光元件，根据环境亮度自动调节键盘背光（本机键盘无背光）与屏幕亮度。",
+             descEn:"Photosensor in the top bezel that auto-adjusts screen brightness (this model has no keyboard backlight).",
+             note:"与 iSight、天线同处顶部边框，拆屏时一并处理。",
+             noteEn:"Co-located with iSight and antenna at the top bezel.",
+             tags:["自动亮度 / Auto-brightness"]},
+            {name:"显示排线与逆变器",en:"Display Cable & Inverter",
+             desc:"连接主板与液晶屏的排线及背光亮驱动模块，传输视频信号并为屏幕背光供电。",
+             descEn:"Flex cable and backlight driver linking board to LCD, carrying video signal and backlight power.",
+             note:"逆变器高压端勿徒手触碰，存放时做好绝缘。",
+             noteEn:"The inverter carries high voltage — insulate it during storage.",
+             tags:["高压注意 / High-voltage caution"]}
+          ]},
+        {name:"存储系统",en:"Storage",icon:"💾",color:"#6b4226",
+          components:[
+            {name:"2.5 英寸 SATA 硬盘",en:"2.5-inch SATA HDD",
+             desc:"本机升级装希捷 Momentus 5400.4 ST9250827AS，250GB 5400RPM 8MB 缓存。日期码 09221 显示 2009 年第 22 周制造，为购入约 3 年后的容量升级替换（原厂 60/80GB）。",
+             descEn:"Upgraded Seagate Momentus 5400.4 ST9250827AS, 250GB 5400RPM 8MB cache. Date code 09221 = week 22, 2009 — a capacity upgrade ~3 years after purchase (original 60/80GB).",
+             note:"主板原生 PATA(IDE)，硬盘本体却是 SATA，故机内使用 PATA-to-SATA 桥接器（JMicron 类），会略降理论速度。",
+             noteEn:"Board is native PATA yet the disk is SATA, so a PATA-to-SATA bridge (JMicron-class) is used, slightly capping speed.",
+             tags:["250GB 5400RPM","桥接 SATA / Bridged SATA"]},
+            {name:"SuperDrive 光驱",en:"SuperDrive (UJ-857C)",
+             desc:"右侧吸入式 8× 双层 DVD 刻录机，实装 Panasonic UJ-857C，Apple 部件号 678-0256E，2006 年 8 月印尼制造。支持 DVD±R DL 刻录，IDE(50-pin) 接口。",
+             descEn:"Right-side slot-load 8x dual-layer DVD burner, Panasonic UJ-857C, Apple P/N 678-0256E, made Aug 2006 in Indonesia. DVD±R DL capable, IDE (50-pin) interface.",
+             note:"A1181 白色高配版标配 SuperDrive（区别于低配 Combo Drive 仅能读 DVD/刻 CD）；后续 2007+ 改版才换 SATA 版本。",
+             noteEn:"White high-end A1181 ships SuperDrive (vs low-end Combo Drive); later 2007+ revisions moved to SATA.",
+             tags:["8× 吸入式 / Slot-load","DVD±R DL","IDE 接口 / IDE"]},
+            {name:"PATA-SATA 桥接器",en:"PATA-to-SATA Bridge",
+             desc:"将主板原生 IDE 信号转换为 SATA 以驱动现代硬盘的小芯片（常见 JMicron JM20330 类），是 2006-2007 过渡期典型方案。",
+             descEn:"Small chip converting the board's native IDE to SATA for modern disks (typically JMicron JM20330-class) — typical of the 2006-2007 transition.",
+             note:"桥接会略微降低理论传输速率，但让老机器能用上更大容量 SATA 硬盘。",
+             noteEn:"The bridge slightly caps throughput but lets the old machine use larger SATA disks.",
+             tags:["JMicron 类 / JMicron-class"]},
+            {name:"硬盘缓震支架",en:"HDD Shock Bracket",
+             desc:"固定 2.5 英寸硬盘的橡胶缓震支架，吸收冲击保护盘体，同时作为硬盘舱的承托结构。",
+             descEn:"Rubber shock-absorbing cradle securing the 2.5-inch disk, protecting the platter and supporting the drive bay.",
+             note:"弹性支架老化会变硬，是二手 A1181 常见异响来源之一。",
+             noteEn:"Aged brackets harden and are a common source of rattle in used A1181s.",
+             tags:["橡胶缓震 / Rubber damped"]}
+          ]},
+        {name:"无线与网络",en:"Wireless & Network",icon:"📡",color:"#1f7a5a",
+          components:[
+            {name:"AirPort Extreme 无线模块",en:"AirPort Extreme WiFi",
+             desc:"型号 AACR8MB，Broadcom BCM43xx 系列 Mini PCIe 半高无线网卡，支持 802.11a/b/g 三频，最高 54Mbps。Apple 部件号 620-8887-A 专用于 A1181 Core Duo。",
+             descEn:"Model AACR8MB, Broadcom BCM43xx Mini PCIe half-height card, 802.11a/b/g tri-band up to 54Mbps. Apple P/N 620-8887-A for A1181 Core Duo.",
+             note:"不支持 802.11n（2007 年才通过软件更新为部分 Intel Mac 启用）；无 MIMO，1×1 SISO 天线。",
+             noteEn:"No 802.11n (added via 2007 software update on some Macs); 1×1 SISO, no MIMO.",
+             tags:["802.11a/b/g","Mini PCIe 半高"]},
+            {name:"蓝牙模块",en:"Bluetooth Module",
+             desc:"Bluetooth 2.0 + EDR，最高约 3Mbps 实际吞吐，支持 PAN/HFP/A2DP/SPP。与 WiFi 共享显示屏上方天线，无独立蓝牙天线。",
+             descEn:"Bluetooth 2.0 + EDR, ~3Mbps real throughput, supports PAN/HFP/A2DP/SPP. Shares the bezel antenna with WiFi, no separate BT antenna.",
+             note:"2006 年主流版本，Bluetooth 4.0 低功耗直到 2011 年才进入 Mac。",
+             noteEn:"Mainstream 2006 spec; Bluetooth 4.0 Low Energy only arrived in Macs in 2011.",
+             tags:["2.0 + EDR"]},
+            {name:"千兆以太网控制器",en:"Gigabit Ethernet Controller",
+             desc:"Marvell 88E8053 或同类千兆以太网控制器，提供 10/100/1000Base-T 有线网络，RJ-45 位于机身左侧带活动指示灯。",
+             descEn:"Marvell 88E8053 or similar Gigabit Ethernet controller, 10/100/1000Base-T, RJ-45 on the left side with activity LED.",
+             note:"无内置调制解调器，需另购 Apple USB 外置 Modem。",
+             noteEn:"No built-in modem; an Apple USB modem was sold separately.",
+             tags:["千兆 / Gigabit","Marvell 88E8053"]},
+            {name:"天线组",en:"Antenna Array",
+             desc:"位于显示屏上方边框，服务于 iSight 旁，WiFi 与蓝牙共享的一组内置天线（1×1 SISO）。",
+             descEn:"Bezel antenna above the display, beside iSight, shared by WiFi and Bluetooth (1×1 SISO).",
+             note:"天线走线随屏线经铰链，是无线信号的关键前端，拆屏勿扯断。",
+             noteEn:"Routed with the display cable through the hinge — the wireless front-end; don't rip during display removal.",
+             tags:["共享天线 / Shared"]}
+          ]},
+        {name:"音频系统",en:"Audio",icon:"🔊",color:"#7d3c98",
+          components:[
+            {name:"内置全向麦克风",en:"Omnidirectional Microphone",
+             desc:"屏幕上方边框右侧的全向麦克风，约 -40 dBV/Pa 灵敏度，用于语音通话与录音。",
+             descEn:"Omnidirectional mic at upper-right bezel, ~-40 dBV/Pa, for voice calls and recording.",
+             note:"与 iSight、天线同处顶部边框。",
+             noteEn:"Co-located with iSight and antenna at the top bezel.",
+             tags:["全向 / Omnidirectional"]},
+            {name:"内置扬声器",en:"Built-in Speaker",
+             desc:"约 2×1W 扬声器位于键盘下方，朝下发射，声音经桌面反射到达用户，音量适中。",
+             descEn:"~2×1W speakers beneath the keyboard, firing downward and reflecting off the desk.",
+             note:"单声道/立体声配置，2006 年笔记本典型水平。",
+             noteEn:"Mono/stereo config, typical 2006 notebook level.",
+             tags:["2×1W"]},
+            {name:"3.5mm Combo 音频接口",en:"3.5mm Combo Audio Jack",
+             desc:"同时支持模拟音频输出与光纤数字音频输出（TOSLINK，最高 24bit/96kHz）的 combo 接口，自动检测插入设备类型。",
+             descEn:"Combo jack for analog out and optical digital out (TOSLINK, up to 24bit/96kHz), auto-detecting plug type.",
+             note:"这是 2006 年苹果高端配置，同期 PC 笔记本很少提供光纤数字输出。",
+             noteEn:"A high-end 2006 Apple feature rarely found on contemporaneous PCs.",
+             tags:["光纤数字 / TOSLINK","自动检测 / Auto-detect"]}
+          ]},
+        {name:"电源与电池",en:"Power & Battery",icon:"🔋",color:"#b9770e",
+          components:[
+            {name:"55Wh 锂离子电池",en:"55Wh Li-Poly Battery (A1185)",
+             desc:"6 芯（3 串 2 并）可拆卸锂聚合物电池，约 5100mAh，10.8V。官方标称最长 6 小时轻度续航。带外部 5 颗 LED 电量指示灯，按下即可查看无需开机。",
+             descEn:"6-cell (3S2P) removable Li-Poly, ~5100mAh at 10.8V. Up to 6h light use. External 5-LED fuel gauge readable without power-on.",
+             note:"约 300-500 次循环后容量降至 80% 以下；与部分 MacBook Pro 13 通用。",
+             noteEn:"~300-500 cycles to 80% capacity; shares fitment with some MacBook Pro 13.",
+             tags:["可拆卸 / Removable","6 芯 / 6-cell"]},
+            {name:"60W MagSafe 适配器",en:"60W MagSafe Adapter (A1184)",
+             desc:"苹果初代磁吸电源，白色外壳，输出 16.5V 3.65A。绊到线缆时磁吸接头安全断开，不会拉下笔记本。接头 LED 琥珀色充电中 / 绿色已充满。",
+             descEn:"Apple's first MagSafe, white shell, 16.5V 3.65A. Magnetic tip safely detaches if the cord is yanked. Amber=charging, green=full.",
+             note:"MagSafe 是 2006 年随首批 Intel Mac 推出的专利，2016 USB-C 时代被取消，2021 年因用户要求重新引入。",
+             noteEn:"MagSafe debuted in 2006 with the first Intel Macs, dropped in 2016 (USB-C), revived in 2021 by popular demand.",
+             tags:["初代 MagSafe / 1st-gen MagSafe","磁吸安全 / Magnetic safety"]},
+            {name:"充电管理电路",en:"Charge Management Circuit",
+             desc:"主板上的充电控制与电源管理 IC，配合 SMC 监控电池温度与充放电状态，实现过流/过压/温度保护。",
+             descEn:"On-board charge and power-management ICs working with the SMC to monitor battery temperature and cycling, with over-current/voltage/temp protection.",
+             note:"MagSafe 接头的磁吸力约 3-4N，足够稳固又能安全断开。",
+             noteEn:"MagSafe magnetic force ~3-4N — secure yet safely detachable.",
+             tags:["SMC 协同 / SMC-managed"]}
+          ]},
+        {name:"输入设备",en:"Input",icon:"⌨️",color:"#566573",
+          components:[
+            {name:"78 键剪刀脚键盘",en:"78-key Scissor Keyboard",
+             desc:"美式 US English 布局全尺寸键盘，剪刀脚结构键程约 1.5mm，白色 ABS 键帽黑色字符，无背光。含 12 个功能键（F1-F12）与标志性的光驱弹出键 ⏏。",
+             descEn:"US English full-size keyboard, scissor-switch ~1.5mm travel, white ABS caps with black legend, no backlight. 12 function keys plus the signature eject key.",
+             note:"实拍确认无 ¥/€ 符号、Enter 为长方形、左 Shift 长条——对应美版 MA255LL/A；键盘上方 3 个卡扣可抬起以访问内存与硬盘。",
+             noteEn:"Confirmed US layout (no ¥/€, rectangular Enter, long left Shift) = MA255LL/A; three top clips lift the keyboard to reach memory/HDD.",
+             tags:["美式 / US English","剪刀脚 / Scissor","无背光 / No backlight"]},
+            {name:"一体化触控板",en:"Clickable Trackpad",
+             desc:"整个板面可按下的一体化触控板（约 72×52mm），无独立按键，按下下半部以顶部为轴转动触发微动开关。支持两指滚动等基础手势。",
+             descEn:"Whole-surface clickable trackpad (~72×52mm), no separate button; pressing the lower half pivots at the top to actuate a switch. Basic two-finger scroll gestures.",
+             note:"2006 年先进的一体化按键设计，最大化触控面积；完整多点触控（三/四指）2008 年 MacBook Air 才引入。",
+             noteEn:"Advanced one-piece design for 2006 maximizing pad area; full multi-touch came with the 2008 MacBook Air.",
+             tags:["一体化 / Whole-surface","Synaptics"]},
+            {name:"红外接收器",en:"IR Receiver",
+             desc:"机身前方边缘的红外接收窗，接收 Apple Remote 遥控器信号，用于控制 Front Row 媒体中心。",
+             descEn:"Front-edge IR window receiving Apple Remote signals to drive the Front Row media center.",
+             note:"是 2006 年苹果'客厅 Mac'生态的一环，后续机型逐渐取消。",
+             noteEn:"Part of Apple's 2006 'living-room Mac' ecosystem, later dropped.",
+             tags:["Apple Remote","Front Row"]}
+          ]},
+        {name:"接口与扩展",en:"I/O Ports",icon:"🔌",color:"#a93226",
+          components:[
+            {name:"MagSafe 电源接口",en:"MagSafe Power Port",
+             desc:"机身左侧最前端的 60W 磁吸充电接口，LED 显示充电状态。",
+             descEn:"Front-left 60W magnetic charging port with status LED.",
+             note:"磁吸设计是 A1181 标志性安全特征。",
+             noteEn:"The magnetic port is a signature A1181 safety feature.",
+             tags:["磁吸 / Magnetic"]},
+            {name:"千兆以太网 RJ-45",en:"Gigabit Ethernet (RJ-45)",
+             desc:"左侧第二个接口，10/100/1000Base-T 有线网络，带活动指示灯。",
+             descEn:"Second left-side port, 10/100/1000Base-T with activity LED.",
+             note:"位于机身左侧接口区。",
+             noteEn:"On the left-side I/O cluster.",
+             tags:["RJ-45"]},
+            {name:"Mini-DVI",en:"Mini-DVI",
+             desc:"视频输出接口，需转接器连接 VGA 或 DVI 外显，最高 1920×1080。转接器需单独购买。",
+             descEn:"Video-out needing adapters for VGA/DVI external display, up to 1920×1080. Adapters sold separately.",
+             note:"不同于后来的 Mini DisplayPort/Thunderbolt，是 2006-2009 苹果笔记本的过渡视频接口。",
+             noteEn:"Distinct from later Mini DisplayPort/Thunderbolt — Apple's transitional video port of 2006-2009.",
+             tags:["视频输出 / Video-out"]},
+            {name:"2× USB 2.0",en:"2× USB 2.0",
+             desc:"左侧两个 Type-A USB 2.0 接口（480Mbps），间距较近，插大尺寸设备可能遮挡相邻口。",
+             descEn:"Two left-side Type-A USB 2.0 (480Mbps), closely spaced — bulky plugs may block the neighbor.",
+             note:"2006 年主流，尚未有 USB 3.0/Type-C。",
+             noteEn:"Mainstream 2006 spec, pre-USB 3.0/Type-C.",
+             tags:["480Mbps"]},
+            {name:"FireWire 400",en:"FireWire 400 (IEEE 1394a)",
+             desc:"6-pin IEEE 1394a 接口，400Mbps 高速传输，可连外置硬盘/摄像机，并支持 Target Disk Mode（开机按住 T 键将本机作外置硬盘）与从 FireWire 设备启动。",
+             descEn:"6-pin IEEE 1394a at 400Mbps; connects disks/cameras and supports Target Disk Mode (hold T at boot) and FireWire booting.",
+             note:"2006 年仍具价值：CPU 占用低、可 Target Disk Mode，是苹果生态独特功能；后续机型取消。",
+             noteEn:"Still valuable in 2006: low CPU load, Target Disk Mode — a distinct Apple ecosystem feature, later removed.",
+             tags:["IEEE 1394a","Target Disk Mode"]},
+            {name:"3.5mm 音频接口",en:"3.5mm Audio Jack",
+             desc:"左侧 Combo 音频接口，插入耳机自动断开内置扬声器，支持模拟与光纤数字输出。",
+             descEn:"Left-side combo audio jack; inserting headphones mutes speakers, supports analog and optical digital out.",
+             note:"与音频系统的 Combo 接口为同一物理端口。",
+             noteEn:"Same physical port as the audio system's combo jack.",
+             tags:["Combo"]},
+            {name:"Kensington 锁孔",en:"Kensington Lock Slot",
+             desc:"左侧最末端的国际标准防盗锁孔，用于物理防盗缆绳固定。",
+             descEn:"Rearmost left-side standard Kensington security slot for anti-theft cables.",
+             note:"标准 Kensington 规格，与当时主流笔记本通用。",
+             noteEn:"Standard Kensington spec, shared with contemporaneous notebooks.",
+             tags:["防盗 / Anti-theft"]}
+          ]},
+        {name:"散热系统",en:"Thermal",icon:"🌡️",color:"#c0392b",
+          components:[
+            {name:"散热器总成",en:"Heatsink Assembly",
+             desc:"Foxconn 607-0143 / Apple 076-1243 散热器，铝制底座（压印 FOXCONN）配双铜质导热垫（左 CPU T2500、右芯片组 945GM+ICH7-M）、U 形纯铜热管（外径约 6mm，烧结粉末毛细芯）与约 40-50 片铝鳍片，总重约 454g。",
+             descEn:"Foxconn 607-0143 / Apple 076-1243 heatsink: aluminum base (FOXCONN stamp) with twin copper pads (left CPU T2500, right 945GM+ICH7-M), a U-shaped copper heatpipe (~6mm OD, sintered wick) and ~40-50 aluminum fins, ~454g total.",
+             note:"热管两相传热：工质蒸发-冷凝循环效率远高于纯金属块，却仅约 30g——这就是现代笔记本用'热管+鳍片'而非纯铜块的原因。",
+             noteEn:"Two-phase heatpipe loop far outperforms solid metal at ~30g — why modern notebooks use heatpipe+fin instead of a copper block.",
+             tags:["Foxconn","铜热管 / Copper heatpipe","双铜导热垫 / Dual copper pads"]},
+            {name:"离心风扇",en:"Centrifugal Fan (SUNON)",
+             desc:"SUNON MagLev GB0506PGB1-A 磁悬浮轴承离心风扇，50mm 直径 ×6mm 厚，DC 5V 1.9W，4 线 PWM 自动调速 2000-5500 RPM，台湾建准制造。",
+             descEn:"SUNON MagLev GB0506PGB1-A magnetic-levitation centrifugal blower, 50mm×6mm, DC 5V 1.9W, 4-wire PWM 2000-5500 RPM, made by Sunon in Taiwan.",
+             note:"MagLev 磁悬浮使转子无物理接触，寿命更长噪音更低；日常 <25dBA，高负载约 35-40dBA。",
+             noteEn:"MagLev suspends the rotor contact-free for longer life and lower noise; <25dBA idle, ~35-40dBA under load.",
+             tags:["SUNON MagLev","磁悬浮 / MagLev","PWM 调速"]},
+            {name:"SMC 温度管理",en:"SMC Thermal Management",
+             desc:"系统管理控制器监控 CPU、芯片组、硬盘、电池与掌托多处温度传感器，按温度自动调节风扇转速；掌托超 45°C 或 CPU 达 95-100°C 时强制降频/关机保护。",
+             descEn:"SMC monitors CPU, chipset, HDD, battery and palm-rest sensors, auto-scaling fan speed; throttles or shuts down at >45°C palm-rest or 95-100°C CPU.",
+             note:"空闲 35-45°C、网页 50-65°C、满载可达 95-100°C 触发保护。",
+             noteEn:"Idle 35-45°C, web 50-65°C, load up to 95-100°C triggers protection.",
+             tags:["SMC","多点温控 / Multi-sensor"]}
+          ]},
+        {name:"机身结构",en:"Chassis",icon:"🐚",color:"#839192",
+          components:[
+            {name:"白色聚碳酸酯外壳",en:"White Polycarbonate Shell",
+             desc:"顶盖与底盖采用白色聚碳酸酯（Polycarbonate）材质，是 A1181 的标志性外观；随年代与使用会自然泛黄，形成独特的'古董白'色泽。",
+             descEn:"White polycarbonate top and bottom cases — the A1181's signature look; ages to a distinctive 'antique white' yellowing over time.",
+             note:"泛黄是装裱视觉焦点与复古苹果美学标志；2009 年后被 Unibody 铝壳取代。",
+             noteEn:"The yellowing is a framing focal point and mark of retro Apple aesthetics; replaced by Unibody aluminum in 2009.",
+             tags:["聚碳酸酯 / Polycarbonate","自然泛黄 / Ages yellow"]},
+            {name:"显示屏转轴",en:"Display Hinge",
+             desc:"连接机身与屏幕的转轴，兼作散热出风口；屏线、天线走线经铰链内部连接主板。",
+             descEn:"Hinge joining body and lid, also the thermal exhaust; display and antenna cables route through it to the board.",
+             note:"后方无接口，仅为转轴与出风口；拆屏时走线最易受损。",
+             noteEn:"No ports at rear — only hinge and exhaust; cable routing is most vulnerable during display removal.",
+             tags:["出风口 / Exhaust","走线通道 / Cable path"]},
+            {name:"电池状态指示灯",en:"Battery Level LEDs",
+             desc:"机身前方电池上的 5 颗 LED 点阵，按下按钮即显示剩余电量，无需开机。",
+             descEn:"Five-LED gauge on the front battery; press the button to show remaining charge without powering on.",
+             note:"人性化设计，2006 年苹果笔记本的贴心细节。",
+             noteEn:"A thoughtful 2006 Apple detail.",
+             tags:["5 LED","免开机 / No power-on"]},
+            {name:"硬盘/内存舱盖",en:"Drive & Memory Bay Covers",
+             desc:"底盖上的内存舱盖（键盘下方，经卡扣抬起键盘访问）与硬盘位，是用户最常自行升级的区域。",
+             descEn:"Bottom memory bay (under keyboard via clip-released keyboard) and HDD bay — the most user-upgraded areas.",
+             note:"A1181 以'用户可维护'著称，内存与硬盘均可自行更换。",
+             noteEn:"The A1181 is known for serviceability — memory and disk are both user-replaceable.",
+             tags:["用户可维护 / User-serviceable"]},
+            {name:"底盖螺丝组",en:"Bottom Case Screws",
+             desc:"全机数十颗不同长度/直径/头型的精密螺丝，多为 JIS 十字头，固定外壳、主板、光驱等所有组件。",
+             descEn:"Dozens of precision screws of varied length/diameter/head, mostly JIS Phillips, securing shell, board and optical drive.",
+             note:"不同位置螺丝长度不同，装错可能顶穿内部组件；拆机务必按步骤分类存放。",
+             noteEn:"Screw lengths vary by location — wrong placement can pierce internals; sort by step during teardown.",
+             tags:["JIS 十字 / JIS Phillips","分类存放 / Sort by step"]}
+          ]}
+      ],
+      usageNotes:"本图鉴按功能分为 10 大类、40+ 组件，中英双语对照，全部基于本机实物标签逐件核对。装裱时可按类别分组排列，每组配一张功能说明卡。\n\n重点部件建议优先呈现：SuperDrive 光驱（Panasonic UJ-857C）、初代 MagSafe 电源、FireWire 400、剪刀脚键盘、白色泛黄聚碳酸酯外壳——它们是 2006 年苹果工业设计的标志性标本。\n\nIf you have parts not covered here, describe them and I'll add their descriptions!",
+      pinterestLinks:["https://www.pinterest.com/search/pins/?q=MacBook%20A1181%20teardown"],
+      images:[], framedPhotos:[],
+      dataSources:[
+        "用户提供的《MacBook A1181 (EMC 2092) 详细规格文档》——基于本机实物标签逐件核对（CPU 批号 L6275B89、光驱 UJ-857C P/N 678-0256E、散热器 Foxconn 607-0143、风扇 SUNON GB0506PGB1-A、硬盘 ST9250827AS 等）",
+        "本机序列号 4H6368NU9C → 订单号 MA255LL/A（美版白色 2.0GHz 高配），FCC ID BCGA1181，CMII ID 2005DJ0116",
+        "Apple 官方历史规格档案（MacBook A1181 / EMC 2092，2006 Mid）"
+      ],
+      createdAt:daysAgo(3), status:"completed"
+    }
+  ];
+  const SAMPLE_REVIEWS = [
+    {
+      id:"r001", productId:"p001", productName:"Canon EOS 40D",
+      designName:"EOS 40D v1 标注版", dueDate:yesterday,
+      status:"pending",
+      checks:{ typos:false, contentError:false, patternError:false, paramCorrect:false, other:"", doneCount:0 },
+      clientConfirmed:false, notes:"待检查中英文双语标签是否准确"
+    },
+    {
+      id:"r002", productId:"p002", productName:"Nokia N95",
+      designName:"N95 双滑盖展开版", dueDate:today,
+      status:"pending",
+      checks:{ typos:false, contentError:false, patternError:false, paramCorrect:false, other:"", doneCount:0 },
+      clientConfirmed:false, notes:""
+    },
+    {
+      id:"r003", productId:"p003", productName:"MacBook (A1181)",
+      designName:"A1181 拆解装裱图鉴", dueDate:daysAgo(5),
+      status:"pending",
+      checks:{ typos:false, contentError:false, patternError:false, paramCorrect:false, other:"", doneCount:0 },
+      clientConfirmed:false, notes:"产品资料已重建为 A1181 图鉴级（原 M2 资料删除），待重新审核"
+    }
+  ];
+  const SAMPLE_CHATS = [];
+  
+  // ---- Smart seed: first run or auto-update ----
+  if(PRODUCTS.length > 0){
+    // Already has data — check if embedded sample is more complete
+    var _updated=false;
+    SAMPLE_PRODUCTS.forEach(function(s){
+      var stored=PRODUCTS.find(function(pp){return pp.id===s.id;});
+      if(!stored) return;
+      var sCount=(s.categories||[]).reduce(function(sum,c){return sum+(c.components||[]).length;},0);
+      var pCount=(stored.categories||[]).reduce(function(sum,c){return sum+(c.components||[]).length;},0);
+      // Sync basic metadata fields (model/brand/category/size) even if component count unchanged
+      var metaChanged=(s.model&&s.model!==stored.model)||(s.brand&&s.brand!==stored.brand)
+        ||(s.category&&s.category!==stored.category)||(s.size&&s.size!==stored.size);
+      if(sCount>pCount||metaChanged){
+        var imgs=stored.images,fp=stored.framedPhoto,fps=stored.framedPhotos,ca=stored.createdAt;
+        var idx=PRODUCTS.indexOf(stored);
+        PRODUCTS[idx]=Object.assign({},s,{images:imgs||[],framedPhoto:fp||null,framedPhotos:fps||fp?(fp instanceof Array?fp:[fp]):[],createdAt:ca});
+        _updated=true;
+      }
+    });
+    if(_updated){
+      saveData("products",PRODUCTS);
+      if(typeof showToast==='function') showToast("产品资料已自动更新到最新版本");
+    }
+    return;
+  }
+  // First run: seed everything
+  PRODUCTS = SAMPLE_PRODUCTS;
+  saveData("products",PRODUCTS);
+  REVIEWS = SAMPLE_REVIEWS;
+  saveData("reviews",REVIEWS);
+  CHATS = SAMPLE_CHATS;
+  saveData("chats",CHATS);
+}
+
+/* ================================================================
+   TODAY PANEL
+   ================================================================ */
+function renderToday(){
+  const el = $("todayPanel");
+  const today = ymd();
+  const items = [];
+
+  // overdue & pending reviews
+  REVIEWS.filter(r=>r.status!=="passed").forEach(r=>{
+    const d = r.dueDate||"";
+    const overdue = d && d < today;
+    items.push({
+      type:"review", text:r.designName+" ("+(r.productName||"")+")",
+      sub:overdue?"逾期 "+Math.ceil((new Date(today)-new Date(d))/86400000)+" 天":(d===today?"今天截止":"待审"),
+      overdue, id:r.id
+    });
+  });
+
+  // draft products
+  PRODUCTS.filter(p=>p.status==="draft").forEach(p=>{
+    items.push({type:"product", text:"草稿："+p.brand+" "+p.model, sub:"资料未完善", overdue:false, id:p.id});
+  });
+
+  items.sort((a,b)=>(b.overdue?1:0)-(a.overdue?1:0));
+
+  if(!items.length){ el.innerHTML=""; return; }
+
+  el.innerHTML =
+    '<div class="today-card">'+
+    '<div class="today-h"><span class="t">今天要处理</span>'+
+    (items.some(i=>i.overdue)?'<span class="badge">'+items.filter(i=>i.overdue).length+' 项逾期</span>':"")+
+    '</div>'+
+    '<div class="today-list">'+
+    items.map(i=>
+      '<div class="today-item'+(i.overdue?' overdue':'')+'">'+
+      '<span class="tag '+(i.overdue?'tag-red':(i.sub.includes("今天")?'tag-warn':'tag-blue'))+'">'+
+      (i.type==="review"?"审":"草")+'</span>'+
+      '<span class="ti-txt">'+esc(i.text)+'</span>'+
+      '<span style="font-size:11px;color:var(--ink3)">'+esc(i.sub)+'</span>'+
+      '<button class="btn btn-primary btn-sm ti-action" onclick="gotoItem(\''+i.type+'\',\''+i.id+'\')">处理</button>'+
+      '</div>'
+    ).join("")+
+    '</div></div>';
+
+  // data count hint
+  const total = PRODUCTS.length + REVIEWS.length;
+  if(total >= 30){
+    el.innerHTML += '<div class="data-hint">数据已积累 '+total+' 条，建议<a href="#" onclick="doExport()" style="color:var(--accent)">导出备份</a></div>';
+  }
+}
+
+function gotoItem(type,id){
+  if(type==="review"){ curTab="reviews"; switchTab(); setTimeout(()=>openReview(id),100) }
+  else if(type==="product"){ curTab="products"; switchTab(); setTimeout(()=>openProduct(id),100) }
+}
+
+/* ================================================================
+   ROUTER
+   ================================================================ */
+let curTab = "products";
+
+function switchTab(){
+  document.querySelectorAll(".nav-item").forEach(n=>{
+    n.classList.toggle("active", n.dataset.tab === curTab);
+  });
+  $("sidebar").classList.remove("show");
+  render();
+}
+
+document.querySelectorAll(".nav-item").forEach(n=>{
+  n.onclick = ()=>{ curTab=n.dataset.tab; switchTab(); };
+});
+$("menuToggle").onclick = ()=> $("sidebar").classList.toggle("show");
+
+/* ================================================================
+   RENDER
+   ================================================================ */
+function render(){
+  renderToday();
+  const main = $("mainContent");
+  if(!main){ console.error("render: mainContent not found"); return; }
+  updateBadges();
+
+  try{
+  switch(curTab){
+    case "products": renderProducts(main); break;
+    case "reference": renderReference(main); break;
+    case "reviews": renderReviews(main); break;
+    case "assistant": renderAssistant(main); break;
+  }
+  }catch(err){
+    console.error("render error for tab "+curTab+":",err);
+    main.innerHTML='<div style="padding:30px;color:var(--err)">渲染出错：'+esc(String(err.message||err))+'<br><button class="btn btn-outline btn-sm" style="margin-top:10px" onclick="localStorage.removeItem(\'wb_framing_v2_products\');location.reload()">重置产品数据</button></div>';
+  }
+}
+
+function updateBadges(){
+  const pending = REVIEWS.filter(r=>r.status==="pending").length;
+  $("reviewBadge").textContent = pending||"";
+  $("reviewBadge").style.display = pending?"inline":"none";
+}
+
+/* ================================================================
+   MODULE 1: 产品资料库
+   ================================================================ */
+let viewingProduct = null;
+
+function renderProducts(main){
+  if(viewingProduct){ renderProductDetail(main,viewingProduct); return; }
+
+  main.innerHTML =
+    '<div class="mhdr"><h2>产品资料库</h2>'+
+    '<div class="mhdr-actions">'+
+    '<button class="btn btn-primary btn-sm" onclick="showProductForm()">'+ICONS.plus+' 新增产品</button>'+
+    '<button class="btn btn-ghost btn-sm" onclick="clearSampleData()">'+ICONS.trash+' 清空示例</button>'+
+    '</div></div>'+
+    '<div class="pgrid" id="pGrid"></div>';
+
+  const grid = $("pGrid");
+  if(!PRODUCTS.length){
+    grid.innerHTML='<div class="ref-empty">还没有产品资料。<button class="btn btn-primary btn-sm" style="margin-top:12px" onclick="showProductForm()">'+ICONS.plus+' 添加第一个产品</button></div>';
+    return;
+  }
+  PRODUCTS.forEach(p => {
+    grid.innerHTML +=
+      '<div class="pcard" onclick="openProduct(\''+p.id+'\')">'+
+      '<div class="pc-top"><div class="pc-brand">'+esc(p.brand)+'</div><div class="pc-model">'+esc(p.model)+'</div><div class="pc-cat">'+esc(p.category)+'</div></div>'+
+      '<div class="pc-body">'+
+      '<div class="pc-row"><span class="pc-label">发布</span><span class="pc-val">'+esc((p.basicInfo&&p.basicInfo.releaseDate)||"—")+'</span></div>'+
+      (p.size?'<div class="pc-row"><span class="pc-label">尺寸</span><span class="pc-val">'+esc(p.size)+'</span></div>':"")+
+      '<div class="pc-row"><span class="pc-label">参数</span><span class="pc-val">'+((p.specs?p.specs.length:0)+' 条')+'</span></div>'+
+      '<div class="pc-row"><span class="pc-label">状态</span><span class="pc-val">'+(p.status==="completed"?'<span style="color:var(--ok)">✓ 已完成</span>':'<span style="color:var(--warn)">草稿</span>')+'</span></div>'+
+      '<div class="pc-tags">'+(p.specs||[]).slice(0,4).map(s=>'<span class="pc-tag">'+esc(s.key)+'</span>').join("")+'</div>'+
+      '</div></div>';
+  });
+}
+
+function renderProductDetail(main,p){
+  const prod=PRODUCTS.find(x=>x.id===p); if(!prod){viewingProduct=null;renderProducts(main);return;}
+  const fn=(prod.basicInfo&&prod.basicInfo.releaseDate)||"";
+  const parts=prod.parts||[];
+  const imgs=prod.images||[];
+  const tags=prod.featureTags||[];
+  const tl=prod.timeline||[];
+  const cats=prod.categories||[];
+  const sub=[prod.category,fn].filter(Boolean).join(" \u00b7 ")||"—";
+  const hasRichData = cats.length > 0;
+
+  // Rich hero banner for products with category data
+  let heroHTML = '';
+  if (hasRichData) {
+    heroHTML =
+    '<div class="pd-catalog-hero">'+
+    '<div class="pch-badge">PARTS GUIDE \u00b7 BILINGUAL</div>'+
+    '<h1>'+esc(prod.brand)+' '+esc(prod.model)+' 零件功能图鉴</h1>'+
+    '<div class="pch-sub">'+esc(prod.brand)+' '+esc(prod.model)+' Parts Function Catalog — Bilingual Edition</div>'+
+    '<div class="pch-meta">'+cats.length+' Categories \u00b7 '+cats.reduce((n,c)=>n+c.components.length,0)+'+ Components \u00b7 Framing Design Reference Guide</div>'+
+    '</div>';
+  } else {
+    heroHTML =
+    '<div class="pd-hero">'+
+    '<div class="pd-info">'+
+    '<h1>'+esc(prod.brand)+' '+esc(prod.model)+'</h1>'+
+    '<div class="pd-sub">'+esc(sub)+'</div>'+
+    (prod.size?'<div style="margin-top:6px;font-size:13px;color:var(--ink2)">尺寸：'+esc(prod.size)+'</div>':'')+
+    '<div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">'+
+    '<button class="btn btn-primary btn-sm" onclick="startChatForProduct(\''+prod.id+'\')">'+ICONS.edit+' AI 助手优化</button>'+
+    '<button class="btn btn-outline btn-sm" onclick="addRefImages(\''+prod.id+'\')">'+ICONS.image+' 添加参考图</button>'+
+    '<button class="btn btn-outline btn-sm" onclick="addFramedPhoto(\''+prod.id+'\')">'+ICONS.image+' 添加制作完成图</button>'+
+    '<button class="btn btn-ghost btn-sm" onclick="deleteProduct(\''+prod.id+'\')">'+ICONS.trash+' 删除</button>'+
+    '</div></div>'+
+    '<div style="display:flex;align-items:center;justify-content:center;background:var(--soft);border-radius:var(--radius);min-height:180px;font-size:48px;font-weight:800;color:var(--ink);opacity:.08">'+esc(prod.model).slice(0,2)+'</div>'+
+    '</div>';
+  }
+
+  // Feature tags row
+  let tagsHTML = '';
+  if (tags.length > 0) {
+    tagsHTML = '<div class="pd-tag-chips">' + tags.map(t =>
+      '<span class="pd-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>' + esc(t) + '</span>'
+    ).join('') + '</div>';
+  }
+
+  // Timeline section
+  let tlHTML = '';
+  if (tl.length > 0) {
+    tlHTML =
+    '<div class="pd-timeline">'+
+    '<h3>发展历程 / Development Timeline</h3>'+
+    '<div class="pd-tl-list">'+tl.map(e =>
+      '<div class="pd-tl-item">'+
+      '<div class="pd-tl-date">'+esc(e.date)+'</div>'+
+      '<div class="pd-tl-title">'+esc(e.title)+'</div>'+
+      '<div class="pd-tl-desc">'+esc(e.desc)+'</div>'+
+      (e.en ? '<div class="pd-tl-en">'+esc(e.en)+'</div>' : '') +
+      '</div>'
+    ).join('')+'</div></div>';
+  }
+
+  // Category sections
+  let catHTML = '';
+  if (cats.length > 0) {
+    catHTML = cats.map(cat => {
+      const iconMap = {"\ud83d\udccb":"\u25a2\ufe0f","\ud83d\udd32":"\u25a0\ufe0f","\ud83d\udd0d":"\ud83d\udd41","\ud83d\udcf7":"\u2666","\ud83d\udd0c":"\u25b6","\u2699\ufe0f":"\u2699","\ud83d\udcae":" \u25c6","\ud83d\udcbe":" \u25a1","\ud83d\udd0b":" \u25a4","\ud83d\udd29":" \u25cf"};
+      const icon = iconMap[cat.icon] || cat.icon || '\u25aa';
+      return '<div class="pd-cat-section">'+
+        '<div class="pd-cat-header">'+
+        '<div class="pd-cat-icon">'+icon+'</div>'+
+        '<div class="pd-cat-title">'+esc(cat.name)+'</div>'+
+        '<div class="pd-cat-sub">'+esc(cat.en)+'</div>'+
+        '</div>'+
+        '<div class="pd-cat-grid">'+cat.components.map(comp => {
+          let card = '<div class="pd-cat-card">';
+          card += '<div class="pd-cc-name">'+esc(comp.name)+'</div>';
+          card += '<div class="pd-cc-en">'+esc(comp.en)+'</div>';
+          if (comp.note) card += '<div class="pd-cc-note">'+esc(comp.note)+'</div>';
+          if (comp.noteEn) card += '<div class="pd-cc-note-en">'+esc(comp.noteEn)+'</div>';
+          card += '<div class="pd-cc-desc">'+esc(comp.desc)+'</div>';
+          if (comp.descEn) card += '<div class="pd-cc-desc-en">'+esc(comp.descEn)+'</div>';
+          var tags = Array.isArray(comp.tags) ? comp.tags : (comp.tag ? [comp.tag] : []);
+          if (tags.length) card += '<div class="pd-cc-tags">'+tags.map(function(t){return '<span class="pd-cc-tag">'+esc(t)+'</span>';}).join('')+'</div>';
+          card += '</div>';
+          return card;
+        }).join('')+'</div></div>';
+    }).join('');
+    if (prod.usageNotes) {
+      catHTML += '<div class="pd-usage-notes">'+
+        '<div class="pd-un-header"><span class="pd-un-icon">&#128205;</span> 使用说明 / Usage Notes</div>'+
+        '<div class="pd-un-body">'+esc(prod.usageNotes).replace(/\n/g,'<br>')+'</div></div>';
+    }
+    if (Array.isArray(prod.dataSources) && prod.dataSources.length) {
+      catHTML += '<div class="pd-usage-notes" style="background:var(--bg);border-style:dashed">'+
+        '<div class="pd-un-header" style="color:var(--ink2)">资料信源 / Data Sources（供人工复核）</div>'+
+        '<div class="pd-un-body">'+prod.dataSources.map(function(s){return '<div style="padding:2px 0">· '+esc(s)+'</div>';}).join('')+'</div></div>';
+    }
+  }
+
+  main.innerHTML =
+    '<div class="pdetail">'+
+    '<div class="pdetail-back" onclick="viewingProduct=null;render()">\u2190 返回列表</div>'+
+    heroHTML +
+    (!hasRichData ? '' :
+      '<div style="margin-bottom:20px;display:flex;gap:8px;flex-wrap:wrap">'+
+      '<button class="btn btn-primary btn-sm" onclick="startChatForProduct(\''+prod.id+'\')">'+ICONS.edit+' AI 助手优化</button>'+
+      '<button class="btn btn-outline btn-sm" onclick="addRefImages(\''+prod.id+'\')">'+ICONS.image+' 添加参考图</button>'+
+      '<button class="btn btn-outline btn-sm" onclick="addFramedPhoto(\''+prod.id+'\')">'+ICONS.image+' 添加制作完成图</button>'+
+      '<button class="btn btn-ghost btn-sm" onclick="deleteProduct(\''+prod.id+'\')">'+ICONS.trash+' 删除</button>'+
+      '</div>') +
+    ((prod.framedPhotos&&prod.framedPhotos.length)||prod.framedPhoto?
+      '<div class="pd-section"><h3>制作完成图'+((prod.framedPhotos&&prod.framedPhotos.length)?' <span class="pd-count">'+prod.framedPhotos.length+' 张</span>':'')+'</h3><div class="pd-gallery pd-gallery-grid">'+
+      (function(){
+        var list=prod.framedPhotos||(prod.framedPhoto?[prod.framedPhoto]:[]);
+        window._lbGalleries=window._lbGalleries||{}; window._lbGalleries[prod.id]=list;
+        return list.map(function(img,i){return '<div class="pd-g-item">'+
+          '<img src="'+img+'" style="width:100%;height:180px;object-fit:cover;cursor:pointer;border-radius:var(--radius-sm)" onclick="showLb(\''+img.substring(0,999999)+'\',\'制作完成图 '+(i+1)+'\',window._lbGalleries[\''+prod.id+'\'],'+i+')" loading="lazy">'+
+          '<button class="pd-g-del" onclick="event.stopPropagation();removeFramedPhoto(\''+prod.id+'\','+i+')" title="删除此图">'+ICONS.trash+'</button>'+
+          '</div>';}).join('');
+      })()+
+      '</div><button class="btn btn-outline btn-sm" style="margin-top:10px" onclick="addFramedPhoto(\''+prod.id+'\')">'+ICONS.image+' 添加照片</button></div>'
+      :'<div class="pd-section"><h3>制作完成图</h3><div class="ref-empty" style="padding:22px">尚未添加 \u00b7 <a href="#" onclick="addFramedPhoto(\''+prod.id+'\');return false" style="color:var(--accent)">点击添加</a></div></div>')+
+    tagsHTML + tlHTML + catHTML +
+    ((prod.specs&&prod.specs.length)?'<div class="pd-section"><h3>详细参数</h3><table class="pd-specs">'+prod.specs.map(s=>'<tr><th>'+esc(s.key)+'</th><td>'+esc(s.value)+'</td></tr>').join("")+'</table></div>':'')+
+    (prod.features?'<div class="pd-section"><h3>功能介绍</h3><p style="font-size:14px;line-height:1.75;color:var(--ink2)">'+esc(prod.features).replace(/\n/g,"<br>")+'</p></div>':'')+
+    (parts.length?'<div class="pd-section"><h3>部件标注（中英双语）</h3><div class="pd-parts">'+parts.map(pt=>
+      '<div class="pd-part"><div class="pd-part-name">'+esc(pt.name)+'<span class="pd-part-en">'+esc(pt.en||"")+'</span></div>'+(pt.note?'<div class="pd-part-note">'+esc(pt.note)+'</div>':'')+'</div>'
+    ).join("")+'</div></div>':'')+
+    (prod.framingNotes?
+    '<div class="pd-section"><h3>装裱备注</h3><div class="pd-notes">'+
+    '<div class="pd-note"><div class="pn-label">可否拆解</div><div class="pn-val">'+(prod.framingNotes.canDisassemble?'可以拆解':'不建议拆解')+'</div></div>'+
+    '<div class="pd-note"><div class="pn-label">推荐框材</div><div class="pn-val">'+esc(prod.framingNotes.recommendedFrame||"—")+'</div></div>'+
+    '<div class="pd-note"><div class="pn-label">框尺寸</div><div class="pn-val">'+esc(prod.framingNotes.frameSize||"—")+'</div></div>'+
+    '<div class="pd-note"><div class="pn-label">是否定框</div><div class="pn-val">'+(prod.framingNotes.customFrame?'需要定制':'标准规格')+'</div></div>'+
+    (prod.framingNotes.notes?'<div class="pd-note" style="grid-column:1/-1"><div class="pn-label">备注</div><div class="pn-val">'+esc(prod.framingNotes.notes)+'</div></div>':"")+
+    '</div></div>':"")+
+    (imgs.length?'<div class="pd-section"><h3>参考图</h3><div class="pd-gallery">'+imgs.map((s,i)=>'<img src="'+s+'" onclick="showLb(\''+s+'\',\'参考图'+(i+1)+'\')">').join("")+'</div></div>':'')+
+    ((prod.pinterestLinks&&prod.pinterestLinks.length)?'<div class="pd-section"><h3>参考链接</h3><div>'+prod.pinterestLinks.map(l=>'<a href="'+esc(l)+'" target="_blank" rel="noopener" style="display:inline-block;margin:0 10px 8px 0;font-size:13px;color:var(--accent)">'+esc(l)+'</a>').join("")+'</div></div>':'')+
+    '</div>';
+}
+function openProduct(id){ viewingProduct=id; render(); }
+
+function showProductForm(editId){
+  const prod = editId?PRODUCTS.find(p=>p.id===editId):null;
+  const isEdit = !!prod;
+  const modal = $("modalOverlay");
+  const content = $("modalContent");
+  content.innerHTML =
+    '<div class="modal-header"><h3>'+(isEdit?'编辑产品':'新增产品')+'</h3>'+
+    '<button class="modal-close" onclick="closeModal()">✕</button></div>'+
+    '<form onsubmit="saveProduct(event,\''+(editId||'')+'\')">'+
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">'+
+    '<div class="form-group"><label>品牌 *</label><input name="brand" value="'+esc(isEdit?prod.brand:"")+'" required placeholder="如 Canon / Nokia / Apple"></div>'+
+    '<div class="form-group"><label>型号 *</label><input name="model" value="'+esc(isEdit?prod.model:"")+'" required placeholder="如 EOS 40D / N95"></div>'+
+    '</div>'+
+    '<div class="form-group"><label>尺寸（长×宽×高 mm）</label><input name="size" value="'+esc(isEdit?prod.size:"")+'" placeholder="如 146 × 108 × 74 mm"></div>'+
+    '<p style="font-size:12px;color:var(--ink3);margin:6px 0 14px;line-height:1.6">其余资料（详细参数 / 功能介绍 / 部件中英双语标注 / 装裱备注）由 AI 助手生成后自动同步到这里，无需手动填写。</p>'+
+    '<div style="display:flex;gap:8px">'+
+    '<button type="submit" class="btn btn-primary">'+(isEdit?'保存':'创建产品')+'</button>'+
+    '<button type="button" class="btn btn-outline" onclick="closeModal()">取消</button>'+
+    '</div></form>';
+  modal.classList.add("show");
+}
+
+function addSpecRow(){
+  const c = $("specRows");
+  const n = c.children.length;
+  const row = document.createElement("div"); row.className="spec-row";
+  row.innerHTML='<input name="sk'+n+'" placeholder="参数名"><input name="sv'+n+'" placeholder="参数值"><button type="button" onclick="this.parentElement.remove()">✕</button>';
+  c.appendChild(row);
+}
+
+function saveProduct(e,editId){
+  e.preventDefault();
+  const f=e.target;
+  const brand=f.brand.value.trim(), model=f.model.value.trim(), size=f.size.value.trim();
+  if(!brand||!model){ alert("请填写品牌和型号"); return; }
+  if(editId){
+    const p=PRODUCTS.find(x=>x.id===editId);
+    if(p){ p.brand=brand; p.model=model; p.size=size; p.basicInfo=Object.assign({},p.basicInfo); }
+    saveData("products",PRODUCTS); closeModal(); viewingProduct=null; render(); return;
+  }
+  const data={
+    id:uid(), brand, model, size, category:"",
+    basicInfo:{}, specs:[], features:"", parts:[],
+    framingNotes:{canDisassemble:true,recommendedFrame:"",frameSize:"",customFrame:false,notes:""},
+    pinterestLinks:[], images:[], framedPhotos:[],
+    createdAt:ymd(), status:"draft"
+  };
+  PRODUCTS.push(data);
+  saveData("products",PRODUCTS);
+  closeModal(); viewingProduct=null; render();
+}
+
+function deleteProduct(id){
+  if(!confirm("确定删除该产品资料？此操作不可撤销。")) return;
+  PRODUCTS = PRODUCTS.filter(p=>p.id!==id);
+  saveData("products",PRODUCTS);
+  viewingProduct=null; render();
+}
+
+function clearSampleData(){
+  if(!confirm("确定清空所有示例数据？这不会删除你自己添加的内容。\n\n提示：如果全部都是示例数据，可以用「清空数据」按钮彻底清除。")) return;
+  // Only remove sample data (ids starting with p/r/c + number)
+  const sampleIds = new Set(["p001","p002","p003","r001","r002","r003"]);
+  PRODUCTS = PRODUCTS.filter(p=>!sampleIds.has(p.id));
+  REVIEWS = REVIEWS.filter(r=>!sampleIds.has(r.id));
+  CHATS = CHATS.filter(c=>!sampleIds.has(c.id));
+  saveData("products",PRODUCTS);
+  saveData("reviews",REVIEWS);
+  saveData("chats",CHATS);
+  render();
+}
+
+/* ================================================================
+   MODULE 2: 灵感参考（本地画廊）
+   ================================================================ */
+let refCurrentPath = "__ALL__";
+let refQuery = "";
+let refByPath = {};
+let refParentOf = {};
+// 目录树展开状态（默认全部收起，记忆到 localStorage）
+let refExpanded = new Set(JSON.parse(localStorage.getItem(PFX+"refExpanded")||"[]"));
+function saveRefExpanded(){ localStorage.setItem(PFX+"refExpanded", JSON.stringify(Array.from(refExpanded))); }
+function toggleRefNode(path){
+  if(refExpanded.has(path)) refExpanded.delete(path); else refExpanded.add(path);
+  saveRefExpanded(); renderRefTree();
+}
+function selectRefNode(path){
+  refCurrentPath=path;
+  // 自动展开所有祖先节点，保证选中项可见
+  let p=path;
+  while(p){ const n=refByPath[p]; if(n&&n.children&&n.children.length) refExpanded.add(p); p=refParentOf[p]; }
+  saveRefExpanded(); renderRefAll();
+}
+
+async function renderReference(main){
+  main.innerHTML =
+    '<div class="mhdr"><h2>灵感参考</h2>'+
+    '<div class="mhdr-actions">'+
+    '<span style="font-size:12px;color:var(--ink3)" id="refStatus"></span>'+
+    '</div></div>'+
+    '<div id="protoWarn"></div>'+
+    '<div class="ref-toolbar">'+
+    '<input placeholder="搜索文件名…" style="border:1px solid var(--line2);border-radius:var(--radius-sm);padding:8px 12px;font-size:14px;flex:1;min-width:150px" id="refQ">'+
+    '<button class="btn btn-outline btn-sm" onclick="loadRefLibrary()">'+ICONS.edit+' 刷新库</button>'+
+    '</div>'+
+    '<div id="refTreeArea"></div>'+
+    '<div id="refCrumb" style="font-size:13px;color:var(--ink2);margin-bottom:10px"></div>'+
+    '<div id="refGridArea" class="ref-grid"></div>';
+
+  await loadRefLibrary();
+
+  $("refQ").addEventListener("input", e=>{ refQuery=e.target.value.trim(); renderRefGrid(); });
+}
+
+async function loadRefLibrary(){
+  const st = $("refStatus");
+  st.textContent = "加载中…";
+
+  // Try fetching the library JSON from the local server
+  try{
+    const resp = await fetch(REF_JSON+"?t="+Date.now());
+    if(resp.ok){ REF_DATA = await resp.json(); st.textContent = "已连接 · "+REF_DATA.total+" 张图片"; $("protoWarn").innerHTML=""; buildRefIndex(); renderRefAll(); return; }
+  }catch(e){}
+
+  // Fallback: server not reachable → show action guide
+  const isFile = location.protocol === "file:";
+  $("protoWarn").innerHTML =
+    '<div class="proto-warn" style="border-left-color:var(--accent)">'+
+    '<div style="font-weight:600;margin-bottom:8px">参考库服务器未运行</div>'+
+    '<div style="line-height:1.8">一键解决：双击 <code style="background:var(--chip);padding:1px 5px;border-radius:3px">启动装裱设计台.bat</code>（在工作台同目录），它会自动启动服务器并打开浏览器，参考库直接嵌入显示，无需手动开链接。</div>'+
+    '<div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">'+
+    '<button class="btn btn-primary btn-sm" onclick="window.open(REF_GALLERY,\'_blank\')">'+ICONS.image+' 在新窗口打开参考库</button>'+
+    '<button class="btn btn-outline btn-sm" onclick="this.style.display=\'none\';document.getElementById(\'manualGuide\').style.display=\'block\'">查看手动启动步骤</button>'+
+    '</div>'+
+    '<div id="manualGuide" style="display:none;margin-top:10px;padding:10px;background:var(--soft);border-radius:var(--radius-sm);font-size:12px;line-height:1.8">'+
+    '<b>方法一（推荐）：</b>双击运行 <code style="background:var(--chip);padding:1px 5px;border-radius:3px">启动装裱设计台.bat</code>，自动起服务器+开浏览器<br>'+
+    '<b>方法二（命令行）：</b>打开终端粘贴这行并回车：'+
+    '<code style="background:var(--chip);padding:3px 8px;border-radius:3px;display:inline-block;margin:4px 0;user-select:all">python -m http.server 8001 -d F:\\</code>'+
+    '<button class="btn btn-outline btn-sm" style="margin-left:6px;padding:2px 10px;font-size:11px" onclick="navigator.clipboard.writeText(\'python -m http.server 8001 -d F:\\\\\').then(function(){showToast(\'命令已复制\')})">复制命令</button><br>'+
+    '<b>然后：</b>点上方「在新窗口打开参考库」即可<br>'+
+    '<span style="color:var(--ink3)">提示：若提示端口被占用，先跑 <code style="background:var(--chip);padding:1px 4px;border-radius:3px">netstat -ano | findstr :8001</code> 找到 PID，再 <code style="background:var(--chip);padding:1px 4px;border-radius:3px">taskkill /F /PID 该PID</code> 后重启</span></div>'+
+    '</div>';
+  st.textContent = "未连接（服务器未运行）";
+  REF_DATA = {total:0,tree:[]};
+  buildRefIndex(); renderRefAll();
+}
+
+function buildRefIndex(){
+  refByPath={}; refParentOf={};
+  function walk(nodes,parent){ (nodes||[]).forEach(n=>{ refByPath[n.path]=n; refParentOf[n.path]=parent?parent.path:null; walk(n.children,n); }); }
+  walk(REF_DATA.tree,null);
+}
+
+function refAllImages(){ let r=[];(REF_DATA.tree||[]).forEach(n=>r=r.concat(refDescImages(n)));return r; }
+function refDescImages(n){ let r=(n.images||[]).slice();(n.children||[]).forEach(c=>r=r.concat(refDescImages(c)));return r; }
+function refCountAll(n){ return refDescImages(n).length; }
+function refCurImages(){
+  if(refQuery){ const q=refQuery.toLowerCase(); return refAllImages().filter(p=>p.toLowerCase().includes(q)); }
+  if(refCurrentPath==="__ALL__") return refAllImages();
+  const n=refByPath[refCurrentPath]; return n?(n.images||[]):[];
+}
+
+function renderRefAll(){ renderRefTree(); renderRefBread(); renderRefGrid(); }
+
+function renderRefTree(){
+  const area = $("refTreeArea");
+  if(!REF_DATA.tree||!REF_DATA.tree.length){ area.innerHTML=""; return; }
+  let html = '<div class="ref-tree">';
+  // All
+  html += '<div class="ref-node"><div class="ref-row'+(refCurrentPath==="__ALL__"?" active":"")+'" onclick="refCurrentPath=\'__ALL__\';renderRefAll()">' +
+    '<span style="width:14px"></span>全部图片<span class="ref-cnt">'+refAllImages().length+'</span></div></div>';
+  function nodeHtml(n,d){
+    const hasKids=n.children&&n.children.length;
+    const open=refExpanded.has(n.path);
+    const safePath=n.path.replace(/'/g,"\\'");
+    let h='<div class="ref-node"><div class="ref-row'+(refCurrentPath===n.path?" active":"")+'">' +
+      (hasKids
+        ? '<span class="rc'+(open?" open":"")+'" style="cursor:pointer" onclick="event.stopPropagation();toggleRefNode(\''+safePath+'\')">▶</span>'
+        : '<span class="rc" style="opacity:0">▶</span>')+
+      '<span onclick="event.stopPropagation();selectRefNode(\''+safePath+'\')">'+esc(n.name)+'</span>'+
+      '<span class="ref-cnt">'+refCountAll(n)+'</span></div>';
+    if(hasKids&&open){ h+='<div class="ref-kids">'; n.children.forEach(c=>h+=nodeHtml(c,d+1)); h+='</div>'; }
+    h+='</div>'; return h;
+  }
+  REF_DATA.tree.forEach(n=>html+=nodeHtml(n,0));
+  area.innerHTML=html+"</div>";
+}
+
+function renderRefBread(){
+  const el=$("refCrumb");
+  if(refQuery){el.innerHTML='<b>搜索</b> / "'+esc(refQuery)+'"';return;}
+  if(refCurrentPath==="__ALL__"){el.innerHTML='<b>全部图片</b>';return;}
+  const parts=[];let p=refCurrentPath;
+  while(p){const n=refByPath[p];if(!n)break;parts.unshift(n.name);p=refParentOf[p];}
+  el.innerHTML=parts.map((t,i)=>i===parts.length-1?'<b>'+esc(t)+'</b>':'<span>'+esc(t)+'</span>').join(' <span style="color:var(--ink3)">/</span> ');
+}
+
+function renderRefGrid(){
+  const area=$("refGridArea");
+  const imgs=refCurImages();area.innerHTML="";
+  if(!imgs.length){area.innerHTML='<div class="ref-empty">该分类下暂无图片<br><span style="font-size:12px">将图片拖入对应文件夹后点击「刷新库」</span></div>';return;}
+  imgs.forEach(src=>{
+    const url=safeUrl(src);
+    area.innerHTML+=
+      '<div class="ref-card" onclick="showLb(\''+url+'\',\''+esc(src.replace(/'/g,"\\'"))+'\')">'+
+      '<div class="ri"><img src="'+url+'" alt="" loading="lazy" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">'+
+      '<div class="err-ph" style="display:none"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span style="font-size:10px">'+esc(src.split("/").pop())+'</span></div></div>'+
+      '<div class="rn">'+esc(src.split("/").pop())+'</div></div>';
+  });
+}
+
+/* ================================================================
+   /* ================================================================
+   MODULE 3: 设计稿审核（图片上传 + AI 审核）
+   ================================================================ */
+function renderReviews(main){
+  main.innerHTML =
+    '<div class="mhdr"><h2>设计稿审核</h2>'+
+    '<div class="mhdr-actions">'+
+    '<button class="btn btn-primary btn-sm" onclick="showReviewForm()">'+ICONS.plus+' 新增审核</button>'+
+    '</div></div>'+
+    '<p style="font-size:12px;color:var(--ink3);margin-bottom:14px">上传设计稿截图 → 关联产品资料 → AI 逐项检查错别字/引用错误/图案/参数</p>'+
+    '<div class="rgrid" id="rGrid"></div>';
+
+  const grid=$("rGrid");
+  if(!REVIEWS.length){grid.innerHTML='<div class="ref-empty">还没有审核记录<br><span style="font-size:12px">完成设计后导出清晰截图，在这里上传并关联产品进行审核</span></div>';return;}
+
+  REVIEWS.forEach(r=>{
+    const prod = r.productId ? PRODUCTS.find(p=>p.id===r.productId) : null;
+    const statusClass = r.status==="passed"?"rs-passed":r.status==="revision"?"rs-revision":"rs-pending";
+    const statusText = r.status==="passed"?"已通过":r.status==="revision"?"需修改":"待审";
+    const hasImg = !!(r.imageData);
+
+    grid.innerHTML +=
+      '<div class="rv-card" id="rev-'+r.id+'">'+
+      '<div class="rv-hdr"><div><h4>'+esc(r.designName)+'</h4>'+
+      '<div style="font-size:13px;color:var(--ink2);margin-top:4px">'+
+      (prod ? esc(prod.brand)+' '+esc(prod.model) : esc(r.productName||"— 无关联 —"))+
+      (r.dueDate?' <span style="color:var(--ink3)">· 截止 '+esc(r.dueDate)+'</span>':'')+
+      '</div></div><span class="rs '+statusClass+'">'+statusText+'</span></div>'+
+      '<div class="rv-body">'+
+      (hasImg ?
+        '<div class="rv-img-area has-img" onclick="showLb(\''+r.imageData+'\',\'设计稿：'+esc(r.designName)+'\')">'+
+        '<img src="'+r.imageData+'" alt="设计稿"><button class="rv-replace" onclick="event.stopPropagation();replaceReviewImage(\''+r.id+'\')">更换图片</button></div>'
+        :
+        '<div class="rv-img-area" onclick="uploadReviewImage(\''+r.id+'\')">'+
+        '<svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" style="opacity:.3"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>'+
+        '<span style="font-size:13px;color:var(--ink3)">点击上传设计稿截图</span>'+
+        '<span style="font-size:11px;color:var(--ink4)">支持 JPG / PNG，建议导出高清版</span></div>'
+      )+
+      '<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">'+
+      '<span style="font-size:12px;color:var(--ink3)">关联产品：</span>'+
+      '<select onchange="switchReviewProduct(\''+r.id+'\',this.value)" style="border:1px solid var(--line2);border-radius:var(--radius-sm);padding:6px 10px;font-size:13px;flex:1">'+
+      '<option value="">— 无 —</option>'+
+      PRODUCTS.map(p=>'<option value="'+p.id+'" '+(r.productId===p.id?'selected':'')+'>'+esc(p.brand)+' '+esc(p.model)+(p.status==="completed"?' ✓':'')+'</option>').join('')+
+      '</select></div>'+
+      '<div style="display:flex;gap:8px;flex-wrap:wrap">'+
+      '<button class="btn btn-primary btn-sm" onclick="generateReviewPrompt(\''+r.id+'\')">'+ICONS.edit+' 生成审核 Prompt</button>'+
+      (r.status!=="passed" ?
+        '<button class="btn btn-outline btn-sm" onclick="setStatus(\''+r.id+'\',\'passed\')" style="color:var(--ok)">✓ 标记通过</button>'+
+        '<button class="btn btn-outline btn-sm" onclick="setStatus(\''+r.id+'\',\'revision\')" style="color:var(--err)">✗ 标记需修改</button>'
+        : '')+
+      '<button class="btn btn-ghost btn-sm" onclick="deleteReview(\''+r.id+'\')">'+ICONS.trash+'</button>'+
+      '</div>'+
+      '<div class="rv-concl">'+
+        '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">'+
+          '<b style="font-size:13px">审核结论</b>'+
+          (r.reviewResult?'<button class="btn btn-ghost btn-sm" onclick="editReviewResult(\''+r.id+'\')">'+ICONS.edit+' 编辑</button>':'')+
+        '</div>'+
+        (r.reviewResult
+          ? '<div class="rv-result">'+esc(r.reviewResult).replace(/\n/g,'<br>')+'</div>'
+          : '<div class="rv-result-empty">暂无审核结论 · 把 AI 审核结果粘贴到这里沉淀下来</div>')+
+        '<textarea id="rr-'+r.id+'" class="rv-result-input" style="display:none" rows="4" placeholder="粘贴 AI 审核结论，或手动记录：通过项 / 问题项 / 待确认项">'+esc(r.reviewResult)+'</textarea>'+
+        '<button id="rrs-'+r.id+'" class="btn btn-primary btn-sm" style="display:none;margin-top:6px" onclick="saveReviewResult(\''+r.id+'\')">保存结论</button>'+
+      '</div>'+
+      (r.clientConfirmed?'<div style="margin-top:8px;font-size:12px;color:var(--ok)">✅ 客户已确认':'')+
+      (r.notes?'<div style="margin-top:6px;font-size:12px;color:var(--ink3)">'+esc(r.notes)+'</div>':'')+
+      '</div></div>';
+  });
+}
+
+function showReviewForm(){
+  const modal=$("modalOverlay"),content=$("modalContent");
+  content.innerHTML=
+    '<div class="modal-header"><h3>新增设计审核</h3><button class="modal-close" onclick="closeModal()">✕</button></div>'+
+    '<form onsubmit="saveReview(event)">'+
+    '<div class="form-group"><label>设计名称 *</label><input name="designName" required placeholder="如 EOS 40D v1 标注版 / N95 双滑盖展开"></div>'+
+    '<div class="form-group"><label>关联产品</label><select name="productId">'+
+    '<option value="">— 稍后选择 —</option>'+
+    PRODUCTS.map(p=>'<option value="'+p.id+'">'+esc(p.brand)+' '+esc(p.model)+(p.status==="completed"?' （有资料）':'')+'</option>').join('')+
+    '</select></div>'+
+    '<div class="form-group"><label>截止日期</label><input name="dueDate" type="date" value="'+ymd()+'"></div>'+
+    '<div class="form-group"><label>备注</label><textarea name="notes" rows="2" placeholder="如：客户要求重点检查中英文标签..."></textarea></div>'+
+    '<div style="display:flex;gap:8px;margin-top:16px">'+
+    '<button type="submit" class="btn btn-primary">创建</button>'+
+    '<button type="button" class="btn btn-outline" onclick="closeModal()">取消</button>'+
+    '</div></form>';
+  modal.classList.add("show");
+}
+
+function saveReview(e){
+  e.preventDefault();
+  const f=e.target;
+  const pid=f.productId.value;
+  const prod=PRODUCTS.find(p=>p.id===pid);
+  REVIEWS.push({
+    id:uid(), productId:pid, productName:(prod?prod.brand+" "+prod.model:""),
+    designName:f.designName.value.trim(), dueDate:f.dueDate.value,
+    status:"pending", imageData:null, reviewResult:"",
+    clientConfirmed:false, notes:f.notes.value.trim()
+  });
+  saveData("reviews",REVIEWS); closeModal(); render();
+}
+
+function uploadReviewImage(rid){
+  var inp=document.createElement("input"); inp.type="file"; inp.accept="image/*";
+  inp.style.cssText="position:absolute;left:-9999px;opacity:0;pointer-events:none";
+  document.body.appendChild(inp);
+  inp.addEventListener("change",function handler(e){
+    inp.removeEventListener("change",handler);
+    setTimeout(function(){ if(inp.parentNode) inp.parentNode.removeChild(inp); },500);
+    var f=e.target.files&&e.target.files[0]; if(!f)return;
+    // 分辨率守卫：过低则警告，避免审核时看不清导致返工
+    var probe=new Image(); var rd=new FileReader();
+    rd.onload=function(ev){
+      probe.onload=function(){
+        var w=probe.naturalWidth||0, h=probe.naturalHeight||0, longest=Math.max(w,h);
+        if(longest>0 && longest<1600){
+          if(!confirm("当前图片最长边仅 "+longest+"px，分辨率偏低。\n审核时文字/细节可能看不清，易产生误报。\n\n建议上传高清原图（≥2000px）以获得准确审核。\n\n仍要使用这张图吗？")) return;
+        }
+        compressImageFile(f,3200,function(src){
+          var r=REVIEWS.find(function(x){return x.id===rid}); if(!r)return;
+          r.imageData=src; saveData("reviews",REVIEWS); render();
+        });
+      };
+      probe.src=ev.target.result;
+    };
+    rd.readAsDataURL(f);
+  },{once:true});
+  inp.click();
+}
+function replaceReviewImage(rid){ uploadReviewImage(rid); }
+
+function switchReviewProduct(rid,newPid){
+  var r=REVIEWS.find(function(x){return x.id===rid}); if(!r)return;
+  r.productId=newPid||"";
+  var prod=newPid?PRODUCTS.find(function(p){return p.id===newPid}):null;
+  r.productName=prod?prod.brand+" "+prod.model:"";
+  saveData("reviews",REVIEWS); render();
+}
+
+function generateReviewPrompt(rid){
+  var r=REVIEWS.find(function(x){return x.id===rid}); if(!r)return;
+  var prod=r.productId?PRODUCTS.find(function(p){return p.id===r.productId}):null;
+  var prompt = "【装裱设计稿审核请求】\n\n";
+  prompt += "设计名称：" + r.designName + "\n";
+  if(prod){
+    prompt += "关联产品：" + prod.brand + " " + prod.model + "\n";
+    prompt += "产品关键参数（请逐项核对设计稿中是否准确呈现，值的中英文对照也需一致）：\n";
+    (prod.specs||[]).forEach(function(s){ prompt += "  · " + s.key + "：" + s.value + "\n"; });
+    if(prod.parts&&prod.parts.length){
+      prompt += "\n部件标注（中英双语，请核对英文翻译是否准确、对应位置是否正确）：\n";
+      prod.parts.forEach(function(pt){ prompt += "  · " + pt.name + " / " + pt.en + (pt.note?" — "+pt.note:"") + "\n"; });
+    }
+    if(prod.timeline&&prod.timeline.length){
+      prompt += "\n发展历程关键节点（如设计稿涉及，请核对年份与事件）：\n";
+      prod.timeline.forEach(function(t){ prompt += "  · " + (t.year||"") + "：" + (t.event||t.title||"") + "\n"; });
+    }
+    if(prod.dataSources&&prod.dataSources.length){
+      prompt += "\n资料信源（以官网为最高权威，非官方数据需交叉验证）：\n";
+      prod.dataSources.forEach(function(d){ prompt += "  · " + (typeof d==="string"?d:(d.name+(d.url?" ("+d.url+")":""))) + "\n"; });
+    }
+  } else { prompt += "⚠️ 未关联产品资料，请基于设计稿本身进行检查。\n"; }
+  prompt += "\n请对设计稿进行逐项审核，检查以下内容：\n" +
+    "1.【错别字】所有文字是否有拼写错误、漏字、多字\n" +
+    "2.【内容引用错误】参数值/型号/规格是否与上方产品资料一致\n" +
+    "3.【图案应用错误】图标/示意图/部件图是否正确对应\n" +
+    "4.【中英双语准确性】英文翻译是否准确、专业术语拼写是否正确（缩写保持全大写：LED/OIS/SIM/NFC/EMI）\n" +
+    "5.【排版问题】文字是否截断、重叠、字号不一致\n\n" +
+    "输出格式：先给出参数核对清单（逐项 ✅/❌），再按上述 5 项逐一列出「✅ 通过」或「❌ 问题：具体描述」。\n" +
+    "如有不确定的地方，明确标出「需人工确认」。严禁猜测。";
+  navigator.clipboard.writeText(prompt).then(function(){
+    alert("审核 Prompt 已复制到剪贴板！\n\n请粘贴给 AI 进行审核，然后把审核结果粘贴回此条记录的审核结果区域。");
+  }).catch(function(){ alert("复制失败，请手动选取 Prompt 文本"); });
+}
+
+function setStatus(rid, status){
+  var r=REVIEWS.find(function(x){return x.id===rid});
+  if(!r)return;
+  r.status=status;
+  if(!r.reviewResult){
+    r.reviewResult=(status==="passed"
+      ? "✅ 审核通过，设计稿无误，可直接定稿。"
+      : "✗ 审核标记需修改，请查看「生成审核 Prompt」的 AI 反馈或上方问题。")+"（"+ymd()+"）";
+  }
+  saveData("reviews",REVIEWS);
+  render();
+  showToast(status==="passed"?"✅ 已标记为通过":"✗ 已标记为需修改");
+}
+
+function editReviewResult(rid){
+  var ta=$("rr-"+rid), btn=$("rrs-"+rid);
+  if(ta)ta.style.display="block"; if(btn)btn.style.display="inline-block";
+  if(ta)ta.focus();
+}
+function saveReviewResult(rid){
+  var r=REVIEWS.find(function(x){return x.id===rid}); if(!r)return;
+  var ta=$("rr-"+rid); if(!ta)return;
+  r.reviewResult=ta.value;
+  saveData("reviews",REVIEWS); render();
+  showToast("审核结论已保存");
+}
+
+function deleteReview(rid){
+  if(!confirm("确定要删除这条审核记录吗？"))return;
+  REVIEWS=REVIEWS.filter(function(x){return x.id!==rid});
+  saveData("reviews",REVIEWS);
+  render();
+  showToast("审核记录已删除");
+}
+
+/* ================================================================
+   MODULE 4: AI 助手（协作面板）
+   ================================================================ */
+let currentChat = null;
+let aiImages = []; // base64 array
+
+function renderAssistant(main){
+  main.innerHTML =
+    '<div class="mhdr"><h2>AI 助手</h2>'+
+    '<div class="mhdr-actions">'+
+    '<span style="font-size:12px;color:var(--ink3)">输入型号＋照片 → 生成资料 → 同步到产品库</span>'+
+    '</div></div>'+
+    '<div class="ai-layout">'+
+    '<div class="ai-input-panel">'+
+    '<div class="aip-section"><label>产品型号 *</label>'+
+    '<input id="aiModel" placeholder="如 Nokia N95 / Canon 40D / MacBook Pro"></div>'+
+    '<div class="aip-section"><label>参考链接（可选，官网/百科/评测页，一行一个）</label>'+
+    '<textarea id="aiRefLinks" rows="2" placeholder="如 https://www.oneplus.com/cn/9rt &#10;新产品官网资料最丰富，粘贴后我会优先抓取该链接内容"></textarea></div>'+
+    '<div class="aip-section"><label>上传产品照片 / 拆解零件图（最多 9 张）</label>'+
+    '<button class="btn btn-outline btn-sm" onclick="$(\'aiImgInput\').click()">'+ICONS.image+' 选择图片</button>'+
+    '<input type="file" id="aiImgInput" accept="image/*" multiple style="display:none" onchange="handleAiImages(event)">'+
+    '<div class="ai-img-preview" id="aiImgPreview"></div></div>'+
+    '<div class="aip-section"><button class="btn btn-primary" style="width:100%" onclick="generatePrompt()">'+
+    ICONS.copy+' 生成 Prompt（复制到剪贴板）</button>'+
+    '<p style="font-size:12px;color:var(--ink3);margin-top:8px;line-height:1.6">把复制的 Prompt 发给我（WorkBuddy 对话），我会生成完整中英双语部件资料，看不清的零件一定让你补拍，绝不猜测。</p></div>'+
+    '<div class="prompt-box" id="promptBox"></div>'+
+    '</div>'+
+    '<div class="ai-input-panel" style="height:fit-content">'+
+    '<div class="aip-section"><label>导入生成结果 → 同步产品库</label>'+
+    '<p style="font-size:12px;color:var(--ink3);margin-bottom:8px;line-height:1.6">把 AI 返回的资料（含 JSON 块）粘贴到下方，点击同步，自动创建或更新到「产品资料库」。</p>'+
+    '<textarea id="aiResult" rows="10" placeholder="在此粘贴 AI 返回的资料（JSON 或含 JSON 的文本）..."></textarea>'+
+    '<div style="display:flex;gap:8px;margin-top:8px">'+
+    '<button class="btn" style="flex:1" onclick="document.getElementById(\'aiResultFile\').click()">'+ICONS.upload+' 选择文件</button>'+
+    '<button class="btn btn-primary" style="flex:2" onclick="syncAiResult()">'+ICONS.check+' 同步到产品库</button>'+
+    '</div>'+
+    '<input type="file" id="aiResultFile" accept=".json,application/json" style="display:none" onchange="loadAiResultFile(this)">'+
+    '<div id="aiSyncMsg" style="font-size:13px;margin-top:10px"></div>'+
+    '<div id="aiSyncMsg" style="font-size:13px;margin-top:10px"></div>'+
+    '</div>'+
+    '</div>';
+}
+
+function handleAiImages(e){
+  const files=e.target.files;if(!files.length)return;
+  Array.from(files).slice(0,9).forEach(f=>{
+    const reader=new FileReader();
+    reader.onload=ev=>{
+      aiImages.push(ev.target.result);
+      renderAiImgPreview();
+    }; reader.readAsDataURL(f);
+  });
+  e.target.value="";
+}
+
+function renderAiImgPreview(){
+  const el=$("aiImgPreview"); if(!el)return;
+  el.innerHTML=aiImages.map((src,i)=>
+    '<div class="ai-img-thumb" onclick="showLb(\''+src.substring(0,50)+'...\',\'图片'+(i+1)+'\')" style="background:url('+src+') center/cover">'+
+    '<button class="rm-btn" onclick="event.stopPropagation();aiImages.splice('+i+',1);renderAiImgPreview()">✕</button></div>'
+  ).join("");
+}
+
+function generatePrompt(){
+  const model=$("aiModel").value.trim();
+  if(!model){ alert("请先填写产品型号"); return; }
+  const refLinksRaw=($("aiRefLinks")?$("aiRefLinks").value:"").trim();
+  const refLinks=refLinksRaw.split(/\n+/).map(s=>s.trim()).filter(Boolean);
+
+  let prompt = "【装裱设计资料生成请求 · 图鉴级格式】\n\n";
+  prompt += "产品型号：" + model + "\n";
+  if(aiImages.length) prompt += "附图：" + aiImages.length + " 张（完整产品照片 + 拆解零件摆放图）\n";
+  if(refLinks.length){
+    prompt += "参考链接（优先抓取这些页面作为核心资料来源）：\n";
+    refLinks.forEach(u=>{ prompt += "- " + u + "\n"; });
+    prompt += "（请先用 WebFetch 抓取以上链接内容，再结合网络搜索补全；两者冲突时以官网为准）\n";
+  }
+  prompt +=
+    "\n请基于图片与你的知识，生成该产品的完整装裱设计资料（零件功能图鉴级，参照佳能EOS 40D图鉴的细致程度），并严格按下方 JSON 结构输出（便于直接导入工作台）：\n\n"+
+    "{\n"+
+    '  "brand": "品牌(中文)",\n'+
+    '  "model": "型号",\n'+
+    '  "size": "整体尺寸 长×宽×高 mm",\n'+
+    '  "category": "品类",\n'+
+    '  "releaseDate": "发布时间",\n'+
+    '  "features": "功能介绍(2-3段，含装裱展示价值与机械美学分析)",\n'+
+    '  "specs": [{"key":"参数名","value":"参数值(中英对照)"}],\n'+
+    '  "parts": [{"name":"部件中文名","en":"Part English Name","note":"标注说明"}],\n'+
+    '  "featureTags": ["核心卖点标签(8-12个)"],\n'+
+    '  "timeline": [{"date":"日期","title":"事件","desc":"中文说明","en":"English note"}],\n'+
+    '  "categories": [{\n'+
+    '    "name":"分类中文名(如 光学系统/电子电路/结构件/电源系统等)","en":"English Name","icon":"emoji","color":"#hex",\n'+
+    '    "components":[{\n'+
+    '      "name":"部件中文名","en":"Part English Name",\n'+
+    '      "desc":"中文详细描述(功能/材质/工作原理)",\n'+
+    '      "descEn":"English detailed description",\n'+
+    '      "note":"高亮备注(装裱提示/拆解警告/历史意义等)","noteEn":"English note",\n'+
+    '      "tags":["标签1","Tag2"]\n'+
+    '    }]\n'+
+    '  }],\n'+
+    '  "usageNotes": "使用说明(图鉴用途/装裱建议/补充说明)",\n'+
+    '  "framingNotes": {"canDisassemble":true,"recommendedFrame":"推荐框材","frameSize":"框尺寸","customFrame":false,"notes":"特殊工艺"},\n'+
+    '  "pinterest": ["可选参考链接"]\n'+
+    "}\n\n"+
+    "要求：\n"+
+    "1. 全部中英双语；categories 按功能分 8-10 大类，每类 3-7 个部件，全机合计 40+ 部件；\n"+
+    "2. 每个部件必须包含：中文名+英文名+中文详细描述+英文详细描述+高亮备注(note)+标签(tags)，不允许只写名称；\n"+
+    "3. 高亮备注写：装裱展示价值、拆解注意事项（如高压/静电警告）、历史意义、易混淆点——要有干货，不要空话；\n"+
+    "4. specs 给 40-55 条详细参数，值中带英文对照；\n"+
+    "5. 关键纪律：对照片中看不清、无法确认的零件或参数，必须明确写出「需补充细节图：XXX」，严禁猜测；\n"+
+    "6. 若未提供拆解图，parts/categories 仅基于公开可靠资料标注，并注明不确定性。\n"+
+    "7. 事实核查纪律（最高优先级）：\n"+
+    "   - 官方来源（官网/官方规格页）的数据直接采用；\n"+
+    "   - 非官方来源的数据（媒体拆机/百科/评测/你的先验知识）必须交叉验证至少 2 个独立信源，无法验证的宁可不写或标注「未验证」；\n"+
+    "   - 严禁输出错误情报：宁可参数少一条，不可错一条；\n"+
+    "   - 每个部件的 note 中如引用具体数据（如拆机顺序、螺丝规格、芯片型号），必须来自可查证信源；\n"+
+    "   - 在 JSON 末尾加 \"dataSources\" 字段，列出本资料引用的全部信源（官方/媒体/搜索），便于人工复核。\n";
+
+  const pb=$("promptBox");
+  pb.textContent=prompt; pb.classList.add("show"); pb.style.display="block";
+  navigator.clipboard.writeText(prompt).then(()=>{
+    pb.style.borderLeft="3px solid var(--ok)";
+    setTimeout(()=>pb.style.borderLeft="",2000);
+  }).catch(()=>{});
+}
+
+function compressImageFile(file,maxW,cb,quality){
+  const r=new FileReader();
+  r.onload=ev=>{
+    const img=new Image();
+    img.onload=()=>{
+      try{
+        let w=img.width,h=img.height; if(w>maxW){h=Math.round(h*maxW/w);w=maxW;}
+        const c=document.createElement("canvas");c.width=w;c.height=h;
+        c.getContext("2d").drawImage(img,0,0,w,h);
+        cb(c.toDataURL("image/jpeg",quality||0.92));
+      }catch(err){ cb(null); }
+    };
+    img.onerror=()=>{ cb(null); };
+    img.src=ev.target.result;
+  };
+  r.onerror=()=>{ cb(null); };
+  r.readAsDataURL(file);
+}
+
+function compressDataUrl(src,cb){
+  const img=new Image();
+  img.onload=()=>{let w=img.width,h=img.height,maxW=800;if(w>maxW){h=Math.round(h*maxW/w);w=maxW;}const c=document.createElement("canvas");c.width=w;c.height=h;c.getContext("2d").drawImage(img,0,0,w,h);cb(c.toDataURL("image/jpeg",0.82));};
+  img.src=src;
+}
+
+function loadAiResultFile(inp){
+  const f=inp.files&&inp.files[0]; if(!f)return;
+  const reader=new FileReader();
+  reader.onload=ev=>{
+    if($("aiResult")) $("aiResult").value=ev.target.result;
+    const msg=$("aiSyncMsg"); if(msg) msg.innerHTML='已载入文件 <b>'+esc(f.name)+'</b>，点击「同步到产品库」即可更新产品资料库。';
+  };
+  reader.readAsText(f);
+  inp.value="";
+}
+
+async function syncAiResult(){
+  const txt=$("aiResult").value.trim();
+  const msg=$("aiSyncMsg");
+  if(!txt){ alert("请先粘贴 AI 生成的资料"); return; }
+  let jsonStr=txt;
+  const s=txt.indexOf("{"); const e=txt.lastIndexOf("}");
+  if(s>=0&&e>s) jsonStr=txt.substring(s,e+1);
+  let d;
+  try{ d=JSON.parse(jsonStr); }catch(err){ alert("解析失败：请确认粘贴的内容包含有效的 JSON 资料块"); return; }
+
+  const brand=(d.brand||"").trim(), model=(d.model||"").trim(), size=(d.size||"").trim();
+  if(!brand||!model){ alert("资料缺少 brand 或 model 字段"); return; }
+
+  let prod=PRODUCTS.find(p=>(p.brand+" "+p.model).toLowerCase()===(brand+" "+model).toLowerCase());
+  const isNew=!prod;
+  if(!prod) prod={ id:uid(), createdAt:ymd(), status:"completed" };
+  prod.brand=brand; prod.model=model; prod.size=size;
+  prod.category=d.category||prod.category||"";
+  prod.basicInfo=Object.assign({},prod.basicInfo,{releaseDate:d.releaseDate||(prod.basicInfo&&prod.basicInfo.releaseDate)||""});
+  prod.specs=Array.isArray(d.specs)?d.specs.map(x=>({key:String(x.key||""),value:String(x.value||"")})):[];
+  prod.features=d.features||prod.features||"";
+  prod.parts=Array.isArray(d.parts)?d.parts.map(x=>({name:x.name||"",en:x.en||"",note:x.note||""})):[];
+  prod.framingNotes=Object.assign({canDisassemble:true,recommendedFrame:"",frameSize:"",customFrame:false,notes:""},prod.framingNotes,d.framingNotes||{});
+  if(Array.isArray(d.featureTags)) prod.featureTags=d.featureTags;
+  if(Array.isArray(d.timeline)) prod.timeline=d.timeline;
+  if(Array.isArray(d.categories)) prod.categories=d.categories;
+  if(d.usageNotes) prod.usageNotes=d.usageNotes;
+  if(Array.isArray(d.dataSources)) prod.dataSources=d.dataSources;
+  prod.pinterestLinks=Array.isArray(d.pinterest)?d.pinterest:(typeof d.pinterest==="string"?d.pinterest.split(/\s+/).filter(Boolean):(prod.pinterestLinks||[]));
+  // 上传的源图作为参考图
+  if(aiImages.length){
+    const comp=[];
+    for(const src of aiImages.slice(0,6)){ comp.push(await new Promise(res=>compressDataUrl(src,res))); }
+    prod.images=comp;
+  }
+  if(isNew) PRODUCTS.push(prod); else { const i=PRODUCTS.findIndex(p=>p.id===prod.id); PRODUCTS[i]=prod; }
+  saveData("products",PRODUCTS);
+  $("aiResult").value="";
+  msg.innerHTML='已'+(isNew?"新增":"更新")+'：<b>'+esc(brand)+' '+esc(model)+'</b> · <a href="#" onclick="viewingProduct=\''+prod.id+'\';curTab=\'products\';render();return false" style="color:var(--accent)">查看资料 →</a>';
+  render();
+}
+
+function addRefImages(pid){
+  var inp=document.createElement("input"); inp.type="file"; inp.accept="image/*"; inp.multiple=true;
+  inp.style.cssText="position:absolute;left:-9999px;opacity:0;pointer-events:none";
+  document.body.appendChild(inp);
+  inp.addEventListener("change",function handler(e){
+    inp.removeEventListener("change",handler);
+    setTimeout(function(){ if(inp.parentNode) inp.parentNode.removeChild(inp); },500);
+    var files=Array.from(e.target.files||[]).slice(0,9); var p=PRODUCTS.find(x=>x.id===pid); if(!p||!files.length)return;
+    var done=0;
+    files.forEach(function(f){ compressImageFile(f,800,function(src){
+      p.images=(p.images||[]); p.images.push(src); done++;
+      if(done===files.length){ saveData("products",PRODUCTS); render(); showToast("已添加 "+done+" 张参考图"); }
+    });});
+  },{once:true});
+  inp.click();
+}
+
+function addFramedPhoto(pid){
+  var inp=document.createElement("input"); inp.type="file"; inp.accept="image/*"; inp.multiple=true;
+  inp.style.cssText="position:absolute;left:-9999px;opacity:0;pointer-events:none";
+  document.body.appendChild(inp);
+  inp.addEventListener("change",function handler(e){
+    inp.removeEventListener("change",handler);
+    setTimeout(function(){ if(inp.parentNode) inp.parentNode.removeChild(inp); },500);
+    var files=e.target.files; if(!files||!files.length)return;
+    var p=PRODUCTS.find(x=>x.id===pid); if(!p){ showToast("未找到产品");return; }
+    if(!p.framedPhotos) p.framedPhotos=[];
+    var done=0, total=files.length, errors=0;
+    Array.from(files).forEach(function(file){
+      try{
+        compressImageFile(file,1200,function(src){
+          if(!src||src.length<100||!src.startsWith("data:image")){
+            errors++; if(++done===total) finish(); return;
+          }
+          p.framedPhotos.push(src);
+          if(++done===total) finish();
+        },0.72);
+      }catch(err){ errors++; if(++done===total) finish(); }
+    });
+    function finish(){
+      try{
+        saveData("products",PRODUCTS); render();
+        if(errors>0) showToast(errors+"/"+total+" 张图片处理失败");
+        else showToast("已添加 "+total+" 张制作完成图");
+      }catch(err){
+        if(err.name==="QuotaExceededError"||err.code===22){
+          showToast("存储空间不足，图片太多或太大，请减少数量后重试");
+        }else{ throw err; }
+      }
+    }
+  },{once:true});
+  inp.click();
+}
+function removeFramedPhoto(pid,idx){
+  const p=PRODUCTS.find(x=>x.id===pid); if(!p||!p.framedPhotos)return;
+  p.framedPhotos.splice(idx,1);
+  saveData("products",PRODUCTS); render(); showToast("已删除制作完成图");
+}
+
+function startChatForProduct(pid){
+  const prod=PRODUCTS.find(p=>p.id===pid); if(!prod)return;
+  curTab="assistant"; switchTab();
+  setTimeout(()=>{ if($("aiModel"))$("aiModel").value=prod.brand+" "+prod.model; },100);
+}
+
+/* ================================================================
+   LIGHTBOX - full rewrite: zoom / download / prev-next
+   ================================================================ */
+var _lb={list:[],idx:-1,zoom:1,baseScale:1,dragging:false,sx:0,sy:0,tx:0,ty:0};
+
+function showLb(src,cap,list,idx){
+  var img=$("lbImg"), wrap=$("lbWrap");
+  _lb.list=list||[src]; _lb.idx=(idx!=null)?idx:_lb.list.indexOf(src);
+  if(_lb.idx<0)_lb.idx=0;
+  _lb.zoom=1; _lb.tx=0; _lb.ty=0;
+  wrap.style.transform="none";
+  img.onload=function(){
+    updateLbNav();
+    $("lbZoomHint").textContent="100%";
+  };
+  img.onerror=function(){ $("lbCap").textContent="图片加载失败"; };
+  img.src=src;
+  $("lbCap").textContent=cap||"";
+  $("lightbox").classList.add("show");
+}
+
+function closeLb(){ $("lightbox").classList.remove("show"); }
+
+function updateLbNav(){
+  var p=$("lbPrevBtn"), n=$("lbNextBtn");
+  p.style.display=_lb.list.length>1&&_lb.idx>0?"flex":"none";
+  n.style.display=_lb.list.length>1&&_lb.idx<_lb.list.length-1?"flex":"none";
+}
+
+function lbPrev(){ if(_lb.idx>0){ _lb.idx--; showLb(_lb.list[_lb.idx],"制作完成图 "+(_lb.idx+1),_lb.list,_lb.idx); } }
+function lbNext(){ if(_lb.idx<_lb.list.length-1){ _lb.idx++; showLb(_lb.list[_lb.idx],"制作完成图 "+(_lb.idx+1),_lb.list,_lb.idx); } }
+
+function lbZoomIn(){
+  _lb.zoom=Math.min(_lb.zoom*1.3,8); applyLbZoom();
+}
+function lbZoomOut(){
+  _lb.zoom=Math.max(_lb.zoom/1.3,0.2); applyLbZoom();
+}
+function lbZoomReset(){
+  _lb.zoom=1; _lb.tx=0; _lb.ty=0; applyLbZoom();
+}
+function applyLbZoom(){
+  var wrap=$("lbWrap");
+  if(_lb.zoom===1&&_lb.tx===0&&_lb.ty===0){
+    wrap.style.transform="none";
+  }else{
+    wrap.style.transform="translate("+_lb.tx+"px,"+_lb.ty+"px) scale("+_lb.zoom+")";
+  }
+  $("lbZoomHint").textContent=Math.round(_lb.zoom*100)+"%";
+}
+
+function lbDownload(){
+  var src=$("lbImg").src; if(!src||src.indexOf("data:")!==0){ if(src){var a0=document.createElement("a");a0.href=src;a0.download="framing-photo-"+(_lb.idx+1)+".jpg";document.body.appendChild(a0);a0.click();document.body.removeChild(a0);} return; }
+  try{
+    var arr=src.split(","), mime=(arr[0].match(/:(.*?);/)||[])[1]||"image/jpeg", bstr=atob(arr[1]), n=bstr.length, u8=new Uint8Array(n);
+    while(n--)u8[n]=bstr.charCodeAt(n);
+    var blob=new Blob([u8],{type:mime});
+    var url=URL.createObjectURL(blob);
+    var a=document.createElement("a"); a.href=url; a.download="framing-photo-"+(_lb.idx+1)+".jpg";
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){URL.revokeObjectURL(url);},1500);
+  }catch(err){ showToast("下载失败："+err.message); }
+}
+
+/* drag to pan */
+(function(){
+  var wrap=$("lbWrap"), body=document.querySelector(".lb-body");
+  if(!wrap || !body) return;
+  var x0,y0,tx0,ty0;
+  body.addEventListener("wheel",function(e){
+    if(!$("lightbox").classList.contains("show"))return;
+    e.preventDefault();
+    if(e.deltaY<0)lbZoomIn(); else lbZoomOut();
+  },{passive:false});
+  wrap.addEventListener("mousedown",function(e){
+    if(e.button!==0)return; _lb.dragging=true;x0=e.clientX;y0=e.clientY;tx0=_lb.tx;ty0=_lb.ty;e.preventDefault();
+  });
+  document.addEventListener("mousemove",function(e){
+    if(!_lb.dragging)return; _lb.tx=tx0+(e.clientX-x0);_lb.ty=ty0+(e.clientY-y0);applyLbZoom();
+  });
+  document.addEventListener("mouseup",function(){ _lb.dragging=false; });
+})();
+
+/* keyboard */
+document.addEventListener("keydown",function(e){
+  if(!$("lightbox").classList.contains("show"))return;
+  if(e.key==="Escape")closeLb();
+  if(e.key==="ArrowLeft")lbPrev();
+  if(e.key==="ArrowRight")lbNext();
+  if(e.key==="+"){e.preventDefault();lbZoomIn();}
+  if(e.key==="-"){e.preventDefault();lbZoomOut();}
+  if(e.key==="0")lbZoomReset();
+});
+$("lightbox").addEventListener("click",function(e){
+  if(e.target.id==="lightbox"||e.target.classList.contains("lb-body"))closeLb();
+});
+
+/* ================================================================
+   MODAL
+   ================================================================ */
+function closeModal(){ $("modalOverlay").classList.remove("show"); }
+$("modalOverlay").onclick=e=>{ if(e.target.id==="modalOverlay") closeModal(); };
+
+/* ================================================================
+   EXPORT / IMPORT / CLEAR
+   ================================================================ */
+function doExport(){
+  const data={ version:"2.0", exportedAt:new Date().toISOString(), products:PRODUCTS, reviews:REVIEWS, chats:CHATS };
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+  const a=document.createElement("a"); a.href=URL.createObjectURL(blob);
+  a.download="装裱设计台备份_"+ymd()+".json"; a.click(); URL.revokeObjectURL(a.href);
+}
+$("btnExport").onclick=doExport;
+
+$("btnImport").onclick=()=>$("importFile").click();
+$("importFile").onchange=function(e){
+  const f=e.target.files[0]; if(!f)return;
+  const reader=new FileReader();
+  reader.onload=ev=>{
+    try{
+      const d=JSON.parse(ev.target.result);
+      if(d.products)PRODUCTS=d.products;
+      if(d.reviews)REVIEWS=d.reviews;
+      if(d.chats)CHATS=d.chats;
+      saveData("products",PRODUCTS); saveData("reviews",REVIEWS); saveData("chats",CHATS);
+      alert("导入成功！共 "+(PRODUCTS.length)+" 个产品、"+REVIEWS.length+" 条审核、"+CHATS.length+" 条对话");
+      viewingProduct=null; render();
+    }catch(err){alert("导入失败："+err.message);}
+  }; reader.readAsText(f);
+  e.target.value="";
+};
+
+$("btnClear").onclick=function(){
+  if(!confirm("确定清空所有数据？\n\n这将删除：\n· 所有产品资料（"+PRODUCTS.length+" 条）\n· 所有审核记录（"+REVIEWS.length+" 条）\n· 所有 AI 对话（"+CHATS.length+" 条）\n\n此操作不可撤销！")) return;
+  if(!confirm("再次确认：真的要全部清空吗？")) return;
+  localStorage.removeItem(PFX+"products");
+  localStorage.removeItem(PFX+"reviews");
+  localStorage.removeItem(PFX+"chats");
+  PRODUCTS=[]; REVIEWS=[]; CHATS=[]; viewingProduct=null; currentChat=null;
+  render();
+};
+
+/* ================================================================
+   INIT
+   ================================================================ */
+
+/* ---- Toast notification ---- */
+function showToast(msg,duration){
+  duration=duration||3000;
+  var el=document.getElementById('wbToast');
+  if(!el){
+    el=document.createElement('div');
+    el.id='wbToast';
+    el.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 20px;border-radius:8px;font-size:13px;z-index:9999;opacity:0;transition:opacity 0.3s;pointer-events:none;box-shadow:0 4px 12px rgba(0,0,0,0.15)';
+    document.body.appendChild(el);
+  }
+  el.textContent=msg;
+  el.style.opacity='1';
+  setTimeout(function(){el.style.opacity='0';},duration);
+}
+
+try{ initSampleData(); }catch(err){ console.error("initSampleData error:",err); }
+try{ switchTab(); }catch(err){ console.error("switchTab error:",err); }
+setTimeout(function(){ try{ switchTab(); }catch(e){ console.error("retry switchTab:",e); } },200);
+
+</script>
+</body>
+</html>
