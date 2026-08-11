@@ -41,7 +41,7 @@ header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdro
 .btn svg{width:15px;height:15px;flex-shrink:0}
 
 /* ---- today panel ---- */
-.today-panel{max-width:1280px;margin:0 auto;padding:12px 16px 0}
+.today-panel{display:none}
 .today-card{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);
   padding:14px 16px;margin-bottom:12px;box-shadow:var(--shadow)}
 .today-h{display:flex;align-items:center;gap:8px;margin-bottom:10px}
@@ -61,10 +61,15 @@ header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdro
 .today-item .ti-action{flex-shrink:0}
 
 /* ---- layout ---- */
-.layout{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:220px 1fr;gap:0;
+.layout{max-width:1280px;margin:0 auto;display:grid;grid-template-rows:auto 1fr;grid-template-columns:220px 1fr;gap:0;
   min-height:calc(100vh - 140px)}
+.page-topbar{grid-column:1/-1}
+.page-topbar{display:flex;align-items:center;gap:12px;padding:12px 20px;
+  border-bottom:1px solid var(--line);background:var(--bg)}
+.pt-title{font-size:15px;font-weight:600;color:var(--ink);flex:1}
 .sidebar{background:var(--bg);border-right:1px solid var(--line);padding:12px 8px;
-  display:flex;flex-direction:column;gap:2px;position:sticky;top:64px;height:calc(100vh - 64px);overflow-y:auto}
+  display:flex;flex-direction:column;gap:2px;position:sticky;top:64px;height:calc(100vh - 64px);overflow-y:auto;
+  grid-row:2}
 .nav-item{display:flex;align-items:center;gap:10px;width:100%;padding:11px 14px;border-radius:var(--radius-sm);
   font-size:14px;font-weight:500;color:var(--ink2);text-align:left;transition:all .15s}
 .nav-item:hover{background:var(--chip);color:var(--ink)}
@@ -73,7 +78,7 @@ header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdro
 .nav-item.active svg{opacity:1;color:#fff}
 .nav-item .ni-badge{margin-left:auto;font-size:11px;background:var(--accent);color:#fff;
   padding:1px 7px;border-radius:99px;font-weight:600}
-.main{padding:16px 20px;min-width:0;min-height:400px}
+.main{padding:16px 20px;min-width:0;min-height:400px;grid-row:2}
 
 /* ---- module header ---- */
 .mhdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
@@ -389,6 +394,145 @@ header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdro
 .cloud-dot.on{background:var(--ok)}
 .cloud-dot.err{background:var(--err)}
 
+/* ================================================================
+   MODULAR HOMEPAGE v9 — 精致紧凑 / 圆角8px / 统一间距
+   ================================================================ */
+
+/* 页面整体背景 */
+.home-page{background:#f0f0f0;padding-top:32px;padding-bottom:60px}
+
+/* ---- 统一间距 ---- */
+.hp-row{display:grid;gap:20px}
+.hp-row+.hp-row{margin-top:20px}
+
+/* Row 1: intro(固定宽) + gallery(flex) */
+.hp-row1{grid-template-columns:340px 1fr}
+/* Row 2: 3等分 */
+.hp-row2{grid-template-columns:repeat(3,1fr)}
+
+@media(max-width:900px){.hp-row1,.hp-row2{grid-template-columns:1fr}}
+
+/* ---- 统一模块卡片（圆角8px，Nothing式紧凑间距）---- */
+/* 设计原则：四边padding≈28px等距；标题距顶28px；内容距标题20px；按钮距内容16px紧贴；按钮距左=距右=距底=28px */
+.hp-card{background:rgba(255,255,255,.88);backdrop-filter:blur(10px);
+  border:none;border-radius:8px;
+  padding:28px;cursor:pointer;transition:all .3s ease;
+  display:flex;flex-direction:column;box-sizing:border-box;
+  box-shadow:0 1px 3px rgba(0,0,0,.04),0 4px 20px rgba(0,0,0,.03)}
+/* 第二行卡片与第一行等高，内容沉底（同图鉴：标题在上、中大空、下内容+按钮） */
+.hp-row2 .hp-card{min-height:276px}
+.hp-row2 .hp-card .hp-body{flex:0 0 auto;margin-top:auto}
+.hp-card:hover{
+  background:rgba(255,255,255,.96);
+  box-shadow:0 2px 8px rgba(0,0,0,.06),0 8px 28px rgba(0,0,0,.05);
+  transform:translateY(-2px)}
+
+/* 标题 — 距顶自然由padding控制 */
+.hp-card h2{font-size:21px;font-weight:700;margin-bottom:20px;letter-spacing:-.3px;color:#000}
+
+/* 内容区：描述左 + 图标右，紧凑排列 */
+.hp-body{display:flex;align-items:center;gap:20px;flex:1;min-height:56px}
+.hp-desc{flex:1;font-size:14px;line-height:1.85;color:#444;font-weight:400}
+
+/* 图标容器（52x52） */
+.hp-visual{width:52px;height:52px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.hp-visual img{width:48px;height:48px;object-fit:contain}
+
+/* 底部黑色按钮 — 紧贴内容，三边(左右底)=padding(28px)等距 */
+.hp-btn{display:block;width:100%;padding:13px 0;margin-top:16px;
+  background:#000;color:#fff;border:none;border-radius:8px;
+  font-size:13px;font-weight:600;cursor:pointer;text-align:center;
+  transition:all .25s;letter-spacing:4px}
+.hp-btn:hover{background:#1a1a1a}
+
+/* ---- 介绍卡（左上）— 同样28px四边等距 ---- */
+.hi-card h2{font-size:25px;margin-bottom:18px}
+.hi-card .hp-body{flex-direction:column;gap:0;align-items:flex-start;min-height:auto}
+.hi-card .hi-sub{font-size:13.5px;line-height:1.9;color:#555;margin-bottom:18px}
+.hi-card .hi-line{padding:14px 0;border-top:1px solid #e5e5e5}
+.hi-card .hi-label{font-size:10.5px;color:#999;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;margin-bottom:4px}
+.hi-card .hi-val{font-size:13.5px;font-weight:500;color:#333;line-height:1.5}
+.hi-card .hi-tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:16px}
+.hi-tag{font-size:11.5px;padding:5px 15px;border-radius:99px;background:#eee;color:#666;font-weight:500}
+
+/* ---- 产品图鉴（右上）— 与小模块完全统一的28px等距格式 ---- */
+.hg-card{padding:28px;display:flex;flex-direction:column;box-sizing:border-box}
+.hg-header{display:none}
+.hg-card>h2{font-size:21px;font-weight:700;margin-bottom:0;letter-spacing:-.3px;color:#000}
+.hg-body{display:flex;align-items:center;gap:20px;min-height:56px;margin-top:auto} /* 推到底部：标题在上，内容贴近按钮 */
+
+/* 首页隐藏导入导出按钮 */
+.is-homepage #btnExport,
+.is-homepage #btnImport{display:none!important}
+
+/* hide old sidebar+layout on homepage */
+.layout.hidden{display:none}
+.sidebar.hidden{display:none}
+.maxw{max-width:1280px;margin:0 auto;padding:0 20px}
+
+/* ================================================================
+   GALLERY BROWSER — 产品图鉴多级浏览 (分类→品牌→作品)
+   ================================================================ */
+.gallery-view{display:none;min-height:calc(100vh - 120px)}
+.gallery-view.active{display:block}
+
+/* level 1: categories */
+.gal-cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;
+  padding:8px 0}
+.gal-cat{background:var(--bg);border:1px solid var(--line);border-radius:8px;
+  padding:24px 20px;cursor:pointer;transition:all .2s;box-shadow:var(--shadow);
+  text-align:center}
+.gal-cat:hover{border-color:#ccc;transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.07)}
+.gal-cat .gc-icon{width:52px;height:52px;border-radius:14px;background:var(--soft);
+  display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
+.gal-cat .gc-icon svg{width:26px;height:26px;color:var(--accent)}
+.gal-cat h3{font-size:15px;font-weight:700;margin-bottom:6px}
+.gal-cat p{font-size:12px;color:var(--ink3);line-height:1.5}
+.gal-cat .gc-count{margin-top:10px;font-size:11px;color:var(--ink3);
+  padding:4px 12px;background:var(--soft);border-radius:99px;display:inline-block}
+
+/* level 2: brands under category */
+.gal-brands{padding:8px 0}
+.gal-breadcrumb{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink3);
+  margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.gal-bc-item{cursor:pointer;transition:color .15s}
+.gal-bc-item:hover{color:var(--accent)}
+.gal-brand-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
+.gal-brand-card{background:var(--bg);border:1px solid var(--line);border-radius:8px;
+  padding:20px 16px;cursor:pointer;transition:all .2s;text-align:center;
+  box-shadow:var(--shadow)}
+.gal-brand-card:hover{border-color:#ccc;transform:translateY(-2px)}
+.gal-brand-card .gb-logo{width:48px;height:48px;border-radius:50%;background:var(--soft);
+  margin:0 auto 12px;display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:800;color:var(--ink2)}
+.gal-brand-card h4{font-size:14px;font-weight:700;margin-bottom:4px}
+.gal-brand-card .gb-count{font-size:11px;color:var(--ink3)}
+
+/* level 3: product showcase (stacked cards) */
+.gal-showcase{padding:8px 0}
+.gs-stack{position:relative;max-width:520px;margin:0 auto 28px;min-height:360px}
+.gs-card{position:absolute;top:0;left:0;width:100%;background:var(--bg);
+  border:1px solid var(--line);border-radius:8px;overflow:hidden;
+  box-shadow:0 4px 20px rgba(0,0,0,.1);transition:transform .4s ease,opacity .4s ease;
+  cursor:pointer}
+.gs-card.gs-active{z-index:3;transform:scale(1);opacity:1}
+.gs-card.gs-behind{z-index:1;transform:scale(.92) translateY(12px);opacity:.5}
+.gs-card.gs-exit{z-index:2;transform:scale(.96) translateY(6px);opacity:.7}
+.gs-card img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.gs-info{padding:20px 24px;max-width:520px;margin:0 auto}
+.gs-info h3{font-size:18px;font-weight:800;margin-bottom:6px}
+.gs-info .gs-meta{font-size:12px;color:var(--ink3);margin-bottom:14px}
+.gs-info .gs-desc{font-size:14px;color:var(--ink2);line-height:1.75}
+.gs-nav{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:20px}
+.gs-nav button{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);
+  background:var(--bg);cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:all .15s}
+.gs-nav button:hover{border-color:var(--accent);background:var(--soft)}
+.gs-nav button svg{width:18px;height:18px;color:var(--ink)}
+.gs-dots{display:flex;gap:6px}
+.gs-dot{width:8px;height:8px;border-radius:50%;background:var(--line);cursor:pointer;transition:background .2s}
+.gs-dot.active{background:var(--accent)}
+
 </style>
 </head>
 <body>
@@ -399,9 +543,9 @@ header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdro
   <button class="menu-toggle" id="menuToggle">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
   </button>
-  <div class="brand">
+  <div class="brand" onclick="goHome()" style="cursor:pointer" title="返回首页">
     <svg viewBox="0 0 32 32" fill="none"><rect x="3" y="3" width="26" height="26" rx="5" stroke="#0a0a0a" stroke-width="2"/><circle cx="16" cy="16" r="4" fill="#e60023"/><path d="M10 16h12" stroke="#0a0a0a" stroke-width="1.5"/></svg>
-    装裱设计台<span>Framing Studio v2</span>
+    装裱的艺术<span>The Art of Framing</span>
   </div>
   <div class="hbar-r">
     <span class="cloud-dot" id="cloudDot" title="未连接云端"></span>
@@ -409,18 +553,110 @@ header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdro
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg><span>导出备份</span></button>
     <button class="btn btn-outline btn-sm" id="btnImport" title="导入恢复">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg><span>导入恢复</span></button>
-    <button class="btn btn-outline btn-sm" id="btnClear" title="清空所有数据">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg><span>清空数据</span></button>
     <input type="file" id="importFile" accept=".json" style="display:none">
   </div>
 </div>
 </header>
 
+<!-- ===== MODULAR HOMEPAGE v8 ===== -->
+<div class="home-page" id="homePage">
+
+<!-- ROW 1: 介绍卡 | 产品图鉴 -->
+<div class="hp-row hp-row1 maxw">
+  <!-- 左上：装裱的艺术 -->
+  <div class="hp-card hi-card">
+    <h2>装裱的艺术</h2>
+    <div class="hp-body">
+      <div class="hi-sub">每一件电子产品都值得被珍藏。从拆解到设计，从草图到成品——用装裱的方式重新定义科技美学。</div>
+    </div>
+    <div class="hi-line">
+      <div>
+        <div class="hi-label">关于</div>
+        <div class="hi-val">记录每一个产品的完整过程：资料搜集 → 拆机 → 草图 → 设计稿 → 实物制作</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 右上：产品图鉴（统一紧凑格式） -->
+  <div class="hp-card hg-card" onclick="enterGallery()">
+    <h2>产品图鉴</h2>
+    <div class="hg-body">
+      <div class="hp-desc">按分类浏览所有电子产品装裱作品，<br>从手机到相机，每一件都有完整记录。</div>
+      <div class="hp-visual">
+        <img src="data:image/png;base64,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">
+      </div>
+    </div>
+    <button class="hp-btn" onclick="event.stopPropagation();enterGallery()">浏览</button>
+  </div>
+</div>
+
+<!-- ROW 2: 灵感参考 | 工作台 | 联系方式 -->
+<div class="hp-row hp-row2 maxw">
+
+  <!-- 左下：灵感参考 -->
+  <div class="hp-card" onclick="enterWorkbench('reference')">
+    <h2>灵感参考</h2>
+    <div class="hp-body">
+      <div class="hp-desc">借特现有作品与素材库，<br>为每个案例寻找最佳视觉方向。</div>
+      <div class="hp-visual">
+        <img src="data:image/png;base64,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 alt="灵感参考" style="width:52px;height:52px;object-fit:contain;">
+      </div>
+    </div>
+    <button class="hp-btn">探索</button>
+  </div>
+
+  <!-- 中下：工作台 -->
+  <div class="hp-card" onclick="enterWorkbench('products')">
+    <h2>工作台</h2>
+    <div class="hp-body">
+      <div class="hp-desc">产品资料库、设计稿审核、<br>AI 助手——核心工作区。</div>
+      <div class="hp-visual">
+        <img src="data:image/png;base64,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 alt="工作台" style="width:52px;height:52px;object-fit:contain;">
+      </div>
+    </div>
+    <button class="hp-btn">实行</button>
+  </div>
+
+  <!-- 右下：联系方式 -->
+  <div class="hp-card" onclick="alert('联系方式模块即将上线')">
+    <h2>联系方式</h2>
+    <div class="hp-body">
+      <div class="hp-desc">多种途径随时联系，<br>期待与你的每一次交流。</div>
+      <div class="hp-visual">
+        <img src="data:image/png;base64,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 alt="联系方式" style="width:52px;height:52px;object-fit:contain;">
+      </div>
+    </div>
+    <button class="hp-btn">扩展</button>
+  </div>
+
+</div><!-- end hp-row2 -->
+
+</div><!-- end home-page -->
+
+<!-- ===== GALLERY BROWSER (产品图鉴) ===== -->
+<div class="gallery-view" id="galleryView">
+  <div class="page-topbar">
+    <button class="btn btn-ghost btn-sm" onclick="exitGallery()" style="gap:6px">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      返回首页
+    </button>
+    <div class="pt-title" id="galTitle">产品图鉴</div>
+  </div>
+  <div class="maxw" id="galContent"></div>
+</div>
+
 <!-- ===== TODAY PANEL ===== -->
 <div class="today-panel" id="todayPanel"></div>
 
-<!-- ===== LAYOUT ===== -->
-<div class="layout">
+<!-- ===== LAYOUT (hidden on homepage) ===== -->
+<div class="layout hidden" id="appLayout">
+<div class="page-topbar" id="pageTopbar">
+  <button class="btn btn-ghost btn-sm" onclick="goHome()" style="gap:6px">
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    返回首页
+  </button>
+  <div class="pt-title" id="pageTitle"></div>
+</div>
 <nav class="sidebar" id="sidebar">
   <button class="nav-item active" data-tab="products">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
@@ -1465,27 +1701,282 @@ function gotoItem(type,id){
 /* ================================================================
    ROUTER
    ================================================================ */
-let curTab = "products";
+let curTab = "home"; // default to homepage
+document.body.classList.add('is-homepage'); // 首页默认隐藏导入导出
 
 function switchTab(){
+  const homePage = $("homePage");
+  const appLayout = $("appLayout");
+  const wbBody = $("wbBody");
+
+  if(curTab === "home"){
+    // show homepage, hide workbench
+    homePage.style.display = "";
+    appLayout.classList.add("hidden");
+    renderHomePage();
+    return;
+  }
+
+  // show workbench
+  homePage.style.display = "none";
+  appLayout.classList.remove("hidden");
+
   document.querySelectorAll(".nav-item").forEach(n=>{
     n.classList.toggle("active", n.dataset.tab === curTab);
   });
+  document.querySelectorAll(".wb-tab").forEach(n=>{
+    n.classList.toggle("active", n.dataset.tab === curTab);
+  });
   $("sidebar").classList.remove("show");
+
   render();
 }
 
 document.querySelectorAll(".nav-item").forEach(n=>{
   n.onclick = ()=>{ curTab=n.dataset.tab; switchTab(); };
 });
+// wb-tab click handlers
+document.querySelectorAll(".wb-tab").forEach(n=>{
+  n.onclick = ()=>{ curTab=n.dataset.tab; switchTab(); };
+});
 $("menuToggle").onclick = ()=> $("sidebar").classList.toggle("show");
 
 /* ================================================================
-   RENDER
+   HOMEPAGE RENDER (v4 modular)
+   ================================================================ */
+function renderHomePage(){
+  // 首页模块统一格式，不需要额外渲染
+  // 产品数据在图鉴浏览器(enterGallery)中展示
+}
+
+function getBrandColor(brand){
+  var colors = {
+    'OnePlus':'#e60023','Canon':'#cc0000','Apple':'#555','Nokia':'#124191',
+    'Huawei':'#cf0a2c','Xiaomi':'#ff6900','Sony':'#000','Samsung':'#1428a0'
+  };
+  return colors[brand] || '#333';
+}
+
+/* ---- 首页模块点击 → 进入工作台二级页面 ---- */
+var pageTitles = {products:'产品资料库',reference:'灵感参考',reviews:'设计稿审核',assistant:'AI 助手'};
+function enterWorkbench(tab){
+  document.body.classList.remove('is-homepage');
+  var home = $("homePage");
+  var layout = $("appLayout");
+  var sidebar = $("sidebar");
+  var pt = $("pageTitle");
+  if(home) home.style.display = "none";
+  if(layout) layout.classList.remove("hidden");
+  if(sidebar) sidebar.classList.remove("hidden");
+  if(pt) pt.textContent = pageTitles[tab] || '';
+  curTab = tab || "products";
+  switchTab();
+  window.scrollTo(0,0);
+}
+
+/* 返回首页 */
+function goHome(){
+  document.body.classList.add('is-homepage');
+  var home = $("homePage");
+  var layout = $("appLayout");
+  var sidebar = $("sidebar");
+  var gal = $("galleryView");
+  if(home) home.style.display = "";
+  if(layout) layout.classList.add("hidden");
+  if(sidebar) sidebar.classList.add("hidden");
+  if(gal) gal.classList.remove("active");
+  renderHomePage();
+  window.scrollTo(0,0);
+}
+
+/* ================================================================
+   GALLERY BROWSER — 产品图鉴 (分类→品牌→作品展示)
+   ================================================================ */
+
+/* 分类定义 */
+var GAL_CATEGORIES = [
+  {id:'phone', name:'智能手机', icon:'M12 18h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z', desc:'手机拆机装裱作品'},
+  {id:'laptop', name:'笔记本电脑', icon:'M20 16V6a2 2 0 00-2-2H6a2 2 0 00-2 2v10m16 0v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2', desc:'笔记本装裱作品'},
+  {id:'tablet', name:'平板电脑', icon:'M4 6a2 2 0 012-2h12a2 2 0 012 2v8a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm14 12H6', desc:'平板装裱作品'},
+  {id:'camera', name:'相机/摄影', icon:'M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2zM9 13a4 4 0 108 0 4 4 0 00-8 0', desc:'相机/单反装裱作品'},
+  {id:'other', name:'其他设备', icon:'M9 3v2m6-2v2M12 9v6m0 0l-3-3m3 3l3-3M21 12a9 9 0 11-18 0 9 9 0 0118 0z', desc:'计算器/游戏机等'}
+];
+
+/* 品牌映射到分类 */
+function getProductCategory(p){
+  var cat = (p.category||'').toLowerCase();
+  if(cat.indexOf('手机')>=0||cat.indexOf('phone')>=0) return 'phone';
+  if(cat.indexOf('笔记本')>=0||cat.indexOf('laptop')>=0||cat.indexOf('macbook')>=0) return 'laptop';
+  if(cat.indexOf('平板')>=0||cat.indexOf('tablet')>=0||cat.indexOf('ipad')>=0) return 'tablet';
+  if(cat.indexOf('相机')>=0||cat.indexOf('camera')>=0||cat.indexOf('单反')>=0||cat.indexOf('canon')>=0) return 'camera';
+  return 'other';
+}
+
+/* 进入图鉴浏览器 */
+function enterGallery(){
+  $("homePage").style.display = "none";
+  $("appLayout").classList.add("hidden");
+  $("sidebar").classList.add("hidden");
+  document.body.classList.remove('is-homepage');
+  var gal = $("galleryView"); gal.classList.add("active");
+  galLevel = 'cats';
+  renderGalCats();
+  window.scrollTo(0,0);
+}
+
+/* 退出图鉴 */
+function exitGallery(){ goHome(); }
+
+var galLevel = 'cats'; // cats | brands | showcase
+var galCat = null;
+var galBrand = null;
+
+/* ---- Level 1: 分类列表 ---- */
+function renderGalCats(){
+  galLevel = 'cats'; galCat = null; galBrand = null;
+  $("galTitle").textContent = '产品图鉴';
+  var c = $("galContent");
+
+  /* 统计每个分类的产品数 */
+  var counts = {};
+  GAL_CATEGORIES.forEach(function(ca){ counts[ca.id] = 0; });
+  PRODUCTS.forEach(function(p){
+    var cid = getProductCategory(p);
+    if(!counts[cid]) counts[cid] = 0;
+    counts[cid]++;
+  });
+
+  c.innerHTML = '<div class="gal-cats">'+GAL_CATEGORIES.map(function(ca){
+    return '<div class="gal-cat" onclick="selectGalCategory(\''+ca.id+'\')">'+
+      '<div class="gc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="'+ca.icon+'"/></svg></div>'+
+      '<h3>'+esc(ca.name)+'</h3><p>'+esc(ca.desc)+'</p>'+
+      '<span class="gc-count">'+counts[ca.id]+' 个产品</span></div>';
+  }).join('')+'</div>';
+}
+
+/* ---- Level 2: 品牌列表 ---- */
+function selectGalCategory(catId){
+  galLevel = 'brands'; galCat = catId; galBrand = null;
+  var catInfo = GAL_CATEGORIES.find(function(c){ return c.id===catId });
+  $("galTitle").textContent = catInfo ? catInfo.name : '产品图鉴';
+
+  var c = $("galContent");
+  var items = PRODUCTS.filter(function(p){ return getProductCategory(p)===catId });
+
+  /* 按品牌分组 */
+  var brands = {};
+  items.forEach(function(p){
+    var b = p.brand || '其他';
+    if(!brands[b]) brands[b] = [];
+    brands[b].push(p);
+  });
+
+  var brandKeys = Object.keys(brands).sort();
+
+  if(brandKeys.length===0){
+    c.innerHTML = '<div style="padding:60px;text-align:center;color:var(--ink3)"><p style="margin-bottom:12px">该分类暂无产品</p>'+
+      '<button class="btn btn-outline btn-sm" onclick="renderGalCats()">返回分类</button></div>';
+    return;
+  }
+
+  c.innerHTML =
+    '<div class="gal-breadcrumb">'+
+      '<span class="gal-bc-item" onclick="renderGalCats()">产品图鉴</span>'+
+      '<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>'+
+      '<span>'+esc(catInfo?catInfo.name:catId)+'</span></div>'+
+    '<div class="gal-brand-grid">'+brandKeys.map(function(b){
+      var prods = brands[b];
+      return '<div class="gal-brand-card" onclick="selectGalBrand(\''+esc(b)+'\')">'+
+        '<div class="gb-logo">'+esc(b.substring(0,2))+'</div>'+
+        '<h4>'+esc(b)+'</h4>'+
+        '<div class="gb-count">'+prods.length+' 个产品</div></div>';
+    }).join('')+'</div>';
+}
+
+/* ---- Level 3: 作品展示（堆叠卡片） ---- */
+function selectGalBrand(brand){
+  galLevel = 'showcase'; galBrand = brand;
+  var catInfo = GAL_CATEGORIES.find(function(c){ return c.id===galCat });
+  $("galTitle").textContent = brand + (catInfo ? ' · '+catInfo.name : '');
+
+  var c = $("galContent");
+  var items = PRODUCTS.filter(function(p){
+    return (p.brand||'')===brand && getProductCategory(p)===galCat;
+  });
+
+  if(items.length===0){
+    c.innerHTML = '<div style="padding:60px;text-align:center;color:var(--ink3)">暂无产品</div>';
+    return;
+  }
+
+  /* 取第一个产品的展示图（framedPhotos）作为堆叠卡片 */
+  var product = items[0];
+  var images = product.framedPhotos || [];
+
+  /* 如果没有成品图，用参考图或占位 */
+  if(images.length===0 && product.images) images = product.images.slice(0,5);
+  if(images.length===0) images = [''];
+
+  var cardsHtml = images.map(function(img,i){
+    var cls = i===0?'gs-active':(i===1?'gs-behind':'gs-exit');
+    var imgTag = img ? '<img src="'+esc(img.substring(0,999999))+'" loading="lazy" alt="'+esc(product.model)+'">' :
+      '<div style="width:100%;aspect-ratio:4/3;background:linear-gradient(135deg,'+getBrandColor(product.brand)+',#222);display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:600">'+esc(product.model)+'</div>';
+    return '<div class="gs-card '+cls+'" data-idx="'+i+'" onclick="gsGoTo('+i+')">'+imgTag+'</div>';
+  }).join('');
+
+  var dotsHtml = images.map(function(_,i){
+    return '<div class="gs-dot'+(i===0?' active':'')+'" onclick="gsGoTo('+i+')"></div>';
+  }).join('');
+
+  c.innerHTML =
+    '<div class="gal-breadcrumb">'+
+      '<span class="gal-bc-item" onclick="renderGalCats()">产品图鉴</span>'+
+      '<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>'+
+      '<span class="gal-bc-item" onclick="selectGalCategory(&quot;'+esc(galCat)+'&quot;)">'+esc(catInfo?catInfo.name:galCat)+'</span>'+
+      '<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>'+
+      '<span>'+esc(brand)+'</span></div>'+
+
+    '<div class="gal-showcase">'+
+      '<div class="gs-stack" id="gsStack">'+cardsHtml+'</div>'+
+
+      '<div class="gs-info">'+
+        '<h3>'+esc(product.brand)+' · '+esc(product.model)+'</h3>'+
+        '<div class="gs-meta">'+esc(product.category||'')+' · '+esc(product.size||'')+'</div>'+
+        '<div class="gs-desc">'+(product.framingNotes?esc(product.framingNotes):'暂无设计说明')+'</div>'+
+      '</div>'+
+
+      '<div class="gs-nav">'+
+        '<button onclick="gsPrev()" title="上一张"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>'+
+        '<div class="gs-dots" id="gsDots">'+dotsHtml+'</div>'+
+        '<button onclick="gsNext()" title="下一张"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>'+
+      '</div></div>';
+
+  window._gsIdx = 0;
+  window._gsTotal = images.length;
+}
+
+/* 堆叠卡片导航 */
+function gsGoTo(idx){
+  if(idx<0||idx>=window._gsTotal) return;
+  window._gsIdx = idx;
+  var cards = document.querySelectorAll('#gsStack .gs-card');
+  cards.forEach(function(card,i){
+    card.className = 'gs-card'+
+      (i===idx?' gs-active':
+       (i===(idx-1+window._gsTotal)%window._gsTotal?' gs-exit':' gs-behind'));
+  });
+  var dots = document.querySelectorAll('#gsDots .gs-dot');
+  dots.forEach(function(d,i){ d.className='gs-dot'+(i===idx?' active':''); });
+}
+function gsPrev(){ gsGoTo((window._gsIdx-1+window._gsTotal)%window._gsTotal); }
+function gsNext(){ gsGoTo((window._gsIdx+1)%window._gsTotal); }
+
+/* ================================================================
+   RENDER (workbench tabs)
    ================================================================ */
 function render(){
   renderToday();
-  const main = $("mainContent");
+  const main = $("wbBody") || $("mainContent");
   if(!main){ console.error("render: mainContent not found"); return; }
   updateBadges();
 
@@ -1684,7 +2175,7 @@ function renderProductDetail(main,p){
     ((prod.pinterestLinks&&prod.pinterestLinks.length)?'<div class="pd-section"><h3>参考链接</h3><div>'+prod.pinterestLinks.map(l=>'<a href="'+esc(l)+'" target="_blank" rel="noopener" style="display:inline-block;margin:0 10px 8px 0;font-size:13px;color:var(--accent)">'+esc(l)+'</a>').join("")+'</div></div>':'')+
     '</div>';
 }
-function openProduct(id){ viewingProduct=id; render(); }
+function openProduct(id){ viewingProduct=id; curTab="products"; switchTab(); }
 
 function showProductForm(editId){
   const prod = editId?PRODUCTS.find(p=>p.id===editId):null;
