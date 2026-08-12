@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>装裱设计台 · Framing Studio</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='3' width='26' height='26' rx='5' fill='%230a0a0a'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%23e60023'/%3E%3C/svg%3E">
 <style>
@@ -2340,31 +2343,41 @@ async function loadRefLibrary(){
   const st = $("refStatus");
   st.textContent = "加载中…";
 
-  // Try fetching the library JSON from the local server
+  // Try fetching the library JSON from the local/online server
   try{
-    const resp = await fetch(REF_JSON+"?t="+Date.now());
+    const url = REF_JSON+"?t="+Date.now();
+    const resp = await fetch(url);
+    console.log("[RefLib] fetch", url, "→ HTTP", resp.status, resp.ok);
     if(resp.ok){ REF_DATA = await resp.json(); st.textContent = "已连接 · "+REF_DATA.total+" 张图片"; $("protoWarn").innerHTML=""; buildRefIndex(); renderRefAll(); return; }
-  }catch(e){}
+    // If not ok, show the status code for debugging
+    console.warn("[RefLib] non-ok response:", resp.status, resp.statusText);
+    $("protoWarn").innerHTML = '<div class="proto-warn" style="border-left-color:var(--warn)"><div style="font-weight:600;margin-bottom:8px">参考库加载失败</div><div style="line-height:1.8;color:var(--err)">服务器返回 HTTP '+resp.status+'（'+resp.statusText+'）<br>请求地址：<code style="font-size:11px">'+url+'</code><br>请检查网络或刷新重试。</div></div>';
+    st.textContent = "加载失败（HTTP "+resp.status+"）";
+    REF_DATA = {total:0,tree:[]}; buildRefIndex(); renderRefAll();
+    return;
+  }catch(e){
+    console.error("[RefLib] fetch error:", e);
+  }
 
-  // Fallback: server not reachable → show action guide
+  // Fallback: fetch threw → show action guide with error details
   const isFile = location.protocol === "file:";
   $("protoWarn").innerHTML =
     '<div class="proto-warn" style="border-left-color:var(--accent)">'+
-    '<div style="font-weight:600;margin-bottom:8px">参考库服务器未运行</div>'+
-    '<div style="line-height:1.8">一键解决：双击 <code style="background:var(--chip);padding:1px 5px;border-radius:3px">启动装裱设计台.bat</code>（在工作台同目录），它会自动启动服务器并打开浏览器，参考库直接嵌入显示，无需手动开链接。</div>'+
+    '<div style="font-weight:600;margin-bottom:8px">参考库服务未运行</div>'+
+    '<div style="line-height:1.8;font-size:12px;color:var(--ink3)">DEBUG info:<br>'+
+    '· 当前地址: <b>'+location.href+'</b><br>'+
+    '· REF_BASE: <code style="font-size:11px">'+REF_BASE+'</code><br>'+
+    '· REF_JSON: <code style="font-size:11px">'+REF_JSON+'</code><br>'+
+    '· 错误: '+e.message+'</div>'+
+    '<div style="line-height:1.8;margin-top:8px">一键解决：双击 <code style="background:var(--chip);padding:1px 5px;border-radius:3px">启动装裱设计台.bat</code>（在工作台同目录），它会自动启动服务器并打开浏览器，参考库直接嵌入显示，无需手动开链接。</div>'+
     '<div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">'+
     '<button class="btn btn-primary btn-sm" onclick="window.open(REF_GALLERY,\'_blank\')">'+ICONS.image+' 在新窗口打开参考库</button>'+
-    '<button class="btn btn-outline btn-sm" onclick="this.style.display=\'none\';document.getElementById(\'manualGuide\').style.display=\'block\'">查看手动启动步骤</button>'+
+    '<button class="btn btn-outline btn-sm" onclick="loadRefLibrary()">'+ICONS.edit+' 重试连接</button>'+
     '</div>'+
-    '<div id="manualGuide" style="display:none;margin-top:10px;padding:10px;background:var(--soft);border-radius:var(--radius-sm);font-size:12px;line-height:1.8">'+
-    '<b>方法一（推荐）：</b>双击运行 <code style="background:var(--chip);padding:1px 5px;border-radius:3px">启动装裱设计台.bat</code>，自动起服务器+开浏览器<br>'+
-    '<b>方法二（命令行）：</b>打开终端粘贴这行并回车：'+
-    '<code style="background:var(--chip);padding:3px 8px;border-radius:3px;display:inline-block;margin:4px 0;user-select:all">python -m http.server 8001 -d F:\\</code>'+
-    '<button class="btn btn-outline btn-sm" style="margin-left:6px;padding:2px 10px;font-size:11px" onclick="navigator.clipboard.writeText(\'python -m http.server 8001 -d F:\\\\\').then(function(){showToast(\'命令已复制\')})">复制命令</button><br>'+
-    '<b>然后：</b>点上方「在新窗口打开参考库」即可<br>'+
-    '<span style="color:var(--ink3)">提示：若提示端口被占用，先跑 <code style="background:var(--chip);padding:1px 4px;border-radius:3px">netstat -ano | findstr :8001</code> 找到 PID，再 <code style="background:var(--chip);padding:1px 4px;border-radius:3px">taskkill /F /PID 该PID</code> 后重启</span></div>'+
     '</div>';
-  st.textContent = "未连接（服务器未运行）";
+  st.textContent = "未连接";
+  REF_DATA = {total:0,tree:[]}; buildRefIndex(); renderRefAll();
+}
   REF_DATA = {total:0,tree:[]};
   buildRefIndex(); renderRefAll();
 }
