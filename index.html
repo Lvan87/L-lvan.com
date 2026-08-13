@@ -2344,60 +2344,38 @@ async function renderReference(main){
 
 async function loadRefLibrary(){
   const st = $("refStatus");
-  const t0 = Date.now();
-  st.textContent = "⏳ 连接中…";
 
-  // 带超时的 fetch（6秒），防止网络挂起导致页面卡死
+  // ★ 策略：先用内嵌数据立即渲染（0延迟），再后台尝试 fetch 更新
+  if(REF_FALLBACK_DATA && REF_FALLBACK_DATA.total > 0){
+    REF_DATA = REF_FALLBACK_DATA;
+    st.textContent = "✅ "+REF_DATA.total+" 张图片";
+    $("protoWarn").innerHTML = "";
+    buildRefIndex(); renderRefAll();
+    console.log("[RefLib] Instant render from embedded data:", REF_DATA.total, "images");
+  }
+
+  // 后台静默尝试 fetch（不阻塞UI，8秒超时）
   const ctrl = new AbortController();
-  const timer = setTimeout(() => { ctrl.abort(); st.textContent = "⏱ 超时，正在显示错误…"; }, 6000);
-
+  const timer = setTimeout(() => ctrl.abort(), 8000);
   try{
-    const url = REF_JSON+"?t="+t0;
-    st.textContent = "⏳ 请求 "+url.slice(0,60)+"…";
+    const url = REF_JSON+"?t="+Date.now();
     const resp = await fetch(url, {signal: ctrl.signal});
     clearTimeout(timer);
-    const ms = Date.now()-t0;
-    console.log("[RefLib] fetch", url, "→ HTTP", resp.status, resp.ok, "("+ms+"ms)");
-    if(resp.ok){ REF_DATA = await resp.json(); st.textContent = "✅ "+REF_DATA.total+" 张图片 ("+ms+"ms)"; $("protoWarn").innerHTML=""; buildRefIndex(); renderRefAll(); return; }
-    console.warn("[RefLib] non-ok response:", resp.status, resp.statusText);
-    $("protoWarn").innerHTML = '<div class="proto-warn" style="border-left-color:var(--warn);background:#fff;padding:16px;margin:10px 0;border-radius:8px"><div style="font-weight:700;font-size:15px;color:var(--warn);margin-bottom:10px">⚠ 参考库加载失败</div><div style="line-height:1.9;color:var(--err)">服务器返回 <b>HTTP '+resp.status+'</b>（'+resp.statusText+'）<br><br>请求地址：<pre style="background:var(--chip);padding:8px;border-radius:4px;font-size:11px;overflow:auto">'+url+'</pre><br>请检查网络或点击「刷新库」重试。</div></div>';
-    st.textContent = "❌ HTTP "+resp.status;
-    REF_DATA = {total:0,tree:[]}; buildRefIndex(); renderRefAll();
-    return;
+    if(resp.ok){
+      const fresh = await resp.json();
+      if(fresh.total > 0){
+        REF_DATA = fresh;
+        st.textContent = "✅ "+REF_DATA.total+" 张图片 (在线)";
+        $("protoWarn").innerHTML = "";
+        buildRefIndex(); renderRefAll();
+        console.log("[RefLib] Background fetch succeeded, updated to fresh data:", fresh.total);
+      }
+    }
   }catch(e){
     clearTimeout(timer);
-    const ms = Date.now()-t0;
-    console.error("[RefLib] fetch error ("+ms+"ms):", e);
+    // 静默失败——用户已经在看内嵌数据了，不需要打扰
+    console.warn("[RefLib] Background fetch failed (non-blocking):", e.name, e.message);
   }
-
-  const ms = Date.now()-t0;
-  const isTimeout = e.name==='AbortError';
-
-  // ★ 降级：使用内嵌兜底数据（保证线上永远可用）
-  if(REF_FALLBACK_DATA && REF_FALLBACK_DATA.total > 0){
-    console.warn("[RefLib] fetch failed ("+ms+"ms, "+e.name+"), falling back to embedded data ("+REF_FALLBACK_DATA.total+" images)");
-    REF_DATA = REF_FALLBACK_DATA;
-    st.textContent = "✅ "+REF_DATA.total+" 张 (离线缓存)";
-    $("protoWarn").innerHTML = '<div style="font-size:12px;color:var(--ink3);padding:6px 0">⚠ 网络请求失败，已加载内置缓存('+ms+'ms)。图片浏览正常，新增图片需网络。</div>';
-    buildRefIndex(); renderRefAll();
-    return;
-  }
-
-  $("protoWarn").innerHTML =
-    '<div class="proto-warn" style="border-left-color:'+(isTimeout?'var(--err)':'var(--accent)')+';background:#fff;padding:16px;margin:10px 0;border-radius:8px">'+
-    '<div style="font-weight:700;font-size:15px;color:'+(isTimeout?'var(--err)':'var(--accent)')+';margin-bottom:10px">'+(isTimeout?'⏱ 参考库连接超时':'🔌 参考库服务未运行')+'</div>'+
-    '<div style="line-height:1.9;font-size:13px;color:var(--ink2)">DEBUG info:<br>'+
-    '· 耗时: <b>'+ms+'ms</b><br>'+
-    '· 当前地址: <code style="background:var(--chip);padding:1px 5px">'+location.href+'</code><br>'+
-    '· REF_BASE: <code style="background:var(--chip);padding:1px 5px;font-size:11px">'+REF_BASE+'</code><br>'+
-    '· 完整URL: <pre style="background:var(--chip);padding:8px;border-radius:4px;font-size:11px;overflow:auto;margin-top:4px">'+REF_JSON+'</pre><br>'+
-    '· 错误类型: <b>'+e.name+'</b><br>· 错误信息: '+e.message+'</div>'+
-    '<div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">'+
-    '<button class="btn btn-primary btn-sm" onclick="window.open(REF_GALLERY,\'_blank\')">'+ICONS.image+' 新窗口打开参考库</button>'+
-    '<button class="btn btn-outline btn-sm" onclick="loadRefLibrary()">'+ICONS.edit+' 重试连接</button>'+
-    '</div></div>';
-  st.textContent = isTimeout?'⏱ 超时('+ms+'ms)':'❌ '+e.name;
-  REF_DATA = {total:0,tree:[]}; buildRefIndex(); renderRefAll();
 }
 
 function buildRefIndex(){
