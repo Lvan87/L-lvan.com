@@ -148,15 +148,26 @@ header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdro
 /* ---- reference gallery ---- */
 .ref-toolbar{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center}
 .ref-tree{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);
-  padding:10px;margin-bottom:14px;max-height:300px;overflow:auto}
-.ref-node{padding:4px 0}
-.ref-row{display:flex;align-items:center;gap:6px;padding:5px 10px;border-radius:6px;cursor:pointer;font-size:13px}
-.ref-row:hover,.ref-row.active{background:var(--chip)}
-.ref-row.active{font-weight:600}
-.ref-row .rc{width:14px;height:14px;transition:transform .15s}
-.ref-row .rc.open{transform:rotate(90deg)}
-.ref-kids{margin-left:18px;border-left:1px solid var(--line);padding-left:4px}
-.ref-cnt{margin-left:auto;font-size:11px;color:var(--ink3)}
+  padding:10px;margin-bottom:14px;max-height:340px;overflow:auto}
+.ref-all{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:var(--chip);
+  color:var(--ink);border:1px solid var(--line);border-radius:var(--radius-sm);cursor:pointer;font-size:13px;margin-bottom:8px;transition:all .12s}
+.ref-all:hover{background:var(--soft)}
+.ref-all.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.ref-all.active .ref-cnt{color:rgba(255,255,255,.6)}
+.ref-node{padding:2px 0}
+.ref-row{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-radius:var(--radius-sm);
+  cursor:pointer;font-size:13px;color:var(--ink2);transition:background .12s}
+.ref-row:hover{background:var(--chip)}
+.ref-row.active{background:var(--chip);color:var(--ink);font-weight:500}
+.ref-row .rn-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ref-kids{margin:2px 0 2px 14px;border-left:1px solid var(--line);padding-left:8px}
+.ref-sub{display:flex;align-items:center;justify-content:space-between;padding:6px 10px;border-radius:var(--radius-sm);
+  cursor:pointer;font-size:12.5px;color:var(--ink2);transition:background .12s}
+.ref-sub:hover{background:var(--chip)}
+.ref-sub.active{background:var(--soft);color:var(--ink);font-weight:500}
+.ref-sub .rn-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ref-cnt{font-size:11px;color:var(--ink3);padding-left:8px;flex-shrink:0}
+.ref-sub.active .ref-cnt{color:var(--ink3)}
 .ref-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
 .ref-card{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius-sm);overflow:hidden;
   cursor:pointer;transition:all .15s;position:relative}
@@ -2311,18 +2322,6 @@ function saveRefUploads(){ try{ localStorage.setItem(PFX+"refUploads", JSON.stri
 // 目录树展开状态（默认全部收起，记忆到 localStorage）
 let refExpanded = new Set(JSON.parse(localStorage.getItem(PFX+"refExpanded")||"[]"));
 function saveRefExpanded(){ localStorage.setItem(PFX+"refExpanded", JSON.stringify(Array.from(refExpanded))); }
-function toggleRefNode(path){
-  if(refExpanded.has(path)) refExpanded.delete(path); else refExpanded.add(path);
-  saveRefExpanded(); renderRefTree();
-}
-function selectRefNode(path){
-  refCurrentPath=path;
-  refRenderCount=30; // 切换分类重置分页
-  // 自动展开所有祖先节点，保证选中项可见
-  let p=path;
-  while(p){ const n=refByPath[p]; if(n&&n.children&&n.children.length) refExpanded.add(p); p=refParentOf[p]; }
-  saveRefExpanded(); renderRefAll();
-}
 
 async function renderReference(main){
   main.innerHTML =
@@ -2398,25 +2397,36 @@ function refCurImages(){
 
 function renderRefAll(){ renderRefTree(); renderRefBread(); renderRefGrid(); }
 
+function selectAndToggle(path){
+  const n=refByPath[path];
+  const hasKids=n&&n.children&&n.children.length;
+  refCurrentPath=path;
+  refRenderCount=30;
+  if(hasKids){ if(refExpanded.has(path)) refExpanded.delete(path); else refExpanded.add(path); }
+  // 展开所有祖先节点，保证选中项可见
+  let p=path;
+  while(p){ const an=refByPath[p]; if(an&&an.children&&an.children.length) refExpanded.add(p); p=refParentOf[p]; }
+  saveRefExpanded(); renderRefAll();
+}
+
 function renderRefTree(){
   const area = $("refTreeArea");
   if(!REF_DATA.tree||!REF_DATA.tree.length){ area.innerHTML=""; return; }
   let html = '<div class="ref-tree">';
-  // All
-  html += '<div class="ref-node"><div class="ref-row'+(refCurrentPath==="__ALL__"?" active":"")+'" onclick="refCurrentPath=\'__ALL__\';renderRefAll()">' +
-    '<span style="width:14px"></span>全部图片<span class="ref-cnt">'+refAllImages().length+'</span></div></div>';
+  // 全部图片：黑底 pill 按钮
+  html += '<div class="ref-all'+(refCurrentPath==="__ALL__"?" active":"")+'" onclick="refCurrentPath=\'__ALL__\';refRenderCount=30;renderRefAll()">全部图片 <span class="ref-cnt">'+refAllImages().length+'</span></div>';
   function nodeHtml(n,d){
     const hasKids=n.children&&n.children.length;
     const open=refExpanded.has(n.path);
     const safePath=n.path.replace(/'/g,"\\'");
-    let h='<div class="ref-node"><div class="ref-row'+(refCurrentPath===n.path?" active":"")+'">' +
-      (hasKids
-        ? '<span class="rc'+(open?" open":"")+'" style="cursor:pointer" onclick="event.stopPropagation();toggleRefNode(\''+safePath+'\')">▶</span>'
-        : '<span class="rc" style="opacity:0">▶</span>')+
-      '<span onclick="event.stopPropagation();selectRefNode(\''+safePath+'\')">'+esc(n.name)+'</span>'+
-      '<span class="ref-cnt">'+refCountAll(n)+'</span></div>';
+    const isActive=refCurrentPath===n.path;
+    const cls=d===0?"ref-row":"ref-sub";
+    let h='<div class="'+cls+(isActive?" active":"")+'" onclick="selectAndToggle(\''+safePath+'\')">'+
+            '<span class="rn-name">'+esc(n.name)+'</span>'+
+            '<span class="ref-cnt'+(d>0?" sub":"")+'">'+refCountAll(n)+'</span>'+
+          '</div>';
     if(hasKids&&open){ h+='<div class="ref-kids">'; n.children.forEach(c=>h+=nodeHtml(c,d+1)); h+='</div>'; }
-    h+='</div>'; return h;
+    return h;
   }
   REF_DATA.tree.forEach(n=>html+=nodeHtml(n,0));
   area.innerHTML=html+"</div>";
