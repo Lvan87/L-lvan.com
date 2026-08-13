@@ -2341,43 +2341,48 @@ async function renderReference(main){
 
 async function loadRefLibrary(){
   const st = $("refStatus");
-  st.textContent = "加载中…";
+  const t0 = Date.now();
+  st.textContent = "⏳ 连接中…";
 
-  // 带超时的 fetch（8秒），防止网络挂起导致页面卡死
+  // 带超时的 fetch（6秒），防止网络挂起导致页面卡死
   const ctrl = new AbortController();
-  const timer = setTimeout(() => ctrl.abort(), 8000);
+  const timer = setTimeout(() => { ctrl.abort(); st.textContent = "⏱ 超时，正在显示错误…"; }, 6000);
 
   try{
-    const url = REF_JSON+"?t="+Date.now();
+    const url = REF_JSON+"?t="+t0;
+    st.textContent = "⏳ 请求 "+url.slice(0,60)+"…";
     const resp = await fetch(url, {signal: ctrl.signal});
     clearTimeout(timer);
-    console.log("[RefLib] fetch", url, "→ HTTP", resp.status, resp.ok);
-    if(resp.ok){ REF_DATA = await resp.json(); st.textContent = "已连接 · "+REF_DATA.total+" 张图片"; $("protoWarn").innerHTML=""; buildRefIndex(); renderRefAll(); return; }
+    const ms = Date.now()-t0;
+    console.log("[RefLib] fetch", url, "→ HTTP", resp.status, resp.ok, "("+ms+"ms)");
+    if(resp.ok){ REF_DATA = await resp.json(); st.textContent = "✅ "+REF_DATA.total+" 张图片 ("+ms+"ms)"; $("protoWarn").innerHTML=""; buildRefIndex(); renderRefAll(); return; }
     console.warn("[RefLib] non-ok response:", resp.status, resp.statusText);
-    $("protoWarn").innerHTML = '<div class="proto-warn" style="border-left-color:var(--warn)"><div style="font-weight:600;margin-bottom:8px">参考库加载失败</div><div style="line-height:1.8;color:var(--err)">服务器返回 HTTP '+resp.status+'（'+resp.statusText+'）<br>请求地址：<code style="font-size:11px">'+url+'</code><br>请检查网络或刷新重试。</div></div>';
-    st.textContent = "加载失败（HTTP "+resp.status+"）";
+    $("protoWarn").innerHTML = '<div class="proto-warn" style="border-left-color:var(--warn);background:#fff;padding:16px;margin:10px 0;border-radius:8px"><div style="font-weight:700;font-size:15px;color:var(--warn);margin-bottom:10px">⚠ 参考库加载失败</div><div style="line-height:1.9;color:var(--err)">服务器返回 <b>HTTP '+resp.status+'</b>（'+resp.statusText+'）<br><br>请求地址：<pre style="background:var(--chip);padding:8px;border-radius:4px;font-size:11px;overflow:auto">'+url+'</pre><br>请检查网络或点击「刷新库」重试。</div></div>';
+    st.textContent = "❌ HTTP "+resp.status;
     REF_DATA = {total:0,tree:[]}; buildRefIndex(); renderRefAll();
     return;
   }catch(e){
     clearTimeout(timer);
-    console.error("[RefLib] fetch error:", e);
+    const ms = Date.now()-t0;
+    console.error("[RefLib] fetch error ("+ms+"ms):", e);
   }
 
-  const isFile = location.protocol === "file:";
+  const ms = Date.now()-t0;
+  const isTimeout = e.name==='AbortError';
   $("protoWarn").innerHTML =
-    '<div class="proto-warn" style="border-left-color:var(--accent)">'+
-    '<div style="font-weight:600;margin-bottom:8px">'+(e.name==='AbortError'?'参考库连接超时（8s）':'参考库服务未运行')+'</div>'+
-    '<div style="line-height:1.8;font-size:12px;color:var(--ink3)">DEBUG info:<br>'+
-    '· 当前地址: <b>'+location.href+'</b><br>'+
-    '· REF_BASE: <code style="font-size:11px">'+REF_BASE+'</code><br>'+
-    '· REF_JSON: <code style="font-size:11px">'+REF_JSON+'</code><br>'+
-    '· 错误: '+e.message+'</div>'+
-    '<div style="line-height:1.8;margin-top:8px">本地使用：双击 <code style="background:var(--chip);padding:1px 5px;border-radius:3px">启动装裱设计台.bat</code> 自动启动服务器。</div>'+
-    '<div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">'+
-    '<button class="btn btn-primary btn-sm" onclick="window.open(REF_GALLERY,\'_blank\')">'+ICONS.image+' 在新窗口打开参考库</button>'+
+    '<div class="proto-warn" style="border-left-color:'+(isTimeout?'var(--err)':'var(--accent)')+';background:#fff;padding:16px;margin:10px 0;border-radius:8px">'+
+    '<div style="font-weight:700;font-size:15px;color:'+(isTimeout?'var(--err)':'var(--accent)')+';margin-bottom:10px">'+(isTimeout?'⏱ 参考库连接超时':'🔌 参考库服务未运行')+'</div>'+
+    '<div style="line-height:1.9;font-size:13px;color:var(--ink2)">DEBUG info:<br>'+
+    '· 耗时: <b>'+ms+'ms</b><br>'+
+    '· 当前地址: <code style="background:var(--chip);padding:1px 5px">'+location.href+'</code><br>'+
+    '· REF_BASE: <code style="background:var(--chip);padding:1px 5px;font-size:11px">'+REF_BASE+'</code><br>'+
+    '· 完整URL: <pre style="background:var(--chip);padding:8px;border-radius:4px;font-size:11px;overflow:auto;margin-top:4px">'+REF_JSON+'</pre><br>'+
+    '· 错误类型: <b>'+e.name+'</b><br>· 错误信息: '+e.message+'</div>'+
+    '<div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">'+
+    '<button class="btn btn-primary btn-sm" onclick="window.open(REF_GALLERY,\'_blank\')">'+ICONS.image+' 新窗口打开参考库</button>'+
     '<button class="btn btn-outline btn-sm" onclick="loadRefLibrary()">'+ICONS.edit+' 重试连接</button>'+
     '</div></div>';
-  st.textContent = e.name==='AbortError'?'连接超时':'未连接';
+  st.textContent = isTimeout?'⏱ 超时('+ms+'ms)':'❌ '+e.name;
   REF_DATA = {total:0,tree:[]}; buildRefIndex(); renderRefAll();
 }
 
