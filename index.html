@@ -161,7 +161,9 @@ header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdro
 .ref-card{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius-sm);overflow:hidden;
   cursor:pointer;transition:all .15s;position:relative}
 .ref-card:hover{border-color:var(--line2)}
-.ref-del{position:absolute;top:6px;right:6px;width:22px;height:22px;border:none;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;font-size:12px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;z-index:3}
+.ref-del{position:absolute;top:6px;left:6px;width:22px;height:22px;border:none;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;font-size:12px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;z-index:3}
+.ref-dl{position:absolute;top:6px;right:6px;width:26px;height:26px;border:none;border-radius:50%;background:rgba(0,0,0,.6);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:.85;transition:opacity .2s;z-index:3}
+.ref-dl:hover{background:var(--accent);opacity:1}
 .ref-card:hover .ref-del{opacity:1}
 .ref-del:hover{background:var(--accent)}
 .ref-card .ri{aspect-ratio:1;background:var(--soft);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
@@ -2445,10 +2447,12 @@ function renderRefGrid(){
     const isUp = typeof src==="string" && src.indexOf("data:")===0;
     const url = isUp ? src : safeUrl(src);
     const upIdx = isUp ? REF_UPLOADS.indexOf(src) : -1;
+    const fname = isUp ? ("我的上传-"+(upIdx+1)+".jpg") : src.split("/").pop();
     const delBtn = isUp ? '<button class="ref-del" onclick="event.stopPropagation();removeRefUpload('+upIdx+')" title="删除上传图">✕</button>' : '';
+    const dlBtn = '<button class="ref-dl" onclick="event.stopPropagation();downloadRefImg(\''+url+'\',\''+esc(fname)+'\')" title="下载原图"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></button>';
     area.innerHTML+=
       '<div class="ref-card" onclick="showLb(\''+url+'\',\''+esc(src.replace(/'/g,"\\'"))+'\')">'+
-      delBtn+
+      delBtn+dlBtn+
       '<div class="ri"><img src="'+url+'" alt="" loading="lazy" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">'+
       '<div class="err-ph" style="display:none"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span style="font-size:10px">'+esc(src.split("/").pop())+'</span></div></div>'+
       '<div class="rn">'+esc(isUp?"我的上传":src.split("/").pop())+'</div></div>';
@@ -3040,17 +3044,21 @@ function applyLbZoom(){
   $("lbZoomHint").textContent=Math.round(_lb.zoom*100)+"%";
 }
 
-function lbDownload(){
-  var src=$("lbImg").src; if(!src||src.indexOf("data:")!==0){ if(src){var a0=document.createElement("a");a0.href=src;a0.download="framing-photo-"+(_lb.idx+1)+".jpg";document.body.appendChild(a0);a0.click();document.body.removeChild(a0);} return; }
+function downloadRefImg(url, filename){
   try{
-    var arr=src.split(","), mime=(arr[0].match(/:(.*?);/)||[])[1]||"image/jpeg", bstr=atob(arr[1]), n=bstr.length, u8=new Uint8Array(n);
-    while(n--)u8[n]=bstr.charCodeAt(n);
-    var blob=new Blob([u8],{type:mime});
-    var url=URL.createObjectURL(blob);
-    var a=document.createElement("a"); a.href=url; a.download="framing-photo-"+(_lb.idx+1)+".jpg";
+    const a=document.createElement("a");
+    a.href=url;
+    a.download=filename||("framing-photo-"+Date.now()+".jpg");
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
-    setTimeout(function(){URL.revokeObjectURL(url);},1500);
   }catch(err){ showToast("下载失败："+err.message); }
+}
+
+function lbDownload(){
+  var src=$("lbImg").src;
+  if(!src) return;
+  var name="framing-photo-"+(_lb.idx+1)+".jpg";
+  try{ var m=src.split("?")[0].split("/").pop(); if(m) name=decodeURIComponent(m); }catch(e){}
+  downloadRefImg(src, name);
 }
 
 /* drag to pan */
