@@ -147,27 +147,32 @@ header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdro
 
 /* ---- reference gallery ---- */
 .ref-toolbar{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center}
-.ref-tree{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);
-  padding:10px;margin-bottom:14px;max-height:340px;overflow:auto}
-.ref-all{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:var(--chip);
-  color:var(--ink);border:1px solid var(--line);border-radius:var(--radius-sm);cursor:pointer;font-size:13px;margin-bottom:8px;transition:all .12s}
-.ref-all:hover{background:var(--soft)}
-.ref-all.active{background:var(--ink);color:#fff;border-color:var(--ink)}
-.ref-all.active .ref-cnt{color:rgba(255,255,255,.6)}
-.ref-node{padding:2px 0}
-.ref-row{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-radius:var(--radius-sm);
-  cursor:pointer;font-size:13px;color:var(--ink2);transition:background .12s}
-.ref-row:hover{background:var(--chip)}
-.ref-row.active{background:var(--chip);color:var(--ink);font-weight:500}
-.ref-row .rn-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.ref-kids{margin:2px 0 2px 14px;border-left:1px solid var(--line);padding-left:8px}
-.ref-sub{display:flex;align-items:center;justify-content:space-between;padding:6px 10px;border-radius:var(--radius-sm);
-  cursor:pointer;font-size:12.5px;color:var(--ink2);transition:background .12s}
-.ref-sub:hover{background:var(--chip)}
-.ref-sub.active{background:var(--soft);color:var(--ink);font-weight:500}
-.ref-sub .rn-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ref-nav-switch{display:flex;gap:4px;margin-bottom:12px}
+.ref-nav-btn{font-size:12px;padding:5px 13px;border:1px solid var(--line);background:var(--bg);color:var(--ink2);border-radius:20px;cursor:pointer;transition:all .12s}
+.ref-nav-btn:hover{background:var(--chip)}
+.ref-nav-btn.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+.ref-pills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.ref-pills.sub{gap:5px;margin-bottom:14px}
+.ref-pill{font-size:12.5px;padding:6px 13px;background:var(--chip);color:var(--ink2);border-radius:20px;cursor:pointer;transition:all .12s;white-space:nowrap;display:inline-flex;align-items:center;gap:5px;line-height:1.4}
+.ref-pill:hover{background:var(--soft)}
+.ref-pill.active{background:var(--ink);color:#fff}
+.ref-pill .ref-cnt{font-style:normal;font-size:10.5px;opacity:.55}
+.ref-pill.active .ref-cnt{color:rgba(255,255,255,.65);opacity:1}
+
+.ref-gridnav-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.ref-gridnav-title{font-size:14px;font-weight:500;color:var(--ink)}
+.ref-back{font-size:12px;color:var(--ink2);cursor:pointer;padding:4px 9px;border:1px solid var(--line);border-radius:6px;transition:all .12s}
+.ref-back:hover{background:var(--chip)}
+.ref-thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:10px}
+.ref-thumb{border:1px solid var(--line);border-radius:var(--radius-sm);overflow:hidden;cursor:pointer;transition:all .12s;background:var(--bg)}
+.ref-thumb:hover{border-color:var(--ink3)}
+.ref-thumb.active{border-color:var(--ink)}
+.rt-img{width:100%;aspect-ratio:4/3;background-color:var(--chip);background-position:center;background-size:cover;background-repeat:no-repeat}
+.rt-bar{display:flex;align-items:center;justify-content:space-between;padding:7px 9px;gap:6px}
+.rt-name{font-size:12px;color:var(--ink2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rt-cnt{font-size:10.5px;color:var(--ink3);flex-shrink:0}
 .ref-cnt{font-size:11px;color:var(--ink3);padding-left:8px;flex-shrink:0}
-.ref-sub.active .ref-cnt{color:var(--ink3)}
 .ref-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
 .ref-card{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius-sm);overflow:hidden;
   cursor:pointer;transition:all .15s;position:relative}
@@ -2313,6 +2318,7 @@ function clearSampleData(){
    MODULE 2: 灵感参考（本地画廊）
    ================================================================ */
 let refCurrentPath = "__ALL__";
+let refNavView = localStorage.getItem(PFX+"refNavView")||"pills";
 let refQuery = "";
 let refByPath = {};
 let refParentOf = {};
@@ -2334,6 +2340,10 @@ async function renderReference(main){
     '<input placeholder="搜索文件名…" style="border:1px solid var(--line2);border-radius:var(--radius-sm);padding:8px 12px;font-size:14px;flex:1;min-width:150px" id="refQ">'+
     '<button class="btn btn-primary btn-sm" onclick="uploadRefPhoto()">'+ICONS.upload+' 上传</button>'+
     '<button class="btn btn-outline btn-sm" onclick="loadRefLibrary()">'+ICONS.edit+' 刷新库</button>'+
+    '</div>'+
+    '<div class="ref-nav-switch">'+
+      '<button class="ref-nav-btn'+(refNavView==="pills"?" active":"")+'" onclick="setRefNavView(\'pills\')">标签栏</button>'+
+      '<button class="ref-nav-btn'+(refNavView==="grid"?" active":"")+'" onclick="setRefNavView(\'grid\')">图标网格</button>'+
     '</div>'+
     '<div id="refTreeArea"></div>'+
     '<div id="refCrumb" style="font-size:13px;color:var(--ink2);margin-bottom:10px"></div>'+
@@ -2409,28 +2419,76 @@ function selectAndToggle(path){
   saveRefExpanded(); renderRefAll();
 }
 
+function refFirstImage(n){
+  if(n.images&&n.images.length) return safeUrl(n.images[0]);
+  if(n.children) for(const c of n.children){ const f=refFirstImage(c); if(f) return f; }
+  return '';
+}
+
 function renderRefTree(){
   const area = $("refTreeArea");
   if(!REF_DATA.tree||!REF_DATA.tree.length){ area.innerHTML=""; return; }
-  let html = '<div class="ref-tree">';
-  // 全部图片：黑底 pill 按钮
-  html += '<div class="ref-all'+(refCurrentPath==="__ALL__"?" active":"")+'" onclick="refCurrentPath=\'__ALL__\';refRenderCount=30;renderRefAll()">全部图片 <span class="ref-cnt">'+refAllImages().length+'</span></div>';
-  function nodeHtml(n,d){
+  if(refNavView==="grid"){ renderRefThumbNav(area); return; }
+
+  // A · 横向标签栏 (Pills)
+  let html = '<div class="ref-pills">';
+  html += '<span class="ref-pill'+(refCurrentPath==="__ALL__"?" active":"")+'" onclick="refCurrentPath=\'__ALL__\';refRenderCount=30;renderRefAll()">全部图片</span>';
+  REF_DATA.tree.forEach(n=>{
     const hasKids=n.children&&n.children.length;
-    const open=refExpanded.has(n.path);
-    const safePath=n.path.replace(/'/g,"\\'");
-    const isActive=refCurrentPath===n.path;
-    const cls=d===0?"ref-row":"ref-sub";
-    let h='<div class="'+cls+(isActive?" active":"")+'" onclick="selectAndToggle(\''+safePath+'\')">'+
-            '<span class="rn-name">'+esc(n.name)+'</span>'+
-            '<span class="ref-cnt'+(d>0?" sub":"")+'">'+refCountAll(n)+'</span>'+
-          '</div>';
-    if(hasKids&&open){ h+='<div class="ref-kids">'; n.children.forEach(c=>h+=nodeHtml(c,d+1)); h+='</div>'; }
-    return h;
+    const isActive = refCurrentPath===n.path || (hasKids && refCurrentPath.indexOf(n.path+"/")===0);
+    html += '<span class="ref-pill'+(isActive?" active":"")+'" onclick="selectAndToggle(\''+n.path.replace(/'/g,"\\'")+'\')">'+esc(n.name)+' <i class="ref-cnt">'+refCountAll(n)+'</i></span>';
+  });
+  html += '</div>';
+
+  // 子类 pills 行：选中一级(有子类) 或 选中子类 时展示其同级子类
+  let subParent=null;
+  if(refCurrentPath!=="__ALL__"){
+    const cur=refByPath[refCurrentPath];
+    if(cur && cur.children && cur.children.length) subParent=cur;
+    else if(refParentOf[refCurrentPath]) subParent=refByPath[refParentOf[refCurrentPath]];
   }
-  REF_DATA.tree.forEach(n=>html+=nodeHtml(n,0));
-  area.innerHTML=html+"</div>";
+  if(subParent && subParent.children && subParent.children.length){
+    html += '<div class="ref-pills sub">';
+    html += '<span class="ref-pill sub'+(refCurrentPath===subParent.path?" active":"")+'" onclick="selectAndToggle(\''+subParent.path.replace(/'/g,"\\'")+'\')">全部</span>';
+    subParent.children.forEach(c=>{
+      html += '<span class="ref-pill sub'+(refCurrentPath===c.path?" active":"")+'" onclick="selectAndToggle(\''+c.path.replace(/'/g,"\\'")+'\')">'+esc(c.name)+' <i class="ref-cnt">'+refCountAll(c)+'</i></span>';
+    });
+    html += '</div>';
+  }
+  area.innerHTML=html;
 }
+
+function renderRefThumbNav(area){
+  // C · 图标网格：一级 -> 子类 两级切换
+  let nodes, title;
+  if(refCurrentPath==="__ALL__"){ nodes=REF_DATA.tree; title="全部分类"; }
+  else {
+    const cur=refByPath[refCurrentPath];
+    if(cur && cur.children && cur.children.length){ nodes=cur.children; title=cur.name; }
+    else {
+      const pp=refParentOf[refCurrentPath]; const par=pp?refByPath[pp]:null;
+      if(par && par.children && par.children.length){ nodes=par.children; title=par.name; }
+      else { nodes=REF_DATA.tree; title="全部分类"; }
+    }
+  }
+  let html='<div class="ref-gridnav-head">';
+  if(refCurrentPath!=="__ALL__") html+='<span class="ref-back" onclick="refNavUp()">返回</span>';
+  html+='<span class="ref-gridnav-title">'+esc(title)+'</span></div>';
+  html+='<div class="ref-thumbs">';
+  nodes.forEach(n=>{
+    const cover=refFirstImage(n);
+    const isActive=refCurrentPath===n.path;
+    html+='<div class="ref-thumb'+(isActive?" active":"")+'" onclick="refPick(\''+n.path.replace(/'/g,"\\'")+'\')">'+
+        '<div class="rt-img"'+(cover?' style="background-image:url(\''+cover+'\')"':'')+'></div>'+
+        '<div class="rt-bar"><span class="rt-name">'+esc(n.name)+'</span><span class="rt-cnt">'+refCountAll(n)+'</span></div></div>';
+  });
+  html+='</div>';
+  area.innerHTML=html;
+}
+
+function refPick(path){ refCurrentPath=path; refRenderCount=30; renderRefAll(); }
+function refNavUp(){ if(refCurrentPath==="__ALL__")return; const p=refParentOf[refCurrentPath]; refCurrentPath=p?p:"__ALL__"; refRenderCount=30; renderRefAll(); }
+function setRefNavView(v){ refNavView=v; try{localStorage.setItem(PFX+"refNavView",v);}catch(e){} renderRefTree(); }
 
 function renderRefBread(){
   const el=$("refCrumb");
