@@ -275,6 +275,9 @@ header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdro
 .form-group input,.form-group textarea,.form-group select{width:100%;
   border:1px solid var(--line2);border-radius:var(--radius-sm);padding:9px 12px;font-size:14px;outline:none}
 .form-group input:focus,.form-group textarea:focus{border-color:var(--ink)}
+.size-preset{padding:5px 12px;border:1px solid var(--line2);border-radius:20px;background:var(--bg);font-size:13px;cursor:pointer;transition:all .15s;color:var(--ink2)}
+.size-preset:hover{border-color:var(--ink);background:var(--chip)}
+.size-preset.active{background:var(--ink);color:#fff;border-color:var(--ink)}
 .spec-rows{border:1px solid var(--line);border-radius:var(--radius-sm)}
 .spec-row{display:flex;gap:6px;padding:6px 8px;border-bottom:1px solid var(--line);align-items:center}
 .spec-row:last-child{border-bottom:none}
@@ -2255,13 +2258,27 @@ function showProductForm(editId){
     '<div class="form-group"><label>品牌 *</label><input name="brand" value="'+esc(isEdit?prod.brand:"")+'" required placeholder="如 Canon / Nokia / Apple"></div>'+
     '<div class="form-group"><label>型号 *</label><input name="model" value="'+esc(isEdit?prod.model:"")+'" required placeholder="如 EOS 40D / N95"></div>'+
     '</div>'+
-    '<div class="form-group"><label>尺寸（长×宽×高 mm）</label><input name="size" value="'+esc(isEdit?prod.size:"")+'" placeholder="如 146 × 108 × 74 mm"></div>'+
+    '<div class="form-group"><label>尺寸（长×宽×高 mm）</label>'+
+    '<div id="sizePresetGroup" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px">'+
+    '<button type="button" class="size-preset active" data-size="" onclick="selectSizePreset(this)">自定义</button>'+
+    '<button type="button" class="size-preset" data-size="210 × 297 mm" onclick="selectSizePreset(this)">A4 <small style="color:var(--ink3)">210×297</small></button>'+
+    '<button type="button" class="size-preset" data-size="297 × 420 mm" onclick="selectSizePreset(this)">A3 <small style="color:var(--ink3)">297×420</small></button>'+
+    '<button type="button" class="size-preset" data-size="420 × 594 mm" onclick="selectSizePreset(this)">A2 <small style="color:var(--ink3)">420×594</small></button>'+
+    '</div>'+
+    '<input name="size" id="sizeInput" value="'+esc(isEdit?prod.size:"")+'" placeholder="如 146 × 108 × 74 mm"></div>'+
     '<p style="font-size:12px;color:var(--ink3);margin:6px 0 14px;line-height:1.6">其余资料（详细参数 / 功能介绍 / 部件中英双语标注 / 装裱备注）由 AI 助手生成后自动同步到这里，无需手动填写。</p>'+
     '<div style="display:flex;gap:8px">'+
     '<button type="submit" class="btn btn-primary">'+(isEdit?'保存':'创建产品')+'</button>'+
     '<button type="button" class="btn btn-outline" onclick="closeModal()">取消</button>'+
     '</div></form>';
   modal.classList.add("show");
+}
+function selectSizePreset(btn){
+  const group = document.getElementById("sizePresetGroup");
+  group.querySelectorAll(".size-preset").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
+  const val = btn.getAttribute("data-size");
+  $("sizeInput").value = val;
 }
 
 function addSpecRow(){
