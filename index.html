@@ -1873,6 +1873,14 @@ function initSampleData(){
             "value": "约 30 万（官方宣传 301472）"
           },
           {
+            "key": "红外遥控 IR Blaster",
+            "value": "已取消（雷军称刘海元件占满内部空间，前代小米机型标配）"
+          },
+          {
+            "key": "GPS 芯片 GPS IC",
+            "value": "博通 BCM47755（双频双路 L1+L5）"
+          },
+          {
             "key": "内部布局 Layout",
             "value": "三段式 / 约20颗十字螺丝（媒体拆机）"
           }
@@ -1953,6 +1961,26 @@ function initSampleData(){
             "name": "主板保护盖板",
             "en": "Mainboard Protective Cover",
             "note": "覆盖主板的黑色带纹路保护盖板，NFC 线圈整合于此。注意：它非屏蔽罩——屏蔽罩是焊在 PCB 上的金属罩。零件识别以拆机报告文字为准。"
+          },
+          {
+            "name": "红外补光灯",
+            "en": "IR Illuminator",
+            "note": "刘海内红外 LED 发射元件（新浪拆机报告原称「红外照明元件」），全黑环境主动投射人眼不可见红外光，供红外相机采集人脸特征，是红外人脸解锁链路的核心补光部件。肉眼不可见其发光，装裱展示可配文字说明「不可见光」机理。"
+          },
+          {
+            "name": "距离传感器",
+            "en": "Proximity Sensor",
+            "note": "刘海内红外距离传感，通话时检测贴近以熄屏防误触，常与环境光传感器同封装于同一小黑盒。装裱可微距展示其与听筒/红外元件的并列关系。"
+          },
+          {
+            "name": "环境光传感器",
+            "en": "Ambient Light Sensor",
+            "note": "刘海内检测环境亮度以自动调节屏幕，并联动阳光屏/护眼模式，与距离传感器协同工作。建议与距离传感器同框展示。"
+          },
+          {
+            "name": "顶部降噪麦克风",
+            "en": "Top Noise-Cancel Mic",
+            "note": "机身顶部开孔内的次级麦克风，用于通话与录音时采集环境噪声做主动降噪。小米8 取消了前代产品的红外遥控（IR Blaster），顶部仅余降噪麦克风、无红外发射窗——这也是刘海元件占满内部空间的一个旁证。"
           }
         ],
         "framingNotes": {
@@ -2046,7 +2074,7 @@ function initSampleData(){
               {
                 "name": "刘海异形屏",
                 "en": "Notch Display",
-                "desc": "正面为带「下巴」的刘海异形全面屏，刘海区域较同期机型更宽，内部密集集成红外相机、红外补光灯、听筒及距离/环境光传感器。这一布局在视觉上牺牲了部分屏占比，却为「全黑环境人脸解锁」提供了硬件基础。",
+                "desc": "正面为带「下巴」的刘海异形全面屏，刘海区域较同期机型更宽，内部密集集成红外相机、红外补光灯、听筒及距离/环境光传感器。这一布局在视觉上牺牲了部分屏占比，却为「全黑环境人脸解锁」提供了硬件基础。雷军在发布会上亲述的刘海内元件从左到右依次为：前置相机、距离感应器、听筒、红外照明元件、红外相机——这一官方布局也是我们零件标注的权威依据。",
                 "descEn": "The front is a notched all-screen with a chin; the notch runs wider than peers, densely packing an IR camera, IR illuminator, earpiece and proximity/ambient sensors. The wider notch trades some screen area for hardware-enabled face unlock in darkness.",
                 "note": "装裱提示：刘海区元件密集，拆解展示时建议整屏+刘海元件同框，方能呈现「为什么刘海这么大」。",
                 "noteEn": "Framing: display the notch array together to show why the notch is so wide.",
@@ -2085,7 +2113,7 @@ function initSampleData(){
                 "name": "四曲面收腰设计",
                 "en": "Four-Sided Curved Waist",
                 "desc": "背部四曲面玻璃配合机身「水滴弧形」收腰，曲率经过贴合手心的设计，令单手握持圆润轻薄。这一形态语言是小米8 外观上最具辨识度的特征，也是其区别于同期直板机型的核心设计点。",
-                "descEn": "The back's four curved panels meet a cinched \"water-drop\" waist tuned to the palm, giving a rounded, slim one-handed grip. This form language is Mi 8's most recognizable identity and its key design departure from flat rivals.",
+                "descEn": "The back cover uses four-sided curved glass with a \"water-drop arc\" design, meeting the 7-series aluminum frame for a rounded, slim one-handed grip.",
                 "note": "装裱价值：曲面光影在平裱时易显单调，建议侧光拍摄以突出弧面高光。",
                 "noteEn": "Framing: use side lighting to reveal curvature highlights.",
                 "tags": [
@@ -2130,7 +2158,7 @@ function initSampleData(){
               {
                 "name": "刘海传感器区",
                 "en": "Notch Sensor Array",
-                "desc": "刘海内部集成红外相机、红外补光灯、听筒、距离传感器与环境光传感器，构成小米8「全黑人脸解锁」的硬件基础。元件密集排布是刘海较宽的直接原因，将整组元件同框展示，最能直观解释这一结构设计的取舍。",
+                "desc": "刘海内部集成红外相机、红外补光灯、听筒、距离传感器与环境光传感器，构成小米8「全黑人脸解锁」的硬件基础。元件密集排布是刘海较宽的直接原因，将整组元件同框展示，最能直观解释这一结构设计的取舍。雷军发布会公布的刘海内元件从左到右依次为：前置相机、距离感应器、听筒、红外照明元件、红外相机。",
                 "descEn": "The notch integrates an IR camera, IR illuminator, earpiece, proximity and ambient sensors—the hardware basis for face unlock in darkness. Their dense packing explains the wide notch; showing the group together clarifies the design trade-off.",
                 "note": "装裱价值：刘海元件摆放在一起最能讲清「刘海为何这么大」，建议微距拍摄成组。",
                 "noteEn": "Framing: group notch parts to explain the wide notch.",
@@ -2372,7 +2400,7 @@ function initSampleData(){
               {
                 "name": "双频 GPS 模块",
                 "en": "Dual-Frequency GPS Module",
-                "desc": "小米8 全球首发 L1+L5 双频 GPS，同时支持 Galileo E1+E5a、QZSS L1+L5、GLONASS L1 与北斗 B1，在城市峡谷等复杂环境下定位精度显著优于单频方案。这是该机当年核心卖点之一，也是安卓阵营双频定位的开端。",
+                "desc": "小米8 全球首发 L1+L5 双频 GPS，采用博通 BCM47755 双频 GPS 芯片，同时支持 Galileo E1+E5a、QZSS L1+L5、GLONASS L1 与北斗 B1，在城市峡谷等复杂环境下定位精度显著优于单频方案。这是该机当年核心卖点之一，也是安卓阵营双频定位的开端。",
                 "descEn": "The Mi 8 debuted L1+L5 dual-frequency GPS worldwide, also supporting Galileo E1+E5a, QZSS L1+L5, GLONASS L1 and BeiDou B1, with markedly better urban-canyon accuracy than single-frequency. A key 2018 selling point and the start of dual-GPS on Android.",
                 "note": "历史意义：小米8是全球首款双频GPS手机，定位能力是当年核心卖点之一。",
                 "noteEn": "Historical: world's first dual-frequency GPS phone.",
@@ -2564,6 +2592,20 @@ function initSampleData(){
                   "线性",
                   "振动"
                 ]
+              },
+              {
+                "name": "顶部降噪麦克风",
+                "en": "Top Noise-Cancel Mic",
+                "desc": "机身顶部开孔内的次级麦克风，用于通话与录音时采集环境噪声做主动降噪，与底部主麦克风形成双麦降噪。小米8 取消了前代机型的红外遥控（IR Blaster），顶部仅余降噪麦克风、不再设红外发射窗。展示时可微距呈现顶部开孔阵列。",
+                "descEn": "A secondary mic in the top opening captures ambient noise for active noise cancellation during calls/recording, paired with the bottom main mic. The Mi 8 dropped the IR blaster of prior models, leaving only this top mic—no IR emitter. Macro the top hole array when displaying.",
+                "note": "装裱提示：顶部开孔阵列含降噪麦克风，可与底部主麦克风对照讲「双麦降噪」；旁证：取消红外遥控使顶部不再有 IR 窗。",
+                "noteEn": "Framing: top hole array vs bottom mic tells the 'dual-mic' story; IR blaster dropped, no top IR window.",
+                "tags": [
+                  "麦克风",
+                  "Mic",
+                  "降噪",
+                  "顶部"
+                ]
               }
             ]
           },
@@ -2615,7 +2657,7 @@ function initSampleData(){
             ]
           }
         ],
-        "usageNotes": "本资料为「零件功能图鉴级」，适用于装裱设计台的「产品资料库」导入。建议装裱路线：①以主板（带散热铜片）为主视觉大框；②双摄模组（蓝圈IMX363 + 长焦）单独裱框突出影像卖点；③线性马达、BM3E电池标签、Type-C接口做微距工业风小框组合；④刘海元件（红外相机/补光/听筒/距离传感）成组讲「全黑人脸解锁」故事。全机共10大类、40个部件，均含中英双语与装裱/拆解提示。⚠ 本轮未提供实际拆解照片，内部零件（螺丝数、具体PMIC/NFC/IMU型号、屏蔽罩布局）依据公开拆机报告与厂商资料标注，凡无法100%确认的已注明「未验证」，导入后请按实物复核丝印。",
+        "usageNotes": "本资料为「零件功能图鉴级」，适用于装裱设计台的「产品资料库」导入。建议装裱路线：①以主板（带散热铜片）为主视觉大框；②双摄模组（蓝圈IMX363 + 长焦）单独裱框突出影像卖点；③线性马达、BM3E电池标签、Type-C接口做微距工业风小框组合；④刘海元件（红外相机/补光/听筒/距离传感）成组讲「全黑人脸解锁」故事。全机共10大类、41个部件，均含中英双语与装裱/拆解提示。⚠ 本轮未提供实际拆解照片，内部零件（螺丝数、具体PMIC/NFC/IMU型号、屏蔽罩布局）依据公开拆机报告与厂商资料标注，凡无法100%确认的已注明「未验证」，导入后请按实物复核丝印。",
         "pinterestLinks": [
           "https://www.pinterest.com/search/pins/?q=smartphone%20teardown%20framing",
           "https://www.pinterest.com/search/pins/?q=Xiaomi%20Mi%208"
@@ -2657,6 +2699,11 @@ function initSampleData(){
             "source": "本机先验知识（模型知识，非实时）",
             "url": "-",
             "用途": "骁龙845架构(10nm/Kryo385/Adreno630)、LPDDR4x/UFS2.1、双频GPS频段等背景补充；此类信息与官方/多源一致，冲突处一律以官网为准"
+          },
+          {
+            "source": "新浪众测 小米8试用报告（媒体评测）",
+            "url": "https://zhongce.sina.com.cn/report/view/3490",
+            "用途": "刘海内元件官方从左到右布局（前置相机→距离感应器→听筒→红外照明元件→红外相机）、取消红外遥控、双频GPS博通BCM47755芯片、顶部降噪麦克风、四曲面玻璃与7系铝中框叙述、普通版/探索版指纹差异、充电曲线等叙述性细节交叉验证"
           }
         ],
         "createdAt": daysAgo(1),
