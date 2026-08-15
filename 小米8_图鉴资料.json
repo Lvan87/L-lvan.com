@@ -46,7 +46,7 @@
     {"key": "解锁方式 Unlock", "value": "红外人脸识别 + 后置指纹"},
     {"key": "红外人脸 IR Face", "value": "刘海红外镜头+补光，全黑可用，4096特征点"},
     {"key": "双频 GPS Dual GPS", "value": "L1 + L5（全球首发）/ 亦支持 Galileo E1+E5a, QZSS L1+L5, GLONASS L1, 北斗 B1"},
-    {"key": "NFC", "value": "支持多功能 NFC（约167城公交/门卡模拟）"},
+    {"key": "NFC", "value": "支持多功能 NFC（约167城公交/门卡模拟）/ Multi-function NFC: public transit in ~167 cities, door-card emulation"},
     {"key": "网络 Network", "value": "全网通5.0 / 双 Nano-SIM / 4G+/4G/3G/2G / 双卡 VoLTE"},
     {"key": "WiFi", "value": "802.11 a/b/g/n/ac / 2.4G+5G / 2×2 MIMO"},
     {"key": "蓝牙 Bluetooth", "value": "5.0 / 支持 AAC, aptX, aptX-HD"},
@@ -71,7 +71,12 @@
     {"name": "线性振动马达", "en": "Linear Vibration Motor", "note": "长条线性马达（非转子），拆机报告明确点名。横向线性马达带来更清脆的「哒哒」手感，是2018旗舰质感的隐藏亮点，单独裱框很有机械美感。"},
     {"name": "BM3E 锂电池", "en": "BM3E Li-Po Battery", "note": "飞毛腿代工，3400mAh typ / 3300mAh min，3.85V，13.0Wh，限充4.40V。标签含SN/日期(2018.05)。⚠ 锂电禁止拆解/刺破/挤压/火烧，装裱仅展示标签面，切勿破坏电芯。"},
     {"name": "后置指纹识别", "en": "Rear Fingerprint Sensor", "note": "标准版为后置电容指纹（透明探索版/屏幕指纹版才是屏下）。排线连主板、接口无金属片固定，撬开即可。标准版用户以此区分版本，装裱标注需注明「标准版」。"},
-    {"name": "红外相机", "en": "IR Camera", "note": "刘海内独立红外镜头，配合红外补光实现全黑人脸解锁，4096特征点。拆机报告称其为刘海元件中最易拆下者（撬排线即可，不破坏结构）。"}
+    {"name": "红外相机", "en": "IR Camera", "note": "刘海内独立红外镜头，配合红外补光实现全黑人脸解锁，4096特征点。拆机报告称其为刘海元件中最易拆下者（撬排线即可，不破坏结构）。"},
+    {"name": "听筒", "en": "Earpiece", "note": "刘海内听筒兼顾通话出声，并与底部扬声器组成伪双声道外放，金属触点为信号接口。装裱可微距展示触点，配红外补光同框讲「刘海元件」。"},
+    {"name": "连接排线", "en": "Flex Cable", "note": "连接主板与副板、电池、显示等模组的柔性印刷电路。拆卸以撬开排线接口为主，勿硬拉；装裱可单独展示排线走线美学。"},
+    {"name": "NFC 模块", "en": "NFC Module", "note": "整合于主板保护盖板（拆机报告指黑色带纹路处），支持多功能 NFC、约 167 城公交卡与门禁卡模拟。具体芯片型号需实物丝印核对，标「未验证」。"},
+    {"name": "螺丝组", "en": "Screw Set", "note": "全机约 20 颗十字（JIS）螺丝，固定外壳、PCB、屏蔽罩等；不同位置长度不同，装错可能顶穿内部组件，拆机须按步骤分类存放。"},
+    {"name": "主板保护盖板", "en": "Mainboard Protective Cover", "note": "覆盖主板的黑色带纹路保护盖板，NFC 线圈整合于此。注意：它非屏蔽罩——屏蔽罩是焊在 PCB 上的金属罩。零件识别以拆机报告文字为准。"}
   ],
   "featureTags": [
     "骁龙845旗舰",
@@ -146,7 +151,7 @@
       "components": [
         {"name": "主板", "en": "Mainboard", "desc": "主板采用三段式布局，顶部主板表面覆盖大面积散热铜片，构成整机视觉主色调，其上密布骁龙 845、内存、闪存、射频与电源管理芯片，集成度极高。作为拆解图鉴的绝对主角，平裱加微距最能呈现 2018 年旗舰的精密排布；需注意主摄保护盖以胶固，非必要不拆。", "descEn": "The mainboard uses a three-section layout; its top is covered by a large copper heatsink that sets the device's visual tone, densely packing the SD845, RAM, ROM, RF and PMIC—highly integrated. As the hero of any teardown frame, flat-plus-macro best shows 2018 flagship density; note the main-cam cover is glued, avoid removing unless needed.", "note": "装裱价值：主板是「零件图鉴」绝对主角，平裱+微距最能呈现2018旗舰的精密排布；⚠ 主摄需暴力抠胶才能拆，非必要不拆。", "noteEn": "Framing: mainboard is the hero of any teardown frame; ⚠ main cam glued, avoid removing.", "tags": ["主板", "Mainboard", "三段式"]},
         {"name": "副板", "en": "Sub-board", "desc": "底部副板集成 Type-C、麦克风及部分射频与天线走线，背面以双面胶固定机身，并以 3 颗小十字螺丝与主板相连。副板与 Type-C 可单独成框，展现底部 I/O 布局的对称美学。", "descEn": "The bottom sub-board integrates Type-C, mic and some RF/antenna routing, double-taped to the chassis and linked to the mainboard by 3 small screws. Sub-board plus Type-C make a clean I/O detail frame.", "note": "装裱提示：副板+Type-C可单独成框，展现底部I/O布局的对称美学。", "noteEn": "Framing: sub-board + Type-C makes a clean I/O detail frame.", "tags": ["副板", "Sub-board", "I/O"]},
-        {"name": "NFC 芯片", "en": "NFC Chip", "desc": "NFC 芯片整合于主板保护盖板（拆机报告指黑色带纹路处），支持多功能 NFC，可模拟约 167 城公交卡与门禁卡。具体芯片型号（如 NXP 系列）需实物丝印核对，本资料未确认，标注「未验证」。", "descEn": "The NFC IC sits on the mainboard cover plate (textured black area per teardown), enabling multi-function NFC for ~167 city transit and access cards. Exact model (e.g. NXP) needs verification and is marked \"unverified\"", "note": "装裱提示：具体NFC芯片型号（如NXP系列）需实物丝印核对，本资料未确认，标「未验证」。", "noteEn": "Framing: exact NFC IC model unverified; mark uncertain.", "tags": ["NFC", "近场", "公交"]},
+        {"name": "NFC 芯片", "en": "NFC Chip", "desc": "NFC 芯片整合于主板保护盖板（拆机报告指黑色带纹路处），支持多功能 NFC，可模拟约 167 城公交卡与门禁卡。具体芯片型号（如 NXP 系列）需实物丝印核对，本资料未确认，标注「未验证」。", "descEn": "The Xiaomi 8 supports multi-function NFC, already covering public transit across 167 cities, and offers door card emulation. The NFC IC sits on the mainboard cover plate (textured black area per teardown). Exact model (e.g. NXP) needs verification and is marked \"unverified\"", "note": "装裱提示：具体NFC芯片型号（如NXP系列）需实物丝印核对，本资料未确认，标「未验证」。", "noteEn": "Framing: exact NFC IC model unverified; mark uncertain.", "tags": ["NFC", "近场", "公交"]},
         {"name": "双频 GPS 模块", "en": "Dual-Frequency GPS Module", "desc": "小米8 全球首发 L1+L5 双频 GPS，同时支持 Galileo E1+E5a、QZSS L1+L5、GLONASS L1 与北斗 B1，在城市峡谷等复杂环境下定位精度显著优于单频方案。这是该机当年核心卖点之一，也是安卓阵营双频定位的开端。", "descEn": "The Mi 8 debuted L1+L5 dual-frequency GPS worldwide, also supporting Galileo E1+E5a, QZSS L1+L5, GLONASS L1 and BeiDou B1, with markedly better urban-canyon accuracy than single-frequency. A key 2018 selling point and the start of dual-GPS on Android.", "note": "历史意义：小米8是全球首款双频GPS手机，定位能力是当年核心卖点之一。", "noteEn": "Historical: world's first dual-frequency GPS phone.", "tags": ["GPS", "双频", "L1+L5", "定位"]},
         {"name": "WiFi/蓝牙模块", "en": "WiFi/BT Module", "desc": "无线连接集成于骁龙 845 平台，支持 802.11a/b/g/n/ac 双频、2×2 MIMO 与 MU-MIMO，以及蓝牙 5.0（AAC / aptX / aptX-HD）。该模块与 SoC 同封装，不单独存在，归并于主板说明。", "descEn": "Wireless is part of the SD845: 802.11ac dual-band 2×2 MIMO, MU-MIMO, and BT5.0 with AAC/aptX/aptX-HD. Integrated in the SoC, it is documented with the mainboard.", "note": "装裱提示：模块为SoC集成，不单独存在，归并于骁龙845与主板说明。", "noteEn": "Framing: integrated in SoC; document with mainboard.", "tags": ["WiFi", "蓝牙", "BT5.0"]}
       ]
