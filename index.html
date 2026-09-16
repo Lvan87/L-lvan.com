@@ -911,8 +911,7 @@ function initSampleData(){
   
   const yesterday = daysAgo(1);
   const today = ymd();
-  const SAMPLE_PRODUCTS = [
-    {
+  const SAMPLE_PRODUCTS = [{
       id:"p001", brand:"Canon", model:"EOS 40D", category:"数码单反相机", size:"146 × 108 × 74 mm",
       basicInfo:{ releaseDate:"2007年8月20日发布 / 2007年8月30日开售", origin:"日本", sensor:"APS-C CMOS 1050万有效像素", processor:"DIGIC III", viewfinder:"眼平五棱镜 0.95x / 95%覆盖率" },
       specs:[
@@ -991,7 +990,7 @@ function initSampleData(){
           en:"Final firmware v1.1.1 — fixes battery warning, dust cleaning Err 06, print color correction. Later discontinued, succeeded by EOS 50D."}
       ],
       categories:[
-        {name:"规格总览",en:"Specifications",icon:"📋",color:"#1e3a5f",
+        {name:"规格总览",en:"Specifications","icon":"◆",color:"#1e3a5f",
           components:[
             {name:"影像核心",en:"Imaging Core",
              desc:"有效像素 10.1MP，APS-C CMOS 传感器（22.2×14.8 mm，像素尺寸 5.7μm），总像素 10.5MP，RGB 原色滤镜阵列 + OLPF 低通滤镜。DIGIC III 影像处理器提供 14-bit A/D 模数转换与 sRAW 格式支持。",
@@ -1010,7 +1009,7 @@ function initSampleData(){
              descEn:"Die-cast magnesium alloy skeleton for rigidity and EM shielding; engineering-plastic outer shell with drip/dust resistance. 146×108×74 mm, ~740g body only / 822g with battery.",
              tag:null}
           ]},
-        {name:"外壳覆盖",en:"Body Shell",icon:"🔲",color:"#c0392b",
+        {name:"外壳覆盖",en:"Body Shell","icon":"▢",color:"#c0392b",
           components:[
             {name:"顶盖",en:"Top Cover",
              desc:"承载模式转盘（P/Tv/Av/M 及场景模式）、快门按钮（两级行程）、电源开关、热靴接口、顶部 LCD 窗口。材质为工程塑料，表面磨砂处理。是 40D 最具辨识度的外观部件之一。",
@@ -1037,7 +1036,7 @@ function initSampleData(){
              descEn:"Metal anchor points on both sides of the body for strap mounts; load-rated for use with professional telephoto lenses.",
              tag:"金属 / Metal"}
           ]},
-        {name:"光学系统",en:"Optical System",icon:"🔍",color:"#2980b9",
+        {name:"光学系统",en:"Optical System","icon":"□",color:"#2980b9",
           components:[
             {name:"五棱镜",en:"Penta Prism",
              desc:"一块精密研磨的玻璃五棱镜，将反光镜向上反射的光线翻转 90° 并正立成像到取景器目镜。放大倍率 0.95x。光学取景器 OVF 的核心——相比入门级的五面镜，五棱镜透光率更高、取景更明亮。40D 的五棱镜体积大、用料足。",
@@ -1066,7 +1065,7 @@ function initSampleData(){
              descEn:"Rear dial adjusting viewfinder diopter for users with varying eyesight, eliminating the need for glasses while shooting.",
              tag:null}
           ]},
-        {name:"影像核心",en:"Imaging Core",icon:"📷",color:"#8e44ad",
+        {name:"影像核心",en:"Imaging Core","icon":"▤",color:"#8e44ad",
           components:[
             {name:"CMOS 图像传感器",en:"CMOS Image Sensor",
              desc:"APS-C 规格 CMOS，22.2×14.8 mm，1050 万有效像素，像素尺寸 5.7μm。RGB 原色滤镜阵列，前置低通滤波器（OLPF）。通过柔性排线连接至主板 DIGIC III 处理器。",
@@ -1086,7 +1085,7 @@ function initSampleData(){
              descEn:"Piezo element in front of the sensor vibrates at high frequency on power on/off to shake off dust, paired with anti-static coating. The EOS Integrated Cleaning System.",
              tag:"超声波振动 / Ultrasonic"}
           ]},
-        {name:"电子电路",en:"Electronics",icon:"🔌",color:"#27ae60",
+        {name:"电子电路",en:"Electronics","icon":"■",color:"#27ae60",
           components:[
             {name:"主板 / PCB 总成",en:"Main Board (PCB Assembly)",
              desc:"双层 FR-4 主板，L 形布局占据机身中下部空间。核心元件：DIGIC III（BGA+散热垫）、CMOS 排线接口、SDRAM 缓存、USB 2.0 接口 IC、电源管理 IC、闪光灯驱动电路。是整机的「大脑」。",
@@ -1105,7 +1104,7 @@ function initSampleData(){
              descEn:"Sub-board below the hot shoe handling E-TTL II timing and built-in flash trigger, coordinating sync with external EX-series flashes.",
              tag:"E-TTL II"}
           ]},
-        {name:"机械驱动",en:"Mechanism",icon:"⚙️",color:"#d35400",
+        {name:"机械驱动",en:"Mechanism","icon":"▶",color:"#d35400",
           components:[
             {name:"焦平面快门单元",en:"Focal Plane Shutter Unit",
              desc:"电磁控制纵走式焦平面快门，帘幕材料为铝合金/碳纤维复合材料。速度范围 30s~1/8000s + B 门。半按快门 = AF 对焦 + 测光启动；全按 = 释放快门。寿命标称 >100,000 次。",
@@ -1125,7 +1124,7 @@ function initSampleData(){
              descEn:"Independent timing circuit and electromagnetic release enabling 2s/10s self-timer and delayed release after mirror lock-up.",
              tag:null}
           ]},
-        {name:"控制界面",en:"Controls & UI",icon:"🎮",color:"#16a085",
+        {name:"控制界面",en:"Controls & UI","icon":"◇",color:"#16a085",
           components:[
             {name:"模式转盘",en:"Mode Dial",
              desc:"旋转式选择开关，档位：全自动（绿色框）/ P 程序 / Tv 快门优先 / Av 光圈优先 / M 手动 / A-DEP 景深自动 / 人像 / 风景 / 微距 / 运动 / 禁止闪光。有中央锁定按钮防误触。",
@@ -1156,7 +1155,7 @@ function initSampleData(){
              descEn:"Lever around the mode dial, 3-position (OFF / ON / preview), adjacent to the shutter button for one-hand operation.",
              tag:null}
           ]},
-        {name:"接口存储",en:"I/O & Storage",icon:"💾",color:"#2c3e50",
+        {name:"接口存储",en:"I/O & Storage","icon":"●",color:"#2c3e50",
           components:[
             {name:"CF 卡槽",en:"CompactFlash Slot",
              desc:"Type I/II 双规格 CF 卡槽，支持 Ultra II / Extreme III 及 UDMA 高速卡。推拉式舱门设计。支持 32GB+ 卡（取决于文件系统）。写入速度影响连拍持续时间。",
@@ -1171,7 +1170,7 @@ function initSampleData(){
              descEn:"Standard ISO 518 hot shoe supporting EX-series flash E-TTL II sync. Center large contact (X trigger) + 4 peripheral contacts (E-TTL II data). Metal rails + plastic base.",
              tag:"ISO 518 / E-TTL II"}
           ]},
-        {name:"电源系统",en:"Power System",icon:"\u{1f50b}",color:"#e67e22",
+        {name:"电源系统",en:"Power System","icon":"⚙",color:"#e67e22",
           components:[
             {name:"BP-511A 锂电池",en:"BP-511A Li-ion Battery Pack",
              desc:"7.4V 1390mAh 锂离子可充电池，为整台相机提供主电源。续航约 800\u20131100 张（视温度和使用习惯）。",
@@ -1208,7 +1207,7 @@ function initSampleData(){
              noteEn:"Energy reservoir for the flash unit. \u26a0\ufe0f Capacitor may retain lethal voltage even after camera power-off! Must be discharged before disassembly!",
              tags:["\u26a0\ufe0f -300V 高压"]}
           ]},
-        {name:"结构件",en:"Structural Components",icon:"\u{1f527}",color:"#7f8c8d",
+        {name:"结构件",en:"Structural Components","icon":"▲",color:"#7f8c8d",
           components:[
             {name:"镁合金主骨架",en:"Magnesium Alloy Main Chassis",
              desc:"机身内部的镁合金一体铸造骨架，是所有内部部件的安装基座。固定反光镜箱、CMOS、PCB、卡口和三脚架螺孔。",
@@ -1277,15 +1276,15 @@ function initSampleData(){
       images:[], framedPhotos:[],
       createdAt:today, status:"completed",
       usageNotes:"本图鉴按功能分为 9 大类、40+ 组件，中英双语对照。装裱时可按类别分组排列，每组配一张功能说明卡。\n\n如果你的拆解中有图鉴未覆盖到的零件，告诉我具体长什么样，我来补充对应的功能说明！\n\nIf you have parts not covered here, describe them and I'll add their descriptions!"
-    }
-    ,{id:"p002", brand:"Nokia", model:"N95", category:"智能手机", size:"99 × 53 × 21 mm",
+    },
+{id:"p002", brand:"Nokia", model:"N95", category:"智能手机", size:"99 × 53 × 21 mm",
       basicInfo:{ releaseDate:"2007年3月", origin:"芬兰" },
       specs:[], features:"", parts:[],
       framingNotes:{ canDisassemble:true, recommendedFrame:"", frameSize:"", customFrame:false, notes:"" },
       pinterestLinks:[], images:[], framedPhotos:[],
       createdAt:today, status:"draft"
     },
-    {
+{
       id:"p003", brand:"Apple", model:"MacBook (A1181)", category:"笔记本电脑", size:"325 × 227 × 27.5 mm",
       basicInfo:{ releaseDate:"2006年5月", origin:"中国/美国" },
       specs:[
@@ -1367,7 +1366,7 @@ function initSampleData(){
         {year:"2026",text:"A1181 成为收藏品与装裱材料，白色泛黄的'古董白'成为复古苹果美学标志；本机拆解文档化以保留技术历史。"}
       ],
       categories:[
-        {name:"处理器与平台",en:"Processor & Platform",icon:"🔧",color:"#1e3a5f",
+        {name:"处理器与平台",en:"Processor & Platform","icon":"◆",color:"#1e3a5f",
           components:[
             {name:"Intel Core Duo T2500 处理器",en:"Intel Core Duo T2500 CPU",
              desc:"本机处理器，Yonah 微架构 65nm 双核，主频 2.0GHz，2MB 双核共享 L2 缓存，667MHz 前端总线，31W TDP。直接 BGA 焊接在主板上，不可单独更换。芯片实拍标签批号 L6275B89 对应 2006 年第 25 周制造，与 A1181 2006 Mid 发布时间吻合。",
@@ -1400,7 +1399,7 @@ function initSampleData(){
              noteEn:"During teardown disconnect all flex cables in order; sort varied screw lengths or risk piercing internals on reassembly.",
              tags:["功能核心 / Core","高集成 / High integration"]}
           ]},
-        {name:"显示与影像",en:"Display & Imaging",icon:"🖥️",color:"#2980b9",
+        {name:"显示与影像",en:"Display & Imaging","icon":"▢",color:"#2980b9",
           components:[
             {name:"13.3 英寸 TFT 显示屏",en:"13.3-inch TFT LCD",
              desc:"13.3 英寸薄膜晶体管液晶屏，分辨率 1280×800，16:10 比例。面板供应商含 LG Philips 与三星，参数略有差异。",
@@ -1427,7 +1426,7 @@ function initSampleData(){
              noteEn:"The inverter carries high voltage — insulate it during storage.",
              tags:["高压注意 / High-voltage caution"]}
           ]},
-        {name:"存储系统",en:"Storage",icon:"💾",color:"#6b4226",
+        {name:"存储系统",en:"Storage","icon":"□",color:"#6b4226",
           components:[
             {name:"2.5 英寸 SATA 硬盘",en:"2.5-inch SATA HDD",
              desc:"本机升级装希捷 Momentus 5400.4 ST9250827AS，250GB 5400RPM 8MB 缓存。日期码 09221 显示 2009 年第 22 周制造，为购入约 3 年后的容量升级替换（原厂 60/80GB）。",
@@ -1454,7 +1453,7 @@ function initSampleData(){
              noteEn:"Aged brackets harden and are a common source of rattle in used A1181s.",
              tags:["橡胶缓震 / Rubber damped"]}
           ]},
-        {name:"无线与网络",en:"Wireless & Network",icon:"📡",color:"#1f7a5a",
+        {name:"无线与网络",en:"Wireless & Network","icon":"▤",color:"#1f7a5a",
           components:[
             {name:"AirPort Extreme 无线模块",en:"AirPort Extreme WiFi",
              desc:"型号 AACR8MB，Broadcom BCM43xx 系列 Mini PCIe 半高无线网卡，支持 802.11a/b/g 三频，最高 54Mbps。Apple 部件号 620-8887-A 专用于 A1181 Core Duo。",
@@ -1481,7 +1480,7 @@ function initSampleData(){
              noteEn:"Routed with the display cable through the hinge — the wireless front-end; don't rip during display removal.",
              tags:["共享天线 / Shared"]}
           ]},
-        {name:"音频系统",en:"Audio",icon:"🔊",color:"#7d3c98",
+        {name:"音频系统",en:"Audio","icon":"■",color:"#7d3c98",
           components:[
             {name:"内置全向麦克风",en:"Omnidirectional Microphone",
              desc:"屏幕上方边框右侧的全向麦克风，约 -40 dBV/Pa 灵敏度，用于语音通话与录音。",
@@ -1502,7 +1501,7 @@ function initSampleData(){
              noteEn:"A high-end 2006 Apple feature rarely found on contemporaneous PCs.",
              tags:["光纤数字 / TOSLINK","自动检测 / Auto-detect"]}
           ]},
-        {name:"电源与电池",en:"Power & Battery",icon:"🔋",color:"#b9770e",
+        {name:"电源与电池",en:"Power & Battery","icon":"▶",color:"#b9770e",
           components:[
             {name:"55Wh 锂离子电池",en:"55Wh Li-Poly Battery (A1185)",
              desc:"6 芯（3 串 2 并）可拆卸锂聚合物电池，约 5100mAh，10.8V。官方标称最长 6 小时轻度续航。带外部 5 颗 LED 电量指示灯，按下即可查看无需开机。",
@@ -1523,7 +1522,7 @@ function initSampleData(){
              noteEn:"MagSafe magnetic force ~3-4N — secure yet safely detachable.",
              tags:["SMC 协同 / SMC-managed"]}
           ]},
-        {name:"输入设备",en:"Input",icon:"⌨️",color:"#566573",
+        {name:"输入设备",en:"Input","icon":"◇",color:"#566573",
           components:[
             {name:"78 键剪刀脚键盘",en:"78-key Scissor Keyboard",
              desc:"美式 US English 布局全尺寸键盘，剪刀脚结构键程约 1.5mm，白色 ABS 键帽黑色字符，无背光。含 12 个功能键（F1-F12）与标志性的光驱弹出键 ⏏。",
@@ -1544,7 +1543,7 @@ function initSampleData(){
              noteEn:"Part of Apple's 2006 'living-room Mac' ecosystem, later dropped.",
              tags:["Apple Remote","Front Row"]}
           ]},
-        {name:"接口与扩展",en:"I/O Ports",icon:"🔌",color:"#a93226",
+        {name:"接口与扩展",en:"I/O Ports","icon":"●",color:"#a93226",
           components:[
             {name:"MagSafe 电源接口",en:"MagSafe Power Port",
              desc:"机身左侧最前端的 60W 磁吸充电接口，LED 显示充电状态。",
@@ -1589,7 +1588,7 @@ function initSampleData(){
              noteEn:"Standard Kensington spec, shared with contemporaneous notebooks.",
              tags:["防盗 / Anti-theft"]}
           ]},
-        {name:"散热系统",en:"Thermal",icon:"🌡️",color:"#c0392b",
+        {name:"散热系统",en:"Thermal","icon":"⚙",color:"#c0392b",
           components:[
             {name:"散热器总成",en:"Heatsink Assembly",
              desc:"Foxconn 607-0143 / Apple 076-1243 散热器，铝制底座（压印 FOXCONN）配双铜质导热垫（左 CPU T2500、右芯片组 945GM+ICH7-M）、U 形纯铜热管（外径约 6mm，烧结粉末毛细芯）与约 40-50 片铝鳍片，总重约 454g。",
@@ -1610,7 +1609,7 @@ function initSampleData(){
              noteEn:"Idle 35-45°C, web 50-65°C, load up to 95-100°C triggers protection.",
              tags:["SMC","多点温控 / Multi-sensor"]}
           ]},
-        {name:"机身结构",en:"Chassis",icon:"🐚",color:"#839192",
+        {name:"机身结构",en:"Chassis","icon":"▲",color:"#839192",
           components:[
             {name:"白色聚碳酸酯外壳",en:"White Polycarbonate Shell",
              desc:"顶盖与底盖采用白色聚碳酸酯（Polycarbonate）材质，是 A1181 的标志性外观；随年代与使用会自然泛黄，形成独特的'古董白'色泽。",
@@ -1653,9 +1652,8 @@ function initSampleData(){
         "Apple 官方历史规格档案（MacBook A1181 / EMC 2092，2006 Mid）"
       ],
       createdAt:daysAgo(3), status:"completed"
-    }
-  ,
-    {
+    },
+{
         "id": "p008",
         "brand": "小米",
         "model": "小米 8 (Mi 8)",
@@ -2045,7 +2043,7 @@ function initSampleData(){
           {
             "name": "外观与结构",
             "en": "Exterior & Structure",
-            "icon": "📐",
+            "icon":"◆",
             "color": "#222222",
             "components": [
               {
@@ -2132,7 +2130,7 @@ function initSampleData(){
           {
             "name": "显示屏",
             "en": "Display",
-            "icon": "🖥️",
+            "icon":"▢",
             "color": "#0a84ff",
             "components": [
               {
@@ -2178,7 +2176,7 @@ function initSampleData(){
           {
             "name": "影像系统",
             "en": "Camera System",
-            "icon": "📷",
+            "icon":"□",
             "color": "#ff375f",
             "components": [
               {
@@ -2253,7 +2251,7 @@ function initSampleData(){
           {
             "name": "处理与存储",
             "en": "Compute & Storage",
-            "icon": "🔧",
+            "icon":"▤",
             "color": "#30d158",
             "components": [
               {
@@ -2312,7 +2310,7 @@ function initSampleData(){
           {
             "name": "电池与充电",
             "en": "Battery & Charging",
-            "icon": "🔋",
+            "icon":"■",
             "color": "#ff9f0a",
             "components": [
               {
@@ -2360,7 +2358,7 @@ function initSampleData(){
           {
             "name": "主板与射频",
             "en": "Mainboard & RF",
-            "icon": "📡",
+            "icon":"▶",
             "color": "#bf5af2",
             "components": [
               {
@@ -2434,7 +2432,7 @@ function initSampleData(){
           {
             "name": "生物识别与安全",
             "en": "Biometrics & Security",
-            "icon": "🔒",
+            "icon":"◇",
             "color": "#64d2ff",
             "components": [
               {
@@ -2469,7 +2467,7 @@ function initSampleData(){
           {
             "name": "传感器阵列",
             "en": "Sensors",
-            "icon": "🧭",
+            "icon":"●",
             "color": "#ffd60a",
             "components": [
               {
@@ -2555,7 +2553,7 @@ function initSampleData(){
           {
             "name": "音频与振动",
             "en": "Audio & Haptics",
-            "icon": "🔊",
+            "icon":"⚙",
             "color": "#ff6482",
             "components": [
               {
@@ -2617,7 +2615,7 @@ function initSampleData(){
           {
             "name": "散热系统",
             "en": "Thermal",
-            "icon": "🌡️",
+            "icon":"▲",
             "color": "#ff453a",
             "components": [
               {
@@ -2713,31 +2711,8 @@ function initSampleData(){
         ],
         "createdAt": daysAgo(1),
         "status": "completed"
-      }
-  ];
-  const SAMPLE_REVIEWS = [
-    {
-      id:"r001", productId:"p001", productName:"Canon EOS 40D",
-      designName:"EOS 40D v1 标注版", dueDate:yesterday,
-      status:"pending",
-      checks:{ typos:false, contentError:false, patternError:false, paramCorrect:false, other:"", doneCount:0 },
-      clientConfirmed:false, notes:"待检查中英文双语标签是否准确"
-    },
-    {
-      id:"r002", productId:"p002", productName:"Nokia N95",
-      designName:"N95 双滑盖展开版", dueDate:today,
-      status:"pending",
-      checks:{ typos:false, contentError:false, patternError:false, paramCorrect:false, other:"", doneCount:0 },
-      clientConfirmed:false, notes:""
-    },
-    {
-      id:"r003", productId:"p003", productName:"MacBook (A1181)",
-      designName:"A1181 拆解装裱图鉴", dueDate:daysAgo(5),
-      status:"pending",
-      checks:{ typos:false, contentError:false, patternError:false, paramCorrect:false, other:"", doneCount:0 },
-      clientConfirmed:false, notes:"产品资料已重建为 A1181 图鉴级（原 M2 资料删除），待重新审核"
-    }
-    ,{
+      },
+{
     "id": "p004",
     "brand": "OPPO",
     "model": "OPPO Reno16 (入网型号 PMM110)",
@@ -3136,7 +3111,7 @@ function initSampleData(){
       {
         "name": "影像系统",
         "en": "Camera System",
-        "icon": "◆",
+        "icon":"◆",
         "color": "#2b6cb0",
         "components": [
           {
@@ -3245,7 +3220,7 @@ function initSampleData(){
       {
         "name": "显示系统",
         "en": "Display",
-        "icon": "▢",
+        "icon":"▢",
         "color": "#3182ce",
         "components": [
           {
@@ -3310,7 +3285,7 @@ function initSampleData(){
       {
         "name": "计算与存储",
         "en": "Compute & Storage",
-        "icon": "□",
+        "icon":"□",
         "color": "#6b46c1",
         "components": [
           {
@@ -3374,7 +3349,7 @@ function initSampleData(){
       {
         "name": "电源系统",
         "en": "Power",
-        "icon": "▤",
+        "icon":"▤",
         "color": "#dd6b20",
         "components": [
           {
@@ -3437,7 +3412,7 @@ function initSampleData(){
       {
         "name": "结构与机身",
         "en": "Structure & Frame",
-        "icon": "■",
+        "icon":"■",
         "color": "#718096",
         "components": [
           {
@@ -3501,7 +3476,7 @@ function initSampleData(){
       {
         "name": "音频与振动",
         "en": "Audio & Haptics",
-        "icon": "▶",
+        "icon":"▶",
         "color": "#38a169",
         "components": [
           {
@@ -3565,7 +3540,7 @@ function initSampleData(){
       {
         "name": "生物识别与安全",
         "en": "Biometrics",
-        "icon": "◇",
+        "icon":"◇",
         "color": "#805ad5",
         "components": [
           {
@@ -3614,7 +3589,7 @@ function initSampleData(){
       {
         "name": "连接与传感",
         "en": "Connectivity & Sensors",
-        "icon": "●",
+        "icon":"●",
         "color": "#d69e2e",
         "components": [
           {
@@ -3692,7 +3667,7 @@ function initSampleData(){
       {
         "name": "散热系统",
         "en": "Thermal",
-        "icon": "⚙",
+        "icon":"⚙",
         "color": "#e53e3e",
         "components": [
           {
@@ -3742,7 +3717,7 @@ function initSampleData(){
       {
         "name": "包装与配件",
         "en": "Package & Accessories",
-        "icon": "▲",
+        "icon":"▲",
         "color": "#4a5568",
         "components": [
           {
@@ -3842,7 +3817,1900 @@ function initSampleData(){
     "framedPhotos": [],
     createdAt: today,
     "status": "completed"
+  },
+{
+    "id": "p005",
+    "brand": "OPPO",
+    "model": "OPPO Find X9 (国行型号 PLJ110 / 全球型号 CPH2797)",
+    "category": "智能手机 / 影像旗舰 (Smartphone / Imaging Flagship)",
+    "size": "156.98 × 73.93 × 7.99 mm",
+    "basicInfo": {
+      "releaseDate": "2025-10-16 发布，2025-10-22 国行开售"
+    },
+    "specs": [
+      {
+        "key": "品牌 Brand",
+        "value": "OPPO (欧珀)"
+      },
+      {
+        "key": "型号 Model",
+        "value": "OPPO Find X9"
+      },
+      {
+        "key": "国行型号 China Model",
+        "value": "PLJ110"
+      },
+      {
+        "key": "全球型号 Global Model",
+        "value": "CPH2797"
+      },
+      {
+        "key": "发布日期 Release Date",
+        "value": "2025-10-16 (国行发布会)"
+      },
+      {
+        "key": "开售日期 On Sale",
+        "value": "2025-10-22"
+      },
+      {
+        "key": "起售价 Launch Price",
+        "value": "¥4399 (12GB+256GB)；顶配 ¥5799 (16GB+1TB)"
+      },
+      {
+        "key": "机身尺寸 Dimensions",
+        "value": "156.98 × 73.93 × 7.99 mm"
+      },
+      {
+        "key": "重量 Weight",
+        "value": "约 203 g"
+      },
+      {
+        "key": "屏幕类型 Display Type",
+        "value": "AMOLED 柔性直屏 (Flexible Flat OLED, 天马 Tianma 供屏*)"
+      },
+      {
+        "key": "屏幕尺寸 Screen Size",
+        "value": "6.59 英寸 / 6.59 inch"
+      },
+      {
+        "key": "分辨率 Resolution",
+        "value": "FHD+ 2760 × 1256 px"
+      },
+      {
+        "key": "刷新率 Refresh Rate",
+        "value": "120 Hz (60/90/120 智能切换)"
+      },
+      {
+        "key": "像素密度 PPI",
+        "value": "460 PPI"
+      },
+      {
+        "key": "峰值亮度 Peak Brightness",
+        "value": "3600 nits (官方全球页；典型 800 nits)"
+      },
+      {
+        "key": "全局激发亮度 HBM",
+        "value": "1800 nits (官方澳洲/丹麦规格页)"
+      },
+      {
+        "key": "最低亮度 Min Brightness",
+        "value": "1 nit (明眸护眼)"
+      },
+      {
+        "key": "调光 PWM Dimming",
+        "value": "3840 Hz 高频 PWM"
+      },
+      {
+        "key": "色深 Color Depth",
+        "value": "10-bit / 10.7 亿色 (1.07 billion colors)"
+      },
+      {
+        "key": "屏占比 Screen-to-body",
+        "value": "95.4%"
+      },
+      {
+        "key": "边框宽度 Bezel",
+        "value": "约 1.15 mm 极窄四等边（官方产品页脚注：数据来自 OPPO 实验室）"
+      },
+      {
+        "key": "盖板玻璃 Cover Glass",
+        "value": "屏幕盖板：晶盾玻璃（国行官方产品页「超耐用天穹架构」）；国际版规格页列 Corning Gorilla Glass 7i；后盖另为熊猫玻璃（国行客服页）"
+      },
+      {
+        "key": "处理器 SoC",
+        "value": "MediaTek 天玑 9500 (Dimensity 9500)"
+      },
+      {
+        "key": "制程工艺 Process",
+        "value": "台积电 N3P 第二代 3 nm"
+      },
+      {
+        "key": "CPU 架构 CPU",
+        "value": "1+3+4 全大核：1×4.21GHz + 3×3.5GHz + 4×2.7GHz"
+      },
+      {
+        "key": "GPU",
+        "value": "Arm Mali-G1 Ultra MC12 (官方规格页标注 Mali \"Drage\")"
+      },
+      {
+        "key": "NPU / APU",
+        "value": "NPU 990 (APU 9.0)，端侧生成式 AI"
+      },
+      {
+        "key": "影像引擎 ISP",
+        "value": "Imagiq 1190 ISP (18-bit RAW)"
+      },
+      {
+        "key": "运行内存 RAM",
+        "value": "LPDDR5X (12 / 16 GB)"
+      },
+      {
+        "key": "存储 ROM",
+        "value": "UFS 4.1 (256 / 512 GB / 1 TB)"
+      },
+      {
+        "key": "主摄 Main Camera",
+        "value": "50MP, f/1.6, 7P, OIS, 23mm, 1/1.4\" 传感器"
+      },
+      {
+        "key": "主摄传感器 Main Sensor",
+        "value": "Sony LYT-808 (拆机确认；与 1/1.4\" 官方规格吻合)"
+      },
+      {
+        "key": "潜望长焦 Telephoto",
+        "value": "50MP, f/2.6, 1G3P, OIS, 73mm, 3× 光学"
+      },
+      {
+        "key": "长焦传感器 Tele Sensor",
+        "value": "Sony LYT-600 棱镜式潜望 (拆机确认；与 1/1.95\" 官方规格吻合)"
+      },
+      {
+        "key": "超广角 Ultra-wide",
+        "value": "50MP, f/2.0, 6P, AF, 15mm, 120° FOV"
+      },
+      {
+        "key": "超广角传感器 UW Sensor",
+        "value": "Samsung ISOCELL JN5 (拆机确认)"
+      },
+      {
+        "key": "丹霞原彩 True Color",
+        "value": "2MP / 200 万像素多光谱相机（官方客服页确认）；9 通道光谱、48 分区为媒体数据，官方未公布"
+      },
+      {
+        "key": "前置摄像头 Front Camera",
+        "value": "3200 万像素, f/2.4, 等效焦距 21mm, 五镜式镜头, 屏幕打孔（官方规格页）"
+      },
+      {
+        "key": "光学变焦 Optical Zoom",
+        "value": "3× 光学 / 最高 120× 数字 (AI 超分)"
+      },
+      {
+        "key": "防抖 OIS",
+        "value": "主摄 + 长焦均支持 OIS"
+      },
+      {
+        "key": "视频 Video",
+        "value": "后置 4K@120fps / 杜比视界；前置 4K@60fps"
+      },
+      {
+        "key": "电池容量 Battery",
+        "value": "7025 mAh (典型) / 6840 mAh (额定)"
+      },
+      {
+        "key": "电池类型 Battery Type",
+        "value": "硅碳负极 (Silicon-Carbon) 锂电池"
+      },
+      {
+        "key": "有线充电 Wired Charge",
+        "value": "80W SUPERVOOC / 80W UFCS"
+      },
+      {
+        "key": "无线充电 Wireless Charge",
+        "value": "50W AIRVOOC (反向无线充电功率官方未单列)"
+      },
+      {
+        "key": "中框材质 Frame",
+        "value": "铝合金（官方客服页；哑光磨砂处理，非「太空铝」）"
+      },
+      {
+        "key": "后盖材质 Back Glass",
+        "value": "熊猫玻璃（官方客服页确认；绒砂工艺冷雕，与镜头 deco 一体过渡）"
+      },
+      {
+        "key": "防护等级 IP Rating",
+        "value": "IP66 & IP68 & IP69（官方产品页原文：超强防尘抗水；客服页另表述为「满级防尘防水」，两处为不同页面的不同措辞）"
+      },
+      {
+        "key": "指纹识别 Fingerprint",
+        "value": "屏下 3D 超声波指纹 (Ultrasonic)"
+      },
+      {
+        "key": "NFC",
+        "value": "支持 (Supported)"
+      },
+      {
+        "key": "红外遥控 IR Blaster",
+        "value": "官网规格未列出 → 未确认 (Not listed on official spec)"
+      },
+      {
+        "key": "操作系统 OS",
+        "value": "ColorOS 16 (基于 Android 16)"
+      },
+      {
+        "key": "配色 Colors",
+        "value": "绒光钛 / 霜白 / 追光红 / 雾黑 (Velvet Titanium / Cloud White / Velvet Red / Space Black)"
+      },
+      {
+        "key": "接口 Interface",
+        "value": "USB Type-C (充电/数据/OTG 共用)"
+      },
+      {
+        "key": "定位导航 GNSS",
+        "value": "双频 GPS + 北斗 / Galileo / GLONASS / QZSS (5G-A 网络)"
+      }
+    ],
+    "features": "OPPO Find X9 是 OPPO 于 2025 年 10 月推出的标准版影像旗舰，延续 Find X 系列「直屏 + 极窄四等边」的工业语言：6.59 英寸天马 OLED 直屏以 1.15 mm 级四等边收口，配合 1 nit 超低亮度与 3600 nits 峰值亮度，在护眼与户外可视性之间取得平衡。机身采用哑光磨砂铝合金中框与熊猫玻璃后盖，后盖以绒砂工艺与高精度冷雕实现镜组一体过渡，带来细腻手感，整机 7.99 mm 厚、203 g 重，并将 IP66/IP68/IP69 超强防尘抗水与 SGS 五星抗跌认证收纳于轻薄体量之内，是装裱展示时最直观的「精密与克制」美学标本。\n影像系统是本机的装裱核心：后置四摄（主摄 + 潜望长焦 + 超广角 + 丹霞原彩）以冷雕玻璃 deco 一体拼接，主摄搭载 1/1.4 英寸大底并支持 OIS，潜望长焦以棱镜折射实现 3× 光学变焦，哈苏色彩科学贯穿全焦段。这种「镜头模组即视觉主体」的布局，使其拆解件（尤其是带 deco 的后摄总成与双层堆叠主板）在装裱框内具有极强的结构展示价值。\n性能层面，Find X9 全球首发联发科天玑 9500（台积电 N3P 3 nm、1+3+4 全大核），搭配 7025 mAh 硅碳负极大电池与 80 W 超级闪充，在轻薄机身内塞入越级续航。双层堆叠主板、Z 字排布导热硅脂与加大均热板，体现了 2025 年旗舰「密度优先」的内部工程取向——这也是装裱时最值得裸露呈现的机械美学。",
+    "parts": [
+      {
+        "name": "后置主摄",
+        "en": "Main Camera",
+        "note": "50MP LYT-808 大底，装裱时建议带 deco 整组展示镜头结构"
+      },
+      {
+        "name": "潜望长焦",
+        "en": "Periscope Telephoto",
+        "note": "棱镜式潜望，3× 光学，结构件含棱镜与反射镜，拆解需小心"
+      },
+      {
+        "name": "超广角",
+        "en": "Ultra-wide Camera",
+        "note": "50MP JN5，视角 120°"
+      },
+      {
+        "name": "丹霞原彩镜头",
+        "en": "True Color Camera",
+        "note": "2MP 光谱色彩还原，非成像主摄，易与超广角混淆"
+      },
+      {
+        "name": "前置摄像头",
+        "en": "Front Camera",
+        "note": "32MP，位于屏下打孔"
+      },
+      {
+        "name": "双层堆叠主板",
+        "en": "Stacked Mainboard",
+        "note": "天玑9500 叠 RAM 于 SoC 之上，装裱核心件"
+      },
+      {
+        "name": "硅碳电池",
+        "en": "Silicon-Carbon Battery",
+        "value": "",
+        "note": "7025mAh，⚠️ 锂电池禁刺穿/弯折/高温，仅展示标称面"
+      },
+      {
+        "name": "无线充电线圈",
+        "en": "Wireless Charging Coil",
+        "note": "50W AIRVOOC，圆形铜线圈，置于电池之上"
+      },
+      {
+        "name": "超声波指纹",
+        "en": "Ultrasonic Fingerprint",
+        "note": "屏下 3D 超声，识别区位于屏下中下部"
+      },
+      {
+        "name": "铝合金中框",
+        "en": "Aluminum Frame",
+        "note": "哑光磨砂铝合金，官方客服页中框材质；整机刚性骨架"
+      },
+      {
+        "name": "冷雕玻璃后盖",
+        "en": "Cold-carved Back Glass",
+        "note": "厚玻璃，镜头 deco 冷雕拼接，⚠️ 易碎需托底展示"
+      },
+      {
+        "name": "冰河散热系统",
+        "en": "Ice River Cooling System",
+        "note": "官方「冰河散热系统」，标称 32052mm² 超大总散热面积"
+      },
+      {
+        "name": "AI 实体按键",
+        "en": "AI Physical Buttons",
+        "note": "机身左侧「一键闪记」、右侧「AI 实景对话」，官方称 AI 双实体按键"
+      },
+      {
+        "name": "线性马达",
+        "en": "Linear Motor",
+        "note": "0809A 横向线性马达"
+      },
+      {
+        "name": "对称双扬",
+        "en": "Dual Speakers",
+        "note": "AAC NLC 低频算法"
+      }
+    ],
+    "featureTags": [
+      "天玑 9500 旗舰芯",
+      "Dimensity 9500",
+      "哈苏影像",
+      "Hasselblad",
+      "潜望长焦 3×",
+      "Periscope Tele",
+      "7025mAh 大电池",
+      "硅碳负极",
+      "80W 超级闪充",
+      "超声波指纹",
+      "IP69 超强防尘抗水",
+      "1.15mm 极窄四等边"
+    ],
+    "timeline": [
+      {
+        "date": "2025-09-22",
+        "title": "天玑 9500 发布",
+        "desc": "联发科发布 N3P 3nm 全大核旗舰平台，Find X9 系列为首批搭载机型",
+        "en": "MediaTek unveils Dimensity 9500 (N3P 3nm, all-big-core); Find X9 series among first adopters"
+      },
+      {
+        "date": "2025-10-16",
+        "title": "Find X9 系列发布",
+        "desc": "OPPO 发布会推出 Find X9 与 Find X9 Pro，定位「旅拍神器」",
+        "en": "OPPO launches Find X9 & X9 Pro as 'travel photography flagships'"
+      },
+      {
+        "date": "2025-10-22",
+        "title": "国行开售",
+        "desc": "Find X9 全渠道开售，12+256 起售 ¥4399",
+        "en": "China sales begin; Find X9 starts at ¥4399 (12+256)"
+      },
+      {
+        "date": "2025-12",
+        "title": "年度奖项",
+        "desc": "搭载同芯的 Find X9 Pro 获 MKBHD / Mrwhosetheboss 年度最佳手机与最佳续航",
+        "en": "Find X9 Pro (same chip) wins MKBHD & Mrwhosetheboss phone-of-year & battery awards"
+      },
+      {
+        "date": "2025-12-22",
+        "title": "标准版确认",
+        "desc": "媒体确认 Find X9 标准版同样搭载天玑 9500，且下放超声波指纹等 Pro 级配置",
+        "en": "Standard Find X9 confirmed with Dimensity 9500 and Pro-level perks (e.g. ultrasonic FP)"
+      }
+    ],
+    "categories": [
+      {
+        "name": "影像系统",
+        "en": "Camera System",
+        "icon":"◆",
+        "color": "#2b6cb0",
+        "components": [
+          {
+            "name": "后置主摄",
+            "en": "Main Wide Camera",
+            "desc": "5000 万像素广角主摄，采用 1/1.4 英寸索尼 LYT-808 传感器，f/1.6 大光圈配合 7P 镜头与 OIS 光学防抖，23 mm 等效焦距。相比前代进光量提升约 57%，在复杂光线下保留高动态范围与高光控制，是哈苏影像系统的成像主体。",
+            "descEn": "The 50MP wide main camera uses a 1/1.4-inch Sony LYT-808 sensor with an f/1.6 aperture, 7P lens and OIS at a 23 mm equivalent focal length. It captures ~57% more light than its predecessor, preserving dynamic range and highlight control in mixed lighting—the core of the Hasselblad imaging system.",
+            "note": "装裱价值：主摄模组带冷雕玻璃 deco，是整机视觉主体。⚠️ 拆解警告：传感器表面镀膜极脆，禁用硬物触碰；棱镜/镜组禁自行拆解。",
+            "noteEn": "Framing: the main module with its cold-carved glass deco is the phone's visual centerpiece. ⚠ Disassembly: the sensor coating is fragile—never touch with hard objects; do not open the lens assembly.",
+            "tags": [
+              "主摄",
+              "Main",
+              "LYT-808",
+              "OIS"
+            ]
+          },
+          {
+            "name": "潜望长焦",
+            "en": "Periscope Telephoto",
+            "desc": "5000 万像素潜望式长焦，采用索尼 LYT-600 棱镜式传感器（1/1.95 英寸），f/2.6 光圈，73 mm 等效焦距，支持 3× 光学变焦与 OIS。棱镜折射路径在紧凑体积内实现长焦，是 Find X9 标准版越级搭载的旗舰影像件。",
+            "descEn": "The 50MP periscope telephoto uses a Sony LYT-600 prism sensor (1/1.95-inch) with an f/2.6 aperture, 73 mm equivalent focal length, 3× optical zoom and OIS. A prism fold path delivers tele reach in a compact body—a flagship perk on the standard X9.",
+            "note": "易混淆点：此件为「棱镜式潜望」，不同于直列长焦；拆机时棱镜与反射镜为独立小件，易脱落丢失，建议整组收纳展示。",
+            "noteEn": "Easy to confuse with straight tele modules; the prism and mirror are separate tiny parts—keep the assembly together for display.",
+            "tags": [
+              "长焦",
+              "Tele",
+              "LYT-600",
+              "Prism"
+            ]
+          },
+          {
+            "name": "超广角",
+            "en": "Ultra-wide Camera",
+            "desc": "5000 万像素超广角，三星 JN5 传感器，f/2.0 光圈，15 mm 等效焦距，120° 视野，6P 镜头支持自动对焦，承担风景与合影的广阔视角。",
+            "descEn": "The 50MP ultra-wide uses a Samsung JN5 sensor, f/2.0, 15 mm equivalent, 120° FOV, 6P lens with AF—for landscapes and group shots.",
+            "note": "装裱提示：超广角视角畸变明显，展示时可配原图说明其透视特性。",
+            "noteEn": "Framing tip: strong barrel distortion—pair with a sample shot to show perspective.",
+            "tags": [
+              "超广角",
+              "UW",
+              "JN5"
+            ]
+          },
+          {
+            "name": "丹霞原彩镜头",
+            "en": "True Color Camera",
+            "desc": "200 万像素色彩还原镜头，内置 9 通道光谱、48 分区色彩感应，并非成像主摄，而是实时校准全画面色温、还原真实肤色的辅助光谱相机，是哈苏自然色彩科学的硬件基础。",
+            "descEn": "A 2MP spectral reference camera with 9-channel, 48-zone color sensing—not a main imager, but a real-time color-temperature calibrator behind Hasselblad's natural color science.",
+            "note": "易混淆点：常被误认为第四颗主摄；它不产出照片，仅为色彩参考。装裱标注需明确「色彩还原」属性以免误导。",
+            "noteEn": "Often mistaken for a 4th main camera; it outputs no photo, only color reference. Label clearly as 'True Color' to avoid confusion.",
+            "tags": [
+              "丹霞",
+              "TrueColor",
+              "光谱"
+            ]
+          },
+          {
+            "name": "前置摄像头",
+            "en": "Front Camera",
+            "desc": "3200 万像素前置自拍镜头，f/2.4 光圈，90° 视野，5P 镜头，位于正面屏幕打孔内，支持 4K@60fps 自拍视频与多种人像模式。",
+            "descEn": "A 32MP front camera, f/2.4, 90° FOV, 5P lens, housed in the display punch-hole; supports 4K@60fps selfie video.",
+            "note": "装裱提示：打孔位置与超声波指纹区邻近，展示正面时可一并标注屏下元件布局。",
+            "noteEn": "Framing: punch-hole sits near the ultrasonic FP zone—annotate both on the front view.",
+            "tags": [
+              "前摄",
+              "Front",
+              "32MP"
+            ]
+          },
+          {
+            "name": "变焦闪光灯",
+            "en": "Zoom Flash",
+            "desc": "官方命名「变焦闪光灯」，支持多焦段光强自适应调节与真实曝闪效果；标准版将环形闪光灯集成于后置模组内部，配合 0.6×–3× 全焦段人像覆盖与丹霞原彩镜头协同补光，显著提升暗光人像肤色表现。",
+            "descEn": "Officially named 'Zoom Flash', with multi-focal-length adaptive intensity and a true flash-pop effect. On the standard X9 the ring flash sits inside the rear module, covering 0.6x-3x portraits and teaming with the True Color camera for low-light skin tones.",
+            "note": "✅ 官方页面原词为「变焦闪光灯｜多焦段光强自适应调节｜真实曝闪效果」，非「双 LED 闪光灯」，标注请用官方名。装裱提示：标准版为模组内环形闪光灯，与 deco 一体，拆解时易分离，建议原位展示。",
+            "noteEn": "✅ The official wording is 'Zoom Flash' with multi-focal adaptive intensity and true flash-pop—do not label it 'dual-LED'. Framing: the standard model's ring flash is built into the deco; keep it in place when displaying.",
+            "tags": [
+              "闪光灯",
+              "Flash"
+            ]
+          },
+          {
+            "name": "激光对焦",
+            "en": "Laser Autofocus",
+            "desc": "位于后摄 deco 黑色点阵后的激光对焦发射/接收模组，辅助暗光与微距快速合焦，提升主摄与长焦的对焦速度。",
+            "descEn": "A laser AF module behind the black dots of the rear deco, aiding fast focus in low light and macro for the main and tele cameras.",
+            "note": "⚠️ 激光发射属低功率红外类，拆解展示时勿直视发射窗；易与麦克风防水透音孔混淆（后者在机身其他位置）。",
+            "noteEn": "⚠ Low-power IR laser—do not stare into the emitter; don't confuse with mic membranes elsewhere.",
+            "tags": [
+              "对焦",
+              "Laser",
+              "AF"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "显示系统",
+        "en": "Display",
+        "icon":"▢",
+        "color": "#3182ce",
+        "components": [
+          {
+            "name": "AMOLED 显示面板",
+            "en": "AMOLED Panel",
+            "desc": "6.59 英寸天马柔性 OLED 直屏，FHD+ 2760×1256，120 Hz 刷新，10-bit 色深，460 PPI。采用直屏设计而非曲面，配合 1.15 mm 级四等边，是 2025 年旗舰回归直屏趋势的代表。",
+            "descEn": "A 6.59-inch Tianma flexible OLED flat panel, FHD+ 2760×1256, 120 Hz, 10-bit, 460 PPI. The flat design with ~1.15 mm uniform bezels marks 2025's return to flat flagships.",
+            "note": "装裱价值：直屏无曲面畸变，最适合平面装裱展示；⚠️ 面板极脆，拆解后仅可展示边缘或背面排线，禁止弯折。",
+            "noteEn": "Framing: flat screen shows best in 2D framing; ⚠ extremely fragile—display edge/back only, never bend.",
+            "tags": [
+              "屏幕",
+              "Display",
+              "OLED",
+              "Tianma"
+            ]
+          },
+          {
+            "name": "盖板玻璃",
+            "en": "Cover Glass",
+            "desc": "正面保护玻璃，官方通稿称 OPPO 晶盾玻璃，官方澳洲/丹麦规格页列为康宁 Gorilla Glass 7i（两说并存）。承担抗刮与抗冲击，表面覆盖出厂 PET 保护膜。",
+            "descEn": "Front cover glass—OPPO 'Jingdun' glass per official PR, or Corning Gorilla Glass 7i per AU/DK spec sheets (both cited). Ships with a factory PET film.",
+            "note": "事实核查：两源表述不一，装裱标注建议写「晶盾玻璃 (康宁 GG7i 同级)」以避免断言。",
+            "noteEn": "Fact-check: sources differ—label as 'Jingdun (GG7i-class)' to avoid over-claiming.",
+            "tags": [
+              "盖板",
+              "Glass",
+              "GG7i"
+            ]
+          },
+          {
+            "name": "触控层",
+            "en": "Touch Layer",
+            "desc": "内嵌于面板下的电容触控层，最高 240 Hz 触控采样率，支持湿手/油手精准触控，与显示层一体封装。",
+            "descEn": "A capacitive touch layer under the panel with up to 240 Hz sampling and wet-hand support, co-laminated with the display.",
+            "note": "装裱提示：触控层与面板不可分，随屏整体展示即可。",
+            "noteEn": "Framing: touch layer is fused to the panel—show as one unit.",
+            "tags": [
+              "触控",
+              "Touch"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "计算与存储",
+        "en": "Compute & Storage",
+        "icon":"□",
+        "color": "#6b46c1",
+        "components": [
+          {
+            "name": "天玑 9500 SoC",
+            "en": "Dimensity 9500 SoC",
+            "desc": "联发科旗舰移动平台，台积电 N3P 第二代 3 nm 制程，1+3+4 全大核 CPU（1×4.21 GHz + 3×3.5 GHz + 4×2.7 GHz），Arm Mali-G1 Ultra MC12 GPU，NPU 990 与 Imagiq 1190 ISP。Find X9 标准版首发搭载，是整机性能与端侧 AI 的底座。",
+            "descEn": "MediaTek's flagship on TSMC N3P 3 nm with a 1+3+4 all-big-core CPU (1×4.21 + 3×3.5 + 4×2.7 GHz), Arm Mali-G1 Ultra MC12 GPU, NPU 990 and Imagiq 1190 ISP. A launch SoC on the standard X9.",
+            "note": "历史意义：天玑 9500 是联发科首次以全大核架构对标骁龙 8 至尊版，Find X9 为其首批落地机型。⚠ 芯片焊死于主板，禁加热强拆。",
+            "noteEn": "History: D9500 is MediaTek's first all-big-core flagship tier; X9 among first. ⚠ SoC is soldered—no forced heating.",
+            "tags": [
+              "处理器",
+              "SoC",
+              "Dimensity9500"
+            ]
+          },
+          {
+            "name": "运行内存",
+            "en": "LPDDR5X RAM",
+            "desc": "12 / 16 GB LPDDR5X 运行内存，以堆叠封装置于 SoC 之上（PoP），缩短数据路径、降低延迟，支撑多任务与端侧大模型。",
+            "descEn": "12/16 GB LPDDR5X, packaged on top of the SoC (PoP) to shorten data paths and cut latency for multitasking and on-device LLMs.",
+            "note": "装裱提示：RAM 与 SoC 叠封，肉眼仅见屏蔽罩；展示时可配剖面示意说明堆叠结构。",
+            "noteEn": "Framing: RAM is stacked on SoC—show a cutaway diagram to explain the stack.",
+            "tags": [
+              "内存",
+              "RAM",
+              "LPDDR5X"
+            ]
+          },
+          {
+            "name": "闪存",
+            "en": "UFS 4.1 ROM",
+            "desc": "256 / 512 GB / 1 TB UFS 4.1 闪存，4 通道高速读写，承载系统、影像素材与 AI 模型，不支持存储卡扩展。",
+            "descEn": "256/512 GB/1 TB UFS 4.1 flash, 4-channel, holds OS, photos and AI models; no card expansion.",
+            "note": "装裱提示：闪存焊于主板背面，与 SoC 异侧，展示主板双面结构时可一并说明。",
+            "noteEn": "Framing: NAND sits on the board's back side—show both faces to explain layout.",
+            "tags": [
+              "存储",
+              "ROM",
+              "UFS4.1"
+            ]
+          },
+          {
+            "name": "双层堆叠主板",
+            "en": "Stacked Mainboard",
+            "desc": "Find X9 采用双层堆叠主板，将 SoC、RAM、ROM 与电源管理紧凑叠放，整机主板较常规布局缩短约 7 mm，为 7025 mAh 大电池腾出空间。铜屏蔽罩下以 Z 字排布导热硅脂强化散热。",
+            "descEn": "A double-layer stacked mainboard packs SoC/RAM/ROM/PMIC tightly, ~7 mm shorter than a conventional layout, freeing room for the 7025 mAh cell. Under the copper shield, Z-pattern thermal paste aids heat spread.",
+            "note": "装裱价值：堆叠主板是 2025 旗舰「密度工程」的标本，最值得裸板展示。⚠ 屏蔽罩焊于 PCB，非中框盖板；拆屏蔽罩需热风且破坏保修。",
+            "noteEn": "Framing: the stacked board is the icon of 2025 density engineering—best shown bare. ⚠ Shield can is soldered to PCB, not a frame cover.",
+            "tags": [
+              "主板",
+              "Mainboard",
+              "堆叠"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "电源系统",
+        "en": "Power",
+        "icon":"▤",
+        "color": "#dd6b20",
+        "components": [
+          {
+            "name": "硅碳电池",
+            "en": "Silicon-Carbon Battery",
+            "desc": "7025 mAh（典型）/ 6840 mAh（额定）硅碳负极锂电池，26.35 Wh。以硅碳负极替代石墨，同等体积能量密度更高，是 Find X9 在 7.99 mm 轻薄机身内塞入越级续航的关键。",
+            "descEn": "A 7025 mAh (typ) / 6840 mAh (rated) silicon-carbon Li-ion cell, 26.35 Wh. Silicon-carbon anodes raise energy density in the same volume—key to the slim 7025 mAh endurance.",
+            "note": "⚠ 锂电池安全：禁刺穿、弯折、高温、浸水；装裱仅展示标称面，远离金属框以防短路；严禁拆解电芯。",
+            "noteEn": "⚠ Li-ion safety: no puncture/bend/heat/water; show label side only, away from metal frames; never breach the cell.",
+            "tags": [
+              "电池",
+              "Battery",
+              "硅碳"
+            ]
+          },
+          {
+            "name": "无线充电线圈",
+            "en": "Wireless Charging Coil",
+            "desc": "50W AIRVOOC 无线充电圆形铜线圈，贴合于电池之上，与 NFC 线圈分区排布，支持无线快充与（官方未单列功率的）反向无线充电。",
+            "descEn": "A 50W AIRVOOC circular copper coil above the battery, laid out apart from the NFC coil; supports wireless fast charge (reverse wireless power not officially listed).",
+            "note": "✅ 实物辨认：拆解摆放图中那片贴有二维码贴纸的大面积圆形薄片即无线充电线圈，不是电池也不是散热石墨片，标注时务必写 Wireless Charging Coil。装裱提示：线圈极薄易变形，展示需平铺托底；与 NFC 线圈相邻但功能不同，标注勿混。",
+            "noteEn": "✅ Identified: the large circular sheet bearing the QR sticker in the teardown layout photo is the wireless charging coil—not the battery and not a graphite pad. Label it 'Wireless Charging Coil'. Framing: very thin, display flat; don't confuse with the nearby NFC coil.",
+            "tags": [
+              "无线充",
+              "Coil",
+              "AIRVOOC"
+            ]
+          },
+          {
+            "name": "充电接口小板",
+            "en": "Sub-board (USB-C)",
+            "desc": "底部 USB Type-C 接口小板，承载 80W 超级闪充与数据传输，集成双麦克风与红色防水胶圈（IP69 防护的一部分），通过排线与主板相连。",
+            "descEn": "The bottom USB-C sub-board carries 80W SUPERVOOC and data, with dual mics and red water-resistant gaskets (part of IP69), linked to the mainboard by flex.",
+            "note": "装裱提示：红色防水胶圈是 IP69 防护的视觉证据，展示时可特写说明；⚠ 接口小板排线脆，勿硬拉。",
+            "noteEn": "Framing: red gaskets prove IP69—zoom in; ⚠ flex is fragile, don't yank.",
+            "tags": [
+              "尾插",
+              "Sub-board",
+              "Type-C"
+            ]
+          },
+          {
+            "name": "电源管理",
+            "en": "Power Management IC",
+            "desc": "分布于主板与副板的电源管理芯片组，协调 80W 有线 / 50W 无线充电、旁路供电与电池温控，含多层隔膜与温度传感器保障安全。",
+            "descEn": "PMIC clusters on main and sub-boards orchestrate 80W wired / 50W wireless charging, bypass and thermal control, with multi-layer separators and temp sensors.",
+            "note": "装裱提示：PMIC 多藏于屏蔽罩下，展示主板时可配框线示意其位置。",
+            "noteEn": "Framing: PMICs sit under shields—annotate positions on the board view.",
+            "tags": [
+              "电源",
+              "PMIC",
+              "充电"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "结构与机身",
+        "en": "Structure & Frame",
+        "icon":"■",
+        "color": "#718096",
+        "components": [
+          {
+            "name": "铝合金中框",
+            "en": "Aluminum Frame",
+            "desc": "整机刚性骨架，官方客服页载明中框材质为**铝合金**（哑光磨砂处理），包裹屏幕与后盖并集成天线带与按键。Find X9 以中框一体化提升抗跌能力，通过瑞士 SGS 五星整机抗跌耐摔认证。",
+            "descEn": "The structural backbone; OPPO's official spec page lists the frame as aluminum with a matte finish, wrapping the display and back while hosting antenna bands and buttons. Swiss SGS five-star drop resistance.",
+            "note": "✅ 修正：官方写「中框材质：铝合金」（英文稿为 matte aluminum frame），「太空铝」非官方用词；「绒砂工艺」属于**后盖玻璃**，中框为磨砂金属，勿混。装裱价值：中框是结构美学骨架，裸框展示最见工业精度；⚠ 天线带为注塑填补，禁打磨。",
+            "noteEn": "Framing: the frame is the structural hero—show bare; ⚠ antenna bands are molded, don't sand.",
+            "tags": [
+              "中框",
+              "Frame",
+              "铝"
+            ]
+          },
+          {
+            "name": "冷雕玻璃后盖",
+            "en": "Cold-carved Back Glass",
+            "desc": "厚玻璃后盖，采用冷雕工艺将镜头 deco 与背板一体拼接，较热弯玻璃公差更小。四款配色（绒光钛/霜白/追光红/雾黑）以超精密冷雕呈现金属质感。",
+            "descEn": "A thick back glass with the lens deco cold-carved as one piece—tighter tolerance than hot-bent glass. Four colors via precision cold-carving for a metallic feel.",
+            "note": "⚠ 玻璃易碎，装裱必须托底+缓冲；deco 与背板一体，拆解勿强撬 deco 接缝。",
+            "noteEn": "⚠ Glass is fragile—cushion-mounted; deco is one with the back, don't pry the seam.",
+            "tags": [
+              "后盖",
+              "Back",
+              "冷雕"
+            ]
+          },
+          {
+            "name": "后置相机 deco",
+            "en": "Rear Camera Deco",
+            "desc": "后置四摄的冷雕玻璃装饰区，轮廓为圆角方形（圆角矩形），将主摄、潜望长焦、超广角、丹霞原彩与闪光灯、激光对焦集成为一体成型玻璃件，四处开孔呈 2×2 矩阵排列，是整机背面视觉主体。",
+            "descEn": "A cold-carved glass deco with a rounded-square (rounded-rectangle) outline that integrates the main, periscope telephoto, ultra-wide and True Color sensors with flash and laser AF; the four openings sit in a 2x2 matrix, making it the visual anchor of the back.",
+            "note": "✅ 已定稿（实物照片 + OPPO 官方外观描述 + 多家首发解读三方一致）：deco 外轮廓为「圆角方形（圆角矩形、大圆角）」，金属圈包裹；四处开孔呈 2×2 矩阵——照片实测左上、左下为大镜开孔，右上为竖长双开孔，右下为小圆环（环形闪光灯）。装裱标注按圆角方形描边。⚠ 各镜头在矩阵内的具体角位仍需一张 deco 高清正面图最终核对。",
+            "noteEn": "✅ Finalized (product photo + OPPO's official design description + launch coverage agree): the deco outline is a rounded square (rounded rectangle, large corner radius) ringed in metal, with four openings in a 2x2 matrix—two large lens openings at left, a vertical twin opening top-right and a small ring (ring flash) bottom-right. ⚠ Which sensor occupies which cell still needs one high-res front-on deco shot.",
+            "tags": [
+              "deco",
+              "镜头区",
+              "圆角方形"
+            ]
+          },
+          {
+            "name": "中框支架",
+            "en": "Midframe",
+            "desc": "连接中框与内部元件的金属支架，所有元件经接触点与其连接（标准版以十字螺丝固定，拆除后整片取下），承载均热板与部分排线通道。",
+            "descEn": "A metal midframe linking the frame to internals (Phillips screws on the standard X9; lifts as one unit), carrying the vapor chamber and some flex routes.",
+            "note": "装裱提示：中框支架是内部布局的「地图」，裸展最能解释元件分布；⚠ 拆除需先加热软化防水胶。",
+            "noteEn": "Framing: the midframe is the 'map' of internals—show bare; ⚠ heat to soften adhesive first.",
+            "tags": [
+              "支架",
+              "Midframe"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "音频与振动",
+        "en": "Audio & Haptics",
+        "icon":"▶",
+        "color": "#38a169",
+        "components": [
+          {
+            "name": "对称双扬声器",
+            "en": "Dual Speakers",
+            "desc": "瑞声科技 AAC 对称双扬声器，搭载 NLC 低频算法，提升低频下潜与响度，与听筒协同组成伪双声道外放。",
+            "descEn": "AAC symmetric dual speakers with NLC low-frequency algorithm for deeper bass, working with the earpiece for pseudo-stereo.",
+            "note": "装裱提示：上下扬声器体积小，展示时可标注其位置（顶部听筒+底部）；⚠ 振膜禁戳。",
+            "noteEn": "Framing: mark top earpiece + bottom speaker; ⚠ don't poke the diaphragm.",
+            "tags": [
+              "扬声器",
+              "Speaker",
+              "AAC"
+            ]
+          },
+          {
+            "name": "听筒",
+            "en": "Earpiece",
+            "desc": "顶部细长听筒，兼顾通话出声与双扬声器上半声道，出声孔位于屏幕顶端边框。",
+            "descEn": "A slim top earpiece for calls and the upper stereo channel, with grille in the top bezel.",
+            "note": "装裱提示：听筒与顶部传感器区邻近，标注需分区以免与前摄/传感器混淆。",
+            "noteEn": "Framing: near top sensors—separate labels from front cam/sensors.",
+            "tags": [
+              "听筒",
+              "Receiver"
+            ]
+          },
+          {
+            "name": "线性马达",
+            "en": "Linear Motor",
+            "desc": "0809A 横向线性马达（X 轴），提供清脆一致的触感反馈，支撑 AI 实体按键与系统振动，游戏与打字手感均匀。",
+            "descEn": "An 0809A X-axis linear motor for crisp, consistent haptics behind the AI physical buttons and system feedback.",
+            "note": "装裱提示：马达为扁平方块，位于中框层；展示可与按键联动说明。",
+            "noteEn": "Framing: a flat block in the frame layer—show with the key linkage.",
+            "tags": [
+              "马达",
+              "Motor",
+              "线性"
+            ]
+          },
+          {
+            "name": "麦克风组",
+            "en": "Microphones",
+            "desc": "多颗麦克风分布于顶部与底部（含后置录像mic），后置录像麦克风覆盖防水透音膜，可在不破膜前提下穿透声波、支持 IP69 高压水射流防护。",
+            "descEn": "Mics at top and bottom (incl. a rear video mic) with a water-proof acoustic membrane that passes sound yet resists IP69 high-pressure jets.",
+            "note": "⚠ 防水透音膜勿戳破，破膜即丧失 IP69；微小黑点易与激光对焦窗混淆，标注需核对实物。",
+            "noteEn": "⚠ Don't pierce the membrane or IP69 is lost; tiny dots resemble the laser window—verify against the real unit.",
+            "tags": [
+              "麦克风",
+              "Mic",
+              "防水"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "生物识别与安全",
+        "en": "Biometrics",
+        "icon":"◇",
+        "color": "#805ad5",
+        "components": [
+          {
+            "name": "超声波指纹",
+            "en": "Ultrasonic Fingerprint",
+            "desc": "屏下 3D 超声波指纹传感器，位于屏幕中下部，利用声波构建指纹三维模型，支持湿手、油污、汗液下解锁，安全性高于光学方案。",
+            "descEn": "An under-display 3D ultrasonic FP sensor (mid-lower screen) builds a 3D fingerprint model, unlocking through wet/oily/sweaty fingers—safer than optical.",
+            "note": "历史意义：标准版设计初期预留短焦指纹，量产改超声波，是 Find X9「超标下放」的体现。⚠ 传感器贴屏下，拆屏即损。",
+            "noteEn": "History: initially planned short-throw FP, shipped ultrasonic—a 'standard-but-Pro' perk. ⚠ bonded to screen, destroyed on panel removal.",
+            "tags": [
+              "指纹",
+              "Fingerprint",
+              "超声波"
+            ]
+          },
+          {
+            "name": "面部解锁",
+            "en": "Face Unlock",
+            "desc": "基于前置摄像头与算法实现的 2D 面部解锁，作为指纹之外的辅助生物识别方式，非 3D 结构光。",
+            "descEn": "A 2D face unlock via the front camera—auxiliary biometrics alongside the FP, not structured-light 3D.",
+            "note": "装裱提示：面部解锁无独立硬件，标注时归入前摄功能，避免制造「额外传感器」误导。",
+            "noteEn": "Framing: no dedicated hardware—attribute to the front camera to avoid implying a separate sensor.",
+            "tags": [
+              "人脸",
+              "Face"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "连接与传感",
+        "en": "Connectivity & Sensors",
+        "icon":"●",
+        "color": "#d69e2e",
+        "components": [
+          {
+            "name": "NFC 芯片",
+            "en": "NFC Chip",
+            "desc": "支持多功能 NFC，已覆盖公共交通与门卡模拟等场景，线圈与无线充电线圈分区排布于机身背部下层。",
+            "descEn": "Multi-function NFC for transit cards and access emulation, with its coil laid out apart from the wireless-charge coil.",
+            "note": "装裱提示：NFC 线圈薄如纸，与无线充线圈相邻；标注需区分两者功能。",
+            "noteEn": "Framing: the NFC coil is paper-thin and near the charge coil—label both clearly.",
+            "tags": [
+              "NFC",
+              "线圈"
+            ]
+          },
+          {
+            "name": "双频 GNSS",
+            "en": "Dual-band GNSS",
+            "desc": "支持双频 GPS 及北斗、Galileo、GLONASS、QZSS 多系统定位，配合 5G-A 网络实现高精度导航，城市峡谷下定位更稳。",
+            "descEn": "Dual-band GPS with BeiDou/Galileo/GLONASS/QZSS and 5G-A for stable high-precision nav in urban canyons.",
+            "note": "装裱提示：GNSS 天线多集成于中框，展示时可标注天线带位置。",
+            "noteEn": "Framing: GNSS antennas sit in the frame—mark the antenna bands.",
+            "tags": [
+              "定位",
+              "GNSS",
+              "GPS"
+            ]
+          },
+          {
+            "name": "环境/距离传感器",
+            "en": "Ambient & Proximity Sensors",
+            "desc": "屏幕下方集成环境光与距离传感器，自动调节亮度并在通话时熄屏防误触，与前置摄像头同区。",
+            "descEn": "Ambient-light and proximity sensors under the screen for auto-brightness and call blanking, co-located with the front camera.",
+            "note": "装裱提示：传感器为微小黑点，易与激光对焦/麦克风孔混淆，标注需对照实物逐一确认。",
+            "noteEn": "Framing: tiny dots—verify against the real unit to avoid confusion with laser/mic holes.",
+            "tags": [
+              "传感器",
+              "Sensor"
+            ]
+          },
+          {
+            "name": "AI 实体按键",
+            "en": "AI Physical Buttons (Snap Key)",
+            "desc": "官方称「AI 双实体按键」：机身左侧为「一键闪记」键（短按解析屏幕内容、长按语音随口记，内容汇入记忆仓），右侧为「AI 实景对话 / 一键问屏」键（对准实物即可提问，支持连续对话与声纹识别）；国际版部分市场称 Snap Key（快拍键）。",
+            "descEn": "Officially 'AI Dual Physical Buttons': the left key triggers One-Tap Memo (analyze screen content, voice notes into Memory Space) and the right key triggers Live AI Conversation / ask-the-screen; some international markets call it the Snap Key.",
+            "note": "✅ 修正：官方为「AI 双实体按键」，两颗分别位于**机身左侧与右侧**（不是顶部），功能为左记右问；国际版/部分市场称 Snap Key（快拍键，短按截屏/闪记）。装裱提示：AI 实体键为带胶小模块，拆解后易丢，建议原位或单独密封展示。",
+            "noteEn": "✅ Corrected: officially 'AI Dual Physical Buttons' on the left and right sides (not the top)—memo on the left, ask on the right. Some markets brand it Snap Key. Framing: small adhesive modules, easy to lose—store in place or sealed.",
+            "tags": [
+              "快捷键",
+              "SnapKey"
+            ]
+          },
+          {
+            "name": "陀螺仪/IMU",
+            "en": "Gyroscope / IMU",
+            "desc": "六轴惯性测量单元，支撑防抖、游戏体感与 AR 空间定位，与 OIS 协同提升拍摄稳定性。",
+            "descEn": "A 6-axis IMU for stabilization, gaming motion and AR, working with OIS for steadier capture.",
+            "note": "装裱提示：IMU 焊于主板，展示时以框线示意即可。",
+            "noteEn": "Framing: IMU is soldered—annotate its position on the board.",
+            "tags": [
+              "陀螺仪",
+              "IMU"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "散热系统",
+        "en": "Thermal",
+        "icon":"⚙",
+        "color": "#e53e3e",
+        "components": [
+          {
+            "name": "冰河散热系统",
+            "en": "Ice River Cooling System",
+            "desc": "官方「冰河散热系统」：屏内采用超高性能石墨散热，搭配超大 VC 均热装置，官方标称 32052mm² 超大总散热面积，整机散热能力大幅提升，是天玑 9500 持久满帧的硬件基础。",
+            "descEn": "OPPO's 'Ice River' cooling system: high-performance graphite inside the display plus a large VC vapor chamber, officially rated at 32,052mm² of total cooling area—the hardware behind sustained full-frame gaming.",
+            "note": "✅ 官方页面名称为「冰河散热系统」，标称 32052mm² 超大总散热面积，标注请用此名（勿只写「均热板」）。装裱价值：均热板是「性能美学」的硬件证据，裸展可呈现其精密水道结构。",
+            "noteEn": "Framing: the VC is proof of performance engineering—show its micro-channel structure bare.",
+            "tags": [
+              "散热",
+              "VC",
+              "均热"
+            ]
+          },
+          {
+            "name": "石墨散热膜",
+            "en": "Graphite Film",
+            "desc": "多层石墨散热膜贴合于电池、中框与主板之间，辅助均热板均匀导热，降低局部热点。",
+            "descEn": "Multi-layer graphite film between battery, frame and board, aiding the VC for even heat spread and fewer hotspots.",
+            "note": "装裱提示：石墨膜极薄易碎，展示需平铺；⚠ 勿折叠。",
+            "noteEn": "Framing: graphite film is thin—display flat; ⚠ don't fold.",
+            "tags": [
+              "石墨",
+              "Graphite"
+            ]
+          },
+          {
+            "name": "导热硅脂",
+            "en": "Thermal Paste",
+            "desc": "铜屏蔽罩下以 Z 字排布导热硅脂，填补 SoC 与均热板间空隙，提升热传导效率，是堆叠主板散热的关键细节。",
+            "descEn": "Z-pattern thermal paste under the copper shield fills gaps between SoC and VC, boosting conduction—key to the stacked board's cooling.",
+            "note": "装裱提示：硅脂为耗材层，展示主板时可保留原状说明其排布逻辑。",
+            "noteEn": "Framing: the paste is a consumable layer—keep as-is to explain the Z layout.",
+            "tags": [
+              "硅脂",
+              "Thermal"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "包装与配件",
+        "en": "Package & Accessories",
+        "icon":"▲",
+        "color": "#4a5568",
+        "components": [
+          {
+            "name": "标配充电器",
+            "en": "Charger",
+            "desc": "80W SUPERVOOC 充电器，支持 80W 有线超级闪充与 UFCS，兼容第三方 PPS/PD，为 Find X9 满血回血。",
+            "descEn": "An 80W SUPERVOOC charger for full-speed wired fill, UFCS-compatible with third-party PPS/PD.",
+            "note": "装裱提示：充电器体积小，可与原装数据线并列展示「闪充生态」。",
+            "noteEn": "Framing: compact—pair with the cable to show the flash-charge ecosystem.",
+            "tags": [
+              "充电器",
+              "Charger"
+            ]
+          },
+          {
+            "name": "数据线",
+            "en": "USB-C Cable",
+            "desc": "原装 USB Type-C 数据线，承载 80W 超级闪充电流与数据传输，支持 OTG。",
+            "descEn": "Stock USB-C cable carrying 80W charge and data, OTG-capable.",
+            "note": "装裱提示：线缆可卷绕展示，避免死折损伤线芯。",
+            "noteEn": "Framing: coil loosely—avoid sharp bends.",
+            "tags": [
+              "数据线",
+              "Cable"
+            ]
+          },
+          {
+            "name": "保护壳",
+            "en": "Protective Case",
+            "desc": "出厂随附保护壳，针对镜头 deco 与四边做加高处理，兼顾握持与镜头防护。",
+            "descEn": "Bundled case with raised lips around the deco and edges for grip and lens protection.",
+            "note": "装裱提示：保护壳可单独展示，对照裸机说明防护设计。",
+            "noteEn": "Framing: show apart from the bare phone to explain protection.",
+            "tags": [
+              "保护壳",
+              "Case"
+            ]
+          },
+          {
+            "name": "取卡针",
+            "en": "SIM Ejector",
+            "desc": "金属取卡针，用于弹出 nano-SIM 卡托（双卡双待，不支持存储卡扩展）。",
+            "descEn": "Metal SIM ejector for the nano-SIM tray (dual SIM, no microSD).",
+            "note": "装裱提示：小件易丢，建议与卡托一并收纳展示。",
+            "noteEn": "Framing: tiny—keep with the SIM tray.",
+            "tags": [
+              "取卡针",
+              "Ejector"
+            ]
+          },
+          {
+            "name": "包装盒",
+            "en": "Retail Box",
+            "desc": "OPPO Find X9 零售包装，含主机、充电器、数据线、取卡针、保护壳与快速入门指南，整体延续 Find 系列简约白盒风格。",
+            "descEn": "The retail box with phone, charger, cable, ejector, case and guide—OPPO's minimal white packaging.",
+            "note": "装裱提示：包装盒可作背景框或并列展示，强化「开箱」叙事。",
+            "noteEn": "Framing: the box can frame the narrative as a backdrop or companion piece.",
+            "tags": [
+              "包装",
+              "Box"
+            ]
+          }
+        ]
+      }
+    ],
+    "usageNotes": "本资料基于 OPPO 官方多区域规格页（oppo.com 全球/澳洲/丹麦、support.oppo.com/cn 客服页）、国行发布会通稿，以及针对 Find X9 标准版的真实拆机报告（微博@涛哥爱拆机）交叉整理；零件身份已由用户本人核对拆解摆放图确认。\n✅ 已确认（2026-08-14 用户实拍核对）：后置 deco 轮廓为「圆角方形（圆角矩形）」、四处开孔 2×2 矩阵（已定稿）；拆解图中零件自上而下／按位依次为前置镜头、听筒、主摄、潜望长焦、超广角、后盖闪光灯组件、丹霞原彩色彩还原镜头；贴二维码贴纸的大圆片为无线充电线圈（非电池）；电池未入镜，电池相关尺寸/外形待补拍。\n⚠️ 仍待确认：各镜头在 deco 2×2 矩阵内的具体角位、内部螺丝布局与数量、中框支架确切螺丝数、屏蔽罩细节、麦克风/激光对焦窗确切位置——这些需高清分区截图后核对，未确认处已排在零件级 note 中，禁止凭猜测定稿标注。\n装裱建议：优先裸展「双层堆叠主板 + 冰河散热系统（VC 均热板）+ 冷雕玻璃后盖 deco + 铝合金中框 + 无线充电线圈」五件，最能呈现 2025 旗舰的密度工程与结构美学；电池仅展示标称面，严禁拆解电芯。\n📌 2026-08-14 依 OPPO 官网页复核后修正：①后置 deco 轮廓定稿为「圆角方形（圆角矩形）」，四处开孔 2×2 矩阵；②闪光灯官方名为「变焦闪光灯」（多焦段光强自适应调节｜真实曝闪效果）；③散热官方名为「冰河散热系统」，标称 32052mm² 超大总散热面积；④按键官方名为「AI 双实体按键」（左一键闪记／右 AI 实景对话，国际版称 Snap Key），位于机身左右侧；⑤中框官方材质为铝合金（哑光磨砂），「绒砂工艺」属于后盖玻璃；⑥后盖材质官方客服页为熊猫玻璃；⑦屏幕盖板为晶盾玻璃（后盖为熊猫玻璃）；⑧边框 1.15mm 为官方脚注值（数据来自 OPPO 实验室）。\n🧾 2026-09-11 用户复审确认（以下均为有意为之，**不是错误，后续审核勿再判错**）：①防护文案“超强防尘抗水”经用户核对官网确认无误（我上轮据客服页措辞误判为“满级”，已撤回；产品页=超强防尘抗水，客服页=满级防尘防水，两处不同页面各自措辞）；②「全链路原彩 ProXDR、杜比视界」受版面所限共用“全链路”前缀、以顿号分割，属有意省略；③「简而有致」面板文案因版面所限对官网原文做了提炼节选（省去“时尚与舒适，一机可兼得”）；④扬声器描述为用户按内容需要自撰（官方产品页/规格页未列声音项，官方其他渠道标「立体声双扬声器」，描述成立）；⑤零件中文名用户采用「尾插小板」（业界通用名）；⑥「AI 一键闪记」「AI 一键问屏」均为 OPPO 官网原词，标注正确。",
+    "framingNotes": {
+      "canDisassemble": true,
+      "recommendedFrame": "哑光黑铝合金窄边框 + 超白玻璃（衬托冷雕玻璃 deco 与钛色中框）",
+      "frameSize": "A3 (297×420mm) 或 A2 (420×594mm)，依零件数量与排版",
+      "customFrame": false,
+      "notes": "锂电池(7025mAh)仅展示标称面并远离金属框防短路；玻璃件(后盖/deco/屏幕)须缓冲托底防碎；拆机件建议以亚克力柱悬浮固定，呈现「悬浮拆解」工业风。"
+    },
+    "dataSources": [
+      "OPPO 官方全球规格页 — https://www.oppo.com/en/smartphones/series-find-x/find-x9/：屏幕峰值亮度3600nit/传感器尺寸(1/1.4\"/1/1.95\")/哈苏影像/超声波指纹/IP等级/配色等核心参数",
+      "OPPO 官方澳洲/丹麦规格页 — https://www.oppo.com/au/smartphones/series-find-x/find-x9/specs/：尺寸156.98×73.93×7.99mm/203g/6.59\" 2760×1256/120Hz/460PPI/7025mAh/80W+50W充电/LPDDR5X+UFS4.1/天玑9500 等逐项参数",
+      "OPPO 国行客服参数页 — https://support.oppo.com/cn/answer/?aid=2254579：国行配色/尺寸/中框铝合金/后盖熊猫玻璃/7025mAh/80W+50W/IP66-68-69/ColorOS16/四摄像素",
+      "OPPO 国行发布会通稿（2025-10-16，经新闻转引） — https://so.html5.qq.com/page/real/search_news?docid=70000021_83768f0f62a25652：国行价格(¥4399起)/开售日期/天马OLED直屏/晶盾玻璃/1.15mm四等边/绒砂工艺/IP69+SGS",
+      "京东 OPPO 自营商品页 — https://www.jd.com/：上市日期2025-10-22/入网型号PLJ110/7025mAh/80W+50W/超声波指纹/三主摄潜望等交叉验证",
+      "拆机报告：微博@涛哥爱拆机（Find X9 标准版） — https://weibo.com/1859683200/Q9qKI6nYR：传感器型号(LYT-808主摄/LYT-600潜望/JN5超广角)/双层堆叠主板/0809A马达/AAC NLC双扬/丹霞+激光对焦/防水透音膜/7025mAh+50W线圈/超声波指纹(量产下放)",
+      "天玑 9500 官方百科（联发科发布信息） — https://baike.baidu.com/item/%E5%A4%A9%E7%8E%919500/66903256：N3P 3nm/1+3+4全大核(4.21+3.5+2.7GHz)/G1-Ultra MC12 GPU/NPU990/Imagiq1190 ISP/首批搭载Find X9",
+      "本机先验知识（模型知识，非实时） — -：结构描述与装裱建议的背景补充；与官方/拆机一致，冲突处一律以官网与拆机报告为准",
+      "OPPO 官方产品页（国行） — https://www.oppo.com/cn/smartphones/series-find-x/find-x9/：变焦闪光灯/冰河散热系统 32052mm²/AI 双实体按键/超强防尘抗水/15mm 大场面焦段/自研 Display P3 JNDC≈0.29/续航四项数据/配色与工艺原词",
+      "OPPO 官方规格页（国行） — https://www.oppo.com/cn/smartphones/series-find-x/find-x9/specs/：尺寸重量/屏幕 6.59\" 2760×1256 460PPI 120Hz 240Hz 触控/三摄逐项(23-15-73mm, 7P-6P-1G3P)/丹霞 f2.4 21mm/80W+UFCS+50W/SIM 双卡双待双通/包装清单六件/ColorOS 16.0",
+      "OPPO 台湾客服规格页 — https://support.oppo.com/tw/answer?aid=2254811：国际版命名 Snap Key（快拍键）／200 万像素多光谱相机／50W AirVOOC／IP66-68-69",
+      "OPPO 全球新闻稿（Find X9 系列全球发布） — https://www.oppo.com/en/newsroom/press/oppo-find-x9-series-coloros-16-global-launch-camera-battery-performance/：matte aluminum frame／1.15mm 对称四等边／3600nits 峰值・1nit 最低亮度／IP66/IP68/IP69／天玑9500 性能数据"
+    ],
+    "pinterestLinks": [
+      "https://www.oppo.com/cn/smartphones/series-find-x/find-x9/",
+      "https://www.oppo.com/en/smartphones/series-find-x/find-x9/"
+    ],
+    "images": [],
+    "framedPhotos": [],
+    createdAt: today,
+    "status": "completed"
+  },
+{
+    "id": "p007",
+    "brand": "一加",
+    "model": "9RT",
+    "category": "智能手机",
+    "size": "162.2 × 74.6 × 8.29 mm，198.5 g",
+    "basicInfo": {
+      "releaseDate": "2021年10月13日发布 / 2021年10月19日开售"
+    },
+    "specs": [
+      {
+        "key": "处理器",
+        "value": "高通骁龙 888 — Snapdragon 888 (5nm)"
+      },
+      {
+        "key": "CPU 架构",
+        "value": "1×Cortex-X1 2.84GHz + 3×A78 2.42GHz + 4×A55 1.8GHz"
+      },
+      {
+        "key": "GPU",
+        "value": "Adreno 660 — 图形性能提升 35%"
+      },
+      {
+        "key": "内存",
+        "value": "8GB / 12GB LPDDR5 — 6400Mbps"
+      },
+      {
+        "key": "存储",
+        "value": "128GB / 256GB UFS 3.1 — 顺序读取 2000MB/s+"
+      },
+      {
+        "key": "屏幕尺寸",
+        "value": "6.62 英寸 — Samsung Display AMOLED"
+      },
+      {
+        "key": "屏幕材质",
+        "value": "三星 E4 发光材料 — 功耗降 15%，有害蓝光减 13%"
+      },
+      {
+        "key": "分辨率",
+        "value": "2400 × 1080 (FHD+) — 397 PPI"
+      },
+      {
+        "key": "刷新率",
+        "value": "120Hz — 支持 120 帧内容专区"
+      },
+      {
+        "key": "触控采样率",
+        "value": "600Hz（游戏场景）— 超灵敏触控"
+      },
+      {
+        "key": "屏幕形态",
+        "value": "直屏 + 左上角挖孔 — Flat Display, Hole-punch"
+      },
+      {
+        "key": "HDR",
+        "value": "HDR10+ — 次像素渲染、视频超分"
+      },
+      {
+        "key": "护眼认证",
+        "value": "SGS 低蓝光 Eye Comfort 认证"
+      },
+      {
+        "key": "后置主摄",
+        "value": "5000 万像素 IMX766，f/1.8，OIS 光学防抖 — DOL-HDR"
+      },
+      {
+        "key": "后置超广角",
+        "value": "1600 万像素，123°（矫正后约 111.7°）— Ultra-wide"
+      },
+      {
+        "key": "后置微距",
+        "value": "200 万像素，4cm 对焦距离 — Macro"
+      },
+      {
+        "key": "前置相机",
+        "value": "1600 万像素 — 支持夜景自拍 + EIS"
+      },
+      {
+        "key": "视频能力",
+        "value": "OIS+EIS 双防抖、视频三麦追焦、全像素全向对焦"
+      },
+      {
+        "key": "电池容量",
+        "value": "4500mAh — 2×2250mAh 串联双电芯"
+      },
+      {
+        "key": "有线充电",
+        "value": "65T 超级闪充 — Warp Charge 65T，29 分钟 1%→100%"
+      },
+      {
+        "key": "充电兼容",
+        "value": "兼容 Warp 65/30T/30、Dash 20W、18W PD、30W PPS"
+      },
+      {
+        "key": "充电安全",
+        "value": "12 个温度传感器 + 独立充电 IC — 硬件级防护"
+      },
+      {
+        "key": "散热系统",
+        "value": "空间散热系统 — 总散热面积 19067.44mm²"
+      },
+      {
+        "key": "散热材料",
+        "value": "五重：VC 均热板 + 铜石墨片 + 石墨片 + 散热硅胶 + 金属框架"
+      },
+      {
+        "key": "VC 均热板",
+        "value": "面积比一加 9 增加 59% — 散热效率提升 20%"
+      },
+      {
+        "key": "振动马达",
+        "value": "X 轴线性马达 — 4D Haptic，150+ 振动曲线调校"
+      },
+      {
+        "key": "扬声器",
+        "value": "双扬声器（底部 + 听筒式）— 杜比全景声 Dolby Atmos"
+      },
+      {
+        "key": "Wi-Fi",
+        "value": "电竞级三 Wi-Fi 天线 — 降低游戏延时"
+      },
+      {
+        "key": "5G",
+        "value": "SA/NSA 双模 5G — 默认开启 SA"
+      },
+      {
+        "key": "NFC",
+        "value": "支持 — 多功能 NFC"
+      },
+      {
+        "key": "指纹识别",
+        "value": "屏下光学指纹 — In-display Optical Fingerprint"
+      },
+      {
+        "key": "操作系统",
+        "value": "ColorOS 12（出厂搭载）— 基于 Android 11"
+      },
+      {
+        "key": "流畅认证",
+        "value": "泰尔实验室 36 个月流畅护航认证"
+      },
+      {
+        "key": "机身厚度",
+        "value": "8.29 mm"
+      },
+      {
+        "key": "机身重量",
+        "value": "198.5 g — 上下重量约 1:1 平衡设计"
+      },
+      {
+        "key": "边框设计",
+        "value": "137.5° 黄金钝角 — 150+ 次模型调整，30+ 手板测试"
+      },
+      {
+        "key": "机身材质",
+        "value": "铝合金中框 + 第二代丝绸玻璃工艺后盖"
+      },
+      {
+        "key": "后盖工艺",
+        "value": "漫反射渐变纹理 + OC0 蒸镀工艺（青空结界）"
+      },
+      {
+        "key": "配色",
+        "value": "暗物质 / 骇客银 / 青空结界 — Dark Matter / Hacker Silver / Aurora"
+      },
+      {
+        "key": "内部结构",
+        "value": "经典三段式 — 主板 / 电池 / 副板布局"
+      },
+      {
+        "key": "主板形态",
+        "value": "不规则异形主板 — 背面覆散热硅脂"
+      },
+      {
+        "key": "芯片封装",
+        "value": "PoP 叠层封装（SoC+内存）— Package on Package"
+      },
+      {
+        "key": "上市价格",
+        "value": "¥3299 起（8+128GB）— 2021.10.19 开售"
+      },
+      {
+        "key": "蓝牙",
+        "value": "Bluetooth 5.2 — 支持 aptX/LDAC"
+      }
+    ],
+    "features": "一加 9RT 是一加于 2021 年 10 月发布的「性能加料旗舰」，是 9R 的增强版，定位骁龙 888 直屏游戏向旗舰。核心亮点：高通骁龙 888 + LPDDR5 + UFS3.1 性能铁三角、三星 E4 120Hz 直屏、IMX766 OIS 主摄、65T 超级闪充（29 分钟充满 4500mAh 双电芯），以及一加史上最强的空间散热系统（散热面积 19067.44mm²，VC 均热板面积比一加 9 增加 59%）。\n\n对于装裱展示而言，9RT 的价值在于其「成熟的矛盾体」：它采用经典三段式内部结构（主板-电池-副板），拆解难度中等、卡扣紧实、零件模块化程度高，非常适合装裱展开图。异形不规则主板、叠层封装的骁龙 888、硕大的 VC 均热板、双电芯电池、X 轴线性马达都是极具视觉冲击力的展品。它是「火龙 888 时代」散热军备竞赛的典型标本——为了压住这颗 5nm 芯片，厂商把散热面积做到了平板级，这段历史本身就值得被装裱记录。\n\n建议装裱思路：以「空间散热系统」为主线叙事，VC 均热板作为视觉中心（面积大、金属质感强），主板与摄像头模组居上，双电芯电池居中，副板与扬声器、马达居下，散热材料（石墨片、铜箔）可作为底层衬底铺开，呼应其「最冷静 888」的历史定位。",
+    "parts": [
+      {
+        "name": "屏幕总成",
+        "en": "Display Assembly",
+        "note": "6.62 英寸三星 E4 AMOLED 直屏，120Hz + 600Hz 触控。屏幕通过卡扣与中框连接，拆解后卡扣依旧紧实（拆机实测）。屏下集成光学指纹模组。"
+      },
+      {
+        "name": "异形主板",
+        "en": "Irregular-shaped Motherboard",
+        "note": "不规则形状设计，背面覆盖散热硅脂。PoP 叠层封装骁龙 888 + LPDDR5，金属屏蔽罩齐全，元器件排列整齐。需补充细节图：主板正面芯片布局"
+      },
+      {
+        "name": "VC 均热板",
+        "en": "Vapor Chamber",
+        "note": "面积比一加 9 增加 59%，是空间散热系统的核心。装裱视觉主角——大面积金属薄片，质感极佳。"
+      },
+      {
+        "name": "双电芯电池",
+        "en": "Dual-cell Battery",
+        "note": "2×2250mAh 串联，等效 4500mAh。深棕色易拉胶固定（两条拉手），拆解时先展开拉手再垂直上提。"
+      },
+      {
+        "name": "后置三摄模组",
+        "en": "Triple Camera Module",
+        "note": "IMX766 主摄（OIS）+ 16MP 超广角 + 2MP 微距。需先取下摄像头模组才能分离主板。"
+      },
+      {
+        "name": "副板（尾插小板）",
+        "en": "Sub Board (Charging Port Board)",
+        "note": "集成 USB-C 充电口、麦克风。位于机身底部，通过排线与主板连接。"
+      },
+      {
+        "name": "X 轴线性马达",
+        "en": "X-axis Linear Motor",
+        "note": "4D Haptic 振动马达，150+ 种振动曲线调校。位于副板区域。"
+      },
+      {
+        "name": "底部扬声器",
+        "en": "Bottom Speaker",
+        "note": "与顶部听筒扬声器组成双扬，支持杜比全景声。"
+      },
+      {
+        "name": "听筒扬声器",
+        "en": "Earpiece Speaker",
+        "note": "位于显示框顶部，兼作听筒。拆解后留在屏幕总成上。"
+      },
+      {
+        "name": "铝合金中框",
+        "en": "Aluminum Alloy Frame",
+        "note": "137.5° 黄金钝角设计，参与整机散热（五重散热材料之一）。天线断点条位于中框四周。"
+      },
+      {
+        "name": "玻璃后盖",
+        "en": "Glass Back Cover",
+        "note": "第二代丝绸玻璃工艺（暗物质/骇客银）或 OC0 蒸镀工艺（青空结界）。加热后拆下。"
+      },
+      {
+        "name": "SIM 卡托",
+        "en": "SIM Card Tray",
+        "note": "双 Nano-SIM。拆副板时顺势取下。"
+      },
+      {
+        "name": "屏下指纹模组",
+        "en": "In-display Fingerprint Module",
+        "note": "光学式，固定在显示框上。拆解后留在屏幕总成一侧。需补充细节图：指纹模组特写"
+      },
+      {
+        "name": "同轴信号线",
+        "en": "Coaxial Antenna Cables",
+        "note": "两条，连接主板与副板的天线触点。拆装时注意卡扣方向。"
+      }
+    ],
+    "featureTags": [
+      "骁龙 888 5nm",
+      "120Hz E4 直屏",
+      "600Hz 超灵敏触控",
+      "IMX766 OIS 主摄",
+      "65T 超级闪充",
+      "4500mAh 双电芯",
+      "空间散热系统 19067mm²",
+      "VC 均热板 +59%",
+      "X 轴线性马达",
+      "杜比全景声双扬",
+      "三 Wi-Fi 电竞天线",
+      "ColorOS 12"
+    ],
+    "timeline": [
+      {
+        "date": "2021.10.13",
+        "title": "正式发布",
+        "desc": "一加 9RT 在国内发布，定位「性能加料旗舰」，作为一加 9R 的增强版登场，起售价 3299 元。",
+        "en": "OnePlus 9RT launched in China as an enhanced 9R, priced from CNY 3299."
+      },
+      {
+        "date": "2021.10.19",
+        "title": "正式开售",
+        "desc": "全渠道首销，8+128GB / 8+256GB / 12+256GB 三个版本。",
+        "en": "First sale across all channels in three configurations."
+      },
+      {
+        "date": "2021.11.11",
+        "title": "双十一主力",
+        "desc": "一加双十一 1 小时售出 10 万台手机，9RT 是主力机型之一，限时优惠 100 元 + 12 期免息。",
+        "en": "Key model in OnePlus Double-11 campaign (100K units in 1 hour brand-wide)."
+      },
+      {
+        "date": "2021.11.19",
+        "title": "媒体拆机",
+        "desc": "新浪科技等媒体发布完整拆机报告，确认三段式结构、异形主板、双电芯与五重散热用料扎实。",
+        "en": "Teardown reports confirmed solid three-section layout and cooling stack."
+      },
+      {
+        "date": "2022",
+        "title": "生命周期延续",
+        "desc": "作为骁龙 888 时代散热堆料的标志性机型被持续评测引用，「最冷静的 888」标签流传。",
+        "en": "Remembered as the reference for taming the Snapdragon 888 thermals."
+      }
+    ],
+    "categories": [
+      {
+        "name": "规格总览",
+        "en": "Overview",
+        "icon":"◆",
+        "color": "#2c3e50",
+        "components": [
+          {
+            "name": "整机概览",
+            "en": "Device Overview",
+            "desc": "一加 9RT 是 2021 年末的性能直屏旗舰：骁龙 888 + LPDDR5 + UFS3.1 铁三角，三星 E4 120Hz 直屏，4500mAh 双电芯 + 65T 闪充，8.295mm / 198.5g。",
+            "descEn": "Late-2021 performance flagship with flat display: SD888 + LPDDR5 + UFS3.1, Samsung E4 120Hz panel, 4500mAh dual-cell with 65T charging, 8.295mm / 198.5g.",
+            "note": "内部采用经典三段式结构（主板-电池-副板），拆解难度中等，零件模块化程度高，是手机装裱的理想候选。",
+            "noteEn": "Classic three-section internal layout (board-battery-subboard), medium teardown difficulty, highly modular — ideal framing candidate.",
+            "tags": [
+              "三段式",
+              "Three-section"
+            ]
+          },
+          {
+            "name": "性能铁三角",
+            "en": "Performance Triangle",
+            "desc": "骁龙 888（1+3+4 三丛集，X1 超大核 2.84GHz）+ LPDDR5 6400Mbps + UFS 3.1 闪存，2021 年安卓阵营顶级性能组合。",
+            "descEn": "SD888 (1+3+4 tri-cluster, X1 prime core 2.84GHz) + LPDDR5 6400Mbps + UFS 3.1 — the top-tier Android combo of 2021.",
+            "note": "骁龙 888 因 5nm 三星工艺功耗偏高被称「火龙」，9RT 的散热系统就是为它量身定制——这段「驯龙」历史是装裱文案的好素材。",
+            "noteEn": "SD888 earned the 'fire dragon' nickname for its thermals; 9RT's cooling system was purpose-built to tame it — great story for the frame caption.",
+            "tags": [
+              "5nm",
+              "Adreno 660"
+            ]
+          },
+          {
+            "name": "影像系统总览",
+            "en": "Camera System Overview",
+            "desc": "后置三摄：50MP IMX766（OIS，DOL-HDR）+ 16MP 123° 超广角 + 2MP 微距；前置 16MP。支持 1 亿超像素合成模式（OnePlus 首次搭载）。",
+            "descEn": "Triple rear: 50MP IMX766 (OIS, DOL-HDR) + 16MP 123° UW + 2MP macro; 16MP front. First OnePlus with 100MP synthesis mode.",
+            "note": "IMX766 是 2021 年明星传感器（1/1.56 英寸），同期 OPPO Find X3 系列同款——传感器型号是图鉴标注的核心信息。",
+            "noteEn": "IMX766 (1/1.56\") was 2021's star sensor, shared with OPPO Find X3 series — sensor model is key labeling info.",
+            "tags": [
+              "IMX766",
+              "OIS"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "屏幕显示",
+        "en": "Display",
+        "icon":"▢",
+        "color": "#2980b9",
+        "components": [
+          {
+            "name": "E4 AMOLED 面板",
+            "en": "E4 AMOLED Panel",
+            "desc": "6.62 英寸三星 E4 发光材料 AMOLED，2400×1080，397 PPI。相比 E3 功耗降低 15%、有害蓝光减少 13%，获 SGS 低蓝光护眼认证。支持 HDR10+、次像素渲染、视频超分与色彩增强。",
+            "descEn": "6.62\" Samsung E4 AMOLED, 2400×1080, 397 PPI. 15% lower power and 13% less harmful blue light vs E3, SGS Eye Comfort certified. HDR10+, sub-pixel rendering, video super-resolution.",
+            "note": "E4 直屏是游戏党的信仰配置——直屏无曲边误触。装裱时屏幕总成是最大的单片零件，适合作为展开图的底衬背景。",
+            "noteEn": "E4 flat panel — no curved-edge mistouches, beloved by gamers. The display assembly is the largest single part; use it as the backdrop layer in the frame.",
+            "tags": [
+              "三星 E4",
+              "Samsung E4",
+              "120Hz"
+            ]
+          },
+          {
+            "name": "高刷触控层",
+            "en": "High-sampling Touch Layer",
+            "desc": "120Hz 刷新率 + 游戏场景 600Hz 触控采样率，触控延迟压至 30ms 级。支持《和平精英》等游戏的超灵敏触控模式。",
+            "descEn": "120Hz refresh + 600Hz touch sampling in games, ~30ms touch latency. Ultra-responsive touch modes for supported titles.",
+            "note": "600Hz 采样率是同期主流 240-480Hz 的 1.5-2.5 倍，「指哪打哪」的电竞卖点。标注卡可写清「600Hz 触控采样 / 600Hz Touch Sampling」。",
+            "noteEn": "600Hz sampling was 1.5-2.5x the mainstream 240-480Hz — the esports selling point. Label it clearly on the caption card.",
+            "tags": [
+              "600Hz",
+              "触控采样"
+            ]
+          },
+          {
+            "name": "屏下指纹模组",
+            "en": "In-display Fingerprint Module",
+            "desc": "光学屏下指纹传感器，固定在显示框（屏幕总成一侧），通过短排线连接。利用 AMOLED 自发光照亮指纹脊线成像。",
+            "descEn": "Optical in-display fingerprint sensor fixed to the display frame, short flex to board. Uses AMOLED self-emission to illuminate fingerprint ridges.",
+            "note": "拆解后留在屏幕总成上，不与主板一起取下。需补充细节图：指纹模组特写（如要单独展示该零件，请补拍）",
+            "noteEn": "Stays with the display assembly after teardown, not with the board. Detail photo needed if displaying this part individually.",
+            "tags": [
+              "光学指纹",
+              "Optical FP"
+            ]
+          },
+          {
+            "name": "听筒/前摄挖孔区",
+            "en": "Earpiece & Front Camera Area",
+            "desc": "左上角 3.8mm 级挖孔容纳 16MP 前置相机；顶部听筒开孔与听筒扬声器共用出声通道。前后双环境光传感器实现万级自动亮度调节。",
+            "descEn": "Top-left hole-punch houses 16MP front camera; top earpiece slit doubles as second speaker outlet. Front+rear ambient light sensors enable 10K-level auto-brightness.",
+            "note": "前置相机支持夜景自拍与 EIS 电子防抖——小零件也有完整卖点，标注卡别只写「前摄」。",
+            "noteEn": "Front camera supports night selfie + EIS — even small parts deserve full captions.",
+            "tags": [
+              "16MP 前摄",
+              "双感光"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "影像系统",
+        "en": "Camera System",
+        "icon":"□",
+        "color": "#16a085",
+        "components": [
+          {
+            "name": "IMX766 主摄",
+            "en": "IMX766 Main Camera",
+            "desc": "5000 万像素索尼 IMX766（1/1.56 英寸大底），f/1.8 光圈、6P 镜头、24mm 等效焦距，支持 OIS 光学防抖、DOL-HDR（视频动态范围提升）、全像素全向对焦、夜鹰捕光算法。",
+            "descEn": "50MP Sony IMX766 (1/1.56\" large sensor), f/1.8, OIS, DOL-HDR for video, all-pixel omni-directional AF, night-hawk algorithm.",
+            "note": "2021 年明星传感器，OPPO 系旗舰同款。拆解时须先取下整个摄像头模组才能分离主板——拆机顺序要点，标注卡可注明。",
+            "noteEn": "Star sensor of 2021, shared with OPPO flagships. Camera module must come out before the motherboard — a key teardown-order fact for captions.",
+            "tags": [
+              "50MP",
+              "1/1.56\"",
+              "OIS"
+            ]
+          },
+          {
+            "name": "超广角镜头",
+            "en": "Ultra-wide Camera",
+            "desc": "1600 万像素，123° 原生视野（开启广角矫正后约 111.7°），兼负责大场面风光与街头纵深构图。",
+            "descEn": "16MP, 123° native FOV (~111.7° with distortion correction) for landscapes and street perspective.",
+            "note": "123° 是同期第一梯队的超广视角。三摄模组通常共用一条排线/支架，装裱时可整组展示也可分离摆放。",
+            "noteEn": "123° was first-tier FOV for its time. The triple module often shares one flex/bracket — display as a group or separated.",
+            "tags": [
+              "16MP",
+              "123°"
+            ]
+          },
+          {
+            "name": "微距镜头",
+            "en": "Macro Camera",
+            "desc": "200 万像素微距，最近对焦距离 4cm，用于拍摄材质纹理、零件细节等近距离题材。",
+            "descEn": "2MP macro, 4cm minimum focus distance for textures and close-up detail.",
+            "note": "微距头体积最小，装裱时容易「消失」在布局里——建议用红色小圆圈标注或单独放在标注卡旁。",
+            "noteEn": "The macro cam is tiny and easily lost in the layout — highlight with a red circle marker or place beside its caption card.",
+            "tags": [
+              "2MP",
+              "4cm 微距"
+            ]
+          },
+          {
+            "name": "前置相机",
+            "en": "Front Camera",
+            "desc": "1600 万像素索尼 IMX471（1/1.43 英寸，1.0µm），f/2.4 光圈，挖孔前摄，支持夜景自拍、EIS 电子防抖与人脸解锁。",
+            "descEn": "16MP Sony IMX471 (1/1.43\", 1.0µm), f/2.4 hole-punch front camera with night selfie, EIS and face unlock.",
+            "note": "前置相机通常独立于后摄模组固定在前框，拆解路径不同，别和后摄模组混在一起收纳。",
+            "noteEn": "Front cam sits separately in the front frame — different teardown path, store it apart from the rear module.",
+            "tags": [
+              "16MP",
+              "EIS"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "核心计算",
+        "en": "Computing Core",
+        "icon":"▤",
+        "color": "#8e44ad",
+        "components": [
+          {
+            "name": "骁龙 888 SoC",
+            "en": "Snapdragon 888 SoC",
+            "desc": "5nm 制程，1×Cortex-X1 2.84GHz + 3×A78 2.42GHz + 4×A55 1.8GHz，Adreno 660 GPU（图形 +35%）。集成 X60 5G 基带。",
+            "descEn": "5nm, 1×Cortex-X1 2.84GHz + 3×A78 2.42GHz + 4×A55 1.8GHz, Adreno 660 (+35% graphics). Integrated X60 5G modem.",
+            "note": "「火龙 888」——高性能高发热的矛盾体，催生了 9RT 的平板级散热。装裱叙事核心：这颗芯片与其下的散热堆料是「矛与盾」的关系。",
+            "noteEn": "The 'fire dragon 888' — high performance, high heat. The frame's core narrative: this chip vs. the cooling stack beneath it.",
+            "tags": [
+              "5nm",
+              "X1 超大核"
+            ]
+          },
+          {
+            "name": "PoP 叠层封装",
+            "en": "PoP Stacked Package",
+            "desc": "LPDDR5 内存颗粒直接堆叠焊接在 SoC 上方（Package on Package），节省主板面积、缩短信号路径。拆机可见叠层结构位于金属屏蔽罩下。",
+            "descEn": "LPDDR5 stacked directly atop the SoC (Package-on-Package), saving board area and shortening signal paths. Visible under the metal shield.",
+            "note": "PoP 芯片不可分离——装裱时只能以主板整体展示，不可试图分开 SoC 与内存（会报废）。",
+            "noteEn": "PoP chips are inseparable — display the motherboard as a whole; never attempt to split SoC from RAM (destructive).",
+            "tags": [
+              "PoP",
+              "叠层封装"
+            ]
+          },
+          {
+            "name": "UFS 3.1 闪存",
+            "en": "UFS 3.1 Storage",
+            "desc": "128GB / 256GB UFS 3.1 闪存芯片，顺序读取超 2000MB/s，应用安装与大文件传输速度旗舰级。",
+            "descEn": "128/256GB UFS 3.1 flash, 2000MB/s+ sequential reads — flagship-grade app install and file transfer speeds.",
+            "note": "闪存芯片通常位于 SoC 附近、屏蔽罩覆盖。需补充细节图：主板屏蔽罩开启后的芯片丝印（如需精确标注每颗芯片）",
+            "noteEn": "Flash chip sits near SoC under shielding. Detail photo of chip markings needed for per-chip precision labeling.",
+            "tags": [
+              "UFS 3.1",
+              "2000MB/s"
+            ]
+          },
+          {
+            "name": "金属屏蔽罩组",
+            "en": "EMI Shield Cans",
+            "desc": "主板正面多组金属屏蔽罩覆盖射频与计算芯片区，屏蔽电磁干扰并辅助导热；主板背面整层散热硅脂贴合中框。",
+            "descEn": "Multiple metal EMI shield cans over RF/compute zones on board front; full thermal grease layer on board back coupling to the frame.",
+            "note": "拆机报告特别提到「元器件整齐排列 + 传统金属屏蔽层」——屏蔽罩的金属光泽本身是装裱质感加分项。",
+            "noteEn": "Teardown praised the tidy component layout under classic metal shielding — the shield's metallic sheen is a visual bonus in the frame.",
+            "tags": [
+              "EMI 屏蔽",
+              "散热硅脂"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "散热系统",
+        "en": "Cooling System",
+        "icon":"■",
+        "color": "#3498db",
+        "components": [
+          {
+            "name": "VC 均热板",
+            "en": "Vapor Chamber",
+            "desc": "大面积真空腔均热板，面积比一加 9 增加 59%，覆盖主板核心热源。内部相变工质蒸发-冷凝循环，把点热源扩散为面热源。",
+            "descEn": "Large vapor chamber, +59% area vs OnePlus 9, covering core heat sources. Phase-change working fluid spreads point heat into planar heat.",
+            "note": "装裱的视觉主角！面积大、铜质金属光泽强、表面蚀刻纹理精致。建议居中摆放，配「19067.44mm² 总散热面积」数据卡。",
+            "noteEn": "The visual centerpiece! Large copper sheen with etched texture. Center it, with the 19067.44mm² total-cooling-area data card.",
+            "tags": [
+              "VC +59%",
+              "相变散热"
+            ]
+          },
+          {
+            "name": "铜石墨片",
+            "en": "Copper-Graphite Sheet",
+            "desc": "铜箔与石墨复合散热片，贴合芯片与电池区域，利用铜的高导热 + 石墨的面内均热特性快速转移热量。",
+            "descEn": "Copper-foil/graphite composite sheet over chip and battery zones — copper conducts, graphite spreads in-plane.",
+            "note": "薄如纸片易卷边，装裱前需用重物压平 24 小时，粘贴时用整面点胶防止翘边。",
+            "noteEn": "Paper-thin and prone to curling — flatten under weight for 24h before framing; full-surface dot glue to prevent lift.",
+            "tags": [
+              "铜箔",
+              "石墨复合"
+            ]
+          },
+          {
+            "name": "石墨散热片",
+            "en": "Graphite Sheets",
+            "desc": "多层石墨片覆盖机身背部与屏幕下方，形成立体散热网络，把热量均匀分摊到整个机身。",
+            "descEn": "Multi-layer graphite sheets across back cover and beneath display, forming a 3D network spreading heat body-wide.",
+            "note": "石墨片是最「低调」的散热件——深灰色哑光薄片。装裱时可作为底层衬底铺开，衬托上层金属零件。",
+            "noteEn": "The most understated cooling part — matte dark sheets. Use as a base layer beneath shinier metal parts.",
+            "tags": [
+              "多层石墨",
+              "立体散热"
+            ]
+          },
+          {
+            "name": "散热硅胶/凝胶",
+            "en": "Thermal Gel & Pads",
+            "desc": "填充在芯片与屏蔽罩、屏蔽罩与中框之间的导热界面材料，消除空气间隙（空气是热的不良导体），主板背面整层覆盖。",
+            "descEn": "Thermal interface material filling gaps between chips, shields and frame — air is a poor conductor. Full layer on board back.",
+            "note": "凝胶拆解后会变形失形，无法完整保留——装裱时可省略，或在标注卡注明「散热凝胶（拆解后不可复原）」。",
+            "noteEn": "Gel deforms on removal and can't be preserved — omit from frame or note 'thermal gel (not recoverable after teardown)'.",
+            "tags": [
+              "导热界面",
+              "TIM"
+            ]
+          },
+          {
+            "name": "金属中框导热",
+            "en": "Frame Heat Spreading",
+            "desc": "铝合金中框作为五重散热的最后一环，把内部热量导出到机身表面。9RT 重新设计内部散热路线，让热量均匀分散到背板和边框，避免局部烫手。",
+            "descEn": "Aluminum frame as the final cooling stage, conducting heat to the body surface. 9RT rerouted internal heat paths for even distribution — no hot spots.",
+            "note": "中框既是结构件又是散热件——一物两用。这是「空间散热系统」命名的由来：利用整机空间散热。",
+            "noteEn": "Frame doubles as structure and heatsink — hence the name 'Space Cooling System': the whole body's volume works as radiator.",
+            "tags": [
+              "金属中框",
+              "整机散热"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "电源系统",
+        "en": "Power System",
+        "icon":"▶",
+        "color": "#e67e22",
+        "components": [
+          {
+            "name": "双电芯电池",
+            "en": "Dual-cell Battery",
+            "desc": "2×2250mAh 电芯串联，等效 4500mAh。双电芯设计让 65T 大功率充电时电流分流，降低单电芯发热与损耗。深棕色易拉胶固定。",
+            "descEn": "2×2250mAh cells in series = 4500mAh. Dual-cell splits current under 65T charging, cutting per-cell heat and wear. Brown pull-tab adhesive.",
+            "note": "拆解要点：先展开两条易拉胶拉手再垂直上提，勿用金属工具撬（刺穿电芯有起火风险）。装裱前确保电池已彻底放电。",
+            "noteEn": "Teardown: unwrap both pull tabs, lift vertically — never pry with metal (puncture = fire risk). Fully discharge before framing.",
+            "tags": [
+              "2×2250mAh",
+              "串联双电芯"
+            ]
+          },
+          {
+            "name": "65T 闪充管理 IC",
+            "en": "65T Charge Pump IC",
+            "desc": "独立充电管理芯片配合 12 个温度传感器，精确控制充电温升。支持 Warp 65T/65/30T/30、Dash 20W、18W PD、30W PPS 协议。满电后直接供电不伤电池。",
+            "descEn": "Dedicated charge-pump IC + 12 temperature sensors for precise thermal control. Warp 65T/65/30T, Dash 20W, 18W PD, 30W PPS. Direct power supply when full.",
+            "note": "「29 分钟充满」的幕后功臣。12 个温度传感器是同期机型中罕见的堆料——标注卡值得专门写这条。",
+            "noteEn": "The hero behind 0-100% in 29min. 12 temperature sensors was rare over-engineering for 2021 — worth its own caption line.",
+            "tags": [
+              "65T",
+              "12 温度传感器"
+            ]
+          },
+          {
+            "name": "USB-C 充电口",
+            "en": "USB-C Port",
+            "desc": "位于副板（尾插小板）上，支持 USB 2.0 数据与 65T 闪充大电流。口周有防水胶圈。",
+            "descEn": "On the sub board; USB 2.0 data + 65T high-current charging, with sealing gasket around the port.",
+            "note": "尾插是整机插拔寿命消耗最大的零件——如果你的样机充电口有磨损痕迹，反而是「真实使用感」的展品细节。",
+            "noteEn": "The most wear-prone part. Visible wear on your unit's port actually adds authentic patina to the exhibit.",
+            "tags": [
+              "USB-C",
+              "副板集成"
+            ]
+          },
+          {
+            "name": "电源排线组",
+            "en": "Power Flex Cables",
+            "desc": "主板-副板-电池之间的 BTB 排线组，传输电力与信号。同轴信号线（两条）负责天线连接。",
+            "descEn": "BTB flex set linking main board, sub board and battery for power and signals; two coaxial cables for antennas.",
+            "note": "排线细软易折伤，拆装时注意 BTB 座子的垂直插拔——斜撬会崩掉座子上的塑料卡扣。",
+            "noteEn": "Flexes are delicate — BTB connectors must be pried vertically; angled prying breaks the plastic latches.",
+            "tags": [
+              "BTB 排线",
+              "同轴线×2"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "结构机身",
+        "en": "Structure & Body",
+        "icon":"◇",
+        "color": "#7f8c8d",
+        "components": [
+          {
+            "name": "铝合金中框",
+            "en": "Aluminum Alloy Frame",
+            "desc": "一体成型铝合金中框，137.5° 黄金钝角弧度（150+ 次模型调整、30+ 手板测试选定），整机重量上下约 1:1 平衡。天线注塑断点分布于四边。",
+            "descEn": "Unibody aluminum frame with 137.5° golden-obtuse curvature (150+ model iterations, 30+ prototypes). Near 1:1 top-bottom weight balance. Antenna parting lines on all sides.",
+            "note": "「黄金钝角」是一加手感营销的巅峰案例——装裱文案可写「137.5° Golden Obtuse Angle — 150 次调校的弧度」。",
+            "noteEn": "The golden-obtuse-angle was peak OnePlus ergonomics marketing — caption it: '137.5° Golden Obtuse Angle — 150 iterations'.",
+            "tags": [
+              "137.5°",
+              "重量平衡"
+            ]
+          },
+          {
+            "name": "玻璃后盖",
+            "en": "Glass Back Cover",
+            "desc": "暗物质/骇客银采用第二代丝绸玻璃工艺（AG 磨砂，不留汗渍指纹）；青空结界采用 OC0 蒸镀 + 10 层 NCVM 低折射率镀层堆叠，呈现漫反射渐变纹理。",
+            "descEn": "Dark Matter/Hacker Silver: 2nd-gen silk glass (AG matte, smudge-proof). Aurora: OC0 vapor deposition + 10-layer NCVM stack for diffuse gradient texture.",
+            "note": "后盖是装裱里最上镜的大件——青空结界配色的光线纹理在射灯下会呈现极光效果，建议在框内留一个斜向光源角度。",
+            "noteEn": "The most photogenic large part — Aurora's light texture glows under angled lighting; plan a raking light in the display.",
+            "tags": [
+              "丝绸玻璃",
+              "OC0 蒸镀"
+            ]
+          },
+          {
+            "name": "屏幕卡扣结构",
+            "en": "Display Clip Structure",
+            "desc": "屏幕总成通过整圈塑料卡扣 + 胶与中框固定。拆机实测拆后卡扣依旧紧实，装回可正常开机——卡扣设计冗余度高。",
+            "descEn": "Display assembly secured by full-perimeter plastic clips + adhesive. Teardown confirmed clips stay tight after removal; phone reassembled and booted fine.",
+            "note": "「拆后卡扣依旧紧实」是做工的硬指标——很多机型拆一次卡扣就断。这条适合写进装裱的做工评价卡。",
+            "noteEn": "Clips surviving teardown is a hard build-quality metric — many phones break clips on first open. Worth a build-quality caption.",
+            "tags": [
+              "卡扣",
+              "可复原拆解"
+            ]
+          },
+          {
+            "name": "螺丝组",
+            "en": "Screw Set",
+            "desc": "全机 Phillips 1.5mm 十字螺丝（主板 2 颗独立固定 + 各护板螺丝），长度规格统一度较高。",
+            "descEn": "Philips 1.5mm screws throughout (2 dedicated motherboard screws + shield screws), fairly uniform spec.",
+            "note": "螺丝虽小，装裱时按拆解位置分区摆放（可用微型零件格）比混在一起更专业——观众能看懂「结构秩序」。",
+            "noteEn": "Group screws by teardown zone in mini compartments rather than mixing — viewers can read the structural order.",
+            "tags": [
+              "Phillips 1.5"
+            ]
+          },
+          {
+            "name": "SIM 卡托",
+            "en": "SIM Tray",
+            "desc": "双 Nano-SIM 卡托，带防水胶圈，位于中框底部左侧。拆副板时顺势取出。",
+            "descEn": "Dual Nano-SIM tray with sealing gasket, bottom-left of frame. Removed along with the sub board.",
+            "note": "卡托是最容易被遗忘的小零件——拆解收纳时建议第一时间放入零件盒，避免遗失。",
+            "noteEn": "The most easily forgotten small part — bag it first during teardown to avoid loss.",
+            "tags": [
+              "双 Nano-SIM"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "音频触觉",
+        "en": "Audio & Haptics",
+        "icon":"●",
+        "color": "#d35400",
+        "components": [
+          {
+            "name": "底部扬声器",
+            "en": "Bottom Speaker",
+            "desc": "底部独立扬声器单元，与听筒扬声器组成立体声双扬，支持杜比全景声（Dolby Atmos），游戏视频沉浸感强。",
+            "descEn": "Dedicated bottom speaker unit; pairs with earpiece speaker for stereo, Dolby Atmos certified for immersive gaming/video.",
+            "note": "扬声器单元带出声腔体（BOX），体积比想象中大——喇叭好不好听一半靠腔体，装裱时可标注「独立音腔」。",
+            "noteEn": "Speaker includes an acoustic chamber (BOX), larger than expected — half the sound quality is the chamber. Caption 'independent acoustic chamber'.",
+            "tags": [
+              "杜比全景声",
+              "独立音腔"
+            ]
+          },
+          {
+            "name": "听筒扬声器",
+            "en": "Earpiece Speaker",
+            "desc": "顶部听筒位置的二合一扬声器，既负责通话听筒又承担立体声副声道。拆解后留在显示框上。",
+            "descEn": "2-in-1 earpiece speaker at top — phone earpiece plus stereo second channel. Stays on display frame after teardown.",
+            "note": "听筒扬声器体积小功率低，与底部主扬形成「一大一小」非对称双扬——同期双扬机型的普遍方案。",
+            "noteEn": "Smaller and lower-powered than the bottom unit — the typical asymmetric stereo pairing of its generation.",
+            "tags": [
+              "立体声",
+              "双扬"
+            ]
+          },
+          {
+            "name": "X 轴线性马达",
+            "en": "X-axis Linear Motor",
+            "desc": "4D Haptic 振动马达，超过 150 种振动曲线调校，打字细腻、游戏反馈真实。X 轴方向振动干脆利落，无转子马达的拖沓感。",
+            "descEn": "4D Haptic X-axis linear motor with 150+ tuned vibration curves — crisp typing feel, realistic game feedback, none of the mush of rotary motors.",
+            "note": "线性马达是「用了回不去」的配置——装裱标注卡可写「150+ 振动曲线 / 150+ Haptic Curves」，观众能直观理解调校量。",
+            "noteEn": "Linear motors are a 'no going back' feature — caption '150+ haptic curves' so viewers grasp the tuning effort.",
+            "tags": [
+              "X 轴马达",
+              "4D Haptic"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "连接通信",
+        "en": "Connectivity",
+        "icon":"⚙",
+        "color": "#27ae60",
+        "components": [
+          {
+            "name": "三 Wi-Fi 天线系统",
+            "en": "Triple Wi-Fi Antennas",
+            "desc": "电竞级三 Wi-Fi 天线布局，横握游戏时双手遮挡也能保持信号在线，大幅降低延时。天线触点分布于中框断点条。",
+            "descEn": "Esports-grade triple Wi-Fi antenna layout — signal stays alive even with both hands covering the frame in landscape gaming, cutting latency.",
+            "note": "「天线」在手机里是看不见的中框断点+触点，不是独立零件——装裱时在中框对应位置用引线标注即可。",
+            "noteEn": "Phone 'antennas' are frame parting lines + contact points, not standalone parts — annotate on the frame with leader lines.",
+            "tags": [
+              "三 Wi-Fi",
+              "电竞天线"
+            ]
+          },
+          {
+            "name": "5G 射频前端",
+            "en": "5G RF Front-end",
+            "desc": "骁龙 X60 基带配套的射频前端模组（PA、滤波器、开关），支持 SA/NSA 双模 5G，出厂默认开启 SA。位于主板屏蔽罩下。",
+            "descEn": "RF front-end (PAs, filters, switches) paired with X60 modem — SA/NSA dual-mode 5G, SA on by default. Under board shielding.",
+            "note": "射频模组深藏屏蔽罩下，不拆罩不可见——需补充细节图：屏蔽罩开启后的射频区（如需精确展示）。",
+            "noteEn": "RF section hides under shield cans — detail photo needed after shield removal for precise exhibit.",
+            "tags": [
+              "X60 基带",
+              "SA/NSA"
+            ]
+          },
+          {
+            "name": "NFC 天线",
+            "en": "NFC Antenna",
+            "desc": "多功能 NFC，天线线圈通常贴合于后盖内侧或主板上方区域，负责交通卡、门禁模拟等近场通信。",
+            "descEn": "Multifunction NFC coil typically adhered inside back cover or above motherboard — transit cards, access emulation.",
+            "note": "NFC 线圈薄如贴纸，揭取时从边缘缓慢剥离，卷折会造成线圈断线失效。",
+            "noteEn": "NFC coil is sticker-thin — peel slowly from an edge; folding breaks the coil.",
+            "tags": [
+              "NFC",
+              "近场通信"
+            ]
+          },
+          {
+            "name": "蓝牙/Wi-Fi 模组",
+            "en": "BT/Wi-Fi Module",
+            "desc": "蓝牙 5.2（支持 aptX/LDAC 高清音频）与 Wi-Fi 6 共用射频模组，集成于主板。",
+            "descEn": "Bluetooth 5.2 (aptX/LDAC hi-res audio) and Wi-Fi 6 share the RF module on the main board.",
+            "note": "LDAC/aptX 支持是无线音质的隐形福利——标注卡可写「BT 5.2 · LDAC」，懂行的观众会点头。",
+            "noteEn": "LDAC/aptX support is a hidden wireless-audio bonus — 'BT 5.2 · LDAC' on the caption earns nods from those who know.",
+            "tags": [
+              "BT 5.2",
+              "LDAC"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "传感交互",
+        "en": "Sensors & Interaction",
+        "icon":"▲",
+        "color": "#c0392b",
+        "components": [
+          {
+            "name": "前后双环境光传感器",
+            "en": "Dual Ambient Light Sensors",
+            "desc": "前后各一颗环境光传感器，实现万级亮度自动调节，Gamma 2.2 曲线背光更接近人眼感受，逆光场景屏幕亮度判断更准确。",
+            "descEn": "Front + rear ambient light sensors enabling 10K-level auto-brightness; Gamma 2.2 backlight curve tracks human perception better in backlit scenes.",
+            "note": "「双感光」解决单前传感器在逆光下误判的痛点——小传感器大体验，标注卡值得一句。",
+            "noteEn": "Dual sensing fixes single-sensor misreads in backlight — small sensor, big UX difference. Worth one caption line.",
+            "tags": [
+              "双感光",
+              "万级调光"
+            ]
+          },
+          {
+            "name": "惯性传感器组",
+            "en": "IMU Sensors",
+            "desc": "加速度计 + 陀螺仪（IMU），支持屏幕旋转、游戏体感操控、视频 EIS 防抖的姿态数据。",
+            "descEn": "Accelerometer + gyroscope (IMU) for rotation, motion game controls, and EIS video stabilization data.",
+            "note": "EIS 电子防抖依赖 IMU 数据——传感器不止服务于「转屏」，标注时可关联视频防抖功能。",
+            "noteEn": "IMU feeds EIS stabilization — sensors do more than screen rotation; link them to video stabilization on captions.",
+            "tags": [
+              "加速度计",
+              "陀螺仪"
+            ]
+          },
+          {
+            "name": "麦克风阵列",
+            "en": "Microphone Array",
+            "desc": "多麦克风布局（底部主麦 + 顶部副麦 + 后摄区追焦麦），支持视频三麦追焦（声音跟随画面主体变焦）。",
+            "descEn": "Multi-mic layout (bottom main + top secondary + camera-zone focus mic) enabling video audio-zoom tracking.",
+            "note": "「三麦追焦」是视频时代的新功能——麦克风这种针孔级零件在装裱中通常不单独展示，写入功能说明即可。",
+            "noteEn": "Audio-zoom is a video-era feature — pinhole mics aren't framed individually; note the function instead.",
+            "tags": [
+              "三麦追焦",
+              "降噪"
+            ]
+          }
+        ]
+      }
+    ],
+    "usageNotes": "本图鉴按功能分为 10 大类、40+ 组件，中英双语对照。装裱时可按类别分组排列，每组配一张功能说明卡。\n\n推荐叙事主线：「驯龙记」——以骁龙 888（矛）与空间散热系统（盾）的对抗为故事线，VC 均热板居中作为视觉焦点，主板与摄像头模组居上，双电芯电池居中，副板、扬声器、马达居下，石墨片/铜箔作底层衬底。\n\n本次资料基于官网规格页 + 媒体拆机报告生成，未对照实拍拆解图。标注「需补充细节图」的零件（主板芯片丝印、指纹模组、射频区），建议补拍后我再精确校准标注。\n\n如果你的拆解中有图鉴未覆盖到的零件，告诉我具体长什么样，我来补充对应的功能说明！\n\nIf you have parts not covered here, describe them and I'll add their descriptions!",
+    "framingNotes": {
+      "canDisassemble": true,
+      "recommendedFrame": "黑色窄边铝合金深框（30-40mm 深度）",
+      "frameSize": "A3（297×420mm）或 40×50cm，视零件展开密度",
+      "customFrame": false,
+      "notes": "三段式结构拆解友好，卡扣冗余度高（实测拆后可复原）。五重散热材料适合分层叙事：石墨片打底 → VC 均热板居中 → 主板/电池/副板三区展开。电池务必彻底放电后再装裱。凝胶类零件不可复原，标注说明即可。青空结界配色建议配斜向射灯角度突出 OC0 纹理。"
+    },
+    "dataSources": [
+      "官方：oneplus.com/cn/9rt（产品页）",
+      "官方：oneplus.com/cn/9rt/specs（规格页）",
+      "官方：oneplus.in/9rt/specs（印度官网，交叉验证）",
+      "媒体拆机：新浪科技 2021-11-19《一加9RT拆机》",
+      "媒体：163.com 评测（137.5°黄金钝角/重量平衡）",
+      "第三方规格库：ZOL 中关村在线（发布/上市日期交叉验证）",
+      "拆解指南：vrm24.com（螺丝规格/易拉胶/拆解顺序）"
+    ],
+    "pinterestLinks": [
+      "https://www.oneplus.com/cn/9rt"
+    ],
+    "images": [],
+    "framedPhotos": [],
+    createdAt: today,
+    "status": "completed"
   }
+  ];
+  const SAMPLE_REVIEWS = [
+    {
+      id:"r001", productId:"p001", productName:"Canon EOS 40D",
+      designName:"EOS 40D v1 标注版", dueDate:yesterday,
+      status:"pending",
+      checks:{ typos:false, contentError:false, patternError:false, paramCorrect:false, other:"", doneCount:0 },
+      clientConfirmed:false, notes:"待检查中英文双语标签是否准确"
+    },
+    {
+      id:"r002", productId:"p002", productName:"Nokia N95",
+      designName:"N95 双滑盖展开版", dueDate:today,
+      status:"pending",
+      checks:{ typos:false, contentError:false, patternError:false, paramCorrect:false, other:"", doneCount:0 },
+      clientConfirmed:false, notes:""
+    },
+    {
+      id:"r003", productId:"p003", productName:"MacBook (A1181)",
+      designName:"A1181 拆解装裱图鉴", dueDate:daysAgo(5),
+      status:"pending",
+      checks:{ typos:false, contentError:false, patternError:false, paramCorrect:false, other:"", doneCount:0 },
+      clientConfirmed:false, notes:"产品资料已重建为 A1181 图鉴级（原 M2 资料删除），待重新审核"
+    }
   ];
   const SAMPLE_CHATS = [];
   
