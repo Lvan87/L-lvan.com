@@ -1277,13 +1277,6 @@ function initSampleData(){
       createdAt:today, status:"completed",
       usageNotes:"本图鉴按功能分为 9 大类、40+ 组件，中英双语对照。装裱时可按类别分组排列，每组配一张功能说明卡。\n\n如果你的拆解中有图鉴未覆盖到的零件，告诉我具体长什么样，我来补充对应的功能说明！\n\nIf you have parts not covered here, describe them and I'll add their descriptions!"
     },
-{id:"p002", brand:"Nokia", model:"N95", category:"智能手机", size:"99 × 53 × 21 mm",
-      basicInfo:{ releaseDate:"2007年3月", origin:"芬兰" },
-      specs:[], features:"", parts:[],
-      framingNotes:{ canDisassemble:true, recommendedFrame:"", frameSize:"", customFrame:false, notes:"" },
-      pinterestLinks:[], images:[], framedPhotos:[],
-      createdAt:today, status:"draft"
-    },
 {
       id:"p003", brand:"Apple", model:"MacBook (A1181)", category:"笔记本电脑", size:"325 × 227 × 27.5 mm",
       basicInfo:{ releaseDate:"2006年5月", origin:"中国/美国" },
@@ -5689,22 +5682,14 @@ function initSampleData(){
     "status": "completed"
   }
   ];
-  const SAMPLE_REVIEWS = [
-    {
+  const SAMPLE_REVIEWS = [{
       id:"r001", productId:"p001", productName:"Canon EOS 40D",
       designName:"EOS 40D v1 标注版", dueDate:yesterday,
       status:"pending",
       checks:{ typos:false, contentError:false, patternError:false, paramCorrect:false, other:"", doneCount:0 },
       clientConfirmed:false, notes:"待检查中英文双语标签是否准确"
     },
-    {
-      id:"r002", productId:"p002", productName:"Nokia N95",
-      designName:"N95 双滑盖展开版", dueDate:today,
-      status:"pending",
-      checks:{ typos:false, contentError:false, patternError:false, paramCorrect:false, other:"", doneCount:0 },
-      clientConfirmed:false, notes:""
-    },
-    {
+{
       id:"r003", productId:"p003", productName:"MacBook (A1181)",
       designName:"A1181 拆解装裱图鉴", dueDate:daysAgo(5),
       status:"pending",
