@@ -5700,6 +5700,7 @@ function initSampleData(){
     "id": "p009",
     "brand": "Apple",
     "model": "Apple iPad (第 4 代) (型号 A1458 / A1459 / A1460)",
+    "coverModel": "iPad (第 4 代) (A1460)",
     "category": "平板电脑 / Retina 显示屏 iPad (Tablet / iPad with Retina Display)",
     "size": "241.2 × 185.7 × 9.4 mm",
     "basicInfo": {
@@ -6708,7 +6709,7 @@ function initSampleData(){
       var pCount=(stored.categories||[]).reduce(function(sum,c){return sum+(c.components||[]).length;},0);
       // Sync basic metadata fields (model/brand/category/size) even if component count unchanged
       var metaChanged=(s.model&&s.model!==stored.model)||(s.brand&&s.brand!==stored.brand)
-        ||(s.category&&s.category!==stored.category)||(s.size&&s.size!==stored.size);
+        ||(s.category&&s.category!==stored.category)||(s.size&&s.size!==stored.size)||(s.coverModel&&s.coverModel!==(stored.coverModel||""));
       if(sCount>pCount||metaChanged||matchedByModel){
         var imgs=stored.images,fp=stored.framedPhoto,fps=stored.framedPhotos,ca=stored.createdAt;
         var idx=PRODUCTS.indexOf(stored);
@@ -7122,7 +7123,7 @@ function renderProducts(main){
   PRODUCTS.forEach(p => {
     grid.innerHTML +=
       '<div class="pcard" onclick="openProduct(\''+p.id+'\')">'+
-      '<div class="pc-top"><div class="pc-brand">'+esc(p.brand)+'</div><div class="pc-cat">'+esc(p.category)+'</div><div class="pc-model">'+(function(brand,m){if(brand&&m.toLowerCase().slice(0,brand.length)===brand.toLowerCase()){var r=m.slice(brand.length).trim();if(r&&!/^\d/.test(r))m=r;}if(m.length<=16)return esc(m);var subs=[];var main=m.replace(/\(([^()]*)\)/g,function(all,inner){if(/型号|Model|A1\d{3}|PLJ|CPH/.test(inner)){subs.push("("+inner+")");return " ";}return all;});main=main.replace(/\s+/g," ").trim();return esc(main)+(subs.length?'<span class="pc-model-sub">'+esc(subs.join(" "))+'</span>':"");})(p.brand||"",p.model||"")+'</div></div>'+
+      '<div class="pc-top"><div class="pc-brand">'+esc(p.brand)+'</div><div class="pc-cat">'+esc(p.category)+'</div><div class="pc-model">'+(function(brand,m){if(brand&&m.toLowerCase().slice(0,brand.length)===brand.toLowerCase()){var r=m.slice(brand.length).trim();if(r&&!/^\d/.test(r))m=r;}if(m.length<=16)return esc(m);var subs=[];var main=m.replace(/\(([^()]*)\)/g,function(all,inner){if(/型号|Model|A1\d{3}|PLJ|CPH/.test(inner)){subs.push("("+inner+")");return " ";}return all;});main=main.replace(/\s+/g," ").trim();return esc(main)+(subs.length?'<span class="pc-model-sub">'+esc(subs.join(" "))+'</span>':"");})(p.brand||"",p.coverModel||p.model||"")+'</div></div>'+
       '<div class="pc-body">'+
       '<div class="pc-row"><span class="pc-label">发布</span><span class="pc-val">'+esc((p.basicInfo&&p.basicInfo.releaseDate)||"—")+'</span></div>'+
       (p.size?'<div class="pc-row"><span class="pc-label">尺寸</span><span class="pc-val">'+esc(p.size)+'</span></div>':"")+

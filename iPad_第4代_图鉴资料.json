@@ -6,445 +6,915 @@
   "releaseDate": "2012-10-23 发布，2012-11-02 上市",
   "features": "iPad（第 4 代）是 Apple 于 2012 年 10 月 23 日在加州特别发布会上推出的第四代 iPad，官方名称「配备 Retina 显示屏的 iPad」，媒体与用户习惯称 iPad 4。它在 iPad（第 3 代）发布仅约七个月后便接棒登场，核心升级有三处：芯片由 A5X 更换为双核 A6X（配备四核图形处理器，CPU 与图形性能均约为前代两倍）、前置摄像头升级为 120 万像素 FaceTime HD 高清摄像头（支持 720p 视频通话）、接口由 30 针 Dock 更换为 Lightning——这也使它成为 iPad 家族中第一款采用 Lightning 接口的产品。机身延续 9.7 英寸 Retina 显示屏（2048×1536、264 PPI、IPS 技术）与 241.2 × 185.7 × 9.4 毫米的经典尺寸，提供黑、白两色与 Wi-Fi / Wi-Fi + Cellular 两种网络版本（A1458 / A1459 / A1460）。\n\n影像方面，后置 500 万像素 iSight 摄像头采用 5 镜式镜头、ƒ/2.4 光圈、混合红外线滤镜与背照式感光，支持自动对焦与 1080p HD 视频拍摄（含视频防抖动）；前置 FaceTime HD 摄像头负责 720p 视频通话与面部检测。续航沿用 42.5 瓦时可充电锂聚合物电池，Wi-Fi 浏览网页、观看视频或聆听音乐的使用时间长达 10 小时，Cellular 版本使用蜂窝网络上网可达 9 小时。无线连接为 802.11a/b/g/n 双频 WLAN 与 Bluetooth 4.0，Cellular 版内置 A-GPS 与 GLONASS 定位。该机出厂搭载 iOS 6，最终停留在 iOS 10.3.4；2013 年 10 月为 iPad Air 让道而从官网停售，2014 年 10 月彻底停产，2022 年 2 月被 Apple 列入过时产品名单——它是最后一批采用 30 针时代之前 Classic 外观语言、又是第一批 Lightning 时代的过渡型产品。\n\n从拆解与装裱角度看，iPad 4 是一台「大平面、大块面」的机器：9.7 英寸玻璃前面板（含一体化触控层）与铝合金后壳构成两个近乎等大的平面，逻辑板集中在机身一侧、呈纵向长条状，42.5 瓦时锂聚合物电池占据另一半机身，形成天然的「一半电路一半能源」对称构图。iFixit 官方拆解的独立维修组件齐全——前面板、LCD、逻辑板、电池、Lightning 接口组件、耳机插孔小板、Home 键总成、Wi-Fi 天线、SIM 卡槽（Cellular 版）等均可独立成件。建议以 A3 横版呈现：玻璃面板与后壳左右对置，逻辑板与电池上下呼应，Lightning 接口组件与 Home 键这两枚「首末呼应」的小件（一个开创 Lightning 时代、一个延续 Home 键传统）可放在画面中轴线上，用细线标注完成整个「过渡时代」的叙事。",
   "specs": [
-    { "key": "品牌 Brand", "value": "Apple (苹果)" },
-    { "key": "型号 Model", "value": "iPad (第 4 代) / iPad with Retina Display" },
-    { "key": "机型编号 Model Numbers", "value": "A1458 (Wi-Fi)｜A1459 (Wi-Fi + Cellular, GSM)｜A1460 (Wi-Fi + Cellular, CDMA 全网通 MM)" },
-    { "key": "发布时间 Announced", "value": "2012-10-23（美国加州特别发布会）" },
-    { "key": "上市时间 Release", "value": "2012-11-02 首批发售（含中国香港）；中国大陆 2012-12-14 起" },
-    { "key": "官网停售 Discontinued (Store)", "value": "2013-10-29（为 iPad Air 让道）" },
-    { "key": "彻底停产 Discontinued", "value": "2014-10-16" },
-    { "key": "过时产品 Vintage", "value": "2022-02 列入过时产品名单 (Vintage)" },
-    { "key": "产品定位 Positioning", "value": "旗舰大屏平板 / Premium Full-Size Tablet" },
-    { "key": "可选配色 Colors", "value": "黑色 Black｜白色 White" },
-    { "key": "网络版本 Models", "value": "Wi-Fi｜Wi-Fi + Cellular" },
-    { "key": "容量 Capacity", "value": "16GB / 32GB / 64GB（2013-01 追加 128GB 版本，国际口径）" },
-    { "key": "机身高 Height", "value": "241.2 毫米 (9.50 英寸)" },
-    { "key": "机身宽 Width", "value": "185.7 毫米 (7.31 英寸)" },
-    { "key": "机身厚 Depth", "value": "9.4 毫米 (0.37 英寸)" },
-    { "key": "机身重 Weight (Wi-Fi)", "value": "652 克 (1.44 磅)" },
-    { "key": "机身重 Weight (Cellular)", "value": "662 克 (1.46 磅)" },
-    { "key": "芯片 Chip", "value": "双核 Apple A6X，配备四核图形处理器" },
-    { "key": "图形处理器 GPU", "value": "四核 PowerVR SGX MP4+（第三方拆解口径，官方仅称四核图形处理器）" },
-    { "key": "运行内存 RAM", "value": "1GB（官方未公布，第三方拆解口径）" },
-    { "key": "机身存储 Storage", "value": "16GB / 32GB / 64GB 闪存（128GB 为后期追加版本）" },
-    { "key": "出厂系统 Original OS", "value": "iOS 6" },
-    { "key": "最终系统 Final OS", "value": "iOS 10.3.4" },
-    { "key": "屏幕尺寸 Display Size", "value": "9.7 英寸（对角线）" },
-    { "key": "屏幕类型 Display Type", "value": "Retina 显示屏：LED 背光 Multi-Touch 显示屏，IPS 技术" },
-    { "key": "分辨率 Resolution", "value": "2048 × 1536 像素，264 PPI" },
-    { "key": "屏幕涂层 Coating", "value": "防指纹抗油涂层 (Fingerprint-resistant Oleophobic Coating)" },
-    { "key": "后置摄像头 Rear Camera", "value": "500 万像素 iSight 摄像头，自动对焦，背照式感光" },
-    { "key": "后摄镜头 Lens", "value": "5 镜式镜头，混合红外线滤镜，ƒ/2.4 光圈" },
-    { "key": "视频拍摄 Video Recording", "value": "1080p HD 高清摄像，视频防抖动，面部检测，摄制过程中轻点对焦" },
-    { "key": "前置摄像头 Front Camera", "value": "120 万像素 FaceTime HD 高清摄像头，720p HD 视频，背照式感光" },
-    { "key": "电池 Battery", "value": "内置 42.5 瓦时 (Whr) 可充电锂聚合物电池" },
-    { "key": "续航 (Wi-Fi)", "value": "使用 WLAN 网络浏览网页，或观看视频，或聆听音乐，使用时间长达 10 小时" },
-    { "key": "续航 (Cellular)", "value": "使用蜂窝网络上网，使用时间长达 9 小时" },
-    { "key": "充电方式 Charging", "value": "通过电源适配器或电脑的 USB 端口充电" },
-    { "key": "接口 Connector", "value": "Lightning 接头（首款采用 Lightning 的 iPad）" },
-    { "key": "音频接口 Audio Jack", "value": "3.5 毫米立体声耳机迷你插孔" },
-    { "key": "扬声器 Speaker", "value": "内置扬声器（机身底部两侧开孔）" },
-    { "key": "麦克风 Microphone", "value": "内置麦克风" },
-    { "key": "SIM 卡类型 SIM", "value": "Micro-SIM 卡插槽（仅 Wi-Fi + Cellular 版）" },
-    { "key": "无线局域网 Wi-Fi", "value": "802.11a/b/g/n（802.11n 时工作在 2.4GHz 和 5GHz）" },
-    { "key": "蓝牙 Bluetooth", "value": "Bluetooth 4.0 无线技术" },
-    { "key": "蜂窝网络 Cellular", "value": "A1459：GSM/EDGE 850/900/1800/1900，UMTS/HSPA+ 850/900/1900/2100｜A1460：CDMA EV-DO Rev. A 800/1900 + GSM/EDGE + UMTS/HSPA+（国际版规格页另列 LTE 频段，国行官方页未列）" },
-    { "key": "定位功能 Location", "value": "Wi-Fi：WLAN 网络 + 数字指南针｜Cellular：另加辅助全球卫星定位系统 (A-GPS) 与 GLONASS、蜂窝网络" },
-    { "key": "传感器 Sensors", "value": "三轴陀螺仪｜加速感应器｜环境光传感器" },
-    { "key": "音频响应频率 Audio Frequency", "value": "20Hz 至 20,000Hz" },
-    { "key": "工作环境温度 Operating Temp", "value": "0° 至 35°C（非工作 −20° 至 45°C）" },
-    { "key": "相对湿度 Humidity", "value": "非凝结状态下 5% 至 95%" },
-    { "key": "最大工作高度 Max Altitude", "value": "3,000 米 (10,000 英尺)" },
-    { "key": "包装内容 In the Box", "value": "配备 Retina 显示屏的 iPad｜Lightning to USB 连接线｜USB 电源适配器" },
-    { "key": "环保特性 Environment", "value": "不含汞的 LCD 显示屏｜不含砷的显示屏玻璃｜不含溴化阻燃剂 (BFR)｜不含聚氯乙烯 (PVC)｜可回收铝金属机身" },
-    { "key": "国行起售价 China Price", "value": "Wi-Fi 16GB 版 3688 元人民币（美国 499 美元起）" }
+    {
+      "key": "品牌 Brand",
+      "value": "Apple (苹果)"
+    },
+    {
+      "key": "型号 Model",
+      "value": "iPad (第 4 代) / iPad with Retina Display"
+    },
+    {
+      "key": "机型编号 Model Numbers",
+      "value": "A1458 (Wi-Fi)｜A1459 (Wi-Fi + Cellular, GSM)｜A1460 (Wi-Fi + Cellular, CDMA 全网通 MM)"
+    },
+    {
+      "key": "发布时间 Announced",
+      "value": "2012-10-23（美国加州特别发布会）"
+    },
+    {
+      "key": "上市时间 Release",
+      "value": "2012-11-02 首批发售（含中国香港）；中国大陆 2012-12-14 起"
+    },
+    {
+      "key": "官网停售 Discontinued (Store)",
+      "value": "2013-10-29（为 iPad Air 让道）"
+    },
+    {
+      "key": "彻底停产 Discontinued",
+      "value": "2014-10-16"
+    },
+    {
+      "key": "过时产品 Vintage",
+      "value": "2022-02 列入过时产品名单 (Vintage)"
+    },
+    {
+      "key": "产品定位 Positioning",
+      "value": "旗舰大屏平板 / Premium Full-Size Tablet"
+    },
+    {
+      "key": "可选配色 Colors",
+      "value": "黑色 Black｜白色 White"
+    },
+    {
+      "key": "网络版本 Models",
+      "value": "Wi-Fi｜Wi-Fi + Cellular"
+    },
+    {
+      "key": "容量 Capacity",
+      "value": "16GB / 32GB / 64GB（2013-01 追加 128GB 版本，国际口径）"
+    },
+    {
+      "key": "机身高 Height",
+      "value": "241.2 毫米 (9.50 英寸)"
+    },
+    {
+      "key": "机身宽 Width",
+      "value": "185.7 毫米 (7.31 英寸)"
+    },
+    {
+      "key": "机身厚 Depth",
+      "value": "9.4 毫米 (0.37 英寸)"
+    },
+    {
+      "key": "机身重 Weight (Wi-Fi)",
+      "value": "652 克 (1.44 磅)"
+    },
+    {
+      "key": "机身重 Weight (Cellular)",
+      "value": "662 克 (1.46 磅)"
+    },
+    {
+      "key": "芯片 Chip",
+      "value": "双核 Apple A6X，配备四核图形处理器"
+    },
+    {
+      "key": "图形处理器 GPU",
+      "value": "四核 PowerVR SGX MP4+（第三方拆解口径，官方仅称四核图形处理器）"
+    },
+    {
+      "key": "运行内存 RAM",
+      "value": "1GB（官方未公布，第三方拆解口径）"
+    },
+    {
+      "key": "机身存储 Storage",
+      "value": "16GB / 32GB / 64GB 闪存（128GB 为后期追加版本）"
+    },
+    {
+      "key": "出厂系统 Original OS",
+      "value": "iOS 6"
+    },
+    {
+      "key": "最终系统 Final OS",
+      "value": "iOS 10.3.4"
+    },
+    {
+      "key": "屏幕尺寸 Display Size",
+      "value": "9.7 英寸（对角线）"
+    },
+    {
+      "key": "屏幕类型 Display Type",
+      "value": "Retina 显示屏：LED 背光 Multi-Touch 显示屏，IPS 技术"
+    },
+    {
+      "key": "分辨率 Resolution",
+      "value": "2048 × 1536 像素，264 PPI"
+    },
+    {
+      "key": "屏幕涂层 Coating",
+      "value": "防指纹抗油涂层 (Fingerprint-resistant Oleophobic Coating)"
+    },
+    {
+      "key": "后置摄像头 Rear Camera",
+      "value": "500 万像素 iSight 摄像头，自动对焦，背照式感光"
+    },
+    {
+      "key": "后摄镜头 Lens",
+      "value": "5 镜式镜头，混合红外线滤镜，ƒ/2.4 光圈"
+    },
+    {
+      "key": "视频拍摄 Video Recording",
+      "value": "1080p HD 高清摄像，视频防抖动，面部检测，摄制过程中轻点对焦"
+    },
+    {
+      "key": "前置摄像头 Front Camera",
+      "value": "120 万像素 FaceTime HD 高清摄像头，720p HD 视频，背照式感光"
+    },
+    {
+      "key": "电池 Battery",
+      "value": "内置 42.5 瓦时 (Whr) 可充电锂聚合物电池"
+    },
+    {
+      "key": "续航 (Wi-Fi)",
+      "value": "使用 WLAN 网络浏览网页，或观看视频，或聆听音乐，使用时间长达 10 小时"
+    },
+    {
+      "key": "续航 (Cellular)",
+      "value": "使用蜂窝网络上网，使用时间长达 9 小时"
+    },
+    {
+      "key": "充电方式 Charging",
+      "value": "通过电源适配器或电脑的 USB 端口充电"
+    },
+    {
+      "key": "接口 Connector",
+      "value": "Lightning 接头（首款采用 Lightning 的 iPad）"
+    },
+    {
+      "key": "音频接口 Audio Jack",
+      "value": "3.5 毫米立体声耳机迷你插孔"
+    },
+    {
+      "key": "扬声器 Speaker",
+      "value": "内置扬声器（机身底部两侧开孔）"
+    },
+    {
+      "key": "麦克风 Microphone",
+      "value": "内置麦克风"
+    },
+    {
+      "key": "SIM 卡类型 SIM",
+      "value": "Micro-SIM 卡插槽（仅 Wi-Fi + Cellular 版）"
+    },
+    {
+      "key": "无线局域网 Wi-Fi",
+      "value": "802.11a/b/g/n（802.11n 时工作在 2.4GHz 和 5GHz）"
+    },
+    {
+      "key": "蓝牙 Bluetooth",
+      "value": "Bluetooth 4.0 无线技术"
+    },
+    {
+      "key": "蜂窝网络 Cellular",
+      "value": "A1459：GSM/EDGE 850/900/1800/1900，UMTS/HSPA+ 850/900/1900/2100｜A1460：CDMA EV-DO Rev. A 800/1900 + GSM/EDGE + UMTS/HSPA+（国际版规格页另列 LTE 频段，国行官方页未列）"
+    },
+    {
+      "key": "定位功能 Location",
+      "value": "Wi-Fi：WLAN 网络 + 数字指南针｜Cellular：另加辅助全球卫星定位系统 (A-GPS) 与 GLONASS、蜂窝网络"
+    },
+    {
+      "key": "传感器 Sensors",
+      "value": "三轴陀螺仪｜加速感应器｜环境光传感器"
+    },
+    {
+      "key": "音频响应频率 Audio Frequency",
+      "value": "20Hz 至 20,000Hz"
+    },
+    {
+      "key": "工作环境温度 Operating Temp",
+      "value": "0° 至 35°C（非工作 −20° 至 45°C）"
+    },
+    {
+      "key": "相对湿度 Humidity",
+      "value": "非凝结状态下 5% 至 95%"
+    },
+    {
+      "key": "最大工作高度 Max Altitude",
+      "value": "3,000 米 (10,000 英尺)"
+    },
+    {
+      "key": "包装内容 In the Box",
+      "value": "配备 Retina 显示屏的 iPad｜Lightning to USB 连接线｜USB 电源适配器"
+    },
+    {
+      "key": "环保特性 Environment",
+      "value": "不含汞的 LCD 显示屏｜不含砷的显示屏玻璃｜不含溴化阻燃剂 (BFR)｜不含聚氯乙烯 (PVC)｜可回收铝金属机身"
+    },
+    {
+      "key": "国行起售价 China Price",
+      "value": "Wi-Fi 16GB 版 3688 元人民币（美国 499 美元起）"
+    }
   ],
   "parts": [
-    { "name": "9.7 英寸 Retina 显示屏", "en": "9.7-inch Retina Display", "note": "LCD 与玻璃前面板为分离两件，展陈时可叠放表现「像素层」与「玻璃层」的贴合关系" },
-    { "name": "玻璃前面板总成", "en": "Front Panel Assembly", "note": "含一体化触控层与 Home 键开孔，是整幅画面面积最大的零件，建议作为构图底板" },
-    { "name": "逻辑板", "en": "Logic Board", "note": "纵向长条状小板，A6X 与存储颗粒集中其上，与大面积电池形成疏密对比" },
-    { "name": "42.5 瓦时锂聚合物电池", "en": "42.5Wh Li-Polymer Battery", "note": "占半幅机身的最大单件，仅展示标称面并远离金属框，须亚克力托底" },
-    { "name": "Lightning 接口组件", "en": "Lightning Connector Assembly", "note": "首款 Lightning iPad 的历史意义件，建议置于画面中轴线，配一句「Lightning 首秀」高亮备注" },
-    { "name": "Home 键总成", "en": "Home Button Assembly", "note": "与 Lightning 接口「首末呼应」，可同轴陈列讲述交互的起点与出口" },
-    { "name": "500 万像素 iSight 摄像头", "en": "5MP iSight Camera", "note": "独立小模组，与前置 FaceTime HD 摄像头成对摆放，体量对比即是卖点" },
-    { "name": "耳机插孔小板", "en": "Headphone Jack Board", "note": "细长小板，贴近机身侧缘摆放，还原原始安装位" },
-    { "name": "Wi-Fi 天线", "en": "Wi-Fi Antenna", "note": "扁平软性件，展开陈列，注意避免折角" },
-    { "name": "铝合金后壳", "en": "Aluminum Rear Case", "note": "与前面板等大的第二块平面件，背面激光蚀刻型号与法规文字可作细节特写" }
+    {
+      "name": "9.7 英寸 Retina 显示屏",
+      "en": "9.7-inch Retina Display",
+      "note": "LCD 与玻璃前面板为分离两件，展陈时可叠放表现「像素层」与「玻璃层」的贴合关系"
+    },
+    {
+      "name": "玻璃前面板总成",
+      "en": "Front Panel Assembly",
+      "note": "含一体化触控层与 Home 键开孔，是整幅画面面积最大的零件，建议作为构图底板"
+    },
+    {
+      "name": "逻辑板",
+      "en": "Logic Board",
+      "note": "纵向长条状小板，A6X 与存储颗粒集中其上，与大面积电池形成疏密对比"
+    },
+    {
+      "name": "42.5 瓦时锂聚合物电池",
+      "en": "42.5Wh Li-Polymer Battery",
+      "note": "占半幅机身的最大单件，仅展示标称面并远离金属框，须亚克力托底"
+    },
+    {
+      "name": "Lightning 接口组件",
+      "en": "Lightning Connector Assembly",
+      "note": "首款 Lightning iPad 的历史意义件，建议置于画面中轴线，配一句「Lightning 首秀」高亮备注"
+    },
+    {
+      "name": "Home 键总成",
+      "en": "Home Button Assembly",
+      "note": "与 Lightning 接口「首末呼应」，可同轴陈列讲述交互的起点与出口"
+    },
+    {
+      "name": "500 万像素 iSight 摄像头",
+      "en": "5MP iSight Camera",
+      "note": "独立小模组，与前置 FaceTime HD 摄像头成对摆放，体量对比即是卖点"
+    },
+    {
+      "name": "耳机插孔小板",
+      "en": "Headphone Jack Board",
+      "note": "细长小板，贴近机身侧缘摆放，还原原始安装位"
+    },
+    {
+      "name": "Wi-Fi 天线",
+      "en": "Wi-Fi Antenna",
+      "note": "扁平软性件，展开陈列，注意避免折角"
+    },
+    {
+      "name": "铝合金后壳",
+      "en": "Aluminum Rear Case",
+      "note": "与前面板等大的第二块平面件，背面激光蚀刻型号与法规文字可作细节特写"
+    }
   ],
   "featureTags": [
-    "A6X 芯片", "Apple A6X", "四核图形处理器", "Quad-core Graphics", "Retina 显示屏 264 PPI", "Retina Display", "首款 Lightning 接口 iPad", "First Lightning iPad", "FaceTime HD 前置摄像头", "1080p 视频防抖", "42.5Wh 长续航", "Bluetooth 4.0"
+    "A6X 芯片",
+    "Apple A6X",
+    "四核图形处理器",
+    "Quad-core Graphics",
+    "Retina 显示屏 264 PPI",
+    "Retina Display",
+    "首款 Lightning 接口 iPad",
+    "First Lightning iPad",
+    "FaceTime HD 前置摄像头",
+    "1080p 视频防抖",
+    "42.5Wh 长续航",
+    "Bluetooth 4.0"
   ],
   "timeline": [
-    { "date": "2012-10-23", "title": "iPad（第 4 代）发布", "desc": "Apple 在加州特别发布会上与 iPad mini 同台推出 iPad（第 4 代），核心升级为 A6X 芯片、FaceTime HD 前置摄像头与 Lightning 接口。", "en": "Apple unveils the 4th-generation iPad alongside the iPad mini, headlining the A6X chip, the FaceTime HD front camera and the Lightning connector." },
-    { "date": "2012-11-02", "title": "全球首批发售", "desc": "Wi-Fi 与 Wi-Fi + Cellular 版本于首批市场开售，中国大陆随后于 12 月跟进。", "en": "Wi-Fi and Wi-Fi + Cellular models go on sale in the first wave of markets, with mainland China following in December." },
-    { "date": "2013-01", "title": "128GB 版本追加", "desc": "Apple 为 iPad（第 4 代）追加 128GB 容量选项（国际口径）。", "en": "Apple adds a 128GB storage option to the 4th-generation iPad (international lineup)." },
-    { "date": "2013-10-29", "title": "官网停售", "desc": "iPad Air 发布后，iPad（第 4 代）从 Apple 官网下架，结束约一年的在售周期。", "en": "Following the iPad Air launch, the 4th-generation iPad is removed from the Apple online store after roughly a year on sale." },
-    { "date": "2014-10-16", "title": "彻底停产", "desc": "iPad（第 4 代）正式从产品线中彻底停产。", "en": "The 4th-generation iPad is fully discontinued from the product line." },
-    { "date": "2022-02", "title": "列入过时产品名单", "desc": "Apple 将 iPad（第 4 代）列入过时产品 (Vintage) 名单——首款 Lightning 接口的 iPad 正式谢幕。", "en": "Apple moves the 4th-generation iPad to its Vintage list — the first Lightning iPad formally bows out." }
+    {
+      "date": "2012-10-23",
+      "title": "iPad（第 4 代）发布",
+      "desc": "Apple 在加州特别发布会上与 iPad mini 同台推出 iPad（第 4 代），核心升级为 A6X 芯片、FaceTime HD 前置摄像头与 Lightning 接口。",
+      "en": "Apple unveils the 4th-generation iPad alongside the iPad mini, headlining the A6X chip, the FaceTime HD front camera and the Lightning connector."
+    },
+    {
+      "date": "2012-11-02",
+      "title": "全球首批发售",
+      "desc": "Wi-Fi 与 Wi-Fi + Cellular 版本于首批市场开售，中国大陆随后于 12 月跟进。",
+      "en": "Wi-Fi and Wi-Fi + Cellular models go on sale in the first wave of markets, with mainland China following in December."
+    },
+    {
+      "date": "2013-01",
+      "title": "128GB 版本追加",
+      "desc": "Apple 为 iPad（第 4 代）追加 128GB 容量选项（国际口径）。",
+      "en": "Apple adds a 128GB storage option to the 4th-generation iPad (international lineup)."
+    },
+    {
+      "date": "2013-10-29",
+      "title": "官网停售",
+      "desc": "iPad Air 发布后，iPad（第 4 代）从 Apple 官网下架，结束约一年的在售周期。",
+      "en": "Following the iPad Air launch, the 4th-generation iPad is removed from the Apple online store after roughly a year on sale."
+    },
+    {
+      "date": "2014-10-16",
+      "title": "彻底停产",
+      "desc": "iPad（第 4 代）正式从产品线中彻底停产。",
+      "en": "The 4th-generation iPad is fully discontinued from the product line."
+    },
+    {
+      "date": "2022-02",
+      "title": "列入过时产品名单",
+      "desc": "Apple 将 iPad（第 4 代）列入过时产品 (Vintage) 名单——首款 Lightning 接口的 iPad 正式谢幕。",
+      "en": "Apple moves the 4th-generation iPad to its Vintage list — the first Lightning iPad formally bows out."
+    }
   ],
   "categories": [
     {
-      "name": "显示系统", "en": "Display System", "icon": "▢", "color": "#3182ce",
+      "name": "显示系统",
+      "en": "Display System",
+      "icon": "▢",
+      "color": "#3182ce",
       "components": [
         {
-          "name": "9.7 英寸 Retina 显示屏", "en": "9.7-inch Retina Display",
+          "name": "9.7 英寸 Retina 显示屏",
+          "en": "9.7-inch Retina Display",
           "desc": "iPad（第 4 代）沿用 9.7 英寸（对角线）LED 背光 Multi-Touch 显示屏，具备 IPS 技术，以 2048×1536 像素分辨率呈现 264 PPI 的 Retina 级细腻画面。由于像素密度远超常规观看距离的分辨极限，单颗像素在正常使用中不可辨识，文字边缘与照片细节因此获得「印刷品式」的呈现效果。",
           "descEn": "The 4th-generation iPad carries over the 9.7-inch (diagonal) LED-backlit Multi-Touch display with IPS technology, rendering 2048-by-1536 pixels at 264 PPI. With pixel density beyond the limit of normal viewing distance, individual pixels become indistinguishable, giving text and photography a print-like finish.",
           "note": "装裱价值：LCD 与前面板玻璃分离后可叠放陈列，直观展示「发光层 + 触控层」的全贴合结构。⚠️ 拆解警告：LCD 面板边框排线极脆，取放时只能捏持金属背板边缘，禁止按压显示区域。",
           "noteEn": "Framing: display the LCD stacked with the front glass to show the bonded layer structure. Warning: the LCD border cables are extremely fragile — handle by the metal frame edges only, never press the panel.",
-          "tags": ["Retina", "IPS", "LED 背光", "264 PPI"]
+          "tags": [
+            "Retina",
+            "IPS",
+            "LED 背光",
+            "264 PPI"
+          ]
         },
         {
-          "name": "玻璃前面板总成", "en": "Front Panel Assembly",
+          "name": "玻璃前面板总成",
+          "en": "Front Panel Assembly",
           "desc": "前面板总成将黑色或白色强化玻璃、一体化电容触控层与 Home 键开孔整合为单一组件，是整机构造中面积最大的零件。玻璃表面覆盖防指纹抗油涂层，减少皮脂残留并保持触控顺滑；Apple 官方环保页注明该显示屏玻璃不含砷。",
           "descEn": "The front panel assembly integrates the black or white strengthened glass, the bonded capacitive touch layer and the Home-button cutout into a single component — the largest part in the device. An oleophobic coating resists fingerprints, and per Apple's environmental page the display glass is arsenic-free.",
           "note": "装裱价值：作为整幅装裱画的「底板件」，其它零件沿其轮廓排布最能还原机身语境。⚠️ 拆解警告：面板与后壳之间为粘合胶条密封，拆解需加热软化胶层，边缘易崩裂，建议由拆解经验者操作。",
           "noteEn": "Framing: use it as the base layer of the layout with other parts arranged along its outline. Warning: the panel is sealed with adhesive strips — heat is required to open it and the edges chip easily.",
-          "tags": ["触控层", "Oleophobic", "前面板", "砷玻璃"]
+          "tags": [
+            "触控层",
+            "Oleophobic",
+            "前面板",
+            "砷玻璃"
+          ]
         },
         {
-          "name": "显示边框组件", "en": "Display Bezel",
+          "name": "显示边框组件",
+          "en": "Display Bezel",
           "desc": "显示边框组件位于玻璃面板与后壳之间，承担 LCD 定位、减震与遮光三重职责，沿面板四周形成一圈均匀的支撑结构。它是前两项总成能够严丝合缝对位的关键中间件，也是拆解中最容易被忽略却不可或缺的框架件。",
           "descEn": "Positioned between the front glass and the rear case, the display bezel seats the LCD, absorbs shock and blocks stray light, forming an even supporting ring around the panel — an easily overlooked but essential mid-frame part.",
           "note": "装裱价值：细长的黑色框条可沿玻璃面板内缘摆放，为画面增加「层次线」。拆解时注意与粘合胶条区分，二者常被混淆。",
           "noteEn": "Framing: the slim black ring can line the inner edge of the glass as a layering element. Do not confuse it with the adhesive strips.",
-          "tags": ["遮光", "定位", "框条"]
+          "tags": [
+            "遮光",
+            "定位",
+            "框条"
+          ]
         },
         {
-          "name": "前面板粘合胶条", "en": "Front Panel Adhesive Strips",
+          "name": "前面板粘合胶条",
+          "en": "Front Panel Adhesive Strips",
           "desc": "粘合胶条沿前面板内缘布设，将玻璃面板与后壳粘接为整体，兼起防尘与结构补强作用。iFixit 为该件提供「原面板保留」与「更换新面板」两种更换指南，说明其在维修流程中的独立地位。",
           "descEn": "Running along the inner edge of the front panel, the adhesive strips bond glass to rear case while sealing out dust and adding stiffness; iFixit maintains separate guides for reusing the old panel and fitting a new one.",
           "note": "装裱价值：成对的细长胶条可以平行陈列，作为「看不见的工艺」注脚。拆除后残胶需用无绒布清理。",
           "noteEn": "Framing: the paired slim strips display well in parallel as a note on invisible engineering. Clean residual adhesive with a lint-free cloth.",
-          "tags": ["密封", "胶条", "组装工艺"]
+          "tags": [
+            "密封",
+            "胶条",
+            "组装工艺"
+          ]
         },
         {
-          "name": "LCD 边框排线", "en": "LCD Border Flex Cables",
+          "name": "LCD 边框排线",
+          "en": "LCD Border Flex Cables",
           "desc": "LCD 面板边框处的多组软性排线承担显示驱动信号与背光供电的传输，一端接入面板边缘的绑定区，另一端经板对板连接器通向逻辑板。它们沿面板边框走线，是全贴合组件中最纤细、也最容易在拆解中受损的信号通路。",
           "descEn": "A set of slim flex cables along the LCD border carry display drive signals and backlight power from the panel's bonded edge to board-to-board connectors on the logic board — the thinnest, most teardown-fragile signal paths in the bonded assembly.",
           "note": "装裱价值：展开的细排线可沿面板边框呈放射状摆放，呼应「信号入屏」的动线。⚠️ 拆解警告：绑定区一端不可弯折，翻折超过一次即可能断线。",
           "noteEn": "Framing: fan the slim cables along the panel border as a 'signal into screen' motif. Warning: never flex the bonded end — one fold too many breaks the traces.",
-          "tags": ["排线", "显示驱动", "背光供电"]
+          "tags": [
+            "排线",
+            "显示驱动",
+            "背光供电"
+          ]
         }
       ]
     },
     {
-      "name": "计算与存储", "en": "Compute & Storage", "icon": "□", "color": "#6b46c1",
+      "name": "计算与存储",
+      "en": "Compute & Storage",
+      "icon": "□",
+      "color": "#6b46c1",
       "components": [
         {
-          "name": "A6X 芯片", "en": "Apple A6X Chip",
+          "name": "A6X 芯片",
+          "en": "Apple A6X Chip",
           "desc": "A6X 是 Apple 为 iPad（第 4 代）定制的双核处理器，配备四核图形处理器，CPU 性能与图形性能均约为前代 A5X 的两倍。作为 iPhone 5 所用 A6 的大屏强化版本，它在不显著增加功耗的前提下把 Retina 级分辨率下的图形吞吐翻倍，支撑起 1080p 视频拍摄与大型 3D 应用的流畅运行。",
           "descEn": "The A6X is Apple's custom dual-core SoC for the 4th-generation iPad, pairing a quad-core graphics unit with roughly double the CPU and GPU performance of the A5X — an enlarged sibling of the iPhone 5's A6 that doubles graphics throughput at Retina resolution without a major power penalty.",
           "note": "装裱价值：逻辑板上的绝对主角，黑色封装上丝印「APL5598」与 Apple 标识，建议单独特写。拆解警告：芯片直接焊于逻辑板，不可尝试分离。",
           "noteEn": "Framing: the star of the logic board — its black package carries the APL5598 marking. Warning: the chip is soldered to the board and cannot be separated.",
-          "tags": ["A6X", "双核", "APL5598", "SoC"]
+          "tags": [
+            "A6X",
+            "双核",
+            "APL5598",
+            "SoC"
+          ]
         },
         {
-          "name": "四核图形处理器", "en": "Quad-core Graphics",
+          "name": "四核图形处理器",
+          "en": "Quad-core Graphics",
           "desc": "A6X 内置的四核图形处理器官方口径为「四核图形处理器」，第三方拆解资料指认为 PowerVR SGX MP4+ 系列。四核架构专为驱动 2048×1536 的 Retina 分辨率而设计，在游戏、视频与界面渲染中维持 60fps 的流畅基线。",
           "descEn": "The quad-core graphics unit inside the A6X — officially just 'quad-core graphics', identified by third-party teardowns as a PowerVR SGX MP4+-class GPU — was designed to drive the 2048-by-1536 Retina panel at a smooth 60fps baseline.",
           "note": "装裱价值：与 A6X 同封装，可作为 A6X 备注的延伸内容，不需独立成件。",
           "noteEn": "Framing: integrated within the A6X package; treat it as an extension of the A6X caption rather than a separate part.",
-          "tags": ["PowerVR", "SGX MP4+", "GPU"]
+          "tags": [
+            "PowerVR",
+            "SGX MP4+",
+            "GPU"
+          ]
         },
         {
-          "name": "1GB 运行内存", "en": "1GB RAM",
+          "name": "1GB 运行内存",
+          "en": "1GB RAM",
           "desc": "iPad（第 4 代）配备 1GB 运行内存，与前代持平。Apple 官方从未公布该项参数，1GB 的数值来自 iFixit 等第三方拆解对逻辑板上内存颗粒的识别，属于拆解口径而非官方规格。",
           "descEn": "The 4th-generation iPad carries 1GB of RAM, unchanged from its predecessor. Apple never officially quoted this figure — the 1GB value comes from chip identification on the logic board in iFixit-style teardowns, not from official specs.",
           "note": "装裱价值：内存颗粒与 A6X 同板堆叠或封装，陈列时随逻辑板整体呈现即可。稿件如引用 1GB，建议标注「第三方拆解口径」。",
           "noteEn": "Framing: the memory sits stacked with the A6X on the logic board; if quoting 1GB in copy, note it as a teardown-sourced figure.",
-          "tags": ["RAM", "1GB", "非官方口径"]
+          "tags": [
+            "RAM",
+            "1GB",
+            "非官方口径"
+          ]
         },
         {
-          "name": "NAND 闪存芯片", "en": "NAND Flash Chip",
+          "name": "NAND 闪存芯片",
+          "en": "NAND Flash Chip",
           "desc": "机身存储由逻辑板上的 NAND 闪存颗粒承担，提供 16GB / 32GB / 64GB 三档容量（2013 年 1 月国际线追加 128GB）。闪存直接承载操作系统、应用与用户数据，是拆解件中最能体现「容量档位」概念的实体。",
           "descEn": "Onboard storage is provided by NAND flash packages on the logic board in 16GB / 32GB / 64GB tiers (a 128GB option joined the international lineup in January 2013), carrying the OS, apps and user data.",
           "note": "装裱价值：闪存颗粒丝印含容量信息，与 A6X 相邻摆放可讲「计算 + 存储」的完整故事。",
           "noteEn": "Framing: package markings include capacity codes; place it next to the A6X to tell the compute-plus-storage story.",
-          "tags": ["NAND", "闪存", "16/32/64GB"]
+          "tags": [
+            "NAND",
+            "闪存",
+            "16/32/64GB"
+          ]
         },
         {
-          "name": "电源管理芯片", "en": "Power Management IC (PMIC)",
+          "name": "电源管理芯片",
+          "en": "Power Management IC (PMIC)",
           "desc": "电源管理芯片集成于逻辑板之上，负责电池充电管理、各路电压的分配与整机的功耗调度，在 42.5 瓦时电池与 A6X 之间充当「电力调度中枢」。其具体型号 Apple 与主流拆解报告均未公开标注，本资料仅以职能命名。",
           "descEn": "The power management IC on the logic board governs battery charging, voltage rails and overall power scheduling between the 42.5Wh battery and the A6X — the dispatch center of the device's power system; its exact part number is unpublished by Apple and mainstream teardowns alike, so it is listed by function only.",
           "note": "装裱价值：与 A6X 同板相邻，陈列时归入逻辑板整体呈现，不单独起标注。",
           "noteEn": "Framing: it sits beside the A6X on the board — keep it within the logic board's caption rather than labeling it separately.",
-          "tags": ["PMIC", "充电管理", "供电调度"]
+          "tags": [
+            "PMIC",
+            "充电管理",
+            "供电调度"
+          ]
         },
         {
-          "name": "逻辑板", "en": "Logic Board",
+          "name": "逻辑板",
+          "en": "Logic Board",
           "desc": "逻辑板是整机的计算中枢，纵向长条状的窄板上集中了 A6X 芯片、NAND 闪存、内存与电源管理电路，通过一组板对板连接器与显示屏、摄像头、无线模组及底部接口组件互通。相比同期手机，iPad 的逻辑板面积占比更小，与半幅电池形成强烈的疏密对比。",
           "descEn": "The logic board is the compute hub: a slim vertical board carrying the A6X, NAND flash, memory and power-management circuitry, interconnected to the display, cameras, wireless modules and bottom connector assembly through board-to-board connectors.",
           "note": "装裱价值：画面中的「密」极，与大面积电池构成节奏对比，建议竖向摆放还原装机方位。⚠️ 拆解警告：板对板连接器座子易脱焊，取放时避免拉扯排线。",
           "noteEn": "Framing: the densest element — contrast it against the battery; mount vertically to match its in-device orientation. Warning: board-to-board connectors desolder easily; never pull by the cables.",
-          "tags": ["主板", "A6X 载板", "计算中枢"]
+          "tags": [
+            "主板",
+            "A6X 载板",
+            "计算中枢"
+          ]
         }
       ]
     },
     {
-      "name": "影像系统", "en": "Camera System", "icon": "◆", "color": "#2b6cb0",
+      "name": "影像系统",
+      "en": "Camera System",
+      "icon": "◆",
+      "color": "#2b6cb0",
       "components": [
         {
-          "name": "500 万像素 iSight 摄像头", "en": "5MP iSight Camera",
+          "name": "500 万像素 iSight 摄像头",
+          "en": "5MP iSight Camera",
           "desc": "后置 iSight 摄像头以 500 万像素记录静态影像，采用 5 镜式镜头、ƒ/2.4 光圈与混合红外线滤镜，配合背照式感光元件提升进光量；支持自动对焦、面部检测与照片/视频地理标记，视频方面可拍摄 1080p HD 画面并提供视频防抖动。",
           "descEn": "The rear iSight camera captures 5MP stills through a five-element lens with an ƒ/2.4 aperture and a hybrid IR filter over a backside-illuminated sensor, adding autofocus, face detection, geotagging and 1080p HD video with stabilization.",
           "note": "装裱价值：独立小模组，与前置摄像头成对陈列，后摄的镜头镀膜在侧光下有虹彩细节。⚠️ 拆解警告：镜头表面镀膜禁用硬物触碰。",
           "noteEn": "Framing: pair it with the front camera; side light reveals iridescent lens coatings. Warning: never touch the lens coatings.",
-          "tags": ["iSight", "5MP", "1080p", "ƒ/2.4"]
+          "tags": [
+            "iSight",
+            "5MP",
+            "1080p",
+            "ƒ/2.4"
+          ]
         },
         {
-          "name": "FaceTime HD 前置摄像头", "en": "FaceTime HD Front Camera",
+          "name": "FaceTime HD 前置摄像头",
+          "en": "FaceTime HD Front Camera",
           "desc": "前置 FaceTime HD 摄像头是第 4 代相对第 3 代的关键升级之一：像素提升至 120 万，支持 720p HD 视频拍摄与 FaceTime 视频通话，并具备面部检测、背照式感光与轻点控制曝光，使视频会议画面从「能用」跨入「高清」。",
           "descEn": "The FaceTime HD front camera is a headline upgrade over the 3rd generation: 1.2MP photos, 720p HD video and FaceTime calling, with face detection, backside illumination and tap-to-control exposure — lifting video chat from merely workable to high definition.",
           "note": "装裱价值：本机「换代证据件」——与 iPad 3 前摄对比即是最好的展签故事，建议高亮备注「720p FaceTime HD」。",
           "noteEn": "Framing: this is the generational-evidence part — its caption versus the iPad 3 camera tells the upgrade story. Highlight '720p FaceTime HD'.",
-          "tags": ["FaceTime HD", "1.2MP", "720p"]
+          "tags": [
+            "FaceTime HD",
+            "1.2MP",
+            "720p"
+          ]
         },
         {
-          "name": "后置摄像头模组排线", "en": "Rear Camera Flex Cable",
+          "name": "后置摄像头模组排线",
+          "en": "Rear Camera Flex Cable",
           "desc": "后置 iSight 模组通过软性排线与逻辑板连接，排线兼具供电与数据传输职能。模组嵌于铝合金后壳顶部的预留开孔内，拆卸时需先断开逻辑板侧的连接器再从后壳推出模组。",
           "descEn": "The rear iSight module connects to the logic board via a flex cable carrying power and data; the module seats into a pre-cut opening at the top of the aluminum rear case and is released after disconnecting the board-side connector.",
           "note": "装裱价值：细长橙色/棕色排线可沿模组一侧展开，丰富小零件区的线条层次。",
           "noteEn": "Framing: unfold the slim flex ribbon beside the module to add line variety among the small parts.",
-          "tags": ["排线", "FPC", "模组连接"]
+          "tags": [
+            "排线",
+            "FPC",
+            "模组连接"
+          ]
         }
       ]
     },
     {
-      "name": "电源系统", "en": "Power System", "icon": "▤", "color": "#dd6b20",
+      "name": "电源系统",
+      "en": "Power System",
+      "icon": "▤",
+      "color": "#dd6b20",
       "components": [
         {
-          "name": "42.5 瓦时锂聚合物电池", "en": "42.5Wh Li-Polymer Battery",
+          "name": "42.5 瓦时锂聚合物电池",
+          "en": "42.5Wh Li-Polymer Battery",
           "desc": "内置 42.5 瓦时可充电锂聚合物电池为整机供电，官方标称使用 WLAN 浏览网页、观看视频或聆听音乐的使用时间长达 10 小时，Cellular 版使用蜂窝网络上网亦可达 9 小时。电池占据机身近半幅空间，通过大面积软包形态在有限厚度内堆出容量。",
           "descEn": "A built-in 42.5-watt-hour rechargeable lithium-polymer battery powers the device — rated for up to 10 hours of web, video or music over Wi-Fi, and up to 9 hours of cellular browsing on Cellular models — occupying nearly half the chassis as a large soft pack.",
           "note": "装裱价值：全图最大单件，与逻辑板构成「一半能源一半计算」的对位。⚠️ 拆解警告：锂电池严禁刺穿与金属框直接接触，仅展示标称面并亚克力托底，运输隔离存放。",
           "noteEn": "Framing: the largest single piece, pairing with the logic board as energy-versus-compute. Warning: never puncture the Li-Po cell or let it touch metal frames; show the label face only, on an acrylic base.",
-          "tags": ["42.5Wh", "锂聚合物", "10 小时续航"]
+          "tags": [
+            "42.5Wh",
+            "锂聚合物",
+            "10 小时续航"
+          ]
         },
         {
-          "name": "Lightning 接口组件", "en": "Lightning Connector Assembly",
+          "name": "Lightning 接口组件",
+          "en": "Lightning Connector Assembly",
           "desc": "Lightning 接口组件是 iPad（第 4 代）最具历史意义的部件：它使本机成为 iPad 家族中第一款采用 Lightning 接口的产品，以可正反插的 8 针数字化接口取代沿用了十年的 30 针 Dock 接口，同时承担充电、数据传输与视频输出（经转换器）职能。",
           "descEn": "The Lightning connector assembly is the most historically significant part: it makes this the first iPad with a Lightning port, replacing the decade-old 30-pin Dock with a reversible 8-pin digital connector handling charging, data and (via adapters) video out.",
           "note": "装裱价值：「Lightning 首秀」故事件，建议置于画面中轴线并配高亮备注。⚠️ 拆解警告：该件与底部麦克风一体，排线短，展开时勿硬折。",
           "noteEn": "Framing: the 'Lightning debut' story piece — place it on the centerline with a highlighted note. Warning: it shares a flex with the bottom microphone; do not crease the short ribbon.",
-          "tags": ["Lightning", "8 针", "首款", "正反插"]
+          "tags": [
+            "Lightning",
+            "8 针",
+            "首款",
+            "正反插"
+          ]
         },
         {
-          "name": "USB 电源适配器", "en": "USB Power Adapter",
+          "name": "USB 电源适配器",
+          "en": "USB Power Adapter",
           "desc": "随附的 USB 电源适配器与 Lightning to USB 连接线共同构成官方充电套装，可经电源插座或电脑 USB 端口为设备充电。适配器是包装内容中唯一的供电附件，与整机同属「包装内容」官方清单。",
           "descEn": "The bundled USB power adapter, together with the Lightning to USB cable, forms the official charging set, refilling the device from a wall outlet or a computer's USB port as the only power accessory in the box.",
           "note": "装裱价值：适配器为立体件，可放于画面边角作为「配件组」收尾，或与折叠线材一并陈列。",
           "noteEn": "Framing: a three-dimensional piece — tuck it into a corner as the closing item of the accessory group.",
-          "tags": ["充电器", "套装", "包装内容"]
+          "tags": [
+            "充电器",
+            "套装",
+            "包装内容"
+          ]
         },
         {
-          "name": "Lightning to USB 连接线", "en": "Lightning to USB Cable",
+          "name": "Lightning to USB 连接线",
+          "en": "Lightning to USB Cable",
           "desc": "Lightning to USB 连接线是 Lightning 生态的首批线材之一，一端为可正反插的 Lightning 公头，另一端为标准 USB 公头，承担充电与 iTunes 同步两条数据通路。本机随附该线，也是包装清单中「Lightning 时代开启」的实物注脚。",
           "descEn": "Among the first cables of the Lightning ecosystem, the Lightning to USB cable pairs a reversible Lightning plug with a standard USB plug, carrying charging and iTunes sync — the in-box footnote to the Lightning era's opening.",
           "note": "装裱价值：线材可盘成几何环形垫于主体件下方，兼具功能性陈述与构图衬底。",
           "noteEn": "Framing: coil the cable into a geometric ring beneath the hero parts — both a functional note and a compositional base.",
-          "tags": ["Lightning", "USB", "数据线"]
+          "tags": [
+            "Lightning",
+            "USB",
+            "数据线"
+          ]
         }
       ]
     },
     {
-      "name": "音频系统", "en": "Audio System", "icon": "▶", "color": "#38a169",
+      "name": "音频系统",
+      "en": "Audio System",
+      "icon": "▶",
+      "color": "#38a169",
       "components": [
         {
-          "name": "内置扬声器", "en": "Built-in Speaker",
+          "name": "内置扬声器",
+          "en": "Built-in Speaker",
           "desc": "机身底部左右两侧的开孔内各藏一枚扬声器单元，组成双声道输出，响应频率范围 20Hz 至 20,000Hz。扬声器与 Lightning 接口共处底缘，出声孔沿底缘对称分布，是该时代 iPad 正面辨识度最高的细节之一。",
           "descEn": "A speaker unit hides behind each of the two grilles at the bottom edge, forming stereo output across a 20Hz–20,000Hz response range; sharing the bottom edge with the Lightning port, the symmetric grilles are one of this iPad's most recognizable cues.",
           "note": "装裱价值：左右两枚扬声器单元成对陈列，与其底缘开孔位置一一对应，是「部件↔位置」叙事的好素材。",
           "noteEn": "Framing: display the two units as a pair, mapping one-to-one onto the bottom grilles — a natural parts-to-position story.",
-          "tags": ["双扬声器", "立体声", "20Hz–20kHz"]
+          "tags": [
+            "双扬声器",
+            "立体声",
+            "20Hz–20kHz"
+          ]
         },
         {
-          "name": "耳机插孔小板", "en": "Headphone Jack Board",
+          "name": "耳机插孔小板",
+          "en": "Headphone Jack Board",
           "desc": "3.5 毫米立体声耳机迷你插孔集成在一块独立小板上，经排线接入主板，负责模拟音频输出。将插孔做成独立组件是 iPad 维修友好的经典设计——耳机孔损坏时无需更换整块主板。",
           "descEn": "The 3.5mm stereo headphone minijack lives on its own small board wired to the main board for analog audio out — a classic iPad repair-friendly design that lets a failed jack be replaced without swapping the logic board.",
           "note": "装裱价值：细长小板自带排线，贴近机身顶缘摆放可还原其真实安装位（顶缘左侧）。",
           "noteEn": "Framing: the slim board with its ribbon mounts near the top edge of the layout, matching its true position.",
-          "tags": ["3.5mm", "耳机插孔", "独立小板"]
+          "tags": [
+            "3.5mm",
+            "耳机插孔",
+            "独立小板"
+          ]
         },
         {
-          "name": "内置麦克风", "en": "Built-in Microphone",
+          "name": "内置麦克风",
+          "en": "Built-in Microphone",
           "desc": "机身内置麦克风承担语音输入、FaceTime 通话收音与视频录音职能，与底部接口组件同缘布置。配合 FaceTime HD 前置摄像头，构成视频通话的完整收发链路。",
           "descEn": "The built-in microphone handles voice input, FaceTime audio and video sound capture, sitting along the bottom edge with the connector assembly to complete the audio chain of the FaceTime HD video-calling setup.",
           "note": "装裱价值：麦克风极小，建议与 Lightning 接口组件同框陈列并共用一条标注引线区。",
           "noteEn": "Framing: tiny — group it with the Lightning connector assembly under a shared label cluster.",
-          "tags": ["麦克风", "收音", "FaceTime"]
+          "tags": [
+            "麦克风",
+            "收音",
+            "FaceTime"
+          ]
         },
         {
-          "name": "扬声器防尘网罩", "en": "Speaker Grille Mesh",
+          "name": "扬声器防尘网罩",
+          "en": "Speaker Grille Mesh",
           "desc": "机身底部两处扬声器开孔的内侧贴合细密防尘网罩，在保证出声通透的同时阻挡灰尘与碎屑进入音腔。网罩附着于后壳内侧，与扬声器单元分离，是后壳与扬声器之间唯一的隔护层。",
           "descEn": "A fine mesh lines the inside of the two bottom speaker openings, passing sound while keeping dust and debris out of the acoustic chamber; bonded to the inner rear case and separate from the driver, it is the only barrier between shell and speaker.",
           "note": "装裱价值：微距下网孔排列呈规律点阵，可作「看不见的细节」特写；随后壳呈现即可，不必强行取下。",
           "noteEn": "Framing: under a macro lens the mesh reads as a regular dot grid — a great 'invisible detail' close-up; keep it on the rear case rather than peeling it off.",
-          "tags": ["防尘网", "音腔", "后壳附着"]
+          "tags": [
+            "防尘网",
+            "音腔",
+            "后壳附着"
+          ]
         }
       ]
     },
     {
-      "name": "结构与机身", "en": "Structure & Chassis", "icon": "■", "color": "#718096",
+      "name": "结构与机身",
+      "en": "Structure & Chassis",
+      "icon": "■",
+      "color": "#718096",
       "components": [
         {
-          "name": "铝合金后壳", "en": "Aluminum Rear Case",
+          "name": "铝合金后壳",
+          "en": "Aluminum Rear Case",
           "desc": "一体成型铝合金后壳构成整机的骨架与背面外观，官方环保页注明其采用可回收铝金属；背面下方激光蚀刻「iPad」字样、型号编号（A1458/A1459/A1460）与法规信息。后壳为摄像头、扬声器开孔与 Cellular 版 SIM 卡槽提供全部外部开口。",
           "descEn": "A single-piece aluminum rear case forms the skeleton and back of the device — recyclable aluminum per Apple's environmental page — laser-etched below with 'iPad', the model number (A1458/A1459/A1460) and regulatory text, and carrying every external opening from camera to speaker grilles.",
           "note": "装裱价值：与前面板等大的第二块平面件，型号蚀刻区可单独特写；哑光铝面斜射光下呈现细密喷砂纹理。",
           "noteEn": "Framing: the second full-size flat piece — the model etching rewards a close-up; raking light reveals the fine bead-blasted texture.",
-          "tags": ["铝合金", "可回收", "一体成型"]
+          "tags": [
+            "铝合金",
+            "可回收",
+            "一体成型"
+          ]
         },
         {
-          "name": "Home 键总成", "en": "Home Button Assembly",
+          "name": "Home 键总成",
+          "en": "Home Button Assembly",
           "desc": "Home 键总成位于前面板底部的圆形开孔内，是整机唯一的实体主控按键，承担返回主屏幕、唤醒与指纹时代之前的全部核心交互入口职能。iFixit 将其列为独立更换组件，与前面板分离供应。",
           "descEn": "Seated in the circular cutout at the bottom of the front panel, the Home button is the device's only physical primary key — the gateway to the home screen, wake and all core interactions of the pre-Touch ID era; iFixit lists it as a separately replaceable assembly.",
           "note": "装裱价值：与 Lightning 接口「首末呼应」——一个开启充电新时代，一个延续经典交互，建议同轴陈列。",
           "noteEn": "Framing: pair it with the Lightning connector as bookends — one opens the charging era, the other carries the classic interaction.",
-          "tags": ["Home 键", "实体按键", "交互入口"]
+          "tags": [
+            "Home 键",
+            "实体按键",
+            "交互入口"
+          ]
         },
         {
-          "name": "电源键 / 音量键", "en": "Power & Volume Buttons",
+          "name": "电源键 / 音量键",
+          "en": "Power & Volume Buttons",
           "desc": "机顶的 On/Off（睡眠/唤醒）键与侧缘的音量上下键共同构成机身外部按键组，均为独立金属按键帽配合内部开关组件。iFixit 将「电源键与音量键」合列为单一维修指南，说明二者在结构上共享拆解路径。",
           "descEn": "The On/Off (Sleep/Wake) button on the top edge and the volume up/down keys on the side form the external button set, each a metal cap over internal switch components; iFixit covers both in a single guide, reflecting their shared teardown path.",
           "note": "装裱价值：金属按键帽小巧但识别度高，可沿后壳对应开孔位置排布，还原「按键地图」。",
           "noteEn": "Framing: the small metal caps are highly recognizable — arrange them over the corresponding rear-case openings as a 'button map'.",
-          "tags": ["电源键", "音量键", "侧键"]
+          "tags": [
+            "电源键",
+            "音量键",
+            "侧键"
+          ]
         },
         {
-          "name": "静音 / 旋转锁定侧键", "en": "Rotation Lock / Mute Switch",
+          "name": "静音 / 旋转锁定侧键",
+          "en": "Rotation Lock / Mute Switch",
           "desc": "侧缘的静音/屏幕旋转锁定拨动开关允许用户在「静音」与「锁定屏幕旋转」两种职能间切换（可在设置中定义），是 iPad 家族延续自 iPhone 的经典拨杆设计。iFixit 为其单列维修指南，可见其在结构上的独立地位。",
           "descEn": "The side-mounted switch toggles between mute and screen-rotation lock (configurable in Settings), a classic rocker carried over from the iPhone; iFixit maintains a dedicated repair guide, underscoring its structural independence.",
           "note": "装裱价值：拨杆开关的金属细节在微距下极佳，可作小件区的「工艺特写」。",
           "noteEn": "Framing: the metal rocker is a superb macro subject — use it as the craftsmanship close-up of the small-parts zone.",
-          "tags": ["静音键", "旋转锁", "拨杆开关"]
+          "tags": [
+            "静音键",
+            "旋转锁",
+            "拨杆开关"
+          ]
         },
         {
-          "name": "Micro-SIM 卡托", "en": "Micro-SIM Tray",
+          "name": "Micro-SIM 卡托",
+          "en": "Micro-SIM Tray",
           "desc": "Wi-Fi + Cellular 版机身右侧设有 Micro-SIM 卡插槽，以弹出式卡托承载 SIM 卡，插入后即接入 GSM/UMTS 或 CDMA 蜂窝数据网络（仅限数据传输）。卡托与卡槽小板分离设计，是 Cellular 版区别于 Wi-Fi 版的唯一外部特征。",
           "descEn": "On Wi-Fi + Cellular models a Micro-SIM slot on the right edge uses an ejectable tray to seat the SIM, opening data-only cellular service over GSM/UMTS or CDMA — tray and slot board are separate parts, and the slot is the sole external cue distinguishing Cellular from Wi-Fi models.",
           "note": "装裱价值：卡托是全组最小金属件，建议打孔托装并配「仅 Cellular 版」备注，与 Wi-Fi 版文案区分。",
           "noteEn": "Framing: the tray is the smallest metal piece — mount it in a pierced pocket with a 'Cellular only' note to distinguish it from the Wi-Fi version.",
-          "tags": ["Micro-SIM", "卡托", "仅 Cellular 版"]
+          "tags": [
+            "Micro-SIM",
+            "卡托",
+            "仅 Cellular 版"
+          ]
         }
       ]
     },
     {
-      "name": "无线与连接", "en": "Wireless & Connectivity", "icon": "●", "color": "#d69e2e",
+      "name": "无线与连接",
+      "en": "Wireless & Connectivity",
+      "icon": "●",
+      "color": "#d69e2e",
       "components": [
         {
-          "name": "Wi-Fi 天线", "en": "Wi-Fi Antenna",
+          "name": "Wi-Fi 天线",
+          "en": "Wi-Fi Antenna",
           "desc": "Wi-Fi 天线以扁平软性形态布设于机身内部，服务于 802.11a/b/g/n 双频 WLAN（802.11n 时工作在 2.4GHz 和 5GHz）与 Bluetooth 4.0 无线连接。天线位置经调优以在金属后壳的屏蔽环境下维持稳定的信号增益。",
           "descEn": "A flat flex antenna inside the chassis serves dual-band 802.11a/b/g/n Wi-Fi (2.4GHz and 5GHz on 802.11n) and Bluetooth 4.0, positioned to maintain gain despite the shielding of the aluminum rear case.",
           "note": "装裱价值：软性天线展开后线条优雅，适合沿逻辑板外侧弧线摆放，表现「隐藏的无线电」。",
           "noteEn": "Framing: the unfolded flex antenna draws an elegant curve — arc it around the logic board as the 'hidden radio'.",
-          "tags": ["802.11n", "双频", "蓝牙 4.0"]
+          "tags": [
+            "802.11n",
+            "双频",
+            "蓝牙 4.0"
+          ]
         },
         {
-          "name": "无线模组", "en": "Wireless Module",
+          "name": "无线模组",
+          "en": "Wireless Module",
           "desc": "无线模组承载 WLAN 与 Bluetooth 4.0 的射频收发与基带处理，以独立小板或板载芯片形态与逻辑板连接，是 Wi-Fi 版与 Cellular 版共有的通信核心。其天线馈点经同轴微线与 Wi-Fi 天线相连。",
           "descEn": "The wireless module handles RF transceiving and baseband for WLAN and Bluetooth 4.0, as a small board or onboard chip linked to the logic board, with coaxial pigtails feeding the Wi-Fi antenna — the shared comms core of both Wi-Fi and Cellular models.",
           "note": "装裱价值：模组上的屏蔽罩丝印可作微距细节；拆解时注意同轴线极细，勿反复弯折。",
           "noteEn": "Framing: the shield-can markings make a fine macro detail; the coax pigtail is very fine — avoid repeated bending.",
-          "tags": ["WLAN", "BT 4.0", "射频"]
+          "tags": [
+            "WLAN",
+            "BT 4.0",
+            "射频"
+          ]
         },
         {
-          "name": "蜂窝基带模组", "en": "Cellular Baseband Module",
+          "name": "蜂窝基带模组",
+          "en": "Cellular Baseband Module",
           "desc": "Wi-Fi + Cellular 版搭载独立蜂窝基带模组（第三方拆解口径为高通 MDM9615 系列），支持 A1459 的 GSM/EDGE 与 UMTS/HSPA+，或 A1460 额外兼容的 CDMA EV-DO Rev. A，实现全球漫游级的数据连接。蜂窝功能仅限数据传输，不含语音短信业务。",
           "descEn": "Cellular models carry a dedicated baseband module (a Qualcomm MDM9615-class part per third-party teardowns) supporting GSM/EDGE and UMTS/HSPA+ on the A1459, plus CDMA EV-DO Rev. A on the A1460 — data-only service, no voice or SMS.",
           "note": "装裱价值：基带模组是 Cellular 版的「身份件」，与 Wi-Fi 版装裱稿需明确区分；标注建议附「第三方拆解口径」说明。",
           "noteEn": "Framing: the baseband is the Cellular model's identity piece — keep copy clear of the Wi-Fi version; note the teardown-sourced attribution.",
-          "tags": ["基带", "MDM9615", "仅数据", "3G/LTE 时代"]
+          "tags": [
+            "基带",
+            "MDM9615",
+            "仅数据",
+            "3G/LTE 时代"
+          ]
         },
         {
-          "name": "SIM 卡槽小板", "en": "SIM Board",
+          "name": "SIM 卡槽小板",
+          "en": "SIM Board",
           "desc": "SIM 卡槽小板承载 Micro-SIM 卡座及其与逻辑板之间的桥接电路，位于机身右侧卡托开口之下。iFixit 将「SIM Board」与「SIM Tray」分列为两个独立更换组件，说明卡槽结构与卡托本身在维修上互不牵连。",
           "descEn": "The SIM board carries the Micro-SIM reader and its bridging circuit beneath the right-edge tray opening; iFixit lists SIM Board and SIM Tray as separate guides, so the reader and the tray can be serviced independently.",
           "note": "装裱价值：与卡托成对陈列最能讲清「托 + 槽」的配合关系，建议上下相邻。",
           "noteEn": "Framing: display it paired with the tray — tray above, board below — to explain how they mate.",
-          "tags": ["SIM 座", "Cellular 专属", "小板"]
+          "tags": [
+            "SIM 座",
+            "Cellular 专属",
+            "小板"
+          ]
         },
         {
-          "name": "定位模组（A-GPS / GLONASS）", "en": "Location Module (A-GPS / GLONASS)",
+          "name": "定位模组（A-GPS / GLONASS）",
+          "en": "Location Module (A-GPS / GLONASS)",
           "desc": "Wi-Fi + Cellular 版内置辅助全球卫星定位系统（A-GPS）与 GLONASS 双星系定位能力，配合数字指南针与蜂窝网络定位，提供室外级的导航精度；Wi-Fi 版则依靠 WLAN 网络与数字指南针完成定位。官方规格页将「数字指南针」与无线局域网并列为 Wi-Fi 版的定位手段。",
           "descEn": "Cellular models add A-GPS with GLONASS alongside a digital compass and cellular positioning for outdoor-grade navigation, while the Wi-Fi model locates via WLAN networks and its digital compass, per the official specs page.",
           "note": "装裱价值：定位电路集成于逻辑板/无线模组，不单独成件，建议作为逻辑板标注的附属说明。",
           "noteEn": "Framing: the GNSS circuitry is integrated on the logic board / wireless module — treat it as a sub-note of the board's caption.",
-          "tags": ["A-GPS", "GLONASS", "数字指南针"]
+          "tags": [
+            "A-GPS",
+            "GLONASS",
+            "数字指南针"
+          ]
         },
         {
-          "name": "同轴天线馈线", "en": "Coaxial Antenna Pigtail",
+          "name": "同轴天线馈线",
+          "en": "Coaxial Antenna Pigtail",
           "desc": "同轴天线馈线以极细的同轴微线连接无线模组的天线馈点与机身内的 Wi-Fi 天线，负责射频信号的低损耗传输。它是金属后壳屏蔽环境下天线系统得以正常工作的「毛细血管」，也是拆解中最容易被拉断的连接之一。",
           "descEn": "An ultra-fine coaxial pigtail links the wireless module's antenna feed point to the internal Wi-Fi antenna, carrying RF signals with minimal loss — the capillary of the antenna system that keeps radio working inside a shielding aluminum shell, and one of the easiest connections to snap in teardown.",
           "note": "装裱价值：细线在深色逻辑板旁辨识度低，建议与天线同框并共用标注。⚠️ 拆解警告：接头为按压式微扣，拆取只可平撬，严禁竖拔。",
           "noteEn": "Framing: the thin line reads poorly beside the dark board — group it with the antenna under a shared label. Warning: the press-fit micro connector must be pried level, never pulled vertically.",
-          "tags": ["同轴线", "射频馈电", "IPEX 微扣"]
+          "tags": [
+            "同轴线",
+            "射频馈电",
+            "IPEX 微扣"
+          ]
         }
       ]
     },
     {
-      "name": "传感系统", "en": "Sensor System", "icon": "◇", "color": "#805ad5",
+      "name": "传感系统",
+      "en": "Sensor System",
+      "icon": "◇",
+      "color": "#805ad5",
       "components": [
         {
-          "name": "三轴陀螺仪", "en": "Three-axis Gyroscope",
+          "name": "三轴陀螺仪",
+          "en": "Three-axis Gyroscope",
           "desc": "三轴陀螺仪感知设备绕三个轴向的角速度，为游戏体感、屏幕旋转与图像稳定提供高精度姿态数据。它与加速感应器协同工作，构成 iPad 姿态感知的核心双件组合。",
           "descEn": "The three-axis gyroscope senses angular velocity about all three axes, feeding precise attitude data to motion gaming, screen rotation and image stabilization; paired with the accelerometer it forms the device's core attitude-sensing duo.",
           "note": "装裱价值：传感器芯片极小且集成于逻辑板，建议以微距特写 + 文字卡形式呈现。",
           "noteEn": "Framing: the sensor die is tiny and board-integrated — present it as a macro close-up with a caption card.",
-          "tags": ["陀螺仪", "体感", "姿态"]
+          "tags": [
+            "陀螺仪",
+            "体感",
+            "姿态"
+          ]
         },
         {
-          "name": "加速感应器", "en": "Accelerometer",
+          "name": "加速感应器",
+          "en": "Accelerometer",
           "desc": "加速感应器测量三个轴向的线性加速度，承担屏幕自动旋转、摇一摇交互与运动计量的基础感知职能。相比陀螺仪，它更关注「平移与倾斜」，二者数据融合后才能得到完整的设备姿态解算。",
           "descEn": "The accelerometer measures linear acceleration along three axes, powering auto-rotation, shake interactions and motion metering; concerned with translation and tilt, it fuses with the gyroscope for complete attitude resolution.",
           "note": "装裱价值：与陀螺仪同框陈列并配「姿态双件」说明，是传感区最易读懂的一组。",
           "noteEn": "Framing: pair it with the gyroscope under an 'attitude duo' caption — the most legible pairing in the sensor zone.",
-          "tags": ["加速计", "自动旋转", "运动感知"]
+          "tags": [
+            "加速计",
+            "自动旋转",
+            "运动感知"
+          ]
         },
         {
-          "name": "环境光传感器", "en": "Ambient Light Sensor",
+          "name": "环境光传感器",
+          "en": "Ambient Light Sensor",
           "desc": "环境光传感器位于前面板顶部区域，感知周围光照强度并自动调节屏幕亮度，兼顾观感舒适与续航优化。官方规格页将其与三轴陀螺仪、加速感应器并列为整机的三大感应器。",
           "descEn": "Sitting near the top of the front panel, the ambient light sensor measures surroundings and auto-dims the display for comfort and battery life; the official specs list it alongside the gyroscope and accelerometer as the device's three sensors.",
           "note": "装裱价值：传感器开孔在前面板上缘可指认，陈列时与前面板近距离摆放以说明位置。",
           "noteEn": "Framing: its aperture is identifiable on the top bezel — mount it near the front panel to show the position.",
-          "tags": ["环境光", "自动亮度", "感应器"]
+          "tags": [
+            "环境光",
+            "自动亮度",
+            "感应器"
+          ]
         }
       ]
     },
     {
-      "name": "包装与配件", "en": "Packaging & Accessories", "icon": "▲", "color": "#4a5568",
+      "name": "包装与配件",
+      "en": "Packaging & Accessories",
+      "icon": "▲",
+      "color": "#4a5568",
       "components": [
         {
-          "name": "原装包装盒", "en": "Retail Box",
+          "name": "原装包装盒",
+          "en": "Retail Box",
           "desc": "原装包装盒以极简白盒承载「配备 Retina 显示屏的 iPad」的官方命名，盒面为机身正面渲染图与 Apple 标识。作为 Lightning 时代首批 iPad 的包装物，它与 30 针时代最后一批包装形成世代对照。",
           "descEn": "The retail box presents the official name 'iPad with Retina display' on a minimal white carton with a front render and Apple logo — among the first Lightning-era iPad packagings, set against the final 30-pin generation.",
           "note": "装裱价值：包装盒可作背景卡或作为装裱框外侧的「档案卡」，承载型号与年份信息。",
           "noteEn": "Framing: the box works as a backdrop card or an archival card outside the frame, carrying model and year.",
-          "tags": ["包装", "Retina 命名", "收藏件"]
+          "tags": [
+            "包装",
+            "Retina 命名",
+            "收藏件"
+          ]
         },
         {
-          "name": "随附文件与卡片", "en": "Documentation & Cards",
+          "name": "随附文件与卡片",
+          "en": "Documentation & Cards",
           "desc": "盒内随附快速入门指南、Apple 标识卡片与法规信息文件，是包装体系中最轻量的组成部分。其版式与文案忠实记录了 2012 年 Apple 中文区（含简体中文首次覆盖 iPad 全线）的官方措辞。",
           "descEn": "In-box quick-start guides, Apple logo cards and regulatory documents are the lightest layer of the package, faithfully recording Apple's official 2012 wording as Simplified Chinese first covered the full iPad line.",
           "note": "装裱价值：卡片可垫于零件下方作衬底，或裁切关键句嵌入标注区。",
           "noteEn": "Framing: cards can underlay the parts or have key lines cropped into the label zone.",
-          "tags": ["文件", "说明书", "法规"]
+          "tags": [
+            "文件",
+            "说明书",
+            "法规"
+          ]
         },
         {
-          "name": "SIM 卡取卡针", "en": "SIM Eject Tool",
+          "name": "SIM 卡取卡针",
+          "en": "SIM Eject Tool",
           "desc": "Cellular 版随附的 SIM 卡取卡针用于弹出机身右侧的 Micro-SIM 卡托，是整包中唯一的金属小工具。其与卡托、卡槽小板构成「取卡三件套」的完整叙事。",
           "descEn": "The bundled SIM eject tool pops the right-edge Micro-SIM tray on Cellular models — the only metal tool in the box, completing a 'tray, board, tool' trio with the other SIM parts.",
           "note": "装裱价值：取卡针体积最小，建议与卡托同框并用细线牵出关联。",
           "noteEn": "Framing: the smallest item — group it with the SIM tray and link them with a fine leader line.",
-          "tags": ["取卡针", "Cellular 版", "小工具"]
+          "tags": [
+            "取卡针",
+            "Cellular 版",
+            "小工具"
+          ]
         },
         {
-          "name": "Lightning Digital AV 转换器（选配）", "en": "Lightning Digital AV Adapter (Optional)",
+          "name": "Lightning Digital AV 转换器（选配）",
+          "en": "Lightning Digital AV Adapter (Optional)",
           "desc": "Lightning Digital AV 转换器为官方选配配件，经 Lightning 接口将画面输出至 HDMI 显示设备，视频镜像最高支持 720p、视频播放最高支持 1080p（官方规格页口径，需单独购买）。它体现了 Lightning 接口「小体积承载大带宽」的设计野心。",
           "descEn": "The optional official Lightning Digital AV Adapter outputs to HDMI over the Lightning port — mirroring up to 720p and video playback up to 1080p per the official specs page (sold separately) — showcasing how much bandwidth the small Lightning connector was designed to carry.",
           "note": "装裱价值：如需呈现「生态件」，转换器比线材更有辨识度；属选配件，与随机套装分开标注。",
           "noteEn": "Framing: for an ecosystem story the adapter reads better than the cable; it's an optional accessory — label it apart from the in-box set.",
-          "tags": ["HDMI", "选配", "视频输出"]
+          "tags": [
+            "HDMI",
+            "选配",
+            "视频输出"
+          ]
         }
       ]
     }
@@ -465,12 +935,41 @@
     "https://baike.baidu.com/item/iPad%EF%BC%88%E7%AC%AC%204%20%E4%BB%A3%EF%BC%89/56680315"
   ],
   "dataSources": [
-    { "source": "Apple 官方技术规格页（中文）", "url": "https://support.apple.com/kb/sp662", "用途": "全部核心规格逐字基线：尺寸重量（652/662g）、A6X 芯片、Retina 2048×1536 264PPI、iSight 5MP ƒ/2.4 五镜式、FaceTime HD 1.2MP 720p、42.5Wh 电池与续航、Lightning 接口、传感器、SIM 类型、频段、包装内容、环保特性、工作环境" },
-    { "source": "Apple 官方技术规格页（国际版）", "url": "https://support.apple.com/111993", "用途": "交叉验证国际口径：128GB 容量档、LTE 频段（A1459 Band 4/17；A1460 Band 1/3/5/13/25）、DC-HSDPA——国行官方页未列，二者差异已在 specs 口径说明" },
-    { "source": "Apple 官方机型识别页", "url": "https://support.apple.com/pt-br/108043", "用途": "A1458/A1459/A1460 机型归属、发布年份「2012 年末（final de 2012）」、Micro-SIM 卡槽位置（右侧）" },
-    { "source": "iFixit iPad 4 GSM 设备页与维修指南体系", "url": "https://www.ifixit.com/Device/iPad_4_GSM", "用途": "部件拆分基线（16 项独立维修组件清单）、GPU PowerVR SGX MP4+ 与 RAM 1GB 拆解口径、A6X 处理器与 42.5Wh 电池复核" },
-    { "source": "AppleDB 设备数据库", "url": "https://appledb.dev/device/iPad-(4th-generation).html", "用途": "上市日期 2012-11-02、停产日期 2014-10-16、机型标识符 iPad3,4/3,5/3,6、最终系统 iOS 10.3.4 时间线" },
-    { "source": "EveryiPad 规格数据库", "url": "http://everyipad.org/", "用途": "发布/停产时间线交叉验证、RAM 1GB、最大系统 iOS 10.3.4、128GB 追加版本时间" },
-    { "source": "百度百科「iPad（第 4 代）」词条（引用官方与媒体信源）", "url": "https://baike.baidu.com/item/iPad%EF%BC%88%E7%AC%AC%204%20%E4%BB%A3%EF%BC%89/56680315", "用途": "发布时间北京时间 2012-10-24、官网停售 2013-10-29、2022-02 列入停产/过时名单、国行售价 3688 元起、首款 Lightning 接口 iPad 事实确认" }
-  ]
+    {
+      "source": "Apple 官方技术规格页（中文）",
+      "url": "https://support.apple.com/kb/sp662",
+      "用途": "全部核心规格逐字基线：尺寸重量（652/662g）、A6X 芯片、Retina 2048×1536 264PPI、iSight 5MP ƒ/2.4 五镜式、FaceTime HD 1.2MP 720p、42.5Wh 电池与续航、Lightning 接口、传感器、SIM 类型、频段、包装内容、环保特性、工作环境"
+    },
+    {
+      "source": "Apple 官方技术规格页（国际版）",
+      "url": "https://support.apple.com/111993",
+      "用途": "交叉验证国际口径：128GB 容量档、LTE 频段（A1459 Band 4/17；A1460 Band 1/3/5/13/25）、DC-HSDPA——国行官方页未列，二者差异已在 specs 口径说明"
+    },
+    {
+      "source": "Apple 官方机型识别页",
+      "url": "https://support.apple.com/pt-br/108043",
+      "用途": "A1458/A1459/A1460 机型归属、发布年份「2012 年末（final de 2012）」、Micro-SIM 卡槽位置（右侧）"
+    },
+    {
+      "source": "iFixit iPad 4 GSM 设备页与维修指南体系",
+      "url": "https://www.ifixit.com/Device/iPad_4_GSM",
+      "用途": "部件拆分基线（16 项独立维修组件清单）、GPU PowerVR SGX MP4+ 与 RAM 1GB 拆解口径、A6X 处理器与 42.5Wh 电池复核"
+    },
+    {
+      "source": "AppleDB 设备数据库",
+      "url": "https://appledb.dev/device/iPad-(4th-generation).html",
+      "用途": "上市日期 2012-11-02、停产日期 2014-10-16、机型标识符 iPad3,4/3,5/3,6、最终系统 iOS 10.3.4 时间线"
+    },
+    {
+      "source": "EveryiPad 规格数据库",
+      "url": "http://everyipad.org/",
+      "用途": "发布/停产时间线交叉验证、RAM 1GB、最大系统 iOS 10.3.4、128GB 追加版本时间"
+    },
+    {
+      "source": "百度百科「iPad（第 4 代）」词条（引用官方与媒体信源）",
+      "url": "https://baike.baidu.com/item/iPad%EF%BC%88%E7%AC%AC%204%20%E4%BB%A3%EF%BC%89/56680315",
+      "用途": "发布时间北京时间 2012-10-24、官网停售 2013-10-29、2022-02 列入停产/过时名单、国行售价 3688 元起、首款 Lightning 接口 iPad 事实确认"
+    }
+  ],
+  "coverModel": "iPad (第 4 代) (A1460)"
 }
