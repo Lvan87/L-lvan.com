@@ -101,6 +101,7 @@ header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdro
   padding:16px;color:#fff;text-align:center}
 .pcard .pc-top .pc-brand{font-size:11px;opacity:.5;text-transform:uppercase;letter-spacing:1.5px}
 .pcard .pc-top .pc-model{font-size:22px;font-weight:800;letter-spacing:-.5px}
+.pcard .pc-top .pc-model-sub{display:block;font-size:10.5px;font-weight:600;opacity:.55;letter-spacing:0;margin-top:3px;line-height:1.5}
 .pcard .pc-top .pc-cat{font-size:11px;opacity:.6;margin-top:4px}
 .pcard .pc-body{padding:14px}
 .pcard .pc-row{display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px}
@@ -7121,7 +7122,7 @@ function renderProducts(main){
   PRODUCTS.forEach(p => {
     grid.innerHTML +=
       '<div class="pcard" onclick="openProduct(\''+p.id+'\')">'+
-      '<div class="pc-top"><div class="pc-brand">'+esc(p.brand)+'</div><div class="pc-model">'+esc(p.model)+'</div><div class="pc-cat">'+esc(p.category)+'</div></div>'+
+      '<div class="pc-top"><div class="pc-brand">'+esc(p.brand)+'</div><div class="pc-model">'+(function(m){var i=m.indexOf(" (");if(m.length>16&&i>0){return esc(m.slice(0,i))+'<span class="pc-model-sub">'+esc(m.slice(i))+'</span>';}return esc(m);})(p.model||"")+'</div><div class="pc-cat">'+esc(p.category)+'</div></div>'+
       '<div class="pc-body">'+
       '<div class="pc-row"><span class="pc-label">发布</span><span class="pc-val">'+esc((p.basicInfo&&p.basicInfo.releaseDate)||"—")+'</span></div>'+
       (p.size?'<div class="pc-row"><span class="pc-label">尺寸</span><span class="pc-val">'+esc(p.size)+'</span></div>':"")+
