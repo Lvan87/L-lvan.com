@@ -880,7 +880,21 @@ async function cloudSyncAll(){
       if(error){ console.warn("pull "+key+" err:", error.message); continue; }
       const local = loadData(key);
       if(data && data.data!=null){
-        const json = (typeof data.data==="string") ? JSON.parse(data.data) : data.data;
+        let json = (typeof data.data==="string") ? JSON.parse(data.data) : data.data;
+        // merge guard: keep local-only entries (e.g. newly seeded built-in products)
+        // instead of letting a stale cloud copy wipe them; push them back to cloud
+        try{
+          if(key==="products" && Array.isArray(json) && Array.isArray(local)){
+            var cloudIds = {};
+            json.forEach(function(x){ if(x&&x.id) cloudIds[x.id]=1; });
+            var localOnly = local.filter(function(x){ return x&&x.id&&!cloudIds[x.id]; });
+            if(localOnly.length){
+              json = json.concat(localOnly);
+              SB.from("app_sync").upsert({id:key, data:json, updated_at:new Date().toISOString()});
+              console.log("cloud merge: restored local-only products", localOnly.map(function(x){return x.id;}));
+            }
+          }
+        }catch(me){ console.warn("merge "+key+" failed:", me); }
         saveLocal(key, json); assignMem(key, json); pulled++;
       } else if(local!=null){
         await SB.from("app_sync").upsert({id:key, data:local, updated_at:new Date().toISOString()});
