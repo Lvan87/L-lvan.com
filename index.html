@@ -8236,6 +8236,12 @@ $("importFile").onchange=function(e){
   reader.onload=ev=>{
     try{
       const d=JSON.parse(ev.target.result);
+      // single-product catalog (brand+model+specs, no wrapper) -> route through AI sync
+      if(!d.products && d.brand && d.model && Array.isArray(d.specs)){
+        $("aiResult").value=ev.target.result;
+        Promise.resolve(syncAiResult()).catch(function(err){ alert("导入失败："+err.message); });
+        return;
+      }
       if(d.products)PRODUCTS=d.products;
       if(d.reviews)REVIEWS=d.reviews;
       if(d.chats)CHATS=d.chats;
