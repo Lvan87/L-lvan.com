@@ -447,9 +447,9 @@ header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdro
    ================================================================ */
 
 /* 页面整体背景 */
-.home-page{background:#f5f5f5;padding-top:0;padding-bottom:60px}
+.home-page{background:#f5f5f5;padding-top:0;padding-bottom:0}
 /* HERO 全屏开场（左对齐 Aperture 风格） */
-.hp-hero{position:relative;min-height:100vh;margin-top:-32px;display:flex;align-items:center;background:#0a0a0a;overflow:hidden;margin-bottom:60px}
+.hp-hero{position:relative;min-height:100vh;margin-top:-32px;display:flex;align-items:center;background:#0a0a0a;overflow:hidden;margin-bottom:0}
 .hp-hero-bg{position:absolute;inset:0;background-size:cover;background-position:25% center}
 .hp-hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,.88) 0%,rgba(0,0,0,.55) 55%,rgba(0,0,0,.78) 100%)}
 .hp-hero-inner{position:relative;z-index:2;text-align:left;max-width:1100px;margin:0 auto;padding:0 20px;width:100%}
@@ -483,7 +483,7 @@ header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdro
   background:linear-gradient(to bottom,transparent,rgba(10,10,10,.45));pointer-events:none}
 /* ---- L2 工作区（第二层级，点击箭头进入） ---- */
 .ws-view{display:none;animation:wsIn .35s ease both}
-.ws-view.show{display:block}
+.ws-view.show{display:block;padding-bottom:60px}
 @keyframes wsIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 .ws-back{max-width:1280px;margin:0 auto;padding:26px 20px 4px;display:flex;align-items:center;gap:16px}
 .ws-back-btn{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;
@@ -8496,8 +8496,9 @@ function goHome(){ showHero(); }
 function showHero(){
   document.body.classList.add('is-homepage');
   document.body.classList.remove('in-workspace');
-  var home=$("homePage"), layout=$("appLayout"), gal=$("galleryView"), wv=$("workspaceView");
+  var home=$("homePage"), layout=$("appLayout"), gal=$("galleryView"), wv=$("workspaceView"), hv=$("heroView");
   if(home) home.style.display="";
+  if(hv) hv.style.display="";
   if(layout){ layout.classList.add("hidden"); layout.classList.remove("no-sidebar"); }
   if(gal) gal.classList.remove("active");
   if(wv) wv.classList.remove("show");
@@ -8508,8 +8509,9 @@ function showHero(){
 function showWorkspace(){
   document.body.classList.remove('is-homepage');
   document.body.classList.add('in-workspace');
-  var home=$("homePage"), layout=$("appLayout"), gal=$("galleryView"), wv=$("workspaceView");
+  var home=$("homePage"), layout=$("appLayout"), gal=$("galleryView"), wv=$("workspaceView"), hv=$("heroView");
   if(home) home.style.display="";
+  if(hv) hv.style.display="none";
   if(layout) layout.classList.add("hidden");
   if(gal) gal.classList.remove("active");
   if(wv) wv.classList.add("show");
