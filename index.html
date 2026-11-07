@@ -486,11 +486,6 @@ header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdro
 .ws-view.show{display:block;padding-bottom:60px}
 @keyframes wsIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 .ws-back{max-width:1280px;margin:0 auto;padding:26px 20px 4px;display:flex;align-items:center;gap:16px}
-.ws-back-btn{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;
-  color:var(--ink);background:#fff;border:1px solid var(--line2);border-radius:var(--radius-sm);
-  padding:8px 14px;min-height:36px;cursor:pointer;transition:all .15s}
-.ws-back-btn:hover{border-color:var(--ink);background:var(--chip)}
-.ws-back-btn svg{width:15px;height:15px}
 .ws-title{font-family:var(--mono,Consolas,monospace);font-size:11px;letter-spacing:.22em;color:var(--ink3);text-transform:uppercase}
 @media (prefers-reduced-motion:reduce){.hp-cue-pixel,.hp-cue-text{animation:none}}
 @media(max-width:640px){.hp-scroll-cue{bottom:26px}}
@@ -564,7 +559,7 @@ header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdro
 /* hide old sidebar+layout on homepage */
 .layout.hidden{display:none}
 .sidebar.hidden{display:none}
-.maxw{max-width:1100px;margin:0 auto;padding:0 20px}
+.maxw{max-width:1280px;margin:0 auto;padding:0 20px}
 
 /* ================================================================
    GALLERY BROWSER — 产品图鉴多级浏览 (分类→品牌→作品)
@@ -707,10 +702,6 @@ header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdro
 <!-- L2 工作区（点击箭头进入；进入后即用户主界面） -->
 <div id="workspaceView" class="ws-view">
   <div class="ws-back">
-    <button type="button" class="ws-back-btn" onclick="showHero()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-      返回
-    </button>
     <span class="ws-title">工作区 / Workspace</span>
   </div>
 
