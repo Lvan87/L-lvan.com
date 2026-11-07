@@ -460,31 +460,40 @@ header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdro
 .hp-hero-text-en{font-size:12px;line-height:1.9;color:rgba(255,255,255,.5);margin:0;letter-spacing:.2px;font-style:italic}
 .hp-hero-actions{display:flex;gap:16px}
 .hp-hero-icon{width:36px;height:36px;border:1px solid rgba(255,255,255,.35);border-radius:4px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .25s ease;color:rgba(255,255,255,.6)}
-/* ---- 首屏引导：会动的渐变下箭头（点击平滑进入功能区） ---- */
-.hp-scroll-cue{position:absolute;left:50%;bottom:36px;transform:translateX(-50%);z-index:6;
-  display:flex;flex-direction:column;align-items:center;gap:10px;
-  background:none;border:none;cursor:pointer;padding:12px 22px}
-.hp-cue-text{font-family:var(--mono,Consolas,monospace);font-size:10px;letter-spacing:.32em;
-  color:rgba(255,255,255,.5);text-transform:uppercase;transition:color .25s;animation:hpCueText 2.4s ease-in-out infinite}
-.hp-cue-ring{width:46px;height:46px;border-radius:50%;
-  background:linear-gradient(180deg,rgba(255,255,255,.30),rgba(255,255,255,.05),rgba(255,255,255,.30));
-  background-size:100% 200%;
-  border:1px solid rgba(255,255,255,.35);
-  display:flex;align-items:center;justify-content:center;color:#fff;
-  box-shadow:0 4px 24px rgba(0,0,0,.28);
-  animation:hpCueBounce 1.9s cubic-bezier(.45,0,.55,1) infinite, hpCueSheen 2.8s linear infinite}
-.hp-cue-ring svg{width:20px;height:20px}
-.hp-scroll-cue:hover .hp-cue-ring{border-color:rgba(255,255,255,.85)}
+/* ---- 首屏引导：Nothing 像素风箭头（3 枚，浅→深渐变，依次浮动） ---- */
+.hp-scroll-cue{position:absolute;left:50%;bottom:42px;transform:translateX(-50%);z-index:6;
+  display:flex;flex-direction:column;align-items:center;gap:14px;
+  background:none;border:none;cursor:pointer;padding:14px 28px}
+.hp-cue-text{font-family:var(--mono,Consolas,monospace);font-size:10px;letter-spacing:.34em;
+  color:rgba(255,255,255,.55);text-transform:uppercase;animation:hpCueText 2.4s ease-in-out infinite}
+.hp-cue-pixel{width:48px;height:72px;overflow:visible;filter:drop-shadow(0 2px 10px rgba(0,0,0,.35))}
+.px-arrow{animation:pxFloat 1.7s cubic-bezier(.45,0,.55,1) infinite}
+.px1{opacity:.32;animation:pxFloat 1.7s cubic-bezier(.45,0,.55,1) infinite,pxPulse1 1.7s ease-in-out infinite}
+.px2{opacity:.62;animation:pxFloat 1.7s cubic-bezier(.45,0,.55,1) .14s infinite,pxPulse2 1.7s ease-in-out .14s infinite}
+.px3{opacity:1;animation:pxFloat 1.7s cubic-bezier(.45,0,.55,1) .28s infinite}
+.hp-scroll-cue:hover .px1,.hp-scroll-cue:hover .px2,.hp-scroll-cue:hover .px3{animation-play-state:paused;opacity:1}
 .hp-scroll-cue:hover .hp-cue-text{color:rgba(255,255,255,.9);animation:none}
-.hp-scroll-cue:active .hp-cue-ring{transform:translateY(4px) scale(.96)}
-@keyframes hpCueBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}
-@keyframes hpCueSheen{0%{background-position:0 0%}100%{background-position:0 200%}}
+.hp-scroll-cue:active .hp-cue-pixel{transform:translateY(3px)}
+@keyframes pxFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+@keyframes pxPulse1{0%,100%{opacity:.28}50%{opacity:.62}}
+@keyframes pxPulse2{0%,100%{opacity:.55}50%{opacity:1}}
 @keyframes hpCueText{0%,100%{opacity:.5}50%{opacity:1}}
 /* Hero 底部渐变蒙层：箭头区与背景自然融合 */
 .hp-hero-fade{position:absolute;left:0;right:0;bottom:0;height:200px;z-index:3;
   background:linear-gradient(to bottom,transparent,rgba(10,10,10,.45));pointer-events:none}
-@media (prefers-reduced-motion:reduce){.hp-cue-ring,.hp-cue-text{animation:none}}
-@media(max-width:640px){.hp-scroll-cue{bottom:22px}.hp-cue-ring{width:40px;height:40px}}
+/* ---- L2 工作区（第二层级，点击箭头进入） ---- */
+.ws-view{display:none;animation:wsIn .35s ease both}
+.ws-view.show{display:block}
+@keyframes wsIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.ws-back{max-width:1280px;margin:0 auto;padding:26px 20px 4px;display:flex;align-items:center;gap:16px}
+.ws-back-btn{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;
+  color:var(--ink);background:#fff;border:1px solid var(--line2);border-radius:var(--radius-sm);
+  padding:8px 14px;min-height:36px;cursor:pointer;transition:all .15s}
+.ws-back-btn:hover{border-color:var(--ink);background:var(--chip)}
+.ws-back-btn svg{width:15px;height:15px}
+.ws-title{font-family:var(--mono,Consolas,monospace);font-size:11px;letter-spacing:.22em;color:var(--ink3);text-transform:uppercase}
+@media (prefers-reduced-motion:reduce){.hp-cue-pixel,.hp-cue-text{animation:none}}
+@media(max-width:640px){.hp-scroll-cue{bottom:26px}}
 .hp-hero-icon:hover{border-color:#fff;color:#fff;background:rgba(255,255,255,.08)}
 .hp-hero-icon svg{width:17px;height:17px}
 
@@ -655,6 +664,7 @@ header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdro
 
 <!-- ===== MODULAR HOMEPAGE v8 ===== -->
 <div class="home-page" id="homePage">
+<div id="heroView">
 
 <!-- HERO: 全屏开场 -->
 <section class="hp-hero">
@@ -674,11 +684,35 @@ header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdro
     </div>
   </div>
   <div class="hp-hero-fade"></div>
-  <button class="hp-scroll-cue" type="button" onclick="scrollToWorkspace()" aria-label="进入功能区">
+  <button class="hp-scroll-cue" type="button" onclick="showWorkspace()" aria-label="进入工作区">
     <span class="hp-cue-text">Explore</span>
-    <span class="hp-cue-ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+    <svg class="hp-cue-pixel" viewBox="0 0 32 48" shape-rendering="crispEdges" fill="#ffffff" aria-hidden="true">
+      <g class="px-arrow px1">
+        <rect x="0" y="0" width="4" height="4"/><rect x="4" y="4" width="4" height="4"/><rect x="8" y="8" width="4" height="4"/><rect x="12" y="12" width="4" height="4"/>
+        <rect x="16" y="12" width="4" height="4"/><rect x="20" y="8" width="4" height="4"/><rect x="24" y="4" width="4" height="4"/><rect x="28" y="0" width="4" height="4"/>
+      </g>
+      <g class="px-arrow px2">
+        <rect x="0" y="16" width="4" height="4"/><rect x="4" y="20" width="4" height="4"/><rect x="8" y="24" width="4" height="4"/><rect x="12" y="28" width="4" height="4"/>
+        <rect x="16" y="28" width="4" height="4"/><rect x="20" y="24" width="4" height="4"/><rect x="24" y="20" width="4" height="4"/><rect x="28" y="16" width="4" height="4"/>
+      </g>
+      <g class="px-arrow px3">
+        <rect x="0" y="32" width="4" height="4"/><rect x="4" y="36" width="4" height="4"/><rect x="8" y="40" width="4" height="4"/><rect x="12" y="44" width="4" height="4"/>
+        <rect x="16" y="44" width="4" height="4"/><rect x="20" y="40" width="4" height="4"/><rect x="24" y="36" width="4" height="4"/><rect x="28" y="32" width="4" height="4"/>
+      </g>
+    </svg>
   </button>
 </section>
+</div><!-- end heroView（L1 展示页） -->
+
+<!-- L2 工作区（点击箭头进入；进入后即用户主界面） -->
+<div id="workspaceView" class="ws-view">
+  <div class="ws-back">
+    <button type="button" class="ws-back-btn" onclick="showHero()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      返回
+    </button>
+    <span class="ws-title">工作区 / Workspace</span>
+  </div>
 
 <!-- ROW 1: 介绍卡 | 产品图鉴 -->
 <div class="hp-row hp-row1 maxw">
@@ -750,6 +784,7 @@ header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdro
 
 </div><!-- end hp-row2 -->
 
+</div><!-- end workspaceView（L2 工作区） -->
 </div><!-- end home-page -->
 
 <!-- ===== GALLERY BROWSER (产品图鉴) ===== -->
@@ -757,7 +792,7 @@ header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdro
   <div class="page-topbar">
     <button class="btn btn-ghost btn-sm" onclick="exitGallery()" style="gap:6px">
       <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-      返回首页
+      返回工作区
     </button>
     <div class="pt-title" id="galTitle">产品图鉴</div>
   </div>
@@ -770,9 +805,9 @@ header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdro
 <!-- ===== LAYOUT (hidden on homepage) ===== -->
 <div class="layout hidden" id="appLayout">
 <div class="page-topbar" id="pageTopbar">
-  <button class="btn btn-ghost btn-sm" onclick="goHome()" style="gap:6px">
+  <button class="btn btn-ghost btn-sm" onclick="showWorkspace()" style="gap:6px">
     <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-    返回首页
+    返回工作区
   </button>
   <div class="pt-title" id="pageTitle"></div>
 </div>
@@ -8440,6 +8475,7 @@ function getBrandColor(brand){
 var pageTitles = {products:'产品资料库',reference:'灵感参考',reviews:'设计稿审核',assistant:'AI 助手'};
 function enterWorkbench(tab){
   document.body.classList.remove('is-homepage');
+  document.body.classList.add('in-workspace');
   var home = $("homePage");
   var layout = $("appLayout");
   var sidebar = $("sidebar");
@@ -8453,27 +8489,32 @@ function enterWorkbench(tab){
   window.scrollTo(0,0);
 }
 
-/* 返回首页 */
-function goHome(){
+/* 返回首页（L1 展示页） */
+function goHome(){ showHero(); }
+
+/* 主页两级结构：L1 展示页（Hero）↔ L2 工作区 */
+function showHero(){
   document.body.classList.add('is-homepage');
-  var home = $("homePage");
-  var layout = $("appLayout");
-  var sidebar = $("sidebar");
-  var gal = $("galleryView");
-  if(home) home.style.display = "";
-  if(layout) { layout.classList.add("hidden"); layout.classList.remove("no-sidebar"); }
-  if(sidebar) sidebar.classList.add("hidden");
+  document.body.classList.remove('in-workspace');
+  var home=$("homePage"), layout=$("appLayout"), gal=$("galleryView"), wv=$("workspaceView");
+  if(home) home.style.display="";
+  if(layout){ layout.classList.add("hidden"); layout.classList.remove("no-sidebar"); }
   if(gal) gal.classList.remove("active");
+  if(wv) wv.classList.remove("show");
   renderHomePage();
   updateGlobalNav();
   window.scrollTo(0,0);
 }
-
-/* 首屏引导箭头：点击平滑滚动到功能区 */
-function scrollToWorkspace(){
-  var target=document.querySelector(".hp-row1")||document.querySelector(".home-page");
-  if(target){ target.scrollIntoView({behavior:"smooth",block:"start"}); }
-  else { var hero=document.querySelector(".hp-hero"); if(hero) window.scrollTo({top:hero.offsetHeight,behavior:"smooth"}); }
+function showWorkspace(){
+  document.body.classList.remove('is-homepage');
+  document.body.classList.add('in-workspace');
+  var home=$("homePage"), layout=$("appLayout"), gal=$("galleryView"), wv=$("workspaceView");
+  if(home) home.style.display="";
+  if(layout) layout.classList.add("hidden");
+  if(gal) gal.classList.remove("active");
+  if(wv) wv.classList.add("show");
+  updateGlobalNav();
+  window.scrollTo(0,0);
 }
 
 /* ===== 全局返回导航：返回上一级 / 面包屑（固定于 sticky header，不随滚动消失） ===== */
@@ -8493,29 +8534,29 @@ function goBack(){
   var gal=$("galleryView");
   if(gal&&gal.classList.contains("active")){
     if(typeof galLevel!=="undefined"&&galLevel!=="cats"){ galBack(); updateGlobalNav(); window.scrollTo(0,0); return; }
-    goHome(); return;
+    showWorkspace(); return;
   }
-  goHome();
+  showWorkspace();
 }
 /* 按当前页面状态刷新导航按钮与面包屑 */
 function updateGlobalNav(){
   var nav=$("globalNav"); if(!nav) return;
-  var home=$("homePage"), gal=$("galleryView");
-  var isHome=document.body.classList.contains("is-homepage")||(home&&home.style.display!=="none");
+  var home=$("homePage"), gal=$("galleryView"), layout=$("appLayout");
   var galActive=gal&&gal.classList.contains("active");
-  if(isHome&&!galActive){ nav.classList.remove("show"); return; }
+  var inApp=layout&&!layout.classList.contains("hidden");
+  var inWs=document.body.classList.contains("in-workspace");
+  /* L1 展示页 与 L2 工作区根级：不显示 header 导航（页面自有返回条） */
+  if(!inWs||(!galActive&&!inApp)){ nav.classList.remove("show"); return; }
   nav.classList.add("show");
   var crumb=$("gnCrumb"), back=$("gnBack"), path="";
   if(galActive){
-    path="产品图鉴";
+    path="工作区 / 产品图鉴";
     var ci=(typeof GAL_CATEGORIES!=="undefined"&&galCat)?GAL_CATEGORIES.find(c=>c.id===galCat):null;
     if(galLevel==="brands") path+=" / "+(ci?ci.name:galCat);
     if(galLevel==="showcase") path+=" / "+(ci?ci.name:galCat)+" / "+(galBrand||"");
-  } else if(typeof viewingProduct!=="undefined"&&viewingProduct){
-    var p=PRODUCTS.find(x=>x.id===viewingProduct);
-    path=(pageTitles[curTab]||"产品资料库")+(p?(" / "+p.brand+" "+p.model):"");
-  } else {
-    path=pageTitles[curTab]||"";
+  } else if(inApp){
+    var p=(typeof viewingProduct!=="undefined"&&viewingProduct)?PRODUCTS.find(x=>x.id===viewingProduct):null;
+    path="工作区 / "+(pageTitles[curTab]||"")+(p?(" / "+p.brand+" "+p.model):"");
   }
   if(crumb) crumb.textContent=path;
   if(back) back.style.visibility=(galActive&&galLevel==="cats")?"hidden":"visible";
@@ -8546,6 +8587,7 @@ function getProductCategory(p){
 
 /* 进入图鉴浏览器 */
 function enterGallery(){
+  document.body.classList.add('in-workspace');
   $("homePage").style.display = "none";
   $("appLayout").classList.add("hidden");
   $("sidebar").classList.add("hidden");
@@ -8558,7 +8600,7 @@ function enterGallery(){
 }
 
 /* 退出图鉴 */
-function exitGallery(){ goHome(); }
+function exitGallery(){ showWorkspace(); }
 
 /* 返回上一级 */
 function galBack(){
