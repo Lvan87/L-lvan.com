@@ -34,6 +34,18 @@ header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdro
 .brand svg{width:24px;height:24px;flex-shrink:0}
 .brand span{opacity:.45;font-size:9px;text-transform:uppercase;letter-spacing:1.5px;font-weight:500}
 .hbar-r{margin-left:auto;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+/* ---- 全局返回导航（sticky header 内，不随滚动消失） ---- */
+.g-nav{display:none;align-items:center;gap:6px;margin-left:auto}
+.g-nav.show{display:flex}
+.gn-btn{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:500;color:var(--ink);
+  background:transparent;border:1px solid var(--line2);border-radius:var(--radius-sm);
+  padding:6px 11px;min-height:32px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.gn-btn:hover{border-color:var(--ink);background:var(--chip)}
+.gn-btn svg{width:13px;height:13px;flex-shrink:0}
+.gn-home{border-style:dashed}
+.gn-crumb{font-family:var(--mono,Consolas,monospace);font-size:11px;color:var(--ink3);
+  letter-spacing:.03em;max-width:38vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:820px){.gn-crumb{display:none}.gn-btn span{display:none}.gn-btn{padding:6px 8px}}
 .btn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:var(--radius-sm);
   font-size:13px;font-weight:500;transition:all .15s;min-height:36px}
 .btn-sm{padding:5px 10px;font-size:12px;min-height:32px}
@@ -448,11 +460,36 @@ header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdro
 .hp-hero-text-en{font-size:12px;line-height:1.9;color:rgba(255,255,255,.5);margin:0;letter-spacing:.2px;font-style:italic}
 .hp-hero-actions{display:flex;gap:16px}
 .hp-hero-icon{width:36px;height:36px;border:1px solid rgba(255,255,255,.35);border-radius:4px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .25s ease;color:rgba(255,255,255,.6)}
+/* ---- 首屏引导：会动的渐变下箭头（点击平滑进入功能区） ---- */
+.hp-scroll-cue{position:absolute;left:50%;bottom:36px;transform:translateX(-50%);z-index:6;
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  background:none;border:none;cursor:pointer;padding:12px 22px}
+.hp-cue-text{font-family:var(--mono,Consolas,monospace);font-size:10px;letter-spacing:.32em;
+  color:rgba(255,255,255,.5);text-transform:uppercase;transition:color .25s;animation:hpCueText 2.4s ease-in-out infinite}
+.hp-cue-ring{width:46px;height:46px;border-radius:50%;
+  background:linear-gradient(180deg,rgba(255,255,255,.30),rgba(255,255,255,.05),rgba(255,255,255,.30));
+  background-size:100% 200%;
+  border:1px solid rgba(255,255,255,.35);
+  display:flex;align-items:center;justify-content:center;color:#fff;
+  box-shadow:0 4px 24px rgba(0,0,0,.28);
+  animation:hpCueBounce 1.9s cubic-bezier(.45,0,.55,1) infinite, hpCueSheen 2.8s linear infinite}
+.hp-cue-ring svg{width:20px;height:20px}
+.hp-scroll-cue:hover .hp-cue-ring{border-color:rgba(255,255,255,.85)}
+.hp-scroll-cue:hover .hp-cue-text{color:rgba(255,255,255,.9);animation:none}
+.hp-scroll-cue:active .hp-cue-ring{transform:translateY(4px) scale(.96)}
+@keyframes hpCueBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}
+@keyframes hpCueSheen{0%{background-position:0 0%}100%{background-position:0 200%}}
+@keyframes hpCueText{0%,100%{opacity:.5}50%{opacity:1}}
+/* Hero 底部渐变蒙层：箭头区与背景自然融合 */
+.hp-hero-fade{position:absolute;left:0;right:0;bottom:0;height:200px;z-index:3;
+  background:linear-gradient(to bottom,transparent,rgba(10,10,10,.45));pointer-events:none}
+@media (prefers-reduced-motion:reduce){.hp-cue-ring,.hp-cue-text{animation:none}}
+@media(max-width:640px){.hp-scroll-cue{bottom:22px}.hp-cue-ring{width:40px;height:40px}}
 .hp-hero-icon:hover{border-color:#fff;color:#fff;background:rgba(255,255,255,.08)}
 .hp-hero-icon svg{width:17px;height:17px}
 
 /* ---- 统一间距 ---- */
-.hp-row{display:grid;gap:20px}
+.hp-row{display:grid;gap:20px;scroll-margin-top:24px}
 .hp-row+.hp-row{margin-top:20px}
 
 /* Row 1: intro(固定宽) + gallery(flex) */
@@ -598,6 +635,13 @@ header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdro
     <svg viewBox="0 0 32 32" fill="none"><rect x="3" y="3" width="26" height="26" rx="5" stroke="#0a0a0a" stroke-width="2"/><circle cx="16" cy="16" r="4" fill="#e60023"/><path d="M10 16h12" stroke="#0a0a0a" stroke-width="1.5"/></svg>
     装裱的艺术<span>The Art of Framing</span>
   </div>
+  <div class="g-nav" id="globalNav">
+    <button type="button" class="gn-btn" id="gnBack" onclick="goBack()" title="返回上一级">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg><span>返回</span>
+    </button>
+    <span class="gn-crumb" id="gnCrumb"></span>
+    <button type="button" class="gn-btn gn-home" onclick="goHome()" title="返回首页">首页</button>
+  </div>
   <div class="hbar-r">
     <span class="cloud-dot" id="cloudDot" title="未连接云端"></span>
     <button class="btn btn-outline btn-sm" id="btnExport" title="导出 JSON 备份">
@@ -629,6 +673,11 @@ header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdro
       <span class="hp-hero-icon" title="设计工作台" onclick="enterWorkbench('products')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
     </div>
   </div>
+  <div class="hp-hero-fade"></div>
+  <button class="hp-scroll-cue" type="button" onclick="scrollToWorkspace()" aria-label="进入功能区">
+    <span class="hp-cue-text">Explore</span>
+    <span class="hp-cue-ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+  </button>
 </section>
 
 <!-- ROW 1: 介绍卡 | 产品图鉴 -->
@@ -6917,7 +6966,1305 @@ function initSampleData(){
           "用途": "发布时间北京时间 2012-10-24、官网停售 2013-10-29、2022-02 列入停产/过时名单、国行售价 3688 元起、首款 Lightning 接口 iPad 事实确认"
         }
       ]
-    }
+    },
+    {
+    "id": "p010",
+    "coverModel": "荣耀 Magic8 Pro",
+    "brand": "荣耀 HONOR",
+    "model": "荣耀 Magic8 Pro",
+    "category": "智能手机 旗舰 AI 进化机 (Flagship AI Smartphone)",
+    "size": "161.15 × 75 × 8.32 mm",
+    "basicInfo": {
+      "releaseDate": "2025-10-15 发布，2025-10-23 开售",
+      "chip": "第五代骁龙 8 至尊版移动平台 / 3nm / 4.6GHz",
+      "display": "6.71 英寸 OLED FHD+ 1256 × 2808 / 458 PPI / 120Hz LTPO",
+      "camera": "后置 5000 万超夜神主摄 + 5000 万超广角 + 2 亿超夜神长焦 / 前置 5000 万广角 + 3D 深感",
+      "battery": "7200mAh 典型值 / 120W 有线 / 80W 无线",
+      "framedVersion": "装裱设计图审核（2026-11-03 结案）"
+    },
+    "features": "荣耀 Magic8 Pro 是荣耀于 2025 年 10 月 15 日发布的 AI 进化旗舰手机，主打超夜神影像、超大电池与自进化 YOYO 智能体。机身采用 161.15 × 75 × 8.32 mm 的三维比例，整机约 219 克，正面覆盖荣耀巨犀玻璃，配合 6.71 英寸荣耀 AI 绿洲护眼屏，构成四等深微曲的正面观感。\n\n影像部分是它的核心主张：后置三摄以「2 亿超夜神长焦」为长焦主轴，采用潜望式长焦与 1/1.4 英寸超大底感光元件，配合 ƒ/2.6 超大光圈，实现 3.7 倍光学变焦与最高 200 倍数字变焦；5000 万超夜神主摄以 1/1.3 英寸超大底与 ƒ/1.6 光圈承担常规拍摄，5000 万超广角以 ƒ/2.0 光圈覆盖 122° 超广视角与 2.5cm 高清微距。前置采用 5000 万广角前摄与 3D 深感摄像头的双摄组合，支持 3D 人脸识别。\n\n性能与续航同样占据旗舰位：第五代骁龙 8 至尊版移动平台采用 3nm 全新制程，CPU 超大核主频高达 4.6GHz，配 Adreno 840 图形处理器；电池为新一代青海湖电池 7200mAh（典型值），支持 120W 有线超级快充、100W PPS、40W UFCS 与 80W 无线超级快充。音频采用荣耀 AI 环绕低音炮方案，双 1216 扬声器搭配 8cc 超大音腔与 0.88mm 超大振幅，并首创双开放腔技术。全机通过 IP68、IP69 与 IP69K 三重防尘抗水等级，行业顶规。",
+    "specs": [
+      {
+        "key": "发布日期",
+        "value": "2025-10-15 正式发布 — Release Date"
+      },
+      {
+        "key": "开售日期",
+        "value": "2025-10-23 荣耀官方渠道及合作平台启售 — On Sale Date"
+      },
+      {
+        "key": "产品定位",
+        "value": "AI 进化旗舰手机 / 荣耀首款自进化 AI 原生手机 — AI-Flagship Smartphone"
+      },
+      {
+        "key": "机身三维",
+        "value": "161.15 × 75 × 8.32 mm — 161.15 × 75 × 8.32 mm"
+      },
+      {
+        "key": "重量",
+        "value": "约 219 g（含电池）— Approx. 219g"
+      },
+      {
+        "key": "机身配色",
+        "value": "旭日金砂 / 天青色 / 雪域白 / 绒黑色 — Four Colorways"
+      },
+      {
+        "key": "屏幕尺寸",
+        "value": "6.71 英寸（标准矩形对角线，圆角设计实际可视区域略小）— 6.71-inch"
+      },
+      {
+        "key": "屏幕分辨率",
+        "value": "FHD+ 1256 × 2808 像素 — FHD+ 1256 × 2808"
+      },
+      {
+        "key": "屏幕像素密度",
+        "value": "458 PPI — 458 PPI"
+      },
+      {
+        "key": "屏占比",
+        "value": "93.4% — Screen-to-Body Ratio 93.4%"
+      },
+      {
+        "key": "屏幕类型",
+        "value": "OLED 四等深微曲屏 — OLED Curved Display"
+      },
+      {
+        "key": "屏幕色彩",
+        "value": "真 10.7 亿色，DCI-P3 广色域 — True 1.07 Billion Colors, DCI-P3"
+      },
+      {
+        "key": "刷新率",
+        "value": "120Hz LTPO 自适应动态刷新率 — 120Hz LTPO"
+      },
+      {
+        "key": "屏幕亮度",
+        "value": "HDR 峰值 6000nits / 全局峰值 1800nits / 最低 1nit — HDR 6000nits, Global 1800nits, Min 1nit"
+      },
+      {
+        "key": "屏幕护眼",
+        "value": "荣耀 AI 绿洲护眼屏，行业首款通过德国莱茵全局护眼 5.0 认证 — HONOR AI Oasis Eye-Comfort Display"
+      },
+      {
+        "key": "护眼技术",
+        "value": "圆偏振光护眼 2.0 / 4320Hz 超高频 PWM 调光 / 干眼友好 / 离焦视力舒缓 / 护眼模式 / 类自然光护眼 / 助眠显示 / 自然色彩显示"
+      },
+      {
+        "key": "屏幕保护玻璃",
+        "value": "荣耀巨犀玻璃，10 倍抗摔，SGS 多场景金标五星玻璃抗跌耐摔认证 — HONOR Rhino Glass"
+      },
+      {
+        "key": "屏幕触控",
+        "value": "多点触控，最多支持 10 点触控"
+      },
+      {
+        "key": "CPU 型号",
+        "value": "第五代骁龙 8 至尊版移动平台 — Snapdragon 8 Elite Gen 5"
+      },
+      {
+        "key": "CPU 规格",
+        "value": "3nm 全新制程工艺，八核，2 × Prime 4.6GHz + 6 × Performance 3.62GHz"
+      },
+      {
+        "key": "GPU 型号",
+        "value": "Adreno 840 图形处理器 — Adreno 840 GPU"
+      },
+      {
+        "key": "性能提升",
+        "value": "CPU 响应速度提升 32% / GPU 光追性能提升 25% / NPU 性能提升 37%"
+      },
+      {
+        "key": "操作系统",
+        "value": "MagicOS 10（基于 Android 16）— MagicOS 10 (Android 16)"
+      },
+      {
+        "key": "存储版本",
+        "value": "12GB+256GB / 12GB+512GB / 16GB+512GB / 16GB+1TB"
+      },
+      {
+        "key": "后置主摄",
+        "value": "5000 万超夜神主摄：1/1.3 英寸超大底感光元件、ƒ/1.6 光圈、100% Focus Pixels、OIS 光学防抖、四合一 2.4μm 大像素输出"
+      },
+      {
+        "key": "后置超广角",
+        "value": "5000 万超广角：ƒ/2.0 光圈、最大 122° 视角、100% Focus Pixels、2.5cm 高清微距摄影"
+      },
+      {
+        "key": "后置长焦",
+        "value": "2 亿超夜神长焦：潜望式长焦、1/1.4 英寸超大底感光元件、ƒ/2.6 光圈、OIS 光学防抖、3.7x 光学变焦、最高 200 倍数字变焦"
+      },
+      {
+        "key": "后置辅助传感器",
+        "value": "色温传感器 / Flicker 传感器 / 激光对焦传感器"
+      },
+      {
+        "key": "前置主摄",
+        "value": "5000 万广角前摄：ƒ/2.0 光圈、最大 90° 视角 — 50MP Wide Front Camera"
+      },
+      {
+        "key": "前置深感",
+        "value": "3D 深感摄像头，支持 3D 人脸识别 — 3D Depth Camera"
+      },
+      {
+        "key": "照片分辨率",
+        "value": "后置最大 16320 × 12288 像素 / 前置最大 8192 × 6144 像素"
+      },
+      {
+        "key": "视频拍摄",
+        "value": "后置 4K 30/60/120 FPS、1080P 30/60 FPS、720P 30/60 FPS、4K 夜景录像 24FPS、1080P 慢动作 120/240FPS；前置 4K 30/60 FPS、1080P 30/60 FPS、720P 30/60 FPS，支持两焦段变焦 0.8x / 1x；编码 H.264 与 HEVC"
+      },
+      {
+        "key": "变焦范围",
+        "value": "变焦范围最高可达 0.5x-15x，3.7x 光学变焦、最大 200 倍数字变焦"
+      },
+      {
+        "key": "防抖模式",
+        "value": "电子防抖、光学防抖（OIS），AIMAGE 防抖引擎行业首发 CIPA 6.5 级防抖"
+      },
+      {
+        "key": "影像引擎",
+        "value": "AIMAGE 夜神引擎 / AIMAGE 防抖引擎 / AIMAGE 人像引擎"
+      },
+      {
+        "key": "智能影像",
+        "value": "YOYO 影像智能体：行业首发灵感帮拍、行业首发 AI 追色"
+      },
+      {
+        "key": "电池名称",
+        "value": "新一代青海湖电池（硅碳负极）— Next-Gen Qinghai Lake Battery"
+      },
+      {
+        "key": "电池容量",
+        "value": "7200mAh 典型值 / 7020mAh 额定值，锂离子聚合物，内置不可拆卸"
+      },
+      {
+        "key": "有线快充",
+        "value": "120W 荣耀超级快充 / 100W PPS 快充协议 / 40W UFCS 快充协议"
+      },
+      {
+        "key": "无线充电",
+        "value": "80W 荣耀无线超级快充，支持无线反向充电；支持 260+ 款车型 50W 无线快充"
+      },
+      {
+        "key": "电源管理",
+        "value": "荣耀都江堰 AI 电源管理系统，毫伏级电压稳定算法 + 双芯片能效增强矩阵，典型场景功耗降低 13%"
+      },
+      {
+        "key": "防尘抗水",
+        "value": "IP68 + IP69 + IP69K 行业顶规（ISO 20653:2023 达 IP69K，GB/T 4208-2017 达 IP68 与 IP69）"
+      },
+      {
+        "key": "生物识别",
+        "value": "3D 人脸识别 + 3D 超声波指纹识别，行业独家双 3D 生物识别"
+      },
+      {
+        "key": "音频系统",
+        "value": "荣耀 AI 环绕低音炮，首创双开放腔技术，自研 AI 空间声场算法，HONOR Sound"
+      },
+      {
+        "key": "扬声器",
+        "value": "双 1216 扬声器，8cc 行业领先超大音腔，0.88mm 行业领先超大振幅"
+      },
+      {
+        "key": "拾音功能",
+        "value": "VoIP/CS 通话 AI 降噪、蓝牙耳机远程录音、后摄 3MIC 录像音频变焦、前摄 3MIC 录像音频聚焦"
+      },
+      {
+        "key": "通信芯片",
+        "value": "自研射频增强芯片 HONOR C1+，荣耀鸿燕六翼天线，信号强度至高提升 70%"
+      },
+      {
+        "key": "网络与频段",
+        "value": "支持移动/电信/联通/广电 5GA/5G/4G+/4G，4×4 MIMO、载波聚合、HPUE、HO RxD；24 个 5G 频段，覆盖 200+ 国家地区、1000+ 运营商，支持 GMS"
+      },
+      {
+        "key": "WLAN 与蓝牙",
+        "value": "Wi-Fi 7（802.11 be）/ Wi-Fi 6 / 802.11 a/b/g/n/ac，2x2 MIMO、MLO、4096 QAM、160MHz、MU-MIMO、2.4G&5G 双路并发；蓝牙 6.0，BLE / LE Audio / Auracast，支持 SBC/AAC/LDAC/aptX 系列/LC3/LHDC5.0、ASHA"
+      },
+      {
+        "key": "NFC 与接口",
+        "value": "顶部 NFC 全向天线，3 倍信号覆盖，全角度 NFC 刷卡与熄屏一碰付；USB Type-C，USB 3.2 GEN1，支持 DP1.2；红外遥控、无线投屏、OTG 反向供电 1A/5V"
+      },
+      {
+        "key": "定位导航",
+        "value": "北斗（B1I+B1C+B2a+B2b 四频）、GPS（L1+L5 双频）、GLONASS（G1）、Galileo（E1+E5a+E5b 三频）、QZSS、NavIC、A-GNSS；支持蜂窝与 WLAN 网络定位；北斗卫星短信（仅 1TB 版本）"
+      },
+      {
+        "key": "传感器",
+        "value": "重力传感器、红外传感器、指纹传感器、陀螺仪、指南针、环境光传感器、接近光传感器、霍尔传感器、加速度传感器"
+      },
+      {
+        "key": "AI 智能能力",
+        "value": "侧边独立 AI 键（长按唤醒 YOYO、双击开启相机）；自进化 YOYO 智能体支持 3000+ 场景自动执行，覆盖 TOP100 三方应用及 80% 系统应用；三位一体 AI 反诈（AI 多人换脸检测、AI 变声检测、AI 诈骗话术检测）"
+      },
+      {
+        "key": "包装清单",
+        "value": "手机（含内置电池）×1、快速指南 ×1、HONOR SuperCharge 充电器 ×1、Type-C 数据线 ×1、取卡针 ×1、手机保护壳 ×1、新机权益卡 ×1、TP 保护膜（出厂已粘贴）×1"
+      },
+      {
+        "key": "起售价",
+        "value": "¥5699 起（12GB+256GB）— From ¥5699"
+      }
+    ],
+    "featureTags": [
+      "2 亿超夜神长焦",
+      "荣耀 AI 绿洲护眼屏",
+      "第五代骁龙 8 至尊版",
+      "新一代青海湖电池 7200mAh",
+      "荣耀 AI 环绕低音炮",
+      "IP68+IP69K 顶规防尘抗水",
+      "双 3D 生物识别",
+      "自进化 YOYO 智能体",
+      "AIMAGE 影像引擎",
+      "荣耀巨犀玻璃 10 倍抗摔",
+      "自研射频增强芯片 HONOR C1+",
+      "AI 实体按键"
+    ],
+    "timeline": [
+      {
+        "date": "2025-10-15",
+        "title": "荣耀 Magic8 系列正式发布",
+        "desc": "荣耀在深圳发布 Magic8 系列，官方定位为「首款自进化 AI 原生手机」，Magic8 Pro 为其中旗舰型号。",
+        "en": "HONOR Magic8 Series officially launched in Shenzhen, positioned as the first self-evolving AI smartphone."
+      },
+      {
+        "date": "2025-10-15",
+        "title": "第五代骁龙 8 至尊版移动平台",
+        "desc": "Magic8 Pro 搭载第五代骁龙 8 至尊版，3nm 制程，CPU 超大核主频 4.6GHz，配 Adreno 840 图形处理器。",
+        "en": "Equipped with Snapdragon 8 Elite Gen 5, 3nm process, 4.6GHz prime core, Adreno 840 GPU."
+      },
+      {
+        "date": "2025-10-15",
+        "title": "2 亿超夜神长焦亮相",
+        "desc": "潜望式长焦搭配 1/1.4 英寸超大底与 ƒ/2.6 光圈，支持 3.7x 光学变焦与 200 倍数字变焦，行业首发 CIPA 6.5 级防抖。",
+        "en": "200MP Ultra Night Telephoto with 1/1.4-inch sensor, f/2.6 aperture, 3.7x optical zoom, 200x digital zoom, CIPA 6.5 stabilization."
+      },
+      {
+        "date": "2025-10-15",
+        "title": "新一代青海湖电池发布",
+        "desc": "7200mAh 硅碳电池，配三颗荣耀 E2 电源管理芯片，支持 120W 有线与 80W 无线双快充。",
+        "en": "7200mAh silicon-carbon battery with three HONOR E2 power chips, 120W wired and 80W wireless charging."
+      },
+      {
+        "date": "2025-10-23",
+        "title": "荣耀官方渠道及合作平台启售",
+        "desc": "Magic8 Pro 配备旭日金砂、天青色、雪域白、绒黑色四种配色，售价 5699 元起。",
+        "en": "Available in four colorways starting at ¥5699."
+      },
+      {
+        "date": "2025-10-15",
+        "title": "IP68+IP69K 顶规防尘抗水",
+        "desc": "IP69K + IP69 + IP68 三重防护等级，覆盖浸水淋水、高温热水、高压喷水各项挑战。",
+        "en": "IP69K + IP69 + IP68 top-tier dust and water resistance."
+      }
+    ],
+    "parts": [
+      {
+        "name": "6.71 英寸 OLED 触摸屏",
+        "en": "6.71-inch OLED Touchscreen",
+        "note": "四等深微曲屏，装裱时可与后盖分离展示「发光层 + 触控层」结构"
+      },
+      {
+        "name": "荣耀巨犀玻璃",
+        "en": "HONOR Rhino Glass",
+        "note": "SGS 多场景金标五星玻璃抗跌耐摔认证，10 倍抗摔"
+      },
+      {
+        "name": "荣耀 AI 绿洲护眼屏模组",
+        "en": "HONOR AI Oasis Eye-Comfort Display Module",
+        "note": "圆偏振光护眼 2.0 + 4320Hz 超高频 PWM 调光"
+      },
+      {
+        "name": "后盖",
+        "en": "Back Cover",
+        "note": "四种配色可选，旭日金砂/天青色/雪域白/绒黑色"
+      },
+      {
+        "name": "核心主板",
+        "en": "Core Motherboard",
+        "note": "承载第五代骁龙 8 至尊版与射频增强芯片 HONOR C1+"
+      },
+      {
+        "name": "主板盖板",
+        "en": "Motherboard Cover Plate",
+        "note": "含导热贴区域，芯片丝印可读：8323 / SM790-AC / 8323 5N20 系列"
+      },
+      {
+        "name": "2 亿超夜神长焦模组",
+        "en": "200MP Ultra Night Telephoto Module",
+        "note": "潜望式长焦，1/1.4 英寸超大底，ƒ/2.6，OIS 光学防抖"
+      },
+      {
+        "name": "5000 万超夜神主摄模组",
+        "en": "50MP Ultra Night Main Camera Module",
+        "note": "1/1.3 英寸超大底，ƒ/1.6，OIS 光学防抖，四合一 2.4μm 大像素"
+      },
+      {
+        "name": "5000 万超广角模组",
+        "en": "50MP Ultra-Wide Camera Module",
+        "note": "ƒ/2.0，122° 超广视角，2.5cm 高清微距摄影"
+      },
+      {
+        "name": "前置镜头模组",
+        "en": "Front Camera Module",
+        "note": "5000 万广角前摄 ƒ/2.0 90° + 3D 深感摄像头"
+      },
+      {
+        "name": "3D 深感摄像头",
+        "en": "3D Depth Camera",
+        "note": "支持 3D 人脸识别，行业独家双 3D 生物识别之一"
+      },
+      {
+        "name": "激光对焦传感器",
+        "en": "Laser Focus Sensor",
+        "note": "后置辅助传感器，提升对焦速度"
+      },
+      {
+        "name": "色温传感器",
+        "en": "Color Temperature Sensor",
+        "note": "后置辅助传感器，用于白平衡校正"
+      },
+      {
+        "name": "Flicker 传感器",
+        "en": "Flicker Sensor",
+        "note": "后置辅助传感器，抑制屏幕频闪"
+      },
+      {
+        "name": "新一代青海湖电池",
+        "en": "Next-Gen Qinghai Lake Battery",
+        "note": "7200mAh 典型值 / 7020mAh 额定值，硅碳负极，内置不可拆卸"
+      },
+      {
+        "name": "无线充电线圈",
+        "en": "Wireless Charging Coil",
+        "note": "支持 80W 无线超级快充与无线反向充电，位于电池上方区域"
+      },
+      {
+        "name": "充电接口（USB Type-C）",
+        "en": "Charging Port (USB Type-C)",
+        "note": "USB 3.2 GEN1，支持 DP1.2 视频输出"
+      },
+      {
+        "name": "副板",
+        "en": "Sub-board",
+        "note": "承载充电接口、SIM 卡托与线性马达"
+      },
+      {
+        "name": "SIM 卡托",
+        "en": "SIM Card Tray",
+        "note": "双卡双待，SIM 卡 1 与 SIM 卡 2 均为 nano 卡"
+      },
+      {
+        "name": "线性马达",
+        "en": "Linear Motor",
+        "note": "触觉反馈组件，注意与扁平马达区分命名"
+      },
+      {
+        "name": "顶部扬声器",
+        "en": "Top Speaker",
+        "note": "双 1216 扬声器之一，与底部扬声器组成立体声"
+      },
+      {
+        "name": "底部扬声器",
+        "en": "Bottom Speaker",
+        "note": "双 1216 扬声器之一，8cc 超大音腔，0.88mm 超大振幅"
+      },
+      {
+        "name": "荣耀 AI 环绕低音炮",
+        "en": "HONOR AI Surround Bass Speaker",
+        "note": "首创双开放腔技术，自研 AI 空间声场算法，增强重低音与空间声场音效"
+      },
+      {
+        "name": "3D 超声波指纹传感器",
+        "en": "3D Ultrasonic Fingerprint Sensor",
+        "note": "行业独家双 3D 生物识别之一，屏下方案"
+      },
+      {
+        "name": "AI 实体按键",
+        "en": "AI Physical Button",
+        "note": "侧边独立 AI 键，长按唤醒 YOYO，双击开启相机"
+      },
+      {
+        "name": "音量按键",
+        "en": "Volume Buttons",
+        "note": "侧边音量调节键，与 AI 键同侧"
+      },
+      {
+        "name": "电源键",
+        "en": "Power Button",
+        "note": "侧边电源键"
+      },
+      {
+        "name": "NFC 全向天线",
+        "en": "NFC Omni-directional Antenna",
+        "note": "顶部位置，3 倍信号覆盖，支持全角度 NFC 刷卡与熄屏一碰付"
+      },
+      {
+        "name": "荣耀鸿燕六翼天线",
+        "en": "HONOR Swan-Wing Six-Wing Antenna",
+        "note": "结合自研射频增强芯片等五颗通信芯片，信号强度至高提升 70%"
+      },
+      {
+        "name": "自研射频增强芯片 HONOR C1+",
+        "en": "HONOR C1+ RF Enhancement Chip",
+        "note": "独立通信芯片，提升射频性能"
+      },
+      {
+        "name": "重力传感器",
+        "en": "Gravity Sensor",
+        "note": "九项传感器之一"
+      },
+      {
+        "name": "红外传感器",
+        "en": "Infrared Sensor",
+        "note": "支持红外遥控"
+      },
+      {
+        "name": "陀螺仪",
+        "en": "Gyroscope",
+        "note": "九项传感器之一，配合影像防抖"
+      },
+      {
+        "name": "指南针",
+        "en": "Compass",
+        "note": "九项传感器之一"
+      },
+      {
+        "name": "环境光传感器",
+        "en": "Ambient Light Sensor",
+        "note": "自动亮度调节，配合护眼模式"
+      },
+      {
+        "name": "接近光传感器",
+        "en": "Proximity Sensor",
+        "note": "通话时自动熄屏"
+      },
+      {
+        "name": "霍尔传感器",
+        "en": "Hall Sensor",
+        "note": "九项传感器之一"
+      },
+      {
+        "name": "加速度传感器",
+        "en": "Accelerometer",
+        "note": "九项传感器之一"
+      },
+      {
+        "name": "麦克风（3 颗）",
+        "en": "Microphones (3 units)",
+        "note": "支持音频变焦与音频聚焦，VoIP/CS 通话 AI 降噪"
+      },
+      {
+        "name": "主控芯片（第五代骁龙 8 至尊版）",
+        "en": "Snapdragon 8 Elite Gen 5 SoC",
+        "note": "3nm 制程，八核，2×Prime 4.6GHz + 6×Performance 3.62GHz"
+      },
+      {
+        "name": "TP 保护膜",
+        "en": "TP Protective Film",
+        "note": "出厂已粘贴，包装清单内含"
+      },
+      {
+        "name": "手机保护壳",
+        "en": "Phone Case",
+        "note": "包装清单内含标配保护壳"
+      }
+    ],
+    "categories": [
+      {
+        "name": "显示系统",
+        "en": "Display System",
+        "icon": "▢",
+        "color": "#3182ce",
+        "components": [
+          {
+            "name": "6.71 英寸 OLED 触摸屏",
+            "en": "6.71-inch OLED Touchscreen",
+            "desc": "Magic8 Pro 正面是一块 6.71 英寸（标准矩形对角线）OLED 显示屏，以 FHD+ 1256 × 2808 像素呈现 458 PPI 的细腻画面，屏占比达到 93.4%。屏幕支持 120Hz LTPO 自适应动态刷新率，可根据内容在高低刷新率之间自动切换。",
+            "descEn": "The front of the Magic8 Pro is a 6.71-inch (diagonal) OLED display rendering FHD+ 1256 × 2808 pixels at 458 PPI with a 93.4% screen-to-body ratio. The 120Hz LTPO adaptive refresh rate automatically switches between high and low refresh rates based on content.",
+            "note": "装裱价值：四等深微曲屏在装裱时可与后盖分离展示「玻璃层 + OLED 发光层 + 触控层」的三明治结构，曲面弧度在分层后仍可辨识。⚠️ 拆解警告：OLED 面板比传统 LCD 更薄更脆，取放时只能捏持金属中框边缘，禁止按压显示区域。",
+            "noteEn": "Framing: the curved display can be separated from the back cover to show the glass + OLED + touch layer sandwich, with the curve still visible when stacked. Warning: OLED panels are thinner and more fragile than LCD — handle by the metal frame edges only, never press the panel.",
+            "tags": [
+              "OLED",
+              "四等深微曲屏",
+              "458 PPI",
+              "120Hz LTPO"
+            ]
+          },
+          {
+            "name": "荣耀巨犀玻璃",
+            "en": "HONOR Rhino Glass",
+            "desc": "屏幕表面覆盖荣耀巨犀玻璃，荣获 SGS 多场景金标五星玻璃抗跌耐摔认证，官方标称 10 倍抗摔能力。该数据源自荣耀实验室，为巨犀玻璃与普通玻璃在相同重量载体下的测试对比。",
+            "descEn": "The display is covered by HONOR Rhino Glass, certified with the SGS multi-scenario gold-standard five-star drop and impact resistance award, officially rated at 10x drop resistance. Data from HONOR labs, comparing Rhino Glass against ordinary glass on equal-weight carriers.",
+            "note": "装裱价值：巨犀玻璃是全机唯一可单独拆下展示的防护件，可平铺陈列以呈现其边缘的强化处理。⚠️ 注意：手机作为精密电子产品，跌落仍有损坏风险，装裱展示时建议加护角。",
+            "noteEn": "Framing: Rhino Glass is the only protective piece that can be removed and displayed alone, laid flat to show the reinforced edges. Note: drops still risk damage — consider corner protection when framing.",
+            "tags": [
+              "巨犀玻璃",
+              "10 倍抗摔",
+              "SGS 金标五星"
+            ]
+          },
+          {
+            "name": "荣耀 AI 绿洲护眼屏模组",
+            "en": "HONOR AI Oasis Eye-Comfort Display Module",
+            "desc": "这是 Magic8 Pro 屏幕的护眼方案总称，官方称为「行业首款通过德国莱茵全局护眼 5.0 认证的手机」。核心包含圆偏振光护眼 2.0、4320Hz 超高频 PWM 调光、AI 干眼友好、芯片级 AI 离焦护眼、AI 助眠显示等九大 AI 护眼科技。",
+            "descEn": "This is the eye-comfort package of the Magic8 Pro display, officially described as the industry's first phone certified by TÜV Rheinland for Global Eye Comfort 5.0. It includes Circular Polarized Light Eye Protection 2.0, 4320Hz ultra-high-frequency PWM dimming, AI Dry-Eye Comfort, chip-level AI Defocus Eye Care, and AI Sleep Display among nine AI eye-comfort technologies.",
+            "note": "装裱价值：护眼是这台机最容易被忽视的卖点，建议在装裱图上单独列一条「九大 AI 护眼科技」区块。⚠️ 注意：官网明确「本产品非医疗器械，不具有治疗功能」，文案不得延伸为医疗功效。",
+            "noteEn": "Framing: eye comfort is the most easily overlooked selling point — consider a dedicated block for the nine AI eye-comfort technologies. Warning: HONOR states the product is not a medical device and has no therapeutic function; copy must not extend to medical claims.",
+            "tags": [
+              "AI 绿洲护眼屏",
+              "4320Hz PWM",
+              "莱茵全局护眼 5.0",
+              "九大 AI 护眼科技"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "影像系统",
+        "en": "Imaging System",
+        "icon": "◎",
+        "color": "#805ad5",
+        "components": [
+          {
+            "name": "5000 万超夜神主摄",
+            "en": "50MP Ultra Night Main Camera",
+            "desc": "主摄采用 5000 万像素、1/1.3 英寸超大底感光元件，配 ƒ/1.6 光圈与 100% Focus Pixels，支持 OIS 光学防抖，并具备四合一 2.4μm 大像素输出能力。这是 Magic8 Pro 三摄体系中承担常规拍摄的主力。",
+            "descEn": "The main camera is a 50MP sensor with a 1/1.3-inch large-format element, ƒ/1.6 aperture, 100% Focus Pixels, OIS optical stabilization, and quad-pixel 2.4μm output. It is the primary shooter in the Magic8 Pro's triple-camera system.",
+            "note": "装裱价值：主摄模组体积适中，适合与超广角、长焦并列陈列，形成「大中小」三摄梯队。⚠️ 注意：镜头镀膜极怕刮，取放时避免接触镜片表面。",
+            "noteEn": "Framing: the main camera module's moderate size suits side-by-side display with the ultra-wide and telephoto, forming a large-to-small camera tier. Warning: lens coatings scratch easily — avoid touching the glass surface.",
+            "tags": [
+              "5000 万像素",
+              "1/1.3 英寸",
+              "ƒ/1.6",
+              "OIS"
+            ]
+          },
+          {
+            "name": "5000 万超广角",
+            "en": "50MP Ultra-Wide Camera",
+            "desc": "超广角为 5000 万像素，ƒ/2.0 光圈，最大 122° 视角，支持 100% Focus Pixels 与 2.5cm 高清微距摄影。这一颗承担广阔风景与近距离微观拍摄。",
+            "descEn": "The ultra-wide is a 50MP sensor with an ƒ/2.0 aperture, maximum 122° field of view, 100% Focus Pixels, and 2.5cm HD macro photography. It handles wide landscapes and close-up detail.",
+            "note": "装裱价值：方形模组与主摄的圆形模组外形差异明显，并列时可直观展示三摄体系的传感器尺寸分层。⚠️ 注意：超广角仅支持 EIS 视频防抖，不支持 OIS。",
+            "noteEn": "Framing: the square module contrasts clearly with the round main camera, showing the sensor-size tiering when displayed side by side. Note: the ultra-wide supports EIS only, not OIS.",
+            "tags": [
+              "5000 万像素",
+              "ƒ/2.0",
+              "122°",
+              "2.5cm 微距"
+            ]
+          },
+          {
+            "name": "2 亿超夜神长焦",
+            "en": "200MP Ultra Night Telephoto",
+            "desc": "长焦是 Magic8 Pro 影像的核心主张：2 亿像素潜望式长焦，1/1.4 英寸超大底感光元件，ƒ/2.6 超大光圈，支持 OIS 光学防抖、3.7x 光学变焦与最高 200 倍数字变焦。AIMAGE 防抖引擎实现行业首发 CIPA 6.5 级防抖。",
+            "descEn": "The telephoto is the core imaging claim: a 200MP periscope telephoto with a 1/1.4-inch large-format sensor, wide ƒ/2.6 aperture, OIS, 3.7x optical zoom and up to 200x digital zoom. The AIMAGE stabilization engine achieves an industry-first CIPA 6.5-grade stabilization.",
+            "note": "装裱价值：潜望式长焦模组是全机体积最大、结构最复杂的镜头组，棱镜折射结构极具展示价值，建议作为影像区视觉中心。⚠️ 拆解警告：潜望模组内部棱镜对灰尘极敏感，拆解后需立即防尘收纳。",
+            "noteEn": "Framing: the periscope telephoto module is the largest and most complex lens assembly, with prism refraction worth showcasing — recommend as the visual anchor of the imaging section. Warning: internal prisms are highly dust-sensitive; store dust-free immediately after removal.",
+            "tags": [
+              "2 亿像素",
+              "潜望式长焦",
+              "1/1.4 英寸",
+              "ƒ/2.6",
+              "200 倍数字变焦"
+            ]
+          },
+          {
+            "name": "5000 万广角前摄",
+            "en": "50MP Wide Front Camera",
+            "desc": "前置主摄为 5000 万像素，ƒ/2.0 光圈，最大 90° 视角，支持 EIS 视频防抖与两焦段变焦（0.8x / 1x）。",
+            "descEn": "The front camera is a 50MP sensor with an ƒ/2.0 aperture and maximum 90° field of view, supporting EIS video stabilization and dual-focal-length switching (0.8x / 1x).",
+            "note": "装裱价值：前置双摄模组可与 3D 深感一并保留，展示「双 3D 生物识别」的前置硬件。⚠️ 注意：前置仅支持 EIS，不写 OIS。",
+            "noteEn": "Framing: keep the front dual-camera module with the 3D depth camera to show the hardware behind dual-3D biometrics. Note: front camera is EIS only — do not write OIS.",
+            "tags": [
+              "5000 万像素",
+              "ƒ/2.0",
+              "90°"
+            ]
+          },
+          {
+            "name": "3D 深感摄像头",
+            "en": "3D Depth Camera",
+            "desc": "前置第二颗为 3D 深感摄像头，用于 3D 人脸识别。它与屏下的 3D 超声波指纹共同构成官方所称的「行业独家双 3D 生物识别」。",
+            "descEn": "The second front camera is a 3D depth camera used for 3D face recognition. Together with the in-display 3D ultrasonic fingerprint sensor, it forms what HONOR calls the industry-exclusive dual-3D biometric system.",
+            "note": "装裱价值：3D 深感摄像头通常集成在前置双摄模组内，拆解时不易单独分离，建议整组保留展示。",
+            "noteEn": "Framing: the 3D depth camera is usually integrated in the front dual-camera module and is difficult to separate — display the whole assembly.",
+            "tags": [
+              "3D 深感",
+              "3D 人脸识别",
+              "双 3D 生物识别"
+            ]
+          },
+          {
+            "name": "激光对焦传感器",
+            "en": "Laser Focus Sensor",
+            "desc": "后置辅助传感器之一，用于提升对焦速度与暗光对焦精度。",
+            "descEn": "One of the rear auxiliary sensors, used to improve focusing speed and low-light focusing accuracy.",
+            "note": "装裱价值：传感器件体积小，适合密集陈列以体现后置模组的传感器密度。",
+            "noteEn": "Framing: small sensor components suit dense display to convey the rear module's sensor density.",
+            "tags": [
+              "激光对焦",
+              "辅助传感器"
+            ]
+          },
+          {
+            "name": "色温传感器",
+            "en": "Color Temperature Sensor",
+            "desc": "后置辅助传感器之一，用于环境色温检测与白平衡校正。",
+            "descEn": "One of the rear auxiliary sensors, used for ambient color-temperature detection and white-balance correction.",
+            "note": "装裱价值：色温传感器在多数拆解图中被忽略，单独标注可体现资料完整度。",
+            "noteEn": "Framing: the color temperature sensor is often overlooked in teardowns — labeling it separately adds documentation completeness.",
+            "tags": [
+              "色温传感器",
+              "白平衡"
+            ]
+          },
+          {
+            "name": "Flicker 传感器",
+            "en": "Flicker Sensor",
+            "desc": "后置辅助传感器之一，用于检测光源频闪，抑制条纹干扰。",
+            "descEn": "One of the rear auxiliary sensors, used to detect light-source flicker and suppress banding artifacts.",
+            "note": "装裱价值：与色温传感器并列陈列，凑成后置三辅助传感器的完整组。",
+            "noteEn": "Framing: display alongside the color temperature sensor to complete the rear's three-auxiliary-sensor group.",
+            "tags": [
+              "Flicker 传感器",
+              "防频闪"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "核心主板",
+        "en": "Core Motherboard",
+        "icon": "▤",
+        "color": "#2f855a",
+        "components": [
+          {
+            "name": "核心主板",
+            "en": "Core Motherboard",
+            "desc": "核心主板承载整机运算核心，包括第五代骁龙 8 至尊版 SoC、自研射频增强芯片 HONOR C1+ 与存储颗粒。主板采用堆叠式设计，主要芯片被屏蔽罩覆盖。",
+            "descEn": "The core motherboard carries the entire computational core, including the Snapdragon 8 Elite Gen 5 SoC, the HONOR C1+ RF enhancement chip, and storage. The board uses a stacked layout with major chips covered by EMI shields.",
+            "note": "装裱价值：主板是全机信息密度最高的零件，适合作为装裱图的核心展示件。⚠️ 注意：主板上的屏蔽罩在拆解时易变形，取下后需平整收纳。",
+            "noteEn": "Framing: the motherboard has the highest information density of any part — ideal as the core display piece. Warning: EMI shields deform easily during removal; store flat.",
+            "tags": [
+              "核心主板",
+              "堆叠设计",
+              "EMI 屏蔽罩"
+            ]
+          },
+          {
+            "name": "主板盖板",
+            "en": "Motherboard Cover Plate",
+            "desc": "主板盖板覆盖在主板之上，板面可见导热贴区域与部分芯片丝印。经放大读取，盖板图区域可辨识 8323 系列（1486-2520）、SM790-AC（2W35W）与 8323 5N20（1231-2520）等物料编号。",
+            "descEn": "The cover plate sits over the motherboard, with thermal-pad regions and partial chip silkscreen visible. Magnified reading reveals part numbers including 8323 series (1486-2520), SM790-AC (2W35W), and 8323 5N20 (1231-2520).",
+            "note": "装裱价值：芯片丝印是官网没有的实拍增强信息，可作为细节看点。⚠️ 注意：这些编号对应的具体芯片型号无官方依据，只能照抄丝印、不得翻译成中文芯片名。",
+            "noteEn": "Framing: chip silkscreen is an on-site enhancement not found on the official site. Warning: no official basis exists for translating these numbers into Chinese chip names — copy the silkscreen only.",
+            "tags": [
+              "主板盖板",
+              "导热贴",
+              "芯片丝印",
+              "SM790-AC"
+            ]
+          },
+          {
+            "name": "第五代骁龙 8 至尊版 SoC",
+            "en": "Snapdragon 8 Elite Gen 5 SoC",
+            "desc": "这是 Magic8 Pro 的运算核心，采用 3nm 全新制程工艺，八核架构，2 颗 Prime 超大核主频高达 4.6GHz，另配 6 颗 3.62GHz Performance 核心。官方标称 CPU 响应速度提升 32%。",
+            "descEn": "The computational core of the Magic8 Pro, built on a 3nm process in an octa-core layout: two Prime cores at up to 4.6GHz plus six Performance cores at 3.62GHz. HONOR claims a 32% CPU response speed improvement.",
+            "note": "装裱价值：SoC 是参数区最核心的一行，建议与 Adreno 840、37% NPU 提升并列。⚠️ 注意：SoC 通常被屏蔽罩覆盖，若未拆解不可凭空画出。",
+            "noteEn": "Framing: the SoC is the single most important line in the spec block — pair with Adreno 840 and the 37% NPU gain. Warning: the SoC is usually under an EMI shield; do not draw it if not actually exposed.",
+            "tags": [
+              "第五代骁龙 8 至尊版",
+              "3nm",
+              "4.6GHz",
+              "八核"
+            ]
+          },
+          {
+            "name": "自研射频增强芯片 HONOR C1+",
+            "en": "HONOR C1+ RF Enhancement Chip",
+            "desc": "独立通信芯片，配合荣耀鸿燕六翼天线使用，官方称信号强度至高提升 70%。",
+            "descEn": "A dedicated communication chip, paired with the HONOR Swan-Wing six-wing antenna, with HONOR claiming up to 70% improved signal strength.",
+            "note": "装裱价值：自研芯片是国产化叙事的加分项，可在装裱图上单独标注。",
+            "noteEn": "Framing: a self-developed chip adds a domestic-R&D narrative — label it separately.",
+            "tags": [
+              "HONOR C1+",
+              "自研射频",
+              "信号强度提升 70%"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "电池与充电",
+        "en": "Battery & Charging",
+        "icon": "▩",
+        "color": "#b7791f",
+        "components": [
+          {
+            "name": "新一代青海湖电池",
+            "en": "Next-Gen Qinghai Lake Battery",
+            "desc": "电池容量典型值 7200mAh，额定值 7020mAh，为锂离子聚合物电池，内置不可拆卸。官方称采用硅碳负极方案，配三颗荣耀 E2 电源管理芯片，结合 AI 优化电压、温控与电池健康。",
+            "descEn": "Rated at 7200mAh typical / 7020mAh nominal, this lithium-polymer battery is non-removable. HONOR describes a silicon-carbon anode with three HONOR E2 power-management chips using AI to optimize voltage, thermal control, and battery health.",
+            "note": "装裱价值：7200mAh 是旗舰机少见的容量，建议在参数区突出。⚠️ 拆解警告：电池以拉胶固定，取放时严禁刺穿或挤压，运输需单独处理。",
+            "noteEn": "Framing: 7200mAh is unusual for a flagship — highlight it in the spec block. Warning: the battery is secured with pull tabs; never puncture or squeeze, and ship it separately.",
+            "tags": [
+              "7200mAh",
+              "硅碳负极",
+              "青海湖电池",
+              "内置不可拆卸"
+            ]
+          },
+          {
+            "name": "无线充电线圈",
+            "en": "Wireless Charging Coil",
+            "desc": "线圈位于电池上方区域，支持 80W 荣耀无线超级快充与无线反向充电。该区域实拍可见物料编码 N2AAGD2545R 与二维码贴纸。",
+            "descEn": "The coil sits above the battery area and supports 80W wireless SuperCharge plus reverse wireless charging. On-site photos show part code N2AAGD2545R and a QR-code label.",
+            "note": "装裱价值：线圈与电池区域实拍相邻，需注意在图上区分两者，避免读者误认。⚠️ 注意：N2AAGD2545R 为物料编码贴纸，非文案，无需核对。",
+            "noteEn": "Framing: the coil and battery areas are adjacent in photos — clearly distinguish them to avoid misreading. Note: N2AAGD2545R is a part-code label, not copy text.",
+            "tags": [
+              "80W 无线快充",
+              "无线反向充电",
+              "N2AAGD2545R"
+            ]
+          },
+          {
+            "name": "充电接口（USB Type-C）",
+            "en": "Charging Port (USB Type-C)",
+            "desc": "机身底部为 USB Type-C 接口，规格为 USB 3.2 GEN1，支持 DP1.2 视频输出。标配数据线仅支持 USB 2.0，完整 USB 3.2 GEN1 需另行购买支持的数据线。",
+            "descEn": "The bottom port is USB Type-C rated USB 3.2 GEN1 with DP1.2 video output. The bundled cable supports USB 2.0 only; full USB 3.2 GEN1 requires a separately purchased cable.",
+            "note": "装裱价值：接口位于副板上，拆解时通常与副板一并取下，可展示副板的接口排布。",
+            "noteEn": "Framing: the port is on the sub-board and usually comes off with it — display the sub-board's port layout.",
+            "tags": [
+              "USB Type-C",
+              "USB 3.2 GEN1",
+              "DP1.2"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "音频系统",
+        "en": "Audio System",
+        "icon": "◍",
+        "color": "#c05621",
+        "components": [
+          {
+            "name": "顶部扬声器",
+            "en": "Top Speaker",
+            "desc": "双 1216 扬声器之一，位于机身上部，与底部扬声器组成立体声。",
+            "descEn": "One of the dual 1216 speakers, located in the upper body, forming stereo with the bottom speaker.",
+            "note": "装裱价值：上下双扬声器可分别取下并列展示，体现立体声布局。",
+            "noteEn": "Framing: remove the top and bottom speakers and display them side by side to show the stereo layout.",
+            "tags": [
+              "顶部扬声器",
+              "双 1216",
+              "立体声"
+            ]
+          },
+          {
+            "name": "底部扬声器",
+            "en": "Bottom Speaker",
+            "desc": "双 1216 扬声器之一，位于机身底部，与 USB Type-C 接口相邻。",
+            "descEn": "The second of the dual 1216 speakers, located at the bottom of the device, adjacent to the USB Type-C port.",
+            "note": "装裱价值：底部扬声器与接口相邻，拆解时可观察两者在副板上的位置关系。",
+            "noteEn": "Framing: the bottom speaker sits next to the port — observe their positional relationship on the sub-board during teardown.",
+            "tags": [
+              "底部扬声器",
+              "双 1216"
+            ]
+          },
+          {
+            "name": "荣耀 AI 环绕低音炮",
+            "en": "HONOR AI Surround Bass Speaker",
+            "desc": "音频方案总称，官方称「首创双开放腔技术，自研 AI 空间声场算法」，增强重低音和空间声场音效。核心参数为双 1216 扬声器、8cc 行业领先超大音腔、0.88mm 行业领先超大振幅，音频系统名称为 HONOR Sound。",
+            "descEn": "The overall audio package, officially described as pioneering dual open-cavity technology with a self-developed AI spatial-audio algorithm to enhance bass and spatial sound. Key specs: dual 1216 speakers, 8cc industry-leading cavity volume, 0.88mm industry-leading amplitude, under the HONOR Sound brand.",
+            "note": "装裱价值：8cc 音腔与 0.88mm 振幅是音频区最硬的两个数，建议与双 1216 并列。⚠️ 注意：官网写「8cc」「0.88mm」，未加空格，排版时不必刻意补空格。",
+            "noteEn": "Framing: 8cc cavity and 0.88mm amplitude are the hardest numbers in the audio block — pair with dual 1216. Note: HONOR writes 8cc and 0.88mm without spaces; no need to add them.",
+            "tags": [
+              "AI 环绕低音炮",
+              "8cc",
+              "0.88mm",
+              "双开放腔"
+            ]
+          },
+          {
+            "name": "麦克风（3 颗）",
+            "en": "Microphones (3 units)",
+            "desc": "整机共三颗麦克风，支持 VoIP/CS 通话 AI 降噪、蓝牙耳机远程录音、后摄 3MIC 录像音频变焦、前摄 3MIC 录像音频聚焦。",
+            "descEn": "Three microphones in total, supporting VoIP/CS call AI noise reduction, Bluetooth remote recording, rear 3MIC video audio zoom, and front 3MIC audio focusing.",
+            "note": "装裱价值：麦克风体积小但数量可观，密集陈列可体现音频采集的规格。",
+            "noteEn": "Framing: microphones are small but numerous — dense display conveys the audio-capture spec.",
+            "tags": [
+              "3 麦克风",
+              "AI 降噪",
+              "音频变焦"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "结构与拆解件",
+        "en": "Structure & Teardown Parts",
+        "icon": "▦",
+        "color": "#4a5568",
+        "components": [
+          {
+            "name": "后盖",
+            "en": "Back Cover",
+            "desc": "后盖提供旭日金砂、天青色、雪域白、绒黑色四种配色，与中框以卡扣加胶粘结构连接。",
+            "descEn": "The back cover comes in four colorways: Golden Sunstone, Sky Cyan, Snowfield White, and Velvet Black, attached to the mid-frame with clips plus adhesive.",
+            "note": "装裱价值：四种配色是这台机的视觉记忆点，装裱时建议保留原色后盖作为色彩展示。⚠️ 拆解警告：后盖胶粘需加热软化，强行撬开会造成卡扣断裂。",
+            "noteEn": "Framing: the four colorways are the visual signature — keep an original-color back cover for the color display. Warning: the adhesive requires heating; forcing the cover breaks the clips.",
+            "tags": [
+              "后盖",
+              "四种配色",
+              "旭日金砂"
+            ]
+          },
+          {
+            "name": "副板",
+            "en": "Sub-board",
+            "desc": "副板位于机身下半部，承载 USB Type-C 充电接口、SIM 卡托与线性马达。",
+            "descEn": "The sub-board is in the lower body, carrying the USB Type-C port, the SIM card tray, and the linear motor.",
+            "note": "装裱价值：副板是「接口 + 卡托 + 马达」的集合体，拆解后结构关系一目了然，适合单独陈列。",
+            "noteEn": "Framing: the sub-board bundles port + tray + motor — the structural relationship is clear once removed, ideal for standalone display.",
+            "tags": [
+              "副板",
+              "充电接口",
+              "SIM 卡托",
+              "线性马达"
+            ]
+          },
+          {
+            "name": "SIM 卡托",
+            "en": "SIM Card Tray",
+            "desc": "双卡双待设计，SIM 卡 1 与 SIM 卡 2 均为 nano 卡规格。NFC-SIM 需放在 SIM1 卡槽使用。",
+            "descEn": "Dual-SIM dual-standby design; both SIM 1 and SIM 2 are nano-SIM. An NFC-SIM must be placed in the SIM1 slot.",
+            "note": "装裱价值：卡托是拆解图中最小但最具「真实感」的零件之一，可放大展示其防尘胶圈。",
+            "noteEn": "Framing: the tray is among the smallest yet most convincing parts in a teardown — magnify it to show the dust gasket.",
+            "tags": [
+              "SIM 卡托",
+              "双卡双待",
+              "nano 卡"
+            ]
+          },
+          {
+            "name": "线性马达",
+            "en": "Linear Motor",
+            "desc": "触觉反馈组件，安装于副板区域。",
+            "descEn": "The haptic feedback component, mounted on the sub-board.",
+            "note": "装裱价值：线性马达与扁平马达外形差异明显，命名时注意不要写成「振动器」之类不准确的旧称。",
+            "noteEn": "Framing: linear and flat motors differ visibly in shape — avoid inaccurate legacy names like vibrator.",
+            "tags": [
+              "线性马达",
+              "触觉反馈"
+            ]
+          },
+          {
+            "name": "连接排线",
+            "en": "Flex Cable",
+            "desc": "连接排线负责主板与副板、屏幕、按键等模块之间的信号传输。",
+            "descEn": "The flex cable carries signals between the motherboard and the sub-board, display, and buttons.",
+            "note": "装裱价值：排线细长易损，展示时建议压平固定，避免卷曲遮挡焊点。",
+            "noteEn": "Framing: flex cables are thin and fragile — flatten and secure them to avoid curling over the solder points.",
+            "tags": [
+              "连接排线",
+              "Flex Cable"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "交互件",
+        "en": "Interactive Components",
+        "icon": "▣",
+        "color": "#2b6cb0",
+        "components": [
+          {
+            "name": "AI 实体按键",
+            "en": "AI Physical Button",
+            "desc": "侧边独立 AI 键，官方称「长按唤醒，使命直达」，双击开启相机。这是 Magic8 系列的标志性交互件。",
+            "descEn": "A dedicated side AI button; HONOR states long-press wakes YOYO and double-click launches the camera. This is the signature interaction of the Magic8 series.",
+            "note": "装裱价值：AI 实体按键是这代机最独特的交互件，拆下后可单独陈列以突出设计语言。⚠️ 注意：按键与音量键同侧，拆解时注意顺序。",
+            "noteEn": "Framing: the AI physical button is the most distinctive interaction of this generation — display it alone. Note: it shares the side with the volume keys; mind the removal order.",
+            "tags": [
+              "AI 实体按键",
+              "长按唤醒 YOYO",
+              "双击相机"
+            ]
+          },
+          {
+            "name": "音量按键",
+            "en": "Volume Buttons",
+            "desc": "侧边音量调节键，与 AI 实体按键同侧。",
+            "descEn": "Side volume keys, sharing the same side as the AI physical button.",
+            "note": "装裱价值：按键排布体现侧边交互密度，可与 AI 键并列展示。",
+            "noteEn": "Framing: the button layout shows side-interaction density — display alongside the AI key.",
+            "tags": [
+              "音量按键"
+            ]
+          },
+          {
+            "name": "电源键",
+            "en": "Power Button",
+            "desc": "侧边电源键，与音量键同侧排布。",
+            "descEn": "The side power button, arranged on the same side as the volume keys.",
+            "note": "装裱价值：三键（AI 键、音量键、电源键）同侧是这台机的侧边特征，可整体展示。",
+            "noteEn": "Framing: three keys (AI, volume, power) on one side is a defining feature — display them together.",
+            "tags": [
+              "电源键"
+            ]
+          },
+          {
+            "name": "3D 超声波指纹传感器",
+            "en": "3D Ultrasonic Fingerprint Sensor",
+            "desc": "屏下指纹方案，与前置 3D 人脸识别共同构成行业独家双 3D 生物识别。",
+            "descEn": "An in-display fingerprint solution that, together with front 3D face recognition, forms the industry-exclusive dual-3D biometric system.",
+            "note": "装裱价值：超声波指纹模组位于屏幕下方，拆解后通常与屏幕一同取下，可展示其贴附位置。",
+            "noteEn": "Framing: the ultrasonic module sits under the display and usually comes off with it — show its mounting position.",
+            "tags": [
+              "3D 超声波指纹",
+              "屏下指纹",
+              "双 3D 生物识别"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "通信天线",
+        "en": "Connectivity & Antenna",
+        "icon": "⌁",
+        "color": "#2c7a7b",
+        "components": [
+          {
+            "name": "NFC 全向天线",
+            "en": "NFC Omni-directional Antenna",
+            "desc": "NFC 感应区位于手机顶部位置，采用全向天线设计，官方称 3 倍信号覆盖，支持全角度 NFC 刷卡与熄屏一碰付。",
+            "descEn": "The NFC sensing area is at the top of the phone, using an omni-directional antenna design with 3x signal coverage per HONOR, supporting all-angle NFC payment and tap-to-pay with the screen off.",
+            "note": "装裱价值：顶部 NFC 是这台机少有的「位置明确」的功能件，可单独标注以回应读者疑问。",
+            "noteEn": "Framing: the top NFC area is a rare feature with an explicit location — label it separately to answer reader questions.",
+            "tags": [
+              "NFC 全向天线",
+              "3 倍信号覆盖",
+              "熄屏一碰付"
+            ]
+          },
+          {
+            "name": "荣耀鸿燕六翼天线",
+            "en": "HONOR Swan-Wing Six-Wing Antenna",
+            "desc": "天线系统结合自研射频增强芯片等五颗通信芯片，官方称信号强度至高提升 70%。",
+            "descEn": "The antenna system combines self-developed RF enhancement chips among five communication chips, with HONOR claiming up to 70% improved signal strength.",
+            "note": "装裱价值：天线为印刷或激光成型于中框，通常不可单独取下，装裱图上以标注形式呈现即可。",
+            "noteEn": "Framing: antennas are printed or laser-formed on the mid-frame and cannot usually be removed — present them as labels only.",
+            "tags": [
+              "鸿燕六翼天线",
+              "五颗通信芯片",
+              "信号强度 70%"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "传感器",
+        "en": "Sensors",
+        "icon": "◈",
+        "color": "#553c9a",
+        "components": [
+          {
+            "name": "重力传感器",
+            "en": "Gravity Sensor",
+            "desc": "九项传感器之一，用于屏幕方向切换与体感交互。",
+            "descEn": "One of the nine sensors, used for screen orientation switching and motion interaction.",
+            "note": "装裱价值：传感器体积小，适合与主板一并陈列，避免单独展示过于零散。",
+            "noteEn": "Framing: sensors are small — display them alongside the motherboard to avoid a scattered look.",
+            "tags": [
+              "重力传感器"
+            ]
+          },
+          {
+            "name": "陀螺仪",
+            "en": "Gyroscope",
+            "desc": "九项传感器之一，配合影像防抖与体感操作。",
+            "descEn": "One of the nine sensors, supporting image stabilization and motion control.",
+            "note": "装裱价值：陀螺仪是影像防抖的硬件基础，可与防抖参数联动标注。",
+            "noteEn": "Framing: the gyroscope underpins image stabilization — link it with the stabilization specs.",
+            "tags": [
+              "陀螺仪"
+            ]
+          },
+          {
+            "name": "环境光传感器",
+            "en": "Ambient Light Sensor",
+            "desc": "九项传感器之一，用于自动亮度调节，配合护眼模式。",
+            "descEn": "One of the nine sensors, used for automatic brightness adjustment and eye-comfort mode.",
+            "note": "装裱价值：环境光传感器与 1nit 最低亮度、4320Hz PWM 护眼形成完整链路，建议联动标注。",
+            "noteEn": "Framing: link the ambient light sensor with 1nit minimum brightness and 4320Hz PWM for a complete eye-comfort chain.",
+            "tags": [
+              "环境光传感器",
+              "自动亮度"
+            ]
+          },
+          {
+            "name": "红外传感器",
+            "en": "Infrared Sensor",
+            "desc": "九项传感器之一，支持红外遥控功能（仅遥控发射，不支持自学习）。",
+            "descEn": "One of the nine sensors, supporting IR remote control (transmit only, no self-learning).",
+            "note": "装裱价值：红外发射管体积小，位于顶部边框，可放大标注。",
+            "noteEn": "Framing: the IR emitter is small and sits in the top bezel — magnify and label it.",
+            "tags": [
+              "红外传感器",
+              "红外遥控"
+            ]
+          },
+          {
+            "name": "霍尔传感器",
+            "en": "Hall Sensor",
+            "desc": "九项传感器之一，用于皮套模式与磁吸配件检测。",
+            "descEn": "One of the nine sensors, used for case-mode and magnetic accessory detection.",
+            "note": "装裱价值：霍尔传感器极少被拆解图标注，补上可提升资料完整度。",
+            "noteEn": "Framing: the Hall sensor is rarely labeled in teardowns — adding it improves completeness.",
+            "tags": [
+              "霍尔传感器"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "包装与配件",
+        "en": "Packaging & Accessories",
+        "icon": "▢",
+        "color": "#744210",
+        "components": [
+          {
+            "name": "TP 保护膜",
+            "en": "TP Protective Film",
+            "desc": "出厂已粘贴于屏幕表面的保护膜，包装清单中列为标配项。",
+            "descEn": "A protective film applied at the factory, listed as standard in the packaging contents.",
+            "note": "装裱价值：TP 膜是「出厂状态」的直接证据，若保留可展示新机原始状态。",
+            "noteEn": "Framing: the TP film is direct evidence of factory condition — keep it to show the as-new state.",
+            "tags": [
+              "TP 保护膜",
+              "出厂已粘贴"
+            ]
+          },
+          {
+            "name": "手机保护壳",
+            "en": "Phone Case",
+            "desc": "包装清单内含标配保护壳。",
+            "descEn": "A standard protective case included in the box.",
+            "note": "装裱价值：保护壳可展示原厂配色方案，与后盖配色呼应。",
+            "noteEn": "Framing: the case shows the factory color scheme, echoing the back-cover colorways.",
+            "tags": [
+              "手机保护壳",
+              "标配"
+            ]
+          },
+          {
+            "name": "HONOR SuperCharge 充电器",
+            "en": "HONOR SuperCharge Charger",
+            "desc": "包装清单内含 HONOR SuperCharge 充电器一只，支持 120W 有线超级快充。实际充电功率会随不同场景智能变化。",
+            "descEn": "One HONOR SuperCharge charger is included in the box, supporting 120W wired SuperCharge. Actual charging power varies intelligently by scenario.",
+            "note": "装裱价值：120W 充电器是续航卖点的硬件支撑，可与 7200mAh 电池联动展示。⚠️ 注意：官网明确需搭配原装充电器与线缆。",
+            "noteEn": "Framing: the 120W charger underpins the endurance claim — pair with the 7200mAh battery. Note: HONOR states the original charger and cable are required.",
+            "tags": [
+              "HONOR SuperCharge",
+              "120W",
+              "原装充电器"
+            ]
+          }
+        ]
+      }
+    ],
+    "usageNotes": "荣耀 Magic8 Pro 采用 161.15 × 75 × 8.32 mm 的三维比例，整机约 219 克，正面为 6.71 英寸四等深微曲 OLED 屏，覆盖荣耀巨犀玻璃。机身侧面设有独立 AI 实体按键，长按唤醒 YOYO、双击开启相机，是这一代的标志性交互件。\n\n拆解顺序上，通常从后盖入手：后盖与中框之间为卡扣加胶粘结构，需加热软化后配合吸盘与撬片分离。分离后可见无线充电线圈贴附于电池上方，核心主板位于机身上半部，副板位于下半部承载充电接口与 SIM 卡托。电池为内置不可拆卸设计，7200mAh（典型值）以拉胶方式固定，取放时需注意不要刺穿电芯。\n\n影像模组是本机最具装裱价值的部分：潜望式长焦模组体积最大、结构最复杂，适合单独陈列；5000 万超夜神主摄与 5000 万超广角可并列展示，体现「主摄 + 超广角 + 长焦」的三摄体系。前置区的 5000 万广角前摄与 3D 深感摄像头可一并保留，直观展示双 3D 生物识别的前置硬件。\n\n音频部分采用荣耀 AI 环绕低音炮方案，双 1216 扬声器分列上下，配合 8cc 超大音腔与 0.88mm 超大振幅，扬声器腔体结构可拆开展示。副板上的 USB Type-C 接口为 USB 3.2 GEN1 规格，支持 DP1.2 视频输出。\n\n注意：电池为 7200mAh 大容量硅碳电池，运输与展陈时建议单独处理，避免挤压与高温。主板盖板上的导热贴为大面积石墨片，揭取时易碎裂，建议保留原状或整片揭下。",
+    "framingNotes": {
+      "canDisassemble": true,
+      "recommendedFrame": "立式装裱框 / 悬浮式分层装裱",
+      "frameSize": "75 × 75 cm（奇点80 同规格）或按内容调整",
+      "customFrame": true,
+      "notes": "建议采用「整机 + 分层零件」的组合布局：上方保留整机正反两面（或后盖单独陈列），下方按「影像系统 / 核心主板 / 电池与充电 / 音频系统」四个区块分组陈列零件。\n\n影像模组是本机的视觉主角，2 亿超夜神长焦的潜望式结构体积最大，建议放在视觉中心或右上角主位，5000 万超夜神主摄与 5000 万超广角依次排列，体现三摄体系的层次感。前置镜头与 3D 深感摄像头可并列小图。\n\n核心主板与主板盖板建议分开陈列并各自标注，芯片丝印（8323 / SM790-AC / 8323 5N20）可作为实拍增强信息。电池 7200mAh 为大容量硅碳电池，建议单独处理或只展示外壳，避免运输与展陈风险。\n\n文案标注建议采用中英双语，零件名用直角装饰括号、标题类用六角括号（与奇点80 同一套体系）。参数区优先放：161.15 × 75 × 8.32 mm / 约 219g / 6.71 英寸 FHD+ 1256×2808 / 骁龙 8 至尊版 / 7200mAh / IP68+IP69K。这些数字全部有官网一手依据，可直接上版。",
+      "notesEn": "Recommended layout: whole device + layered parts. Place the 200MP periscope telephoto module as the visual anchor (largest volume), followed by the 50MP main and ultra-wide modules to show the triple-camera hierarchy. The core motherboard and cover plate should be displayed separately with labels; chip silkscreen (8323 / SM790-AC / 8323 5N20) can serve as an on-site enhancement. The 7200mAh silicon-carbon battery should be handled separately due to transport risk. Use bilingual labels with square brackets for part names and hexagonal brackets for section titles, consistent with the Centauri 80 system.",
+      "appearanceBlock": {
+        "title": "外观设计",
+        "titleEn": "Design",
+        "lines": [
+          "161.15 × 75 × 8.32 mm",
+          "约 219g（含电池）",
+          "旭日金砂 / 天青色 / 雪域白 / 绒黑色",
+          "荣耀巨犀玻璃 10 倍抗摔"
+        ],
+        "linesEn": [
+          "161.15 × 75 × 8.32 mm",
+          "Approx. 219g",
+          "Four Colorways",
+          "HONOR Rhino Glass"
+        ]
+      },
+      "displayBlock": {
+        "title": "屏幕显示",
+        "titleEn": "Display",
+        "lines": [
+          "6.71 英寸 OLED",
+          "FHD+ 1256 × 2808 / 458 PPI",
+          "HDR 峰值 6000nits / 全局 1800nits",
+          "1-120Hz LTPO 自适应刷新率",
+          "荣耀 AI 绿洲护眼屏"
+        ],
+        "linesEn": [
+          "6.71-inch OLED",
+          "FHD+ 1256 × 2808 / 458 PPI",
+          "HDR 6000nits / Global 1800nits",
+          "1-120Hz LTPO",
+          "AI Oasis Eye-Comfort Display"
+        ]
+      },
+      "processorBlock": {
+        "title": "核心性能",
+        "titleEn": "Performance",
+        "lines": [
+          "第五代骁龙 8 至尊版移动平台",
+          "3nm 制程 / 4.6GHz 超大核 / Adreno 840"
+        ]
+      },
+      "batteryBlock": {
+        "title": "电池续航",
+        "titleEn": "Battery",
+        "lines": [
+          "新一代青海湖电池 7200mAh",
+          "120W 有线 / 100W PPS / 40W UFCS / 80W 无线"
+        ]
+      },
+      "chargingBlock": {
+        "title": "充电规格",
+        "titleEn": "Charging",
+        "lines": [
+          "120W 荣耀超级快充",
+          "260+ 款车型支持 50W 无线快充"
+        ]
+      },
+      "wirelessBlock": {
+        "title": "无线充电",
+        "titleEn": "Wireless",
+        "lines": [
+          "80W 无线超级快充",
+          "支持无线反向充电"
+        ]
+      },
+      "audioBlock": {
+        "title": "音频系统",
+        "titleEn": "Audio",
+        "lines": [
+          "双 1216 扬声器 / 8cc 超大音腔 / 0.88mm 超大振幅"
+        ]
+      },
+      "homeButtonBlock": {
+        "title": "生物识别",
+        "titleEn": "Biometrics",
+        "lines": [
+          "3D 人脸识别 + 3D 超声波指纹",
+          "行业独家双 3D 生物识别"
+        ],
+        "note": "本机无 Home 键，指纹为屏下超声波方案"
+      },
+      "environmentBlock": {
+        "title": "防护等级",
+        "titleEn": "Protection",
+        "lines": [
+          "IP68 + IP69 + IP69K 顶规防尘抗水"
+        ]
+      },
+      "colorLabel": {
+        "title": "配色",
+        "titleEn": "Colorway",
+        "value": "旭日金砂 / 天青色 / 雪域白 / 绒黑色"
+      },
+      "titleBlock": {
+        "title": "荣耀 Magic8 Pro",
+        "titleEn": "HONOR Magic8 Pro",
+        "sub": "AI 进化旗舰手机"
+      },
+      "labelGlossary": {
+        "title": "中英术语对照",
+        "titleEn": "Terminology",
+        "items": [
+          {
+            "cn": "超夜神长焦",
+            "en": "Ultra Night Telephoto"
+          },
+          {
+            "cn": "超夜神主摄",
+            "en": "Ultra Night Main Camera"
+          },
+          {
+            "cn": "潜望式长焦",
+            "en": "Periscope Telephoto"
+          },
+          {
+            "cn": "超广角",
+            "en": "Ultra-Wide"
+          },
+          {
+            "cn": "广角前摄",
+            "en": "Wide Front Camera"
+          },
+          {
+            "cn": "3D 深感摄像头",
+            "en": "3D Depth Camera"
+          },
+          {
+            "cn": "线性马达",
+            "en": "Linear Motor"
+          },
+          {
+            "cn": "无线充电线圈",
+            "en": "Wireless Charging Coil"
+          },
+          {
+            "cn": "副板",
+            "en": "Sub-board"
+          },
+          {
+            "cn": "连接排线",
+            "en": "Flex Cable"
+          },
+          {
+            "cn": "SIM 卡托",
+            "en": "SIM Card Tray"
+          },
+          {
+            "cn": "主板盖板",
+            "en": "Motherboard Cover Plate"
+          }
+        ]
+      }
+    },
+    "pinterest": [],
+    "dataSources": [
+      {
+        "source": "荣耀 Magic8 Pro 产品页（中文）",
+        "url": "https://www.honor.com/cn/phones/honor-magic8-pro/",
+        "用途": "卖点文案与性能数据：骁龙 8 至尊版六项数据、三摄全部参数、7200mAh 与四档充电、双 1216 / 8cc / 0.88mm、IP68+IP69K、九大 AI 护眼科技、AIMAGE 三引擎、YOYO 影像智能体"
+      },
+      {
+        "source": "荣耀 Magic8 Pro 规格参数页（中文）",
+        "url": "https://www.honor.com/cn/phones/honor-magic8-pro/spec/",
+        "用途": "核心规格逐字基线：161.15×75×8.32mm / 约219g / 6.71英寸 FHD+ 1256×2808 / 458ppi / 93.4% / 6000nits / 1800nits / 1nit / 120Hz LTPO / 巨犀玻璃 / 三摄全部参数 / 前置双摄 / 7200mAh 7020mAh / 120W 100W PPS 40W UFCS 80W / IP68 IP69 IP69K / MagicOS 10 / 传感器清单 / 蓝牙6.0 / Wi-Fi 7 / 定位频段 / 包装清单"
+      },
+      {
+        "source": "荣耀官网新闻稿《开新局见未来,荣耀发布首款自进化AI原生手机荣耀Magic8系列》",
+        "url": "https://www.honor.com/cn/news/honor-magic8-launch/",
+        "用途": "发布日期 2025-10-15、开售日期 2025-10-23、售价 5699 元起、四种配色名称、7200mAh 硅碳电池与三颗荣耀 E2 电源管理芯片、自进化 AI 原生手机定位"
+      },
+      {
+        "source": "中关村在线 荣耀 Magic8 Pro 参数页（二手信源，仅交叉验证）",
+        "url": "https://wap.zol.com.cn/2145/2144216/index.html",
+        "用途": "交叉验证尺寸重量、屏幕分辨率、处理器、摄像头、电池。注意：该页「最高可达 100 倍数字变焦」与官网 200 倍不符，以官网为准"
+      }
+    ],
+    "images": [],
+    "framedPhotos": [],
+    "createdAt": "2026-11-03",
+    "status": "completed"
+  }
   ];
   const SAMPLE_REVIEWS = [{
       id:"r001", productId:"p001", productName:"Canon EOS 40D",
@@ -7118,7 +8465,60 @@ function goHome(){
   if(sidebar) sidebar.classList.add("hidden");
   if(gal) gal.classList.remove("active");
   renderHomePage();
+  updateGlobalNav();
   window.scrollTo(0,0);
+}
+
+/* 首屏引导箭头：点击平滑滚动到功能区 */
+function scrollToWorkspace(){
+  var target=document.querySelector(".hp-row1")||document.querySelector(".home-page");
+  if(target){ target.scrollIntoView({behavior:"smooth",block:"start"}); }
+  else { var hero=document.querySelector(".hp-hero"); if(hero) window.scrollTo({top:hero.offsetHeight,behavior:"smooth"}); }
+}
+
+/* ===== 全局返回导航：返回上一级 / 面包屑（固定于 sticky header，不随滚动消失） ===== */
+function _normKey(s){ return String(s||"").toLowerCase().replace(/[\s\-_]+/g,""); }
+/* 空草稿判定：无任何资料内容、未完成 */
+function _isEmptyDraft(p){
+  if(!p) return false;
+  return (!p.specs||!p.specs.length)&&!p.features&&(!p.categories||!p.categories.length)
+    &&(!p.parts||!p.parts.length)&&(!p.images||!p.images.length)&&(!p.framedPhotos||!p.framedPhotos.length)
+    &&(p.status==="draft"||!p.category);
+}
+/* 返回上一级：产品详情→列表；图鉴→上一层级/首页；tab 页→首页 */
+function goBack(){
+  if(typeof viewingProduct!=="undefined"&&viewingProduct){
+    viewingProduct=null; render(); updateGlobalNav(); window.scrollTo(0,0); return;
+  }
+  var gal=$("galleryView");
+  if(gal&&gal.classList.contains("active")){
+    if(typeof galLevel!=="undefined"&&galLevel!=="cats"){ galBack(); updateGlobalNav(); window.scrollTo(0,0); return; }
+    goHome(); return;
+  }
+  goHome();
+}
+/* 按当前页面状态刷新导航按钮与面包屑 */
+function updateGlobalNav(){
+  var nav=$("globalNav"); if(!nav) return;
+  var home=$("homePage"), gal=$("galleryView");
+  var isHome=document.body.classList.contains("is-homepage")||(home&&home.style.display!=="none");
+  var galActive=gal&&gal.classList.contains("active");
+  if(isHome&&!galActive){ nav.classList.remove("show"); return; }
+  nav.classList.add("show");
+  var crumb=$("gnCrumb"), back=$("gnBack"), path="";
+  if(galActive){
+    path="产品图鉴";
+    var ci=(typeof GAL_CATEGORIES!=="undefined"&&galCat)?GAL_CATEGORIES.find(c=>c.id===galCat):null;
+    if(galLevel==="brands") path+=" / "+(ci?ci.name:galCat);
+    if(galLevel==="showcase") path+=" / "+(ci?ci.name:galCat)+" / "+(galBrand||"");
+  } else if(typeof viewingProduct!=="undefined"&&viewingProduct){
+    var p=PRODUCTS.find(x=>x.id===viewingProduct);
+    path=(pageTitles[curTab]||"产品资料库")+(p?(" / "+p.brand+" "+p.model):"");
+  } else {
+    path=pageTitles[curTab]||"";
+  }
+  if(crumb) crumb.textContent=path;
+  if(back) back.style.visibility=(galActive&&galLevel==="cats")?"hidden":"visible";
 }
 
 /* ================================================================
@@ -7153,6 +8553,7 @@ function enterGallery(){
   var gal = $("galleryView"); gal.classList.add("active");
   galLevel = 'cats';
   renderGalCats();
+  updateGlobalNav();
   window.scrollTo(0,0);
 }
 
@@ -7191,6 +8592,7 @@ function renderGalCats(){
       '<h3>'+esc(ca.name)+'</h3><p>'+esc(ca.desc)+'</p>'+
       '<span class="gc-count">'+counts[ca.id]+' 个产品</span></div>';
   }).join('')+'</div>';
+  updateGlobalNav();
 }
 
 /* ---- Level 2: 品牌列表 ---- */
@@ -7231,6 +8633,7 @@ function selectGalCategory(catId){
         '<h4>'+esc(b)+'</h4>'+
         '<div class="gb-count">'+prods.length+' 个产品</div></div>';
     }).join('')+'</div>';
+  updateGlobalNav();
 }
 
 /* ---- Level 3: 作品展示（堆叠卡片） ---- */
@@ -7294,6 +8697,7 @@ function selectGalBrand(brand){
 
   window._gsIdx = 0;
   window._gsTotal = images.length;
+  updateGlobalNav();
 }
 
 /* 堆叠卡片导航 */
@@ -7332,6 +8736,7 @@ function render(){
     console.error("render error for tab "+curTab+":",err);
     main.innerHTML='<div style="padding:30px;color:var(--err)">渲染出错：'+esc(String(err.message||err))+'<br><button class="btn btn-outline btn-sm" style="margin-top:10px" onclick="localStorage.removeItem(\'wb_framing_v2_products\');location.reload()">重置产品数据</button></div>';
   }
+  updateGlobalNav();
 }
 
 function updateBadges(){
@@ -7542,7 +8947,9 @@ function showProductForm(editId){
     '<button type="button" class="size-preset" data-size="420 × 594 mm" onclick="selectSizePreset(this)">A2 <small style="color:var(--ink3)">420×594</small></button>'+
     '</div>'+
     '<input name="size" id="sizeInput" value="'+esc(isEdit?prod.size:"")+'" placeholder="如 146 × 108 × 74 mm"></div>'+
-    '<p style="font-size:12px;color:var(--ink3);margin:6px 0 14px;line-height:1.6">其余资料（详细参数 / 功能介绍 / 部件中英双语标注 / 装裱备注）由 AI 助手生成后自动同步到这里，无需手动填写。</p>'+
+    '<div class="form-group"><label>资料 JSON（选填 · 推荐）</label>'+
+    '<textarea name="jsonData" rows="4" style="width:100%;border:1px solid var(--line2);border-radius:var(--radius-sm);padding:8px 12px;font:12px/1.6 var(--mono,Consolas,monospace);resize:vertical" placeholder="粘贴 AI 助手生成的资料 JSON（含 { 和 } 的完整资料块）"></textarea></div>'+
+    '<p style="font-size:12px;color:var(--ink3);margin:6px 0 14px;line-height:1.6">一条线流程：填写品牌型号后<b>直接粘贴资料 JSON 一并提交</b>，一次创建完整产品；留空则创建草稿，之后也可在 AI 助手同步补齐。<b>同一品牌型号不会重复创建</b>，资料会自动合并到已有条目，不再产生空档。</p>'+
     '<div style="display:flex;gap:8px">'+
     '<button type="submit" class="btn btn-primary">'+(isEdit?'保存':'创建产品')+'</button>'+
     '<button type="button" class="btn btn-outline" onclick="closeModal()">取消</button>'+
@@ -7570,21 +8977,55 @@ function saveProduct(e,editId){
   const f=e.target;
   const brand=f.brand.value.trim(), model=f.model.value.trim(), size=f.size.value.trim();
   if(!brand||!model){ alert("请填写品牌和型号"); return; }
+  /* 解析可选的资料 JSON */
+  const jsonTxt=f.jsonData?f.jsonData.value.trim():"";
+  let jd=null;
+  if(jsonTxt){
+    try{
+      const s=jsonTxt.indexOf("{"), ee=jsonTxt.lastIndexOf("}");
+      if(s<0||ee<=s) throw new Error("no json block");
+      jd=JSON.parse(jsonTxt.substring(s,ee+1));
+      if(!jd.brand||!jd.model) throw new Error("missing brand/model");
+    }catch(err){ alert("资料 JSON 解析失败：请确认粘贴的是包含 brand / model 字段的完整 JSON 资料块"); return; }
+  }
+  /* 已有同品牌型号（精确或归一化匹配）→ 一条线更新，不新建 */
+  const nkey=_normKey(brand+" "+model);
+  const dup=PRODUCTS.find(p=>(p.brand+" "+p.model).toLowerCase()===(brand+" "+model).toLowerCase())
+           ||PRODUCTS.find(p=>_normKey(p.brand+" "+p.model)===nkey);
+
   if(editId){
     const p=PRODUCTS.find(x=>x.id===editId);
-    if(p){ p.brand=brand; p.model=model; p.size=size; p.basicInfo=Object.assign({},p.basicInfo); }
-    saveData("products",PRODUCTS); closeModal(); viewingProduct=null; render(); return;
+    if(p){
+      p.brand=brand; p.model=model; if(size) p.size=size;
+      p.basicInfo=Object.assign({},p.basicInfo);
+      if(jd) applyJsonToProduct(p,jd,{});
+      saveData("products",PRODUCTS); closeModal(); viewingProduct=p.id; render(); updateGlobalNav();
+    }
+    return;
+  }
+  if(dup){
+    if(jd||size){
+      if(size) dup.size=size;
+      if(jd) applyJsonToProduct(dup,jd,{});
+      saveData("products",PRODUCTS); closeModal(); viewingProduct=dup.id; render(); updateGlobalNav();
+      showToast("已合并到已有条目："+dup.brand+" "+dup.model);
+    } else {
+      alert("「"+dup.brand+" "+dup.model+"」已存在。\n\n请直接通过 AI 助手同步资料到该条目，或粘贴资料 JSON 一并提交，避免产生重复空档。");
+    }
+    return;
   }
   const data={
     id:uid(), brand, model, size, category:"",
     basicInfo:{}, specs:[], features:"", parts:[],
     framingNotes:{canDisassemble:true,recommendedFrame:"",frameSize:"",customFrame:false,notes:""},
     pinterestLinks:[], images:[], framedPhotos:[],
-    createdAt:ymd(), status:"draft"
+    createdAt:ymd(), status:jd?"completed":"draft"
   };
+  if(jd) applyJsonToProduct(data,jd,{});
   PRODUCTS.push(data);
   saveData("products",PRODUCTS);
-  closeModal(); viewingProduct=null; render();
+  closeModal(); viewingProduct=data.id; render(); updateGlobalNav();
+  window.scrollTo(0,0);
 }
 
 function deleteProduct(id){
@@ -8247,6 +9688,27 @@ function loadAiResultFile(inp){
   inp.value="";
 }
 
+/* 把资料 JSON 应用到一个产品条目（新增 / 更新 / 草稿继承 共用） */
+function applyJsonToProduct(prod, d, override){
+  override=override||{};
+  if(override.brand) prod.brand=override.brand;
+  if(override.model) prod.model=override.model;
+  if(override.size) prod.size=override.size;
+  prod.category=d.category||prod.category||"";
+  prod.basicInfo=Object.assign({},prod.basicInfo,{releaseDate:d.releaseDate||(prod.basicInfo&&prod.basicInfo.releaseDate)||""});
+  if(Array.isArray(d.specs)) prod.specs=d.specs.map(x=>({key:String(x.key||""),value:String(x.value||"")}));
+  prod.features=d.features||prod.features||"";
+  if(Array.isArray(d.parts)) prod.parts=d.parts.map(x=>({name:x.name||"",en:x.en||"",note:x.note||""}));
+  prod.framingNotes=Object.assign({canDisassemble:true,recommendedFrame:"",frameSize:"",customFrame:false,notes:""},prod.framingNotes,d.framingNotes||{});
+  if(Array.isArray(d.featureTags)) prod.featureTags=d.featureTags;
+  if(Array.isArray(d.timeline)) prod.timeline=d.timeline;
+  if(Array.isArray(d.categories)) prod.categories=d.categories;
+  if(d.usageNotes) prod.usageNotes=d.usageNotes;
+  if(Array.isArray(d.dataSources)) prod.dataSources=d.dataSources;
+  prod.pinterestLinks=Array.isArray(d.pinterest)?d.pinterest:(typeof d.pinterest==="string"?d.pinterest.split(/\s+/).filter(Boolean):(prod.pinterestLinks||[]));
+  prod.status="completed";
+}
+
 async function syncAiResult(){
   const txt=$("aiResult").value.trim();
   const msg=$("aiSyncMsg");
@@ -8260,22 +9722,17 @@ async function syncAiResult(){
   const brand=(d.brand||"").trim(), model=(d.model||"").trim(), size=(d.size||"").trim();
   if(!brand||!model){ alert("资料缺少 brand 或 model 字段"); return; }
 
+  /* 匹配优先级：① 品牌型号精确 ② 归一化（大小写/空格/连字符不敏感）③ 唯一空草稿（资料填进未完成的草稿，不新建空档） */
   let prod=PRODUCTS.find(p=>(p.brand+" "+p.model).toLowerCase()===(brand+" "+model).toLowerCase());
+  let viaDraft=false;
+  if(!prod) prod=PRODUCTS.find(p=>_normKey(p.brand+" "+p.model)===_normKey(brand+" "+model));
+  if(!prod){
+    const drafts=PRODUCTS.filter(_isEmptyDraft);
+    if(drafts.length===1){ prod=drafts[0]; viaDraft=true; }
+  }
   const isNew=!prod;
   if(!prod) prod={ id:uid(), createdAt:ymd(), status:"completed" };
-  prod.brand=brand; prod.model=model; prod.size=size;
-  prod.category=d.category||prod.category||"";
-  prod.basicInfo=Object.assign({},prod.basicInfo,{releaseDate:d.releaseDate||(prod.basicInfo&&prod.basicInfo.releaseDate)||""});
-  prod.specs=Array.isArray(d.specs)?d.specs.map(x=>({key:String(x.key||""),value:String(x.value||"")})):[];
-  prod.features=d.features||prod.features||"";
-  prod.parts=Array.isArray(d.parts)?d.parts.map(x=>({name:x.name||"",en:x.en||"",note:x.note||""})):[];
-  prod.framingNotes=Object.assign({canDisassemble:true,recommendedFrame:"",frameSize:"",customFrame:false,notes:""},prod.framingNotes,d.framingNotes||{});
-  if(Array.isArray(d.featureTags)) prod.featureTags=d.featureTags;
-  if(Array.isArray(d.timeline)) prod.timeline=d.timeline;
-  if(Array.isArray(d.categories)) prod.categories=d.categories;
-  if(d.usageNotes) prod.usageNotes=d.usageNotes;
-  if(Array.isArray(d.dataSources)) prod.dataSources=d.dataSources;
-  prod.pinterestLinks=Array.isArray(d.pinterest)?d.pinterest:(typeof d.pinterest==="string"?d.pinterest.split(/\s+/).filter(Boolean):(prod.pinterestLinks||[]));
+  applyJsonToProduct(prod,d,{brand:brand,model:model,size:size});
   // 上传的源图作为参考图
   if(aiImages.length){
     const comp=[];
@@ -8285,7 +9742,7 @@ async function syncAiResult(){
   if(isNew) PRODUCTS.push(prod); else { const i=PRODUCTS.findIndex(p=>p.id===prod.id); PRODUCTS[i]=prod; }
   saveData("products",PRODUCTS);
   $("aiResult").value="";
-  msg.innerHTML='已'+(isNew?"新增":"更新")+'：<b>'+esc(brand)+' '+esc(model)+'</b> · <a href="#" onclick="viewingProduct=\''+prod.id+'\';curTab=\'products\';render();return false" style="color:var(--accent)">查看资料 →</a>';
+  msg.innerHTML='已'+(isNew?"新增":(viaDraft?"同步到未完成的草稿条目":"更新"))+'：<b>'+esc(brand)+' '+esc(model)+'</b> · <a href="#" onclick="viewingProduct=\''+prod.id+'\';curTab=\'products\';render();return false" style="color:var(--accent)">查看资料 →</a>';
   render();
 }
 
