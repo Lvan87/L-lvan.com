@@ -800,6 +800,10 @@ header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdro
     <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
     返回工作区
   </button>
+  <button class="btn btn-ghost btn-sm" id="btnBackList" onclick="backToList()" style="gap:6px;display:none">
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    返回列表
+  </button>
   <div class="pt-title" id="pageTitle"></div>
 </div>
 <nav class="sidebar" id="sidebar">
@@ -8510,6 +8514,11 @@ function showWorkspace(){
   window.scrollTo(0,0);
 }
 
+/* 从产品详情返回列表（固定栏按钮） */
+function backToList(){
+  viewingProduct=null; render(); updateGlobalNav(); window.scrollTo(0,0);
+}
+
 /* ===== 全局返回导航：返回上一级 / 面包屑（固定于 sticky header，不随滚动消失） ===== */
 function _normKey(s){ return String(s||"").toLowerCase().replace(/[\s\-_]+/g,""); }
 /* 空草稿判定：无任何资料内容、未完成 */
@@ -8553,6 +8562,9 @@ function updateGlobalNav(){
   }
   if(crumb) crumb.textContent=path;
   if(back) back.style.visibility=(galActive&&galLevel==="cats")?"hidden":"visible";
+  /* 固定栏「返回列表」按钮：仅在查看单个产品详情时出现 */
+  var bl=$("btnBackList");
+  if(bl) bl.style.display=(typeof viewingProduct!=="undefined"&&viewingProduct)?"inline-flex":"none";
 }
 
 /* ================================================================
@@ -8920,7 +8932,6 @@ function renderProductDetail(main,p){
 
   main.innerHTML =
     '<div class="pdetail">'+
-    '<div class="pdetail-back" onclick="viewingProduct=null;render()">\u2190 返回列表</div>'+
     heroHTML +
     (!hasRichData ? '' :
       '<div style="margin-bottom:20px;display:flex;gap:8px;flex-wrap:wrap">'+
