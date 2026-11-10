@@ -987,8 +987,10 @@ function enforceBuiltinProducts(list){
   else {                                   // 内置版覆盖，但保留用户上传的照片
     var old=out[idx];
     out[idx]=Object.assign({},base,{
-      images:old.images||[], framedPhoto:old.framedPhoto||null,
-      framedPhotos:old.framedPhotos||[], createdAt:old.createdAt||base.createdAt
+      images:(Array.isArray(old.images)?old.images:[]).filter(function(x){return typeof x==="string"&&x.length>0;}),
+      framedPhoto:null,
+      framedPhotos:(Array.isArray(old.framedPhotos)?old.framedPhotos:(old.framedPhoto?[old.framedPhoto]:[])).filter(function(x){return typeof x==="string"&&x.length>0;}),
+      createdAt:old.createdAt||base.createdAt
     });
   }
   return out;
@@ -1004,6 +1006,23 @@ function rebuildBuiltinData(){
   if(typeof render==="function") render();
   if(typeof updateGlobalNav==="function") updateGlobalNav();
   if(typeof showToast==="function") showToast("已重建 · BUILD 2026.11.10-B · Caviar 50 周年为最新版");
+}
+/* 修复脏图片数据（framedPhotos 里的 null / 非字符串），保留其余资料不删除 */
+function repairProductData(){
+  PRODUCTS=(PRODUCTS||[]).map(function(p){
+    if(!p||typeof p!=="object") return p;
+    var ok=function(x){return typeof x==="string"&&x.length>0;};
+    var raw=Array.isArray(p.framedPhotos)?p.framedPhotos:(p.framedPhoto?[p.framedPhoto]:[]);
+    p.framedPhotos=raw.filter(ok);
+    p.images=(Array.isArray(p.images)?p.images:[]).filter(ok);
+    if(!Array.isArray(p.categories)) p.categories=[];
+    if(!Array.isArray(p.specs)) p.specs=[];
+    if(!Array.isArray(p.parts)) p.parts=[];
+    return p;
+  });
+  saveData("products",PRODUCTS);
+  if(typeof render==="function") render();
+  if(typeof showToast==="function") showToast("已修复数据，请重新打开该条目");
 }
 async function cloudSyncAll(){
   SB = await cloudInit();
@@ -8842,8 +8861,13 @@ function initSampleData(){
         ||((s.framingNotes&&s.framingNotes.labelGlossary)&&!(stored.framingNotes&&stored.framingNotes.labelGlossary))||((s.framingNotes&&s.framingNotes.frameSize)!==(stored.framingNotes&&stored.framingNotes.frameSize))||(((s.usageNotes||"").length)&&((s.usageNotes||"").length!==((stored.usageNotes||"").length)));
       if(sCount>pCount||metaChanged||matchedByModel){
         var imgs=stored.images,fp=stored.framedPhoto,fps=stored.framedPhotos,ca=stored.createdAt;
+        /* 修复历史优先级 bug：fps||fp?(...) 在 fps=[] 时（空数组为 truthy）会产出 [null]，
+           导致详情页 img.substring 抛 Cannot read properties of null。统一过滤合法图片字符串。 */
+        var _fpRaw=Array.isArray(fps)?fps:(Array.isArray(fp)?fp:(fp?[fp]:[]));
+        var fpList=_fpRaw.filter(function(x){return typeof x==="string"&&x.length>0;});
+        var _imgs=Array.isArray(imgs)?imgs.filter(function(x){return typeof x==="string"&&x.length>0;}):[];
         var idx=PRODUCTS.indexOf(stored);
-        PRODUCTS[idx]=Object.assign({},s,{images:imgs||[],framedPhoto:fp||null,framedPhotos:fps||fp?(fp instanceof Array?fp:[fp]):[],createdAt:ca});
+        PRODUCTS[idx]=Object.assign({},s,{images:_imgs,framedPhoto:null,framedPhotos:fpList,createdAt:ca});
         _updated=true;
       }
     });
@@ -9293,7 +9317,9 @@ function render(){
   }
   }catch(err){
     console.error("render error for tab "+curTab+":",err);
-    main.innerHTML='<div style="padding:30px;color:var(--err)">渲染出错：'+esc(String(err.message||err))+'<br><button class="btn btn-outline btn-sm" style="margin-top:10px" onclick="localStorage.removeItem(\'wb_framing_v2_products\');location.reload()">重置产品数据</button></div>';
+    main.innerHTML='<div style="padding:30px;color:var(--err)">渲染出错：'+esc(String(err.message||err))+'<br>'+
+      '<button class="btn btn-outline btn-sm" style="margin-top:10px" onclick="repairProductData()">修复数据并重试</button> '+
+      '<button class="btn btn-ghost btn-sm" style="margin-top:10px" onclick="localStorage.removeItem(\'wb_framing_v2_products\');location.reload()">重置产品数据</button></div>';
   }
   updateGlobalNav();
 }
@@ -9451,6 +9477,10 @@ function renderProductDetail(main,p){
     }
   }
 
+  /* 制作完成图：先规范化，过滤 null / 非字符串，避免脏数据让整个详情页渲染中断 */
+  var _galRaw=Array.isArray(prod.framedPhotos)?prod.framedPhotos:(prod.framedPhoto?[prod.framedPhoto]:[]);
+  var galleryList=_galRaw.filter(function(x){return typeof x==="string"&&x.length>0;});
+
   main.innerHTML =
     '<div class="pdetail">'+
     heroHTML +
@@ -9461,12 +9491,11 @@ function renderProductDetail(main,p){
       '<button class="btn btn-outline btn-sm" onclick="addFramedPhoto(\''+prod.id+'\')">'+ICONS.image+' 添加制作完成图</button>'+
       '<button class="btn btn-ghost btn-sm" onclick="deleteProduct(\''+prod.id+'\')">'+ICONS.trash+' 删除</button>'+
       '</div>') +
-    ((prod.framedPhotos&&prod.framedPhotos.length)||prod.framedPhoto?
-      '<div class="pd-section"><h3>制作完成图'+((prod.framedPhotos&&prod.framedPhotos.length)?' <span class="pd-count">'+prod.framedPhotos.length+' 张</span>':'')+'</h3><div class="pd-gallery pd-gallery-grid">'+
+    (galleryList.length?
+      '<div class="pd-section"><h3>制作完成图 <span class="pd-count">'+galleryList.length+' 张</span></h3><div class="pd-gallery pd-gallery-grid">'+
       (function(){
-        var list=prod.framedPhotos||(prod.framedPhoto?[prod.framedPhoto]:[]);
-        window._lbGalleries=window._lbGalleries||{}; window._lbGalleries[prod.id]=list;
-        return list.map(function(img,i){return '<div class="pd-g-item">'+
+        window._lbGalleries=window._lbGalleries||{}; window._lbGalleries[prod.id]=galleryList;
+        return galleryList.map(function(img,i){return '<div class="pd-g-item">'+
           '<img src="'+img+'" style="width:100%;height:180px;object-fit:cover;cursor:pointer;border-radius:var(--radius-sm)" onclick="showLb(\''+img.substring(0,999999)+'\',\'制作完成图 '+(i+1)+'\',window._lbGalleries[\''+prod.id+'\'],'+i+')" loading="lazy">'+
           '<button class="pd-g-del" onclick="event.stopPropagation();removeFramedPhoto(\''+prod.id+'\','+i+')" title="删除此图">'+ICONS.trash+'</button>'+
           '</div>';}).join('');
