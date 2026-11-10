@@ -10494,10 +10494,12 @@ function doExport(){
   const a=document.createElement("a"); a.href=URL.createObjectURL(blob);
   a.download="装裱设计台备份_"+ymd()+".json"; a.click(); URL.revokeObjectURL(a.href);
 }
-$("btnExport").onclick=doExport;
+/* 顶层 DOM 绑定一律加存在性保护：缺少任一按钮都不能让整段脚本中断
+   （历史上 btnClear 已从页面移除，曾在此处抛 TypeError 导致后续 INIT 全部不执行） */
+if($("btnExport")) $("btnExport").onclick=doExport;
 
-$("btnImport").onclick=()=>$("importFile").click();
-$("importFile").onchange=function(e){
+if($("btnImport")) $("btnImport").onclick=()=>{ if($("importFile")) $("importFile").click(); };
+if($("importFile")) $("importFile").onchange=function(e){
   const f=e.target.files[0]; if(!f)return;
   const reader=new FileReader();
   reader.onload=ev=>{
@@ -10520,7 +10522,7 @@ $("importFile").onchange=function(e){
   e.target.value="";
 };
 
-$("btnClear").onclick=function(){
+if($("btnClear")) $("btnClear").onclick=function(){
   if(!confirm("确定清空所有数据？\n\n这将删除：\n· 所有产品资料（"+PRODUCTS.length+" 条）\n· 所有审核记录（"+REVIEWS.length+" 条）\n· 所有 AI 对话（"+CHATS.length+" 条）\n\n此操作不可撤销！")) return;
   if(!confirm("再次确认：真的要全部清空吗？")) return;
   localStorage.removeItem(PFX+"products");
@@ -10549,12 +10551,24 @@ function showToast(msg,duration){
   setTimeout(function(){el.style.opacity='0';},duration);
 }
 
+window.__wbBootDone=true;
 try{ initSampleData(); }catch(err){ console.error("initSampleData error:",err); }
 try{ switchTab(); }catch(err){ console.error("switchTab error:",err); }
 setTimeout(function(){ try{ switchTab(); }catch(e){ console.error("retry switchTab:",e); } },200);
 // 云同步（异步，不阻塞界面；库未加载完会自动重试）
 waitForSupabase(function(){ cloudSyncAll(); });
 
+</script>
+<script>
+/* 启动兜底（独立脚本块）：即使上方主脚本因任意顶层异常中断，
+   也保证内置资料初始化、首屏渲染与云同步一定执行。 */
+(function(){
+  if(window.__wbBootDone) return;
+  window.__wbBootDone=true;
+  try{ if(typeof initSampleData==="function") initSampleData(); }catch(e){ console.error("boot fallback initSampleData:",e); }
+  try{ if(typeof switchTab==="function") switchTab(); }catch(e){ console.error("boot fallback switchTab:",e); }
+  try{ if(typeof waitForSupabase==="function") waitForSupabase(function(){ cloudSyncAll(); }); }catch(e){ console.error("boot fallback cloud:",e); }
+})();
 </script>
 </body>
 </html>
