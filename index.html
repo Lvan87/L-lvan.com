@@ -965,14 +965,25 @@ async function cloudSyncAll(){
         // instead of letting a stale cloud copy wipe them; push them back to cloud
         try{
           if(key==="products" && Array.isArray(json) && Array.isArray(local)){
-            var cloudIds = {};
-            json.forEach(function(x){ if(x&&x.id) cloudIds[x.id]=1; });
-            var localOnly = local.filter(function(x){ return x&&x.id&&!cloudIds[x.id]; });
-            if(localOnly.length){
-              json = json.concat(localOnly);
-              SB.from("app_sync").upsert({id:key, data:json, updated_at:new Date().toISOString()});
-              console.log("cloud merge: restored local-only products", localOnly.map(function(x){return x.id;}));
-            }
+            /* 本地为权威：云端中与本地条目同品牌型号（brand+model）的旧副本一律跳过，
+               避免早期同步产生的旧副本每次 pull 都复活、与内置新版（如 p011）重复 */
+            var localByKey={};
+            local.forEach(function(x){ if(x&&x.brand) localByKey[((x.brand||"")+" "+(x.model||"")).toLowerCase()]=1; });
+            var merged=[], usedIds={};
+            json.forEach(function(x){
+              if(!x||!x.id) return;
+              var k=((x.brand||"")+" "+(x.model||"")).toLowerCase();
+              if(localByKey[k]) return;
+              if(usedIds[x.id]) return;
+              usedIds[x.id]=1; merged.push(x);
+            });
+            local.forEach(function(x){
+              if(!x||!x.id||usedIds[x.id]) return;
+              usedIds[x.id]=1; merged.push(x);
+            });
+            json=merged;
+            SB.from("app_sync").upsert({id:key, data:json, updated_at:new Date().toISOString()});
+            console.log("cloud merge: local-first merge,", json.length, "products");
           }
         }catch(me){ console.warn("merge "+key+" failed:", me); }
         saveLocal(key, json); assignMem(key, json); pulled++;
@@ -8745,6 +8756,9 @@ function initSampleData(){
       var matchedByModel=false;
       if(!stored){ stored=PRODUCTS.find(function(pp){return (pp.brand+" "+pp.model).toLowerCase()===(s.brand+" "+s.model).toLowerCase();}); matchedByModel=true; }
       if(!stored){ PRODUCTS.push(s); _updated=true; return; }
+      /* 清理与内置条目同品牌型号的本地旧副本（早期同步产生的重复条目，如 p011 与随机 uid 旧条并存） */
+      var _dupKey=(s.brand+" "+s.model).toLowerCase();
+      PRODUCTS=PRODUCTS.filter(function(pp){ return pp===stored||(pp.brand+" "+pp.model).toLowerCase()!==_dupKey; });
       var sCount=(s.categories||[]).reduce(function(sum,c){return sum+(c.components||[]).length;},0);
       var pCount=(stored.categories||[]).reduce(function(sum,c){return sum+(c.components||[]).length;},0);
       // Sync basic metadata fields (model/brand/category/size) even if component count unchanged
