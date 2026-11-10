@@ -805,6 +805,8 @@ header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdro
     返回列表
   </button>
   <div class="pt-title" id="pageTitle"></div>
+  <span id="buildTag" style="margin-left:auto;font-size:10px;letter-spacing:.08em;color:#aaa;white-space:nowrap">BUILD 2026.11.10-B</span>
+  <button class="btn btn-ghost btn-sm" onclick="rebuildBuiltinData()" title="以内置最新版重建产品数据（BUILD 2026.11.10-B）">重建资料</button>
 </div>
 <nav class="sidebar" id="sidebar">
   <button class="nav-item active" data-tab="products">
@@ -949,6 +951,60 @@ async function cloudInit(){
     return c;
   }catch(e){ console.warn("Supabase 初始化失败:", e); setCloud("err"); return null; }
 }
+/* ================================================================
+   内置资料强制规范化
+   背景：早期手动新建 / 云端同步产生的 Caviar 条目，型号名可能与内置基准
+   不完全一致（例如「50 周年定制版 iPhone 17 Pro Max」），原先按
+   brand+model 精确相等的清理与合并逻辑匹配不上，旧条目每次刷新都复活，
+   用户点开的仍是 categories 为空的简版详情页。
+   这里改按「机型特征」识别旧副本，并在启动、云端同步完成后各执行一次，
+   保证最终渲染的一定是内置 p011 最新版。
+   ================================================================ */
+function isLegacyCaviar(p){
+  if(!p || p.id==="p011") return false;
+  var s=((p.brand||"")+" "+(p.model||"")+" "+(p.coverModel||"")+" "+(p.category||"")).toLowerCase();
+  if(!/17\s*pro\s*max|17promax|iphone\s*17/.test(s)) return false;
+  return /caviar|50\s*周年|50th|anniversary|乔布斯|steve\s*jobs/.test(s);
+}
+function getBuiltinBase(id){
+  var b=window.BUILTIN_PRODUCTS||[];
+  for(var i=0;i<b.length;i++) if(b[i].id===id) return b[i];
+  return null;
+}
+function enforceBuiltinProducts(list){
+  var base=getBuiltinBase("p011");
+  if(!base) return list||[];
+  var out=[], seen={};
+  (list||[]).forEach(function(p){
+    if(!p||!p.id) return;
+    if(isLegacyCaviar(p)) return;          // 丢弃任何 Caviar 旧副本
+    if(seen[p.id]) return;
+    seen[p.id]=1; out.push(p);
+  });
+  var idx=-1;
+  for(var j=0;j<out.length;j++) if(out[j].id==="p011"){ idx=j; break; }
+  if(idx<0) out.unshift(Object.assign({},base));
+  else {                                   // 内置版覆盖，但保留用户上传的照片
+    var old=out[idx];
+    out[idx]=Object.assign({},base,{
+      images:old.images||[], framedPhoto:old.framedPhoto||null,
+      framedPhotos:old.framedPhotos||[], createdAt:old.createdAt||base.createdAt
+    });
+  }
+  return out;
+}
+/* 手动一键重建：用于确认页面版本、强制把本地数据刷成内置最新 */
+function rebuildBuiltinData(){
+  if(!window.BUILTIN_PRODUCTS||!window.BUILTIN_PRODUCTS.length){
+    if(typeof showToast==="function") showToast("内置资料未就绪，请刷新页面"); return;
+  }
+  PRODUCTS=enforceBuiltinProducts(PRODUCTS);
+  viewingProduct=null;
+  saveData("products",PRODUCTS);
+  if(typeof render==="function") render();
+  if(typeof updateGlobalNav==="function") updateGlobalNav();
+  if(typeof showToast==="function") showToast("已重建 · BUILD 2026.11.10-B · Caviar 50 周年为最新版");
+}
 async function cloudSyncAll(){
   SB = await cloudInit();
   if(!SB) return;
@@ -991,6 +1047,16 @@ async function cloudSyncAll(){
         await SB.from("app_sync").upsert({id:key, data:local, updated_at:new Date().toISOString()});
       }
     }catch(e){ console.warn("sync "+key+" failed:", e); }
+  }
+  /* 云端 pull 之后再次强制规范化：无论云端旧副本叫什么名字，最终都以内置基准为准 */
+  if(window.BUILTIN_PRODUCTS && window.BUILTIN_PRODUCTS.length){
+    PRODUCTS=enforceBuiltinProducts(PRODUCTS);
+    saveLocal("products",PRODUCTS);
+    SB.from("app_sync").upsert({id:"products", data:PRODUCTS, updated_at:new Date().toISOString()});
+    if(typeof viewingProduct!=="undefined" && viewingProduct){
+      var _still=PRODUCTS.filter(function(x){return x.id===viewingProduct;});
+      viewingProduct=_still.length ? viewingProduct : null;
+    }
   }
   setCloud("on");
   render();
@@ -8746,7 +8812,16 @@ function initSampleData(){
     }
   ];
   const SAMPLE_CHATS = [];
-  
+
+  // 暴露内置基准数据，供云同步后的强制规范化复用
+  window.BUILTIN_PRODUCTS = SAMPLE_PRODUCTS;
+  // 启动即规范化（在异步云同步之前，先保证本地数据是干净的）
+  if(PRODUCTS.length){
+    var _c0=enforceBuiltinProducts(PRODUCTS);
+    PRODUCTS=_c0;
+    saveData("products",PRODUCTS);
+  }
+
   // ---- Smart seed: first run or auto-update ----
   if(PRODUCTS.length > 0){
     // Already has data — check if embedded sample is more complete
@@ -9241,6 +9316,7 @@ function renderProducts(main){
     '<div class="mhdr"><h2>产品资料库</h2>'+
     '<div class="mhdr-actions">'+
     '<button class="btn btn-primary btn-sm" onclick="showProductForm()">'+ICONS.plus+' 新增产品</button>'+
+    '<button class="btn btn-ghost btn-sm" onclick="rebuildBuiltinData()">重建内置资料</button>'+
     '<button class="btn btn-ghost btn-sm" onclick="clearSampleData()">'+ICONS.trash+' 清空示例</button>'+
     '</div></div>'+
     '<div class="pgrid" id="pGrid"></div>';
@@ -9265,7 +9341,15 @@ function renderProducts(main){
 }
 
 function renderProductDetail(main,p){
-  const prod=PRODUCTS.find(x=>x.id===p); if(!prod){viewingProduct=null;renderProducts(main);return;}
+  let prod=PRODUCTS.find(x=>x.id===p); if(!prod){viewingProduct=null;renderProducts(main);return;}
+  /* 渲染层兜底：即便数据清理/云同步未执行，点开旧 Caviar 副本也直接改显示内置 p011 最新版 */
+  if(typeof isLegacyCaviar==="function" && isLegacyCaviar(prod)){
+    let _base=PRODUCTS.find(x=>x.id==="p011")||getBuiltinBase("p011");
+    if(_base){
+      if(!PRODUCTS.some(x=>x.id==="p011")){ PRODUCTS.push(_base); saveLocal("products",PRODUCTS); }
+      viewingProduct="p011"; prod=PRODUCTS.find(x=>x.id==="p011");
+    }
+  }
   const fn=(prod.basicInfo&&prod.basicInfo.releaseDate)||"";
   const parts=prod.parts||[];
   const imgs=prod.images||[];
