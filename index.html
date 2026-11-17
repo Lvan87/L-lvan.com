@@ -806,8 +806,8 @@ header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdro
   </button>
   <div class="pt-title" id="pageTitle"></div>
   <a href="project-docs/" target="_blank" rel="noopener" class="btn btn-ghost btn-sm" style="text-decoration:none" title="Caviar 50 周年项目：审核报告与中英对照资料">项目资料</a>
-  <span id="buildTag" style="margin-left:auto;font-size:10px;letter-spacing:.08em;color:#aaa;white-space:nowrap">BUILD 2026.11.17-D</span>
-  <button class="btn btn-ghost btn-sm" onclick="rebuildBuiltinData()" title="以内置最新版重建产品数据（BUILD 2026.11.17-D）">重建资料</button>
+  <span id="buildTag" style="margin-left:auto;font-size:10px;letter-spacing:.08em;color:#aaa;white-space:nowrap">BUILD 2026.11.17-E</span>
+  <button class="btn btn-ghost btn-sm" onclick="rebuildBuiltinData()" title="以内置最新版重建产品数据（BUILD 2026.11.17-E）">重建资料</button>
 </div>
 <nav class="sidebar" id="sidebar">
   <button class="nav-item active" data-tab="products">
@@ -973,8 +973,8 @@ function getBuiltinBase(id){
   return null;
 }
 function enforceBuiltinProducts(list){
-  var base=getBuiltinBase("p011");
-  if(!base) return list||[];
+  var builtins=window.BUILTIN_PRODUCTS||[];
+  if(!builtins.length) return list||[];
   var out=[], seen={};
   (list||[]).forEach(function(p){
     if(!p||!p.id) return;
@@ -982,10 +982,14 @@ function enforceBuiltinProducts(list){
     if(seen[p.id]) return;
     seen[p.id]=1; out.push(p);
   });
-  var idx=-1;
-  for(var j=0;j<out.length;j++) if(out[j].id==="p011"){ idx=j; break; }
-  if(idx<0) out.unshift(Object.assign({},base));
-  else {                                   // 内置版覆盖，但保留用户上传的照片
+  /* 内置版全覆盖（保留用户上传的照片与 createdAt）：任意产品数据更新都能下发，
+     不再只 special-case p011——否则只加字段（如 featuresEn）的更新会被
+     智能种子的 metaChanged 判定漏掉，用户浏览器停留在旧副本 */
+  builtins.forEach(function(base){
+    if(!base||!base.id) return;
+    var idx=-1;
+    for(var j=0;j<out.length;j++) if(out[j].id===base.id){ idx=j; break; }
+    if(idx<0){ out.push(Object.assign({},base)); return; }
     var old=out[idx];
     out[idx]=Object.assign({},base,{
       images:(Array.isArray(old.images)?old.images:[]).filter(function(x){return typeof x==="string"&&x.length>0;}),
@@ -993,7 +997,7 @@ function enforceBuiltinProducts(list){
       framedPhotos:(Array.isArray(old.framedPhotos)?old.framedPhotos:(old.framedPhoto?[old.framedPhoto]:[])).filter(function(x){return typeof x==="string"&&x.length>0;}),
       createdAt:old.createdAt||base.createdAt
     });
-  }
+  });
   return out;
 }
 /* 手动一键重建：用于确认页面版本、强制把本地数据刷成内置最新 */
@@ -1006,7 +1010,7 @@ function rebuildBuiltinData(){
   saveData("products",PRODUCTS);
   if(typeof render==="function") render();
   if(typeof updateGlobalNav==="function") updateGlobalNav();
-  if(typeof showToast==="function") showToast("已重建 · BUILD 2026.11.17-D · Galaxy Z Flip3 5G 国行版为最新版");
+  if(typeof showToast==="function") showToast("已重建 · BUILD 2026.11.17-E · Galaxy Z Flip3 5G 国行版为最新版");
 }
 /* 修复脏图片数据（framedPhotos 里的 null / 非字符串），保留其余资料不删除 */
 function repairProductData(){
