@@ -805,8 +805,9 @@ header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdro
     返回列表
   </button>
   <div class="pt-title" id="pageTitle"></div>
-  <span id="buildTag" style="margin-left:auto;font-size:10px;letter-spacing:.08em;color:#aaa;white-space:nowrap">BUILD 2026.11.10-B</span>
-  <button class="btn btn-ghost btn-sm" onclick="rebuildBuiltinData()" title="以内置最新版重建产品数据（BUILD 2026.11.10-B）">重建资料</button>
+  <a href="project-docs/" target="_blank" rel="noopener" class="btn btn-ghost btn-sm" style="text-decoration:none" title="Caviar 50 周年项目：审核报告与中英对照资料">项目资料</a>
+  <span id="buildTag" style="margin-left:auto;font-size:10px;letter-spacing:.08em;color:#aaa;white-space:nowrap">BUILD 2026.11.17-B</span>
+  <button class="btn btn-ghost btn-sm" onclick="rebuildBuiltinData()" title="以内置最新版重建产品数据（BUILD 2026.11.17-B）">重建资料</button>
 </div>
 <nav class="sidebar" id="sidebar">
   <button class="nav-item active" data-tab="products">
@@ -1005,7 +1006,7 @@ function rebuildBuiltinData(){
   saveData("products",PRODUCTS);
   if(typeof render==="function") render();
   if(typeof updateGlobalNav==="function") updateGlobalNav();
-  if(typeof showToast==="function") showToast("已重建 · BUILD 2026.11.10-B · Caviar 50 周年为最新版");
+  if(typeof showToast==="function") showToast("已重建 · BUILD 2026.11.17-B · ROG 八爪鱼7 20周年版为最新版");
 }
 /* 修复脏图片数据（framedPhotos 里的 null / 非字符串），保留其余资料不删除 */
 function repairProductData(){
@@ -8807,13 +8808,916 @@ function initSampleData(){
       "Apple 官方新闻稿：apple.com.cn/newsroom/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max-cn/（发布日期、配色、机身工艺）",
       "Apple 官方新闻稿：apple.com.cn/newsroom/2026/03/apple-to-celebrate-50-years-of-thinking-different/（50 周年「非同凡想」主题）",
       "Apple 官方新闻稿：apple.com.cn/newsroom/2026/03/apple-hosts-50th-anniversary-celebrations-around-the-world（50 周年全球庆祝活动）",
-      "媒体交叉验证（限量/价格，官网已下架无法逐字核实）：IT之家、腾讯新闻/CNMO、abit.ee、daily8、pcnow；各媒体对售价报道有出入（8,430–9,630 美元起），以购买凭证为准"
+      "媒体交叉验证（限量/价格，官网已下架无法逐字核实）：IT之家、腾讯新闻/CNMO、abit.ee、daily8、pcnow；各媒体对售价报道有出入（8,430–9,630 美元起），以购买凭证为准",
+      "Caviar 官方产品详情页：caviar.global/collections/50-years-of-apple/jobs_id28840（图库标签、产品描述逐字原文；2026-11-12 抓取存档）",
+      "Caviar 官方新闻稿后续确认：caviar.global/info/news/jobs-model-sold-out-caviar-reveals-an-iphone-17-pro-series-featuring-an-original-iphone-2g-board-fragment（确认 iPhone 17 Pro Max Jobs Edition 售罄）",
+      "Apple 官方产品详情页（MZ 区域站）：apple.com/mz/iphone-17-pro/ 与 /specs/（主流区域站已下架，此站仍在线；2026-11-14 复测 HTTP 200）",
+      "Apple 英文技术规格页：support.apple.com/en-us/125091（Taptic Engine、Adaptive True Tone Flash、Dual eSIM 等英文零件名逐字来源）",
+      "Apple 官方 50 周年专题页：apple.com/cn/50-years-of-thinking-different/ 与 apple.com/50-years-of-thinking-different/（标题行解释句逐字来源）",
+      "Apple 官方新闻稿：apple.com.cn/newsroom/2026/09/apple-unveils-iphone-duo/（iPhone Duo 2026-09-09 发布，品类首发时间线用）",
+      "Apple 官网详情页（MZ）深色章节截图：Battery life. All-time high.（章节标题逐字引用，2026-11-16 二审归档）"
     ],
     "images": [],
     "framedPhotos": [],
     "createdAt": "2026-11-07",
-    "status": "资料采集中（parts 待拆解补充）"
-  }
+    "status": "设计稿终审通过 · 可付印（2026-11-16）；parts 仍待拆解照片补充"
+  },
+{
+  "id": "p012",
+  "coverModel": "ROG 八爪鱼7 20周年版",
+  "brand": "ASUS",
+  "model": "ROG 八爪鱼7 20周年版",
+  "category": "电竞路由器 WiFi 7 20周年限定版 (Gaming Router · WiFi 7 · 20th Anniversary Edition)",
+  "size": "350.41 × 350.41 × 220.6 mm",
+  "basicInfo": {
+    "releaseDate": "ROG 20周年纪念系列 2026 年发布；八爪鱼7 20周年版电商上架 2026-06（媒体 2026-06-30 报道，官网未标注具体发售日）"
+  },
+  "features": "ROG 八爪鱼7 20周年版是华硕旗下 ROG 玩家国度为纪念品牌成立二十周年推出的限量网络装备，隶属 ROG 20周年纪念系列，与影曜黑、澈影透、曜金光和 ROG 经典红构成的专属配色体系一脉相承。整机以「黑透金」为设计语言：350.41 毫米近乎方形的机身内藏八根外置天线，顶部覆以 ROG 浮雕半透明亚克力顶盖，金色天线底座、20周年专属徽章与 ROG 专属图腾分别以精细涂覆的金色金属涂层、镜面抛光与钻石切割工艺、金属饰面加红色点缀呈现，官网将这套设计概括为「精湛设计——雅致的黑金美学」，半透明顶盖下隐约可见的内部工程构造正是 20 周年配色中「澈影透」的意象落点。\n\n性能层面，它是一台不妥协的 WiFi 7 旗舰：2.6GHz 四核处理器搭配 2GB 内存与 256MB Flash，三频并发总速率 13000Mbps（5GHz-1 与 5GHz-2 各 5764Mbps，2.4GHz 至 1376Mbps），八根天线构成 4x4 收发架构，支持 4096-QAM 与双模式 MLO；有线侧配备两个 10G 网口与四个 2.5G 网口，其中一个 10Gbps LAN 被指定为专属电竞网口，会优先处理任何已连接游戏设备的数据。大陆版本受法规限制暂不支持 5GHz-2 的 160MHz 带宽，官网规格页为此专设脚注，宣传速率时应予保留。\n\n对装裱设计而言，这台路由器的叙事核心是「二十周年」的三层视觉：半透明顶盖下透出的工程构造、金色天线底座与镜面徽章构成的收藏级细节、以及把品牌纹样织入散热片与机身的 ROG 专属图腾。装裱时应以顶部黑金构件为第一视觉主角，八根天线「八戟朝天」的环状排布构成天然放射构图，三频速率与双万兆端口参数降为小字信息带，20 周年（2006–2026）作为贯穿性叙事线。",
+  "specs": [
+    {
+      "key": "产品类别",
+      "value": "BE13000 — 强大的 BE 性能: 1376+5764+5764 Mbps"
+    },
+    {
+      "key": "型号",
+      "value": "ROG 八爪鱼7 20周年版 — ROG Rapture GT-BE96 Edition 20"
+    },
+    {
+      "key": "型号名称",
+      "value": "ROG 八爪鱼7 — ROG Rapture GT-BE96"
+    },
+    {
+      "key": "产品定位",
+      "value": "ROG 20周年纪念系列限量网络装备 — ROG Edition 20 Series"
+    },
+    {
+      "key": "官方定价",
+      "value": "¥5999 — ASUS estore 价格"
+    },
+    {
+      "key": "网络标准",
+      "value": "WiFi 7 (802.11be) / WiFi 6 (802.11ax) / 802.11a/b/g/n/ac / IPv4 / IPv6"
+    },
+    {
+      "key": "2.4GHz 速率",
+      "value": "4x4 (Tx/Rx) 4096 QAM 20/40MHz，最高 1376Mbps — 官网规格页口径（电商详情页作 688Mbps，官方内部口径差异已留档）"
+    },
+    {
+      "key": "5GHz-1 速率",
+      "value": "4x4 (Tx/Rx) 4096 QAM 20/40/80/160MHz，最高 5764Mbps"
+    },
+    {
+      "key": "5GHz-2 速率",
+      "value": "4x4 (Tx/Rx) 4096 QAM 20/40/80/160MHz，最高 5764Mbps — 大陆法规限制暂不支持 160MHz"
+    },
+    {
+      "key": "三频总速率",
+      "value": "13000 Mbps — Tri-band 13000 Mbps"
+    },
+    {
+      "key": "天线",
+      "value": "外置天线 x 8 — 4x4 天线架构，多档可调节角度"
+    },
+    {
+      "key": "传输/接收",
+      "value": "2.4GHz 4x4 ／ 5GHz-1 4x4 ／ 5GHz-2 4x4"
+    },
+    {
+      "key": "处理器",
+      "value": "2.6GHz 四核处理器 — 2.6 GHz Quad-core Processor"
+    },
+    {
+      "key": "内存",
+      "value": "2 GB RAM（官方电商物料作 DDR4 2GB）— 2 GB RAM"
+    },
+    {
+      "key": "闪存",
+      "value": "256 MB Flash — 256 MB Flash"
+    },
+    {
+      "key": "Wi-Fi 技术",
+      "value": "OFDMA ／ 波束成形 ／ 4096-QAM 高速率 ／ 20/40/80/160 MHz 带宽"
+    },
+    {
+      "key": "10G 网口",
+      "value": "1 x 10Gbps WAN/LAN + 1 x 10Gbps LAN"
+    },
+    {
+      "key": "2.5G 网口",
+      "value": "1 x 2.5Gbps WAN/LAN + 3 x 2.5Gbps LAN"
+    },
+    {
+      "key": "千兆网口",
+      "value": "1 x RJ45 10/100/1000Mbps LAN"
+    },
+    {
+      "key": "USB 接口",
+      "value": "1 x USB 3.2 Gen1 + 1 x USB 2.0"
+    },
+    {
+      "key": "按钮",
+      "value": "WPS 键 ／ 重置键 ／ 电源开关 ／ LED 控制键"
+    },
+    {
+      "key": "LED 指示灯",
+      "value": "WAN / 10G LAN / 1G-2.5G LAN / WPS / 5GHz-1 / 5GHz-2 / 2.4GHz / 电源（各 1）"
+    },
+    {
+      "key": "电源输入",
+      "value": "AC 110V~240V (50~60Hz)"
+    },
+    {
+      "key": "电源输出",
+      "value": "DC 19.5V max 3.33A ／ 12V max 5A"
+    },
+    {
+      "key": "产品重量",
+      "value": "2000 g"
+    },
+    {
+      "key": "产品尺寸",
+      "value": "350.41 × 350.41 × 220.6 mm"
+    },
+    {
+      "key": "运行模式",
+      "value": "路由器(AiMesh) / AiMesh 节点 / 接入点 / 中继器 / 媒体桥接"
+    },
+    {
+      "key": "WAN 选项",
+      "value": "双 WAN ／ 10Gbps WAN ／ 2.5Gbps WAN ／ USB WAN ／ 3G-4G LTE dongle ／ 4G-5G 移动网络"
+    },
+    {
+      "key": "链路聚合",
+      "value": "双 10G 网口支持链路聚合，有线网络至高 20 Gbps"
+    },
+    {
+      "key": "专属电竞网口",
+      "value": "10 Gbps LAN 网口被配置为专属电竞网口，优先处理游戏设备数据"
+    },
+    {
+      "key": "游戏功能",
+      "value": "ROG_First ／ OpenNAT 游戏配置文件 ／ 电竞网口 ／ 游戏增强加速"
+    },
+    {
+      "key": "手游电竞模式",
+      "value": "ASUS Router App 一键开启，不限手机品牌及型号"
+    },
+    {
+      "key": "ROG 生态加速",
+      "value": "ROG ECO-SYSTEM：ROG 主板/笔记本/手机/掌机联网优先传输，延迟至高降低约 47%（对比 ROG Rapture GT-AXE11000）"
+    },
+    {
+      "key": "智能场景加速",
+      "value": "一键选取场景，自动识别游戏/直播串流/文件传输/网课等封包并给与最高优先权"
+    },
+    {
+      "key": "专属组网频段",
+      "value": "5GHz-2 可作为专属组网频段，达到 5764Mbps 高速回程"
+    },
+    {
+      "key": "安全防护",
+      "value": "AiProtection 网络神盾：恶意网站屏蔽 ／ 双向 IPS ／ 受感染设备阻止 ／ 防火墙 ／ 安全扫描"
+    },
+    {
+      "key": "VPN",
+      "value": "客户端 L2TP/OpenVPN/PPTP/WireGuard；服务器 IPSec/OpenVPN/PPTP/WireGuard；VPN Fusion"
+    },
+    {
+      "key": "访客网络",
+      "value": "专业访客网络至多 5 个 SSID（电竞/物联网/儿童/访客网络），含家长控制"
+    },
+    {
+      "key": "USB 应用",
+      "value": "4G-5G 移动网络 ／ 下载大师 ／ 媒体服务器 ／ 时间机器 ／ Samba ／ FTP"
+    },
+    {
+      "key": "操作系统",
+      "value": "ASUSWRT"
+    },
+    {
+      "key": "设计-顶盖",
+      "value": "ROG 浮雕半透明亚克力顶盖 — ROG Embossed Semi-transparent Acrylic Top Cover"
+    },
+    {
+      "key": "设计-天线底座",
+      "value": "金色天线底座：精细涂覆的金色金属涂层 — Golden Antenna Base"
+    },
+    {
+      "key": "设计-徽章",
+      "value": "20 周年专属徽章：高档铝材锻造，镜面抛光与钻石切割工艺 — 20th Anniversary Badge"
+    },
+    {
+      "key": "设计-图腾",
+      "value": "ROG 专属图腾：散热片与机身融入专属 ROG 纹理，金属饰面加精致红色点缀 — ROG Exclusive Totem"
+    },
+    {
+      "key": "设计-散热格",
+      "value": "ROG SLASH 风格散热格 — ROG SLASH Style Vent Grille"
+    },
+    {
+      "key": "设计-LOGO 灯",
+      "value": "ROG 浮雕 LOGO 灯：七种 AURA RGB 电竞炫光灯效 — ROG Embossed Logo Light"
+    },
+    {
+      "key": "设计-界面",
+      "value": "ROG 20周年 Web 专属管理界面配色主题 — 20th Anniversary Web UI"
+    },
+    {
+      "key": "20周年配色",
+      "value": "黑透金：影曜黑 ROG BLACK ／ 澈影透 CRYSTAL VEIL ／ 曜金光 RADIANT GOLD ／ ROG 经典红 ROG RED"
+    },
+    {
+      "key": "包装内容",
+      "value": "路由器 ／ RJ-45 网线 ／ 电源适配器 ／ 快速入门指南 ／ 保修卡"
+    },
+    {
+      "key": "保修",
+      "value": "3 年全国联保（官方物料口径）— 3-year Warranty"
+    }
+  ],
+  "featureTags": [
+    "WiFi 7",
+    "BE13000 三频",
+    "双 10G 网口",
+    "20周年黑透金",
+    "ROG 专属图腾",
+    "金色天线底座",
+    "AURA RGB 七种灯效",
+    "专属电竞网口",
+    "2GB 内存",
+    "8 根外置天线",
+    "USB 3.2 Gen1",
+    "AiMesh 随心组网"
+  ],
+  "timeline": [
+    {
+      "date": "2006",
+      "title": "ROG 玩家国度创立",
+      "desc": "ROG 品牌成立于 2006 年，20周年系列页面与机身丝印均标注 EST. 2006，二十周年即 2026 年。",
+      "en": "Republic of Gamers is founded in 2006; the Edition 20 pages and chassis silkscreen both carry the EST. 2006 mark."
+    },
+    {
+      "date": "2026",
+      "title": "ROG 20周年纪念系列发布",
+      "desc": "ROG 推出 20周年纪念系列甄选限量版硬件与周边，以影曜黑、澈影透、曜金光与 ROG 经典红专属配色重塑旗舰电竞美学，八爪鱼7 20周年版为系列网络装备。",
+      "en": "ROG launches the Edition 20 lineup of limited-edition hardware in the exclusive ROG BLACK / CRYSTAL VEIL / RADIANT GOLD / ROG RED palette; the Rapture GT-BE96 Edition 20 leads the networking category."
+    },
+    {
+      "date": "2026-06",
+      "title": "八爪鱼7 20周年版电商上架",
+      "desc": "媒体 2026-06-30 报道 ROG 八爪鱼7 20周年限定版登陆电商平台并开启预约；官网未标注具体发售日期，确切日期未验证。",
+      "en": "Media reported on 2026-06-30 that the Rapture GT-BE96 Edition 20 went on sale on e-commerce platforms; the official site does not state an exact release date."
+    }
+  ],
+  "parts": [],
+  "categories": [
+    {
+      "name": "20周年设计要素",
+      "en": "Edition 20 Design Highlights",
+      "icon": "◆",
+      "color": "#b98a2f",
+      "components": [
+        {
+          "name": "ROG 浮雕半透明亚克力顶盖",
+          "en": "ROG Embossed Semi-transparent Acrylic Top Cover",
+          "desc": "机身顶部覆盖带 ROG 浮雕的半透明亚克力盖板，透过盖板可隐约窥见内部精密工程构造，是 20 周年「澈影透」配色元素的意象落点。",
+          "descEn": "A semi-transparent acrylic top cover with embossed ROG detailing lets the internal engineering show through, embodying the CRYSTAL VEIL element of the Edition 20 palette.",
+          "note": "装裱价值：顶部第一视觉主角，黑透金叙事的核心。⚠ 亚克力怕刮怕磕，清洁仅可干式轻拭。",
+          "noteEn": "Framing: the primary visual focus of the top deck. ⚠ The acrylic is scratch-sensitive—dry dusting only.",
+          "tags": [
+            "设计",
+            "顶盖",
+            "20周年"
+          ]
+        },
+        {
+          "name": "金色天线底座",
+          "en": "Golden Antenna Base",
+          "desc": "八根天线的共用底座表面采用精细涂覆的金色金属涂层，呈现精致的金属质感和内敛的光泽，环绕机身一周。",
+          "descEn": "The shared base of the eight antennas carries a finely applied golden metallic coating with a refined texture and understated sheen.",
+          "note": "装裱价值：环状排布构成天然放射构图。⚠ 涂覆层避免有机溶剂擦拭。",
+          "noteEn": "Framing: the ring layout forms a natural radial composition. ⚠ Avoid solvents on the coating.",
+          "tags": [
+            "设计",
+            "天线",
+            "金色"
+          ]
+        },
+        {
+          "name": "20周年专属徽章",
+          "en": "20th Anniversary Badge",
+          "desc": "采用高档铝材锻造，表面经镜面抛光与钻石切割工艺处理，镜面反射效果的饰面提升其收藏级价值，彰显限量版定位。",
+          "descEn": "Forged from premium aluminium with mirror polishing and diamond-cut finishing; the reflective surface adds collector-grade value.",
+          "note": "装裱价值：收藏级细节，宜作特写构件。⚠ 镜面怕磕碰，拆装时注意周边胶缝。",
+          "noteEn": "Framing: a collector-grade detail suited to close-up display. ⚠ Impact-sensitive mirror finish.",
+          "tags": [
+            "设计",
+            "徽章",
+            "20周年"
+          ]
+        },
+        {
+          "name": "ROG 专属图腾",
+          "en": "ROG Exclusive Totem",
+          "desc": "散热片和机身融入专属的 ROG 纹理，并配以金属饰面和精致的红色点缀，将工程设计与品牌身份融合，同时提升散热性能与视觉冲击力。",
+          "descEn": "ROG-exclusive textures run across the heatsink and chassis with metallic trim and refined red accents, merging engineering with brand identity.",
+          "note": "装裱价值：品牌纹样是 20 周年叙事的识别元素。",
+          "noteEn": "Framing: the brand pattern is the identifying element of the 20th-anniversary narrative.",
+          "tags": [
+            "设计",
+            "图腾",
+            "纹理"
+          ]
+        },
+        {
+          "name": "ROG SLASH 风格散热格",
+          "en": "ROG SLASH Style Vent Grille",
+          "desc": "机身散热格采用 ROG SLASH 系列的斜切条纹风格，与 20 周年系列的潮流设计语言呼应。",
+          "descEn": "The vent grille adopts the diagonal slash motif of the ROG SLASH line, echoing the Edition 20 design language.",
+          "note": "装裱价值：斜切纹理可作构图引导线。",
+          "noteEn": "Framing: the diagonal slashes can guide the composition.",
+          "tags": [
+            "设计",
+            "散热",
+            "SLASH"
+          ]
+        },
+        {
+          "name": "ROG 浮雕LOGO灯",
+          "en": "ROG Embossed Logo Light",
+          "desc": "机身顶部的 ROG 浮雕 Logo 内置灯效，支持七种 AURA RGB 电竞炫光灯效，营造沉浸式电竞氛围。",
+          "descEn": "The embossed ROG logo on the top deck houses lighting with seven AURA RGB gaming effects.",
+          "note": "装裱价值：信仰之眼是画面情绪点。⚠ 装裱后无法通电展示，灯效仅能以图文说明。",
+          "noteEn": "Framing: the eye of faith is the emotional anchor. ⚠ Lighting cannot be shown once framed—document with captions.",
+          "tags": [
+            "设计",
+            "灯效",
+            "AURA"
+          ]
+        },
+        {
+          "name": "20周年专属界面",
+          "en": "20th Anniversary Web UI",
+          "desc": "ROG 20周年 Web 专属管理界面配有专门设计的配色主题，呼应 ROG 经典设计，提升电竞装备格调。",
+          "descEn": "The ROG Edition 20 web management interface ships with a dedicated colour theme echoing classic ROG design.",
+          "note": "装裱价值：软件层设计元素，可以界面截图作辅助图版。",
+          "noteEn": "Framing: a software-layer element; interface screenshots can support the display.",
+          "tags": [
+            "软件",
+            "界面",
+            "20周年"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "天线与无线",
+      "en": "Antennas & Wireless",
+      "icon": "≈",
+      "color": "#111111",
+      "components": [
+        {
+          "name": "外置天线 ×8",
+          "en": "External Antennas ×8",
+          "desc": "八根外置天线呈环状排列，多档可调节角度，配合 4x4 架构收割信号死角，扩大覆盖范围。",
+          "descEn": "Eight external antennas in a ring arrangement with adjustable angles, paired with a 4x4 architecture for wider coverage.",
+          "note": "装裱价值：「八戟朝天」构图主体。⚠ 天线与底座连接处怕拧过度。",
+          "noteEn": "Framing: the subject of the 'eight halberds' composition. ⚠ Do not over-tighten at the base joint.",
+          "tags": [
+            "无线",
+            "天线",
+            "8根"
+          ]
+        },
+        {
+          "name": "2.4GHz 频段",
+          "en": "2.4GHz Band",
+          "desc": "4x4 (Tx/Rx) 4096 QAM 20/40MHz，官网规格页最高 1376Mbps；电商详情页作 688Mbps，官方内部口径差异已留档。",
+          "descEn": "4x4 4096-QAM 20/40MHz, up to 1376Mbps per the official spec page (the retail detail page lists 688Mbps; the discrepancy is documented).",
+          "note": "参数引用时注意两处官方口径并存。",
+          "noteEn": "Note the two official figures when citing this parameter.",
+          "tags": [
+            "无线",
+            "2.4GHz",
+            "速率"
+          ]
+        },
+        {
+          "name": "5GHz-1 频段",
+          "en": "5GHz-1 Band",
+          "desc": "4x4 (Tx/Rx) 4096 QAM 20/40/80/160MHz，最高可达 5764Mbps。",
+          "descEn": "4x4 4096-QAM 20/40/80/160MHz, up to 5764Mbps.",
+          "note": "",
+          "noteEn": "",
+          "tags": [
+            "无线",
+            "5GHz-1",
+            "速率"
+          ]
+        },
+        {
+          "name": "5GHz-2 频段（专属组网）",
+          "en": "5GHz-2 Band (Dedicated Backhaul)",
+          "desc": "4x4 4096 QAM 20/40/80/160MHz，最高 5764Mbps；可作为专属组网频段实现 5764Mbps 高速回程。大陆法规限制暂不支持 160MHz。",
+          "descEn": "4x4 4096-QAM up to 5764Mbps; usable as a dedicated backhaul band at 5764Mbps. 160MHz is restricted on the mainland model.",
+          "note": "宣传速率须保留大陆法规脚注。",
+          "noteEn": "Keep the mainland regulatory footnote when quoting rates.",
+          "tags": [
+            "无线",
+            "5GHz-2",
+            "组网"
+          ]
+        },
+        {
+          "name": "4096-QAM 与 MLO",
+          "en": "4096-QAM & MLO",
+          "desc": "支持 4096-QAM 高阶调制（较 1024-QAM 传输速率提升约 20%）与双模式 MLO（聚合模式/无缝切换），降低延迟。",
+          "descEn": "4096-QAM modulation (about 20% faster than 1024-QAM) and dual-mode MLO (aggregated / seamless switching) for lower latency.",
+          "note": "",
+          "noteEn": "",
+          "tags": [
+            "无线",
+            "QAM",
+            "MLO"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "有线端口与接口",
+      "en": "Wired Ports & Interfaces",
+      "icon": "▤",
+      "color": "#111111",
+      "components": [
+        {
+          "name": "10Gbps WAN/LAN 网口",
+          "en": "10Gbps WAN/LAN Port",
+          "desc": "一个 10Gbps 多功能网口，可在 WAN 与 LAN 之间切换，是三 WAN 设计（10Gbps WAN / 2.5Gbps WAN / USB WAN）的组成部分。",
+          "descEn": "A 10Gbps multi-purpose port switchable between WAN and LAN, part of the triple-WAN design.",
+          "note": "",
+          "noteEn": "",
+          "tags": [
+            "端口",
+            "10G",
+            "WAN"
+          ]
+        },
+        {
+          "name": "10Gbps LAN 网口（专属电竞网口）",
+          "en": "10Gbps LAN Port (Dedicated Gaming Port)",
+          "desc": "10 Gbps LAN 网口被配置为专属电竞网口，会优先处理任何已连接的游戏设备的数据。",
+          "descEn": "The 10Gbps LAN port is configured as a dedicated gaming port, prioritising any connected gaming device.",
+          "note": "装裱标注建议与实物端口一一对应（设计稿主板相对官网视角倒置，左侧为 3.2 Gen1/蓝色端口一侧的镜像关系已核）。",
+          "noteEn": "Map annotations to physical ports one-to-one (the design draft mirrors the official port orientation—verified).",
+          "tags": [
+            "端口",
+            "电竞",
+            "10G"
+          ]
+        },
+        {
+          "name": "2.5Gbps WAN/LAN 网口",
+          "en": "2.5Gbps WAN/LAN Port",
+          "desc": "一个 2.5Gbps 多功能网口，可在 WAN 与 LAN 之间切换。",
+          "descEn": "A 2.5Gbps multi-purpose port switchable between WAN and LAN.",
+          "note": "",
+          "noteEn": "",
+          "tags": [
+            "端口",
+            "2.5G",
+            "WAN"
+          ]
+        },
+        {
+          "name": "2.5Gbps LAN 网口 ×3",
+          "en": "2.5Gbps LAN Ports ×3",
+          "desc": "三个 2.5Gbps LAN 网口，为高带宽消耗的游戏与超高速互联网连接扫清障碍。",
+          "descEn": "Three 2.5Gbps LAN ports for high-bandwidth gaming and ultra-fast internet connections.",
+          "note": "",
+          "noteEn": "",
+          "tags": [
+            "端口",
+            "2.5G",
+            "LAN"
+          ]
+        },
+        {
+          "name": "RJ45 千兆 LAN 网口",
+          "en": "RJ45 1Gbps LAN Port",
+          "desc": "一个 RJ45 10/100/1000Mbps LAN 网口，兼容传统有线设备。",
+          "descEn": "One RJ45 10/100/1000Mbps LAN port for legacy wired devices.",
+          "note": "",
+          "noteEn": "",
+          "tags": [
+            "端口",
+            "千兆",
+            "LAN"
+          ]
+        },
+        {
+          "name": "USB 3.2 Gen1 接口",
+          "en": "USB 3.2 Gen1 Port",
+          "desc": "一个 USB 3.2 Gen1 接口（即原 USB 3.0，5Gbps），支持外接设备与网络共享应用。",
+          "descEn": "One USB 3.2 Gen1 port (formerly USB 3.0, 5Gbps) for external devices and network sharing.",
+          "note": "标注规范：与官网规格页口径统一作「USB 3.2 Gen1」。",
+          "noteEn": "Annotation standard: use the spec-page term 'USB 3.2 Gen1'.",
+          "tags": [
+            "端口",
+            "USB",
+            "3.2Gen1"
+          ]
+        },
+        {
+          "name": "USB 2.0 接口",
+          "en": "USB 2.0 Port",
+          "desc": "一个 USB 2.0 接口，与 USB 3.2 Gen1 共同构成双 USB 配置。",
+          "descEn": "One USB 2.0 port completing the dual-USB configuration.",
+          "note": "",
+          "noteEn": "",
+          "tags": [
+            "端口",
+            "USB",
+            "2.0"
+          ]
+        },
+        {
+          "name": "DCIN 电源接口",
+          "en": "DCIN Power Jack",
+          "desc": "直流电源输入接口，适配器输出 DC 19.5V max 3.33A 或 12V max 5A。",
+          "descEn": "DC power input; the adapter outputs 19.5V/3.33A or 12V/5A.",
+          "note": "",
+          "noteEn": "",
+          "tags": [
+            "端口",
+            "电源",
+            "DCIN"
+          ]
+        },
+        {
+          "name": "电源按钮",
+          "en": "Power Button",
+          "desc": "机身电源开关，与 WPS 键、重置键、LED 控制键并列于端口区。",
+          "descEn": "The chassis power switch, alongside the WPS, reset and LED-control keys.",
+          "note": "",
+          "noteEn": "",
+          "tags": [
+            "控制",
+            "电源",
+            "按钮"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "硬件与性能",
+      "en": "Hardware & Performance",
+      "icon": "▣",
+      "color": "#111111",
+      "components": [
+        {
+          "name": "2.6GHz 四核处理器",
+          "en": "2.6GHz Quad-core Processor",
+          "desc": "2.6GHz 四核旗舰芯片，官方电商物料称新一代博通旗舰级雄芯，处理效率较上一代 WiFi 6 芯片提升 30%（数据来自华硕实验室）。",
+          "descEn": "A 2.6GHz quad-core flagship processor; official retail material describes a next-generation Broadcom chip with 30% higher efficiency than the previous WiFi 6 chip (ASUS lab data).",
+          "note": "引用 30% 须带对比基准脚注。",
+          "noteEn": "Cite the 30% figure with its comparison baseline.",
+          "tags": [
+            "硬件",
+            "处理器",
+            "四核"
+          ]
+        },
+        {
+          "name": "2GB 内存（DDR4）",
+          "en": "2GB RAM (DDR4)",
+          "desc": "搭配 2GB 大容量内存（官方电商物料作 DDR4 2GB），为多设备并发及复杂网络应用提供充足运行资源。",
+          "descEn": "2GB of RAM (DDR4 per official retail material) for multi-device concurrency and complex networking workloads.",
+          "note": "",
+          "noteEn": "",
+          "tags": [
+            "硬件",
+            "内存",
+            "DDR4"
+          ]
+        },
+        {
+          "name": "256MB Flash",
+          "en": "256MB Flash",
+          "desc": "256MB Flash 存储，承载 ASUSWRT 系统与配置。",
+          "descEn": "256MB Flash storage hosting ASUSWRT and configuration data.",
+          "note": "",
+          "noteEn": "",
+          "tags": [
+            "硬件",
+            "存储",
+            "Flash"
+          ]
+        },
+        {
+          "name": "散热系统",
+          "en": "Cooling System",
+          "desc": "ROG SLASH 风格散热格与融入机身的 ROG 专属图腾协同散热，多块散热鳍片加纳米涂层设计，提升散热性能与视觉冲击力。",
+          "descEn": "The ROG SLASH vent grille and ROG totem textures work together with finned, nano-coated heatsinks for thermal and visual impact.",
+          "note": "",
+          "noteEn": "",
+          "tags": [
+            "硬件",
+            "散热",
+            "鳍片"
+          ]
+        },
+        {
+          "name": "电源适配器",
+          "en": "Power Adapter",
+          "desc": "外置电源适配器，AC 输入 110V~240V (50~60Hz)，DC 输出 19.5V max 3.33A 或 12V max 5A；官方提示机台所配电源无 ASUS Logo 信息属正常。",
+          "descEn": "External adapter, AC 100-240V input, DC 19.5V/3.33A or 12V/5A output; the official note confirms adapters without ASUS branding are normal.",
+          "note": "",
+          "noteEn": "",
+          "tags": [
+            "硬件",
+            "电源",
+            "适配器"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "游戏与网络加速",
+      "en": "Gaming & Acceleration",
+      "icon": "▲",
+      "color": "#e60012",
+      "components": [
+        {
+          "name": "手游电竞模式",
+          "en": "Mobile Game Mode",
+          "desc": "通过 ASUS Router App 一键开启手游模式，不限手机品牌及型号，抹杀延迟。",
+          "descEn": "One-tap mobile game mode in the ASUS Router app, brand- and model-agnostic.",
+          "note": "",
+          "noteEn": "",
+          "tags": [
+            "游戏",
+            "手游",
+            "加速"
+          ]
+        },
+        {
+          "name": "ROG ECO-SYSTEM 生态加速",
+          "en": "ROG ECO-SYSTEM",
+          "desc": "与支持该功能的 ROG 主板、笔记本、手机、掌机联网时设备优先传输，延迟至高降低约 47%（对比 ROG Rapture GT-AXE11000，数据来自华硕实验室）。",
+          "descEn": "ROG PCs, laptops, phones and handhelds get priority when connected, cutting latency by up to about 47% versus the GT-AXE11000 (ASUS lab data).",
+          "note": "引用 47% 须带对比对象脚注。",
+          "noteEn": "Cite the 47% figure with its comparison target.",
+          "tags": [
+            "游戏",
+            "生态",
+            "ECO-SYSTEM"
+          ]
+        },
+        {
+          "name": "OpenNAT 游戏配置文件",
+          "en": "OpenNAT Game Profiles",
+          "desc": "轻松创建游戏端口转发规则，优化游戏机至路由器的封包，缩短大厅等待时间。",
+          "descEn": "Easy port-forwarding rules that optimise console-to-router packets and shorten matchmaking waits.",
+          "note": "",
+          "noteEn": "",
+          "tags": [
+            "游戏",
+            "OpenNAT",
+            "端口转发"
+          ]
+        },
+        {
+          "name": "智能场景加速",
+          "en": "Adaptive QoS / Scene Acceleration",
+          "desc": "一键选取特定场景，自动识别游戏、直播串流、文件传输、网课等封包并给与网络最高优先权，提供流畅连线体验。",
+          "descEn": "One-tap scene selection automatically prioritises gaming, streaming, file transfer and e-learning packets.",
+          "note": "",
+          "noteEn": "",
+          "tags": [
+            "游戏",
+            "场景",
+            "加速"
+          ]
+        },
+        {
+          "name": "三段式游戏加速",
+          "en": "Three-stage Game Acceleration",
+          "desc": "内置多种游戏加速模式，根据不同设备与场景选择对应模式，覆盖游戏机、端游与手游全端场景。",
+          "descEn": "Multiple built-in acceleration modes matched to device and scenario across console, PC and mobile.",
+          "note": "",
+          "noteEn": "",
+          "tags": [
+            "游戏",
+            "加速",
+            "全端"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "网络安全与软件",
+      "en": "Security & Software",
+      "icon": "⬡",
+      "color": "#111111",
+      "components": [
+        {
+          "name": "AiProtection 网络神盾",
+          "en": "AiProtection",
+          "desc": "通过华硕 Ai 算法及云端数据库快速分析网络威胁并立即阻挡：恶意网站屏蔽、双向 IPS、受感染设备阻止、24/7 自动更新。",
+          "descEn": "AiProtection analyses and blocks threats via ASUS Ai algorithms and cloud databases: malicious-site blocking, two-way IPS, infected-device prevention, 24/7 updates.",
+          "note": "",
+          "noteEn": "",
+          "tags": [
+            "安全",
+            "AiProtection",
+            "防护"
+          ]
+        },
+        {
+          "name": "VPN Fusion",
+          "en": "VPN Fusion",
+          "desc": "支持 VPN 客户端（L2TP/OpenVPN/PPTP/WireGuard）与服务器（IPSec/OpenVPN/PPTP/WireGuard），VPN Fusion 可分管不同设备走不同通道。",
+          "descEn": "VPN client and server support with VPN Fusion directing different devices through different tunnels.",
+          "note": "",
+          "noteEn": "",
+          "tags": [
+            "安全",
+            "VPN",
+            "Fusion"
+          ]
+        },
+        {
+          "name": "ASUSWRT 操作系统",
+          "en": "ASUSWRT OS",
+          "desc": "华硕路由器操作系统，提供配置备份、诊断工具、系统日志、新设备通知等管理能力。",
+          "descEn": "The ASUS router operating system with configuration backup, diagnostics, logs and new-device alerts.",
+          "note": "",
+          "noteEn": "",
+          "tags": [
+            "软件",
+            "ASUSWRT",
+            "系统"
+          ]
+        },
+        {
+          "name": "AiMesh 随心组网",
+          "en": "AiMesh",
+          "desc": "支持与华硕在售全系路由灵活搭配构建 AiMesh，智能选择传输/接收效能最好的频段，不受无线干扰影响。",
+          "descEn": "AiMesh pairs with the full ASUS router line-up, intelligently selecting the best band free from interference.",
+          "note": "",
+          "noteEn": "",
+          "tags": [
+            "软件",
+            "AiMesh",
+            "组网"
+          ]
+        },
+        {
+          "name": "专业访客网络",
+          "en": "Professional Guest Network",
+          "desc": "至多支持 5 个 SSID（电竞网络/物联网网络/儿童网络/访客网络/访客门户），每个 SSID 可设置访问权限与带宽管理。",
+          "descEn": "Up to five SSIDs (gaming / IoT / kids / guest / captive portal) with per-SSID permissions and bandwidth control.",
+          "note": "",
+          "noteEn": "",
+          "tags": [
+            "软件",
+            "访客",
+            "SSID"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "控制与指示灯",
+      "en": "Controls & Indicators",
+      "icon": "◔",
+      "color": "#111111",
+      "components": [
+        {
+          "name": "WPS 键",
+          "en": "WPS Button",
+          "desc": "一键 WPS 快速连接键。",
+          "descEn": "One-touch WPS pairing button.",
+          "note": "",
+          "noteEn": "",
+          "tags": [
+            "控制",
+            "WPS",
+            "按钮"
+          ]
+        },
+        {
+          "name": "重置键",
+          "en": "Reset Button",
+          "desc": "恢复出厂设置的重置键。",
+          "descEn": "Factory reset button.",
+          "note": "",
+          "noteEn": "",
+          "tags": [
+            "控制",
+            "重置",
+            "按钮"
+          ]
+        },
+        {
+          "name": "LED 控制键",
+          "en": "LED Control Key",
+          "desc": "控制机身 LED 指示灯开关的按键。",
+          "descEn": "Key to toggle the chassis LED indicators.",
+          "note": "",
+          "noteEn": "",
+          "tags": [
+            "控制",
+            "LED",
+            "按钮"
+          ]
+        },
+        {
+          "name": "LED 指示灯组",
+          "en": "LED Indicator Group",
+          "desc": "WAN ×1、10G LAN ×1、1G/2.5G LAN ×1、WPS ×1、5GHz-1 ×1、5GHz-2 ×1、2.4GHz ×1、电源 ×1。",
+          "descEn": "WAN ×1, 10G LAN ×1, 1G/2.5G LAN ×1, WPS ×1, 5GHz-1 ×1, 5GHz-2 ×1, 2.4GHz ×1, power ×1.",
+          "note": "",
+          "noteEn": "",
+          "tags": [
+            "指示",
+            "LED",
+            "状态"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "装裱要点",
+      "en": "Framing Highlights",
+      "icon": "✚",
+      "color": "#e60012",
+      "components": [
+        {
+          "name": "黑透金配色比例",
+          "en": "Black-Gold Colour Ratio",
+          "desc": "设计稿封面采用详情页口径：68% ROG BLACK 影曜黑 + 20% CRYSTAL VEIL 澈影透 + 10% RADIANT GOLD 曜金光 + 2% ROG RED 经典红；官网 20周年系列页作 70/18/10/2，两处官方口径差异已留档。",
+          "descEn": "The draft cover uses the detail-page ratio: 68% ROG BLACK + 20% CRYSTAL VEIL + 10% RADIANT GOLD + 2% ROG RED; the official series page lists 70/18/10/2—both documented.",
+          "note": "客户问起以留档记录为准。",
+          "noteEn": "Refer to the documented record if the client asks.",
+          "tags": [
+            "装裱",
+            "配色",
+            "比例"
+          ]
+        },
+        {
+          "name": "八戟朝天天线构图",
+          "en": "Eight-antenna Composition",
+          "desc": "甲方文案「八戟朝天，各镇一方」：八根高增益 4x4 天线多档可调节角度，环状排列构成放射状构图骨架。",
+          "descEn": "The client copy 'eight halberds skyward' frames the eight 4x4 antennas as a radial composition backbone.",
+          "note": "「八戟」为甲方雅称，勿按「八爪」改。",
+          "noteEn": "'Eight halberds' is the client's phrasing—do not 'correct' it.",
+          "tags": [
+            "装裱",
+            "构图",
+            "天线"
+          ]
+        },
+        {
+          "name": "大陆法规脚注",
+          "en": "Mainland Regulatory Footnote",
+          "desc": "宣传 5GHz-2 5764Mbps 速率时，官网规格页与官方物料均带脚注「依据大陆法规限制，暂不支持5G-2频段160MHz」；设计稿按用户裁定只写大字、不加小注解。",
+          "descEn": "When quoting the 5GHz-2 5764Mbps rate, the official spec page and retail material carry the mainland 160MHz restriction footnote; the draft omits footnotes per the client's ruling.",
+          "note": "如客户/平台后续有合规要求，按留档补回脚注即可。",
+          "noteEn": "If compliance is later required, restore the footnote from the documented record.",
+          "tags": [
+            "装裱",
+            "合规",
+            "脚注"
+          ]
+        }
+      ]
+    }
+  ],
+  "usageNotes": "1. 本机为 ROG 20周年纪念系列限量装备，ASUS estore 定价 ¥5999；整机 2000g、350.41×350.41×220.6mm，装裱前先按画框承重与进深核算。\n2. 半透明亚克力顶盖与镜面徽章均为怕刮怕磕表面，清洁仅可干式轻拭；金色天线底座为涂覆层，避免有机溶剂。\n3. 机身丝印（ROG_20 / FUTURE / 2006-ROG-FUTURE / 25°07'29.3\"N 121°28'17.3\"E 等）为实物原貌，按审核纪律装裱制作时保留原样（最多清灰），不遮盖不更换。\n4. 两处官方口径差异已留档：① 2.4GHz 速率官网规格页 1376Mbps / 电商详情页 688Mbps（本项目按详情页执行）；② 20周年配比详情页 68/20/10/2 / 官网系列页 70/18/10/2（本项目按详情页执行）。\n5. 设计稿审核已于 2026-11-17 三轮闭环（报告三份：一审/二审/终审），全稿可付印；parts 章节待整机拆解照片确认后补充，拆解前不得预填。",
+  "framingNotes": {
+    "labelGlossary": "USB 3.2 Gen1 — USB 3.2 Gen1 接口（原 USB 3.0）；AURA RGB — ROG 神光同步灯效系统；DCIN — 直流电源输入；AiMesh — 华硕网状组网；MLO — 多链路聚合（Multi-Link Operation）；4K-QAM — 4096-QAM 高阶调制；BE13000 — 三频总速率 1376+5764+5764Mbps；SSID — 服务集标识；OpenNAT — 游戏端口转发优化；ECO-SYSTEM — ROG 生态设备优先通道",
+    "recommendedFrame": "待定（建议以顶部黑金构件 + 八根天线环状构图为主视觉）",
+    "frameSize": "待定（按整机 350.41×350.41×220.6mm 与拆解布局测算）",
+    "customFrame": false,
+    "notes": "客户设计稿已三轮审核闭环（2026-11-17）：7 处已改、我方误报 3 起撤回（银色→金色、吐吐→吞吐、多场景→多端）、口径差异 2 处留档。装裱构图建议：半透明顶盖 / 金色天线底座 / 20周年徽章为第一层叙事，八根天线「八戟朝天」环状排布作放射骨架，三频速率与双万兆端口参数降为小字。"
+  },
+  "pinterest": "",
+  "dataSources": [
+    "ROG 中国官网产品页：https://rog.asus.com.cn/networking/rog-rapture-gt-be96-edition-20/（卖点文案、设计三节、¥5999）",
+    "ROG 中国官网规格页：https://rog.asus.com.cn/networking/rog-rapture-gt-be96-edition-20/spec/（全部规格参数、160MHz 脚注）",
+    "ROG 20周年纪念系列页：https://rog.asus.com.cn/content/rog-edition-20（20周年配色体系与 70/18/10/2 配比口径）",
+    "华硕官方微信公众号电商物料（与天猫详情页同源文案：68/20/10/2 配比、手游电竞模式、智能场景加速、专属组网频段、多端场景）",
+    "天猫详情页（用户截图佐证，需登录无法直接抓取）：detail.tmall.com/item.htm?id=1092184278571",
+    "客户 PPT《新建 Microsoft PowerPoint 演示文稿.pptx》（甲方文案：八戟朝天、金色勋章勇者光芒、加载多块散热鳍片等）",
+    "媒体（电商上架时间佐证）：网易号/超能网 2026-06-30 报道，官网未标注具体发售日"
+  ],
+  "images": [],
+  "framedPhotos": [],
+  "createdAt": "2026-11-17",
+  "status": "已结案（设计稿审核闭环，可付印；parts 待拆解补充）"
+}
   ];
   const SAMPLE_REVIEWS = [{
       id:"r001", productId:"p001", productName:"Canon EOS 40D",
@@ -8828,6 +9732,15 @@ function initSampleData(){
       status:"pending",
       checks:{ typos:false, contentError:false, patternError:false, paramCorrect:false, other:"", doneCount:0 },
       clientConfirmed:false, notes:"产品资料已重建为 A1181 图鉴级（原 M2 资料删除），待重新审核"
+    },
+{
+      id:"r004", productId:"p012", productName:"ASUS ROG 八爪鱼7 20周年版",
+      designName:"ROG 八爪鱼7 20周年版装裱设计稿（画板 1）", dueDate:"2026-11-17",
+      status:"passed",
+      checks:{ typos:false, contentError:false, patternError:false, paramCorrect:false, other:"", doneCount:4 },
+      clientConfirmed:true,
+      reviewResult:"三轮审核闭环（2026-11-17）：一审 18 项 → 已改 7（A2 散热鳍片语序 / B2 徽章 / C3 AURA RGB / C4 USB 3.2 Gen1 / C6 半透明断行 / C7 ROG 专属图腾 / C8 WiFi 7）；撤回 5（A1 详情页 688 / B1 详情页「流畅」/ B3 我方误报「端」字原在 / C5 零件隔断为刻意排版）；关闭 6（C1/C2 脚注按用户裁定只写大字 / C9 备忘 / D1-D4）。E 段 28 项逐字无误，全稿可付印。\n报告：ROG八爪鱼7_20周年版_设计稿审核报告.html（一审）/ _二审.html / _终审.html",
+      notes:"官网三件套 + 天猫详情页 + 客户 PPT 三路信源；两处官方口径差异留档（2.4GHz 规格页1376/详情页688；配比 详情页68/20/10/2/系列页70/18/10/2）。我方误报 3 起全部撤回（银色→金色、吐吐→吞吐、多场景→多端）。"
     }
   ];
   const SAMPLE_CHATS = [];

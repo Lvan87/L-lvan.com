@@ -1,0 +1,16 @@
+编号,中文零件名,英文主方案（Title Case）,英文备选,标注备注
+1,触摸屏,Touchscreen,Touchscreen Digitizer / Touch Panel,触控层。若与「屏幕」是同一块总成的两层，建议写 Digitizer 以区分
+2,屏幕,Display,Display Assembly / Display Panel,显示面板/总成。避免与 01 都写成 Screen
+3,后盖,Back Cover,Rear Cover / Back Glass,玻璃材质时用 Back Glass；项目既有译法 Back Cover
+4,充电接口,USB-C Port,Charging Port (USB-C) / USB Type-C Port,iPhone 17 Pro Max 为 USB-C；项目既有 USB-C Port / USB Type-C Port
+5,底部扬声器,Bottom Speaker,Lower Speaker / Main Speaker,项目既有译法 Bottom Speaker
+6,顶部扬声器,Top Speaker,Earpiece Speaker / Top Earpiece,若实物是听筒，用 Earpiece Speaker 更准（项目多份资料采用）
+7,振动马达,Taptic Engine,Linear Motor / X-axis Linear Motor,Apple 官方名 vs 项目通用规范；禁用 Vibrator
+8,SIM 卡托,SIM Card Tray,SIM Tray / Nano-SIM Tray,可拔出金属托；SIM 全大写
+9,SIM 卡槽,SIM Card Slot,SIM Connector / SIM Board,机身内插座/小板，勿与 08 Tray 混用
+10,核心主板,Logic Board,Core Motherboard / Mainboard,Apple/iFixit 用 Logic Board；项目荣耀资料用过 Core Motherboard
+11,后置镜头,Rear Camera,Rear Camera Module / Rear Camera Lens,整组模组用 Module，仅镜片用 Lens
+12,前置镜头,Front Camera,TrueDepth Camera / Front Camera Module,iPhone 原深感模组官方名 TrueDepth Camera
+13,排线,Flex Cable,Flex Cable Assembly / Ribbon Cable,项目黑名单：Connecting Blank → Flex Cable
+14,闪光灯,True Tone Flash,LED Flash / Adaptive True Tone Flash,Apple 官方「自适应原彩闪光灯」；通用拆解可写 LED Flash
+15,激光雷达扫描仪,LiDAR Scanner,LIDAR Scanner / LiDAR Sensor,Apple 官方写 LiDAR（混合大小写）；按「缩写全大写」规范可写 LIDAR

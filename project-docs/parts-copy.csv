@@ -1,0 +1,18 @@
+﻿零件名称,官方中文原文,官方英文原文,所在分区,标注备注
+触摸屏,触感触控,Haptic Touch,显示屏,官网只列触控功能，未把「触摸屏/触控层」列为独立零件
+屏幕,超视网膜 XDR 显示屏；6.9 英寸 (对角线) OLED 全面屏,Super Retina XDR display; 6.9‑inch (diagonal) all‑screen OLED display,显示屏,屏幕总成官方表述
+后盖,铝金属一体成型设计、超瓷晶面板 2 (正面)、超瓷晶面板 (背面),"Aluminum unibody design, Ceramic Shield 2 front, Ceramic Shield back",外观,注意：本机为铝金属一体成型，非独立可拆后盖
+充电接口,USB-C 接口；USB 3 (最高可达 10Gb/s),USB-C connector; USB 3 (up to 10Gb/s),外部按键和连接端口 / 充电和外设扩展,两条分别取自不同分区
+底部扬声器,内置立体声扬声器,Built‑in stereo speaker,外部按键和连接端口,官网不区分顶部/底部，统一写「内置立体声扬声器」；定稿标注见「立体声扬声器（定稿）」行
+顶部扬声器,内置立体声扬声器,Built‑in stereo speaker,外部按键和连接端口,同上；若实物为听筒，请用 Earpiece Speaker；定稿标注见「立体声扬声器（定稿）」行
+振动马达,触感引擎（官网「iPhone 与 环境」段落：触感引擎采用 100% 再生钨和 100% 再生铜线）,Taptic Engine (100% recycled tungsten and copper wire in the Taptic Engine),iPhone 与 环境,规格参数分区未列该零件，但环境段落给出官方名；Apple 机型优先用 Taptic Engine / 触感引擎，禁写 Vibrator
+SIM 卡托,双卡 (nano‑SIM 卡),Dual eSIM (two active eSIMs; stores eight or more eSIMs),SIM 卡,⚠️ 中英版本实质不同：国行实体双 nano-SIM / 美版双 eSIM
+SIM 卡槽,双卡 (nano‑SIM 卡),Dual eSIM,SIM 卡,官网只列卡型，不列卡托/卡槽零件本体
+核心主板,A19 Pro 芯片；6 核中央处理器，具有 2 个性能核心和 4 个能效核心,A19 Pro chip; 6‑core CPU with 2 performance and 4 efficiency cores,芯片,官网列芯片不列主板；主板名用 Logic Board（拆解术语）
+后置镜头,4800 万像素融合式主摄：24 毫米焦距，ƒ/1.78 光圈，第二代传感器位移式光学图像防抖功能,"48MP Fusion Main: 24 mm, ƒ/1.78 aperture, second‑generation sensor‑shift optical image stabilization",摄像头,另有超广角/长焦条目，见分区对照
+前置镜头,1800 万像素 Center Stage 摄像头；ƒ/1.9 光圈,18MP Center Stage camera; ƒ/1.9 aperture,前置摄像头,Center Stage 为功能名，保留不译
+排线,— 官方规格页未列 —,— Not listed on Apple Tech Specs —,无,内部连接件，标注用 Flex Cable（拆解术语）
+闪光灯,自适应原彩闪光灯,Adaptive True Tone flash,摄像头,勿写 LED Flash / 双闪光灯
+激光雷达扫描仪,激光雷达扫描仪,LiDAR Scanner,感应器,Apple 官方写 LiDAR（混合大小写）
+立体声扬声器（定稿）,内置上下双扬声器组成立体声扬声器,Built-in Stereo Speaker（官网逐字）／Built-in Top and Bottom Speakers Forming a Stereo Speaker（对应中文，非官网）,外部按键和连接端口,老大 2026-11-14 定稿措辞。⚠️「上下双扬声器组成」为实物补充，官网逐字仅「内置立体声扬声器 / Built-in stereo speaker」，不区分上下、不写数量；严格审核时建议改用官网词
+麦克风与音频（定稿）,四个录音棚级麦克风 · 空间音频与立体声录音 · 混音,Four Studio-Quality Mics · Spatial Audio and Stereo Recording · Audio Mix,视频拍摄 / 前置摄像头,三项均为官网逐字（中文规格页 + 英文规格页），可放心用
