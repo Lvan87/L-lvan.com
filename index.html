@@ -806,8 +806,8 @@ header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdro
   </button>
   <div class="pt-title" id="pageTitle"></div>
   <a href="project-docs/" target="_blank" rel="noopener" class="btn btn-ghost btn-sm" style="text-decoration:none" title="Caviar 50 周年项目：审核报告与中英对照资料">项目资料</a>
-  <span id="buildTag" style="margin-left:auto;font-size:10px;letter-spacing:.08em;color:#aaa;white-space:nowrap">BUILD 2026.11.17-G</span>
-  <button class="btn btn-ghost btn-sm" onclick="rebuildBuiltinData()" title="以内置最新版重建产品数据（BUILD 2026.11.17-G）">重建资料</button>
+  <span id="buildTag" style="margin-left:auto;font-size:10px;letter-spacing:.08em;color:#aaa;white-space:nowrap">BUILD 2026.11.20-A</span>
+  <button class="btn btn-ghost btn-sm" onclick="rebuildBuiltinData()" title="以内置最新版重建产品数据（BUILD 2026.11.20-A）">重建资料</button>
 </div>
 <nav class="sidebar" id="sidebar">
   <button class="nav-item active" data-tab="products">
@@ -1010,7 +1010,7 @@ function rebuildBuiltinData(){
   saveData("products",PRODUCTS);
   if(typeof render==="function") render();
   if(typeof updateGlobalNav==="function") updateGlobalNav();
-  if(typeof showToast==="function") showToast("已重建 · BUILD 2026.11.17-G · Galaxy Z Flip3 5G 国行版为最新版");
+  if(typeof showToast==="function") showToast("已重建 · BUILD 2026.11.20-A · Galaxy Z Flip3 5G 国行版为最新版");
 }
 /* 修复脏图片数据（framedPhotos 里的 null / 非字符串），保留其余资料不删除 */
 function repairProductData(){
@@ -11423,7 +11423,1789 @@ function initSampleData(){
   "framedPhotos": [],
   "createdAt": "2026-11-17",
   "status": "资料已归档（官方信源全文本地化；parts 待拆解照片补充）"
-}
+},
+  {
+    "id": "p014",
+    "coverModel": "OPPO R17",
+    "brand": "OPPO",
+    "model": "R17",
+    "category": "智能手机 / 水滴屏光感指纹时尚影像机 (Smartphone / Waterdrop Display Imaging Phone)",
+    "size": "157.5 × 74.9 × 7.5 mm",
+    "releaseDate": "2018-08-23 上海「新品奇妙夜」发布，2018-08-30 10:00 开售",
+    "basicInfo": {
+      "releaseDate": "2018-08-23 上海「新品奇妙夜」发布，2018-08-30 10:00 开售"
+    },
+    "features": "OPPO R17 是 OPPO 于 2018 年 8 月 23 日在上海「新品奇妙夜」发布的 R 系列新机，也是 OPPO 旗下首款采用屏下指纹识别的量产机型。它把「时尚设计与创新科技的结合」确立为 R 系列的新定位，配合高通新一代 10nm 骁龙 670 移动平台与 ColorOS 5.2 系统，构成了 2018 年国产中高端阵营里最具辨识度的一套组合。\n\n屏幕是这台机器最完整的表达。OPPO 官方对这块屏的描述是「是一滴水，也是活力的源泉」——R17 水滴屏的顶部曲线取自水滴即将落下的一瞬，「它处于动静之间，拥有无限的可能性」。规格上这是一块 6.4 英寸 19.5:9 的 Super AMOLED 面板，分辨率 2340×1080、像素密度 402 PPI，对比度 60000:1，色彩饱和度 100%，典型亮度 430 尼特，支持 1600 万色。真正撑起 91.5% 屏占比的是四边的极限收窄：顶部边框 1.85mm、左右各 1.63mm、底部 4.0mm，对比上一代 R15 的 1.95mm／1.78mm／5.05mm 全面退让，换来的是额头只剩一颗前置摄像头的水滴形开孔。覆盖层是全球首发的康宁第六代大猩猩玻璃，官方称可经受高达 15 次从一米高度跌落至粗糙表面的坠落测试，比上一代提升两倍；也正因如此，R17 正面玻璃与边框之间取消了此前历代沿用的塑料包边保护，面板直接嵌进铝合金中框，形成类似屏幕点胶工艺的一体感。\n\n光感屏幕指纹是这块屏能够成立的前提。OPPO 首创性地以 CMOS 方案结合 MicroLens 微透镜与 3P 镜头组，把图像传感器做成 2mm×2mm，单像素尺寸达 12.5μm、分辨率 160×160，工作原理是借助 OLED 屏幕的自发光特性将指纹图像反射至屏下传感器完成识别。官方称息屏状态下最快 0.41 秒解锁，支持解锁、指纹支付（支付宝／微信）与指纹应用加密；与之配套的还有一块出厂即贴的「光学指纹膜」，专门规避第三方贴膜因偏振方向不一致导致解锁失灵的问题。屏下方案要落地，还需把原本该露在面板上的传感器全部藏进屏幕：R17 采用源自 Find X 的「TP＋屏下红外」方案，用触摸机制判断通话时人耳是否接触屏幕，屏下另封装一颗红外传感器，在息屏时让红外信号几乎不受像素干扰地穿过屏幕检测距离；光线传感器则被埋进水滴区域右侧的弯折导光柱中，把环境光从机身正面一路传导到主板上的传感器。\n\n续航与充电是这台机器的第三根支柱。电池为 3500mAh 典型容量的锂聚合物电池（电芯型号 BLP681，额定容量 3415mAh / 13.14Wh，典型 3500mAh / 13.47Wh，标称电压 3.85V，充电限制电压 4.4V，由 ATL 出品），在 7.5mm 的机身厚度内塞进这一容量，靠的是内部三段式布局为电池让出的整幅空间；拆解可见它以双面胶固定于内支撑、侧边附一条易拉条，是全机最好拆的部件之一。官方对快充的表述是「充电 5 分钟，通话 2 小时」，这组数字附有完整测试条件：数据来源于中国赛宝实验室检验报告，检验环境温度 20℃–30℃、相对湿度 45%–75%、气压 86kPa–106kPa，测试条件为在手机电量 1% 的情况下、关闭除通话以外的其他手机服务和功能（包括关闭 VoLTE 语音通话功能）、使用标配电源适配器充电 5 分钟，充电后在信号满格、黑屏、通话音量 50% 的状态下使用音筒（非外放）接听电话 2 小时。实测层面，R17 从 10% 充满至 100% 约需 1 小时 28 分钟，前 30 分钟即可从 10% 充至 62%；另一组实测显示前 40 分钟全程处于高速充电状态、1 小时已充入超过 90%、充满共 80 分钟。VOOC 的低压快充方案允许边玩边充，这是它与同期高压快充方案的关键差别——实测《刺激战场》一小时耗电 20%，而游戏过程中机身温度与充电效率均可维持。至于续航本身，四小时连续游戏、视频、网页浏览与碎片化使用后仍余 70% 电量，连续使用八小时毫无压力；另一组重度测试中视频播放、刷微博、看新闻、看抖音与游戏五项连续三小时，总耗电仅 39%。官方规格页另标注了理论通话 30 小时、待机 350 小时、纯音乐播放 28 小时与视频播放 11.5 小时，1% 电量下可支撑约 16 小时 20 分钟的机械续航测试。\n\n声音是这台机器上最容易被忽略、却最能体现OPPO功底的一环。R17 的官方叫法是「Real Sound Technology（Real 原声技术）」——由瑞典 Dirac Research AB 与OPPO 联合开发，官方手册的表述是「完整保真地呈现原声，营造空间化的三维声场，让你在选择场景的同时改变声音的表现」。它的价值在于把以往需要戴耳机才能获得的高保真体验搬到了外放：开启后，无论自带音乐应用还是第三方音乐、视频应用，都能获得 Real 原声效果。配套的「耳机监听」功能则更贴近日常使用场景，开启后可通过耳机实时体验卡拉OK式的演唱效果，官方同时提示在卡拉OK应用中应关闭默认的耳机监听以避免声音问题。规格层面，官方在音频类型一栏标注的是 Dirac，音频格式支持 MP3、APE、AMR、WAV、MID、OGG、FLAC、WMA，视频格式支持 AVI、3GP、MP4、WMV、MKV、MOV、ASF、FLV，录音格式为 MP3，视频录制格式为 MP4，铃声格式覆盖 MP3、AMR、APE、OGG、FLAC、WAV、MID、WMA，并支持 FM 收音与 HD 高清格式播放。\n\n硬件上，R17 保留了 3.5mm 耳机孔，这在 2018 年全面屏机型开始成批取消耳机孔的节点上并不多见；副板上同时集成了 Type-C 数据接口、扬声器、麦克风与 3.5mm 耳机孔，构成一组完整的「接口与音频」标注簇。降噪采用主麦克风加副麦克风的双麦方案，官方规格标注支持双麦降噪，机身顶部即为此处的降噪麦克风开孔，旁边紧邻的是「信号溢出带」——全面屏时代把天线净空做成可见设计条带的做法在 R17 上同样保留。扬声器为底部单扬声器方案，底部有滤网保护音腔；拆解可见耳机孔与排线连接器被橡胶和聚合物严密包裹，电源排线处同样设有橡胶圈以防进水进沙。值得单独标注的是听筒：为了把顶部边框压到 1.85mm，OPPO 在 R17 上采用了隐藏式听筒设计，整机正面顶部只留下一条缝隙，听筒发声经由盖板导音结构传出——这是水滴屏能够成立的前提之一，也是拆解图中与屏下指纹同样需要单独引线的一处结构。\n\n性能是这台机器上「看起来平淡、拆开才发现讲究」的一环。R17 全球首发高通骁龙 670 移动平台，这是骁龙 600 家族的当家型号——按高通官方产品简介，它采用 10nm LPP 工艺，CPU 为 Kryo 360 架构的 8 核（2 颗性能核最高 2.0GHz、6 颗能效核最高 1.7GHz），官方称较上一代骁龙 660 性能提升达 15%；GPU 由 Adreno 512 升级为 Adreno 615，性能提升 25% 以上，官方并指出骁龙 710 的 GPU 提升幅度为 35%，两者差距不大。AI 部分搭载与骁龙 710 同款的 Hexagon 685 DSP 与第三代 AI 引擎，官方称 AI 性能提升至上一代的 1.8 倍。ISP 是骁龙 600 系首个 Qualcomm Spectra 250（第二代架构），支持单颗 2500 万像素或双 1600 万像素、最高 4K 30fps 视频录制。基带为骁龙 X12 LTE 调制解调器，下行最高 600Mbps（Cat 15，3×20MHz 载波聚合）、上行最高 150Mbps（Cat 13），并支持 LTE 与 Wi-Fi 智能切换；存储规格为 LPDDR4X + UFS 2.1。\n\n真正把性能差异拉开距离的是软件侧的 Hyper Boost 加速引擎，这是 OPPO 历时三年自研的系统级资源调度方案，2018 年 10 月 11 日在上海发布并全面搭载于 R17 系列。它的核心原理是让应用程序与系统资源实现实时「双向对话」——当来自应用与游戏程序的不同场景和用户行为被识别后，针对性地调度 CPU、GPU、RAM、Wi-Fi 等底层资源。官方将其拆为三个引擎：系统引擎可针对 20 多个软件场景、20 多种软件行为提供 50 多个优化方案，涵盖启动、超级游戏、导航、音乐播放、浏览器、桌面、IO 等场景，以及界面滑动、安装应用、打开应用、系统休眠、访问网络等指令，对应应用启动加速、开机启动加速、按键唤醒加速、人脸识别加速、指纹识别加速、触摸滑动加速、内存回收加速等具体方案；游戏引擎率先与腾讯、网易及 Unreal 虚幻、Unity、Cocos 三大游戏引擎深度合作，对王者荣耀、刺激战场、穿越火线、QQ 飞车、拳皇命运、最强 NBA 等 11 款头部游戏做定制优化，官方公布《王者荣耀》专项优化后平均帧率 60.04fps、《刺激战场》39.7fps，并支持未来对 Top100 手游做底层优化，其多态网络加速技术可让蜂窝网络与 Wi-Fi 同时工作、在网络状况不佳时智能分配通道以改善延迟；应用引擎则针对微信、手机淘宝、手机 QQ 三款超级应用与厂商直接协同优化，分别覆盖 11、19、13 个用户场景，官方公布的微信优化数据为进出会话页面流畅度提升 29.8%、朋友圈滑动流畅度提升 19.9%、进入未读聊天群流畅度提升 23.5%、GIF 表情流畅速度提升 35.9%。系统层面，ColorOS 5.2 的智能检测优化机制进一步细化了应用安装、启动、触屏感应、游戏团战等场景的识别与调度，应用安装时会针对该线程做 CPU 动态配置并将其置于大核心上全速运行。\n\n实测层面，各家评测给出的成绩互有出入但量级一致：安兔兔 v7 综合分约 15.5 万（不同批次样本落在 13.5 万至 15.7 万区间）；Geekbench 单核约 1666–1708 分、多核约 5781–5818 分；AndroBench 随机读写约 113.32MB/s 与 23.85MB/s；SOGI 实测存储连续读取 511.17MB/s、连续写入 196.46MB/s。安兔兔硬件测试 v2.5 中，初始 25.6℃ 运行一小时后电量余 90%、机身 38℃，运行约六小时结束获 10,647 分、末温 32.6℃。游戏表现上，《王者荣耀》最高画质加高帧率多线程模式基本全程 60 帧，团战时偶有短暂掉帧；《绝地求生：刺激战场》受限于处理器定位最高支持 30 帧满帧，全程保持稳定。散热方面表现突出——有评测记录 40 分钟游戏后电池温度仅升 3℃、CPU 温度升 8℃、机身无明显发热，另有评测称半小时游戏后机身最高温控制在 40℃。ZOL 的 5 小时重度使用测试中，满电跑完拍照、视频、刷微博、微信、浏览网页、游戏、听音乐与电子书后仍余 49% 电量，30 分钟充电测试则充入 54%。\n\n与性能相伴的是一整套被重新梳理过的系统体验。OPPO 与高德地图深度合作，基于自家 ARunit 开放平台推出国内首个「真」AR 步行导航，业内首次把 SLAM（同步定位与地图构建）技术引入手机导航：它在 GPS 与陀螺仪等传感器辅助之外，实时获取视觉信息、深度信息与自身加速度数据，结合地理坐标系在真实路面上构建虚拟空间——屏幕里会画出一条踩着走的指引线，拐弯处浮现标志，转向错误时会出现一条虚线箭头提示你把屏幕转向正确方向；走到多路口这类复杂场景，虚拟形象「小欧」会从屏幕里跳出来在前方带路，走得太慢时还会停下来挥挥手催你跟上。这套功能需将高德地图升级至 V8.70 版后启用。系统层面还新增了 AI 预加载——系统通过算法分析使用习惯，预判用户下一步要打开的应用并在后台提前启动，用得越久预测越准；智慧识屏支持拇指按压屏幕即识别区域内文字或图片，可直接复制、翻译、搜索并提取地址；智能扫一扫覆盖扫文档、拍照翻译、扫词翻译、智能识物、扫题与扫名片；小欧语音助手长按电源键 0.5 秒即可唤醒，可完成发微信、打电话、导航、点歌、搜索等操作并支持自定义快捷指令；智能负一屏把常用功能、行程、快递、航班火车等 18 类卡片信息集中呈现；游戏空间让来电语音由自己决定接听，避免团战被中途打断；锁屏界面还提供 SOS 紧急呼叫入口，连按 5 次电源键即可发起。\n\n影像与工业设计是它的另两条主线。后置为 1600 万像素主摄（Sony IMX519，F/1.7）加 500 万像素副摄（Samsung S5K5E9，F/2.4）的 AI 智能双摄，前置 2500 万像素（F/2.0，IMX576）支持 AI 智慧美颜与 8 种自定义美颜模式；主摄旁的副摄并不承担成像任务，而是为 AI 引擎采集场景信息，使相机的 AI 场景识别覆盖 21 个独立场景、800 种场景组合。外观上，OPPO 首创「凝光渐变工艺」，通过特殊曲线纹理的凝光层让渐变如水似光，并在幻色渐变之外开辟出「雾光渐变」方向——以雾面蚀刻工艺让玻璃表面形成磨砂质地，产生类似光穿过雾的朦胧观感，同时不易沾染指纹。\n\n从拆解与装裱角度看，R17 是典型的三段式结构：上部主板、中部电池、下部副板，中间留出一条贯穿的「U」形主板走线空间，拆开背面玻璃后即可看到大面积石墨片覆盖在主板与电池位置辅助散热。屏幕总成通过软板穿过内支撑缝隙延伸至副板，缝隙处以硅胶套固定保护；屏下指纹模组、红外传感器与光线传感器共同挤占水滴开孔下方的狭窄区域，是拆解图中最密集的一块；主板正面的光线传感器位置极为特别，它不贴屏幕，而是通过一根导光管「直通」到机身正面接收环境光，这是 R17 结构上最值得标注的一处设计。整机的防水细节集中在 USB Type-C 接口与 3.5mm 耳机孔的硅胶套、排线连接器的泡棉防护以及大面积贴合胶上。",
+    "featuresEn": "The OPPO R17 is the first mass-market handset from OPPO to feature an under-display fingerprint sensor, and it redefined the R series positioning as \"a fusion of fashionable design and technology innovation.\" It runs on the 10nm Qualcomm Snapdragon 670 with ColorOS 5.2, completing one of the most recognisable combinations in the 2018 mid-to-high-end Chinese market.\n\nThe display is where this machine speaks most completely. OPPO describes it as \"a drop of water, and a source of vitality\" — the top curve of the R17 waterdrop display is taken from the instant a droplet is about to fall, \"caught between motion and stillness, holding infinite possibility.\" On paper it is a 6.4-inch 19.5:9 Super AMOLED panel at 2340×1080 and 402 PPI, with a 60000:1 contrast ratio, 100% colour saturation, 430 nit typical brightness and 16 million colours. The 91.5% screen-to-body ratio comes from four narrowly pulled-in edges: 1.85mm at the top, 1.63mm on each side and 4.0mm at the bottom, all reduced from the R15's 1.95mm / 1.78mm / 5.05mm, leaving a waterdrop notch that houses nothing but the front camera. The cover is the world's first Corning Gorilla Glass 6, rated to survive up to 15 one-metre drops onto rough surfaces — twice the performance of its predecessor — which let OPPO finally drop the plastic rim around the display glass and seat the panel directly into the aluminium frame.\n\nThe optical screen fingerprint is what makes such a screen possible. OPPO was the first to pair a CMOS sensor with a MicroLens microlens array and a 3P lens group, shrinking the imaging sensor to 2mm × 2mm with 12.5μm pixels and 160 × 160 resolution. It works by using the self-emissive OLED panel to reflect the fingerprint image down onto the sensor, unlocking in as little as 0.41 seconds from standby, and covers unlocking, fingerprint payment (Alipay and WeChat Pay) and per-app encryption. A factory-applied optical fingerprint film ships with the device to rule out the polarisation mismatch that makes third-party screen protectors break fingerprint recognition. Making it work also meant hiding every sensor that would otherwise sit on the panel: R17 adopts the \"TP plus under-display infrared\" scheme introduced on Find X, using touch detection to sense an ear against the screen during calls while a separately packaged infrared sensor passes through the display almost free of pixel interference in standby; the ambient light sensor is buried behind a bent light guide column in the right side of the waterdrop, carrying light from the front of the phone all the way to the mainboard.\n\nBattery and charging form the third pillar of the machine. The cell is a 3500mAh typical-capacity lithium-polymer pack (model BLP681, rated 3415mAh / 13.14Wh, typical 3500mAh / 13.47Wh, nominal voltage 3.85V, limited charge voltage 4.4V, supplied by ATL), squeezed into a 7.5mm body by the space the three-section internal layout reserves for it; the teardown shows it glued to the mid-frame with a pull tab along its edge, making it the easiest component in the phone to remove. OPPO's fast-charging claim reads \"five minutes of charging, two hours of talk time\", and it carries a full set of test conditions: data from the China Saibao Laboratory test report, at 20°C–30°C, 45%–75% relative humidity and 86kPa–106kPa pressure, charging for five minutes from a 1% battery with all services and functions except telephony switched off (including VoLTE), using the bundled power adapter; after charging, the phone is answered on the earpiece (not speaker) for two hours at full signal with the screen off and call volume at 50%. In measured use, the R17 takes about 1 hour 28 minutes to go from 10% to 100%, with the first 30 minutes taking it from 10% to 62%; a separate test found it in high-current charging for the first 40 minutes, past 90% after an hour, and fully charged in 80 minutes. VOOC's low-voltage scheme allows charging while gaming, the key difference from the high-voltage fast-charging alternatives of the period — an hour of PUBG Mobile consumed 20% of the battery while the phone stayed cool and the charging rate held. On endurance, four hours of continuous gaming, video, browsing and fragmented use left 70% remaining, and eight hours of continuous use was described as effortless; another heavy-use test covering video, social browsing, news, short video and games ran for three hours and consumed only 39% in total. The official specification sheet additionally lists 30 hours of theoretical talk time, 350 hours of standby, 28 hours of music playback and 11.5 hours of video playback, with about 16 hours 20 minutes of mechanical endurance from a 1% charge.\n\nAudio is the dimension of this phone that is easiest to overlook and hardest to get right. OPPO's official name for it is Real Sound Technology, jointly developed by Sweden's Dirac Research AB and OPPO, and the manual describes it as delivering original sound in full fidelity while creating a spatial three-dimensional sound arena, letting you change how the sound presents itself as you select a scene. Its value lies in bringing a level of fidelity that normally demands headphones out to the speaker: once enabled, the Real Sound effect applies whether you are playing music through the bundled app or through third-party music and video apps. The companion Headphones Monitor function is more directly practical — switched on, it delivers a live karaoke experience through your headphones in real time, though the manual advises turning the default headphone monitoring off inside karaoke apps to avoid sound problems. On specifications, the official audio type is listed as Dirac; supported audio formats run to MP3, APE, AMR, WAV, MID, OGG, FLAC and WMA, video formats to AVI, 3GP, MP4, WMV, MKV, MOV, ASF and FLV, recording is in MP3, video capture in MP4, and ringtones across MP3, AMR, APE, OGG, FLAC, WAV, MID and WMA, with FM radio and HD format playback also supported.\n\nHardware-wise the R17 keeps its 3.5mm headphone jack, unusual for a full-screen phone in 2018 when rival flagships were dropping the socket in bulk. The sub-board carries the USB Type-C port, the loudspeaker, the microphones and the 3.5mm jack together, forming a single interface-and-audio cluster worth labelling as one group. Noise reduction uses a primary plus secondary microphone arrangement, with the official specification confirming dual-mic noise reduction; the top edge carries that noise-cancelling microphone aperture alongside what OPPO calls a signal overflow band — the visible antenna clearance strip that full-screen designs of the era still kept. Audio output is a single bottom-mounted loudspeaker with a mesh filter protecting the acoustic chamber. The teardown shows the headphone jack and board-to-board connectors wrapped thoroughly in rubber and polymer, with a rubber ring on the power flex to keep out water and sand. The earpiece deserves its own callout: to pull the top bezel down to 1.85mm, OPPO went with a hidden earpiece, leaving nothing but a slim slit across the top of the front face, with sound conducted out through the cover plate. That hidden earpiece is one of the preconditions for the waterdrop display, and in the teardown it needs a leader line of its own, exactly like the under-display fingerprint module.\n\nPerformance is the dimension of this phone that looks unassuming on the surface but turns out to be carefully engineered. The R17 was the global launch vehicle for the Qualcomm Snapdragon 670, the head of the Snapdragon 600 family. Qualcomm's own product brief specifies a 10nm LPP process, a Kryo 360 CPU with eight cores (two performance cores up to 2.0GHz, six efficiency cores up to 1.7GHz) delivering up to 15 percent more performance than the preceding Snapdragon 660, and a GPU upgraded from Adreno 512 to Adreno 615 for more than a 25 percent gain — against the 35 percent gain Qualcomm attributes to the Snapdragon 710, leaving the two closely matched. The AI side carries the same Hexagon 685 DSP as the Snapdragon 710 alongside a third-generation AI Engine rated at up to 1.8 times the previous generation's performance. The ISP is the Qualcomm Spectra 250, the second-generation architecture and the first in the Snapdragon 600 tier, supporting a single 25-megapixel or dual 16-megapixel camera configuration and Ultra HD video capture at up to 4K 30fps. The modem is the Snapdragon X12 LTE, with downlink up to 600Mbps (Cat 15, 3×20MHz carrier aggregation) and uplink up to 150Mbps (Cat 13), plus intelligent switching between LTE and Wi-Fi. Memory is LPDDR4X with UFS 2.1 storage.\n\nWhat actually separates performance here is on the software side: Hyper Boost, OPPO's own three-year-old system-level resource scheduling solution, announced in Shanghai on 11 October 2018 and carried in full by the R17 series. Its premise is a real-time two-way conversation between applications and system resources: once differing scenarios and user behaviours from apps and games are recognised, the engine schedules CPU, GPU, RAM and Wi-Fi resources to suit. OPPO splits it into three engines. The System Boost engine targets more than 20 software scenarios and more than 20 user behaviours with over 50 optimisation schemes — covering launch, super-game, navigation, music playback, browser, desktop and I/O scenarios, plus interface scrolling, app installation, app opening, system sleep and network access — delivered through named schemes such as app-launch acceleration, boot acceleration, key-wake acceleration, face-recognition acceleration, fingerprint-recognition acceleration, touch-scroll acceleration and memory-reclamation acceleration. The Game Boost engine works with Tencent, NetEase and the Unreal, Unity and Cocos engines to tune eleven headline titles including Arena of Valor, PUBG Mobile, CrossFire, QQ Speed, King of Fighters and NBA Strongest, with OPPO publishing an average frame rate of 60.04fps for Arena of Valor and 39.7fps for PUBG Mobile under its optimisation, and states an intent to tune the Top100 mobile games at the engine level; its multi-state network acceleration lets the cellular and Wi-Fi links work simultaneously, intelligently assigning channels when conditions deteriorate to reduce latency. The App Boost engine works directly with WeChat, mobile Taobao and mobile QQ on eleven, nineteen and thirteen user scenarios respectively, with OPPO's published WeChat figures showing a 29.8 percent improvement in the fluidity of entering and leaving conversations, 19.9 percent in Moments scrolling, 23.5 percent in entering unread group chats and 35.9 percent in GIF expression speed. At the system layer, ColorOS 5.2's intelligent detection optimisation refines recognition of app installation, launch, touch response and in-game team fights, configuring the CPU dynamically for the relevant thread and pinning it to a performance core at full speed during installation.\n\nMeasured results vary by sample but agree on magnitude: AnTuTu v7 lands around 155,000 points, with individual samples reported between 135,000 and 157,000; Geekbench scores roughly 1666–1708 single-core and 5781–5818 multi-core; AndroBench shows about 113.32MB/s and 23.85MB/s for random read and write; SOGI measured sequential storage at 511.17MB/s read and 196.46MB/s write. In AnTuTu's v2.5 hardware test, the phone started at 25.6°C, retained 90 percent charge with the body at 38°C after an hour, and finished around six hours later scoring 10,647 points at 32.6°C. In games, Arena of Valor runs at 60fps on maximum settings with high frame rate and multi-threading enabled, with brief dips during large team fights; PUBG Mobile, limited by the SoC's positioning, holds a stable 30fps at its ceiling. Thermal performance stands out — one review recorded only a 3°C rise in battery temperature and an 8°C rise in CPU temperature over 40 minutes of gaming with no perceptible heat, while another put the maximum body temperature after half an hour of gaming at 40°C. ZOL's five-hour heavy-use test left 49 percent charge remaining after a sequence covering photography, video, social browsing, messaging, web browsing, gaming, music and e-books, while its 30-minute charging test reached 54 percent.\n\nAlongside performance sits a reworked set of system experiences. Working with AutoNavi (Gaode Maps), OPPO built the country's first \"true\" AR pedestrian navigation on its own ARunit open platform, and for the first time brought SLAM — simultaneous localization and mapping — to phone navigation: beyond GPS and sensors such as the gyroscope it captures visual information, depth data and its own acceleration in real time, then constructs a virtual space over the real street using geographic coordinates. A line appears on the pavement for you to walk along, turn markers surface at junctions, and if you face the wrong way a dashed arrow appears telling you which way to turn the phone. At complicated multi-junction crossings the virtual character Breeno (Xiao Ou) steps out of the screen to lead the way, and if you slow down it stops and waves you on. The feature requires AutoNavi to be updated to version V8.70. The system layer adds AI preloading, where the phone analyses your habits, predicts which app you will open next and launches it in the background ahead of time — the longer you use it, the more accurate the prediction. Smart Screen lets a thumb press identify text or images in the region for instant copy, translation, search and address extraction. Smart Scan covers documents, photo translation, word translation, object recognition, question scanning and business cards. Breeno, the voice assistant, wakes with a half-second press of the power key and handles messages, calls, navigation, music and search, with user-defined shortcuts. The negative-one screen gathers 18 kinds of card — shortcuts, itineraries, parcels, flight and train details — into one place. Game Space lets you decide whether to take an incoming call, so a team fight is never interrupted. The lock screen also offers SOS, dialled by pressing the power key five times.\n\nImaging and industrial design form the other two threads. The rear AI dual camera pairs a 16MP Sony IMX519 at f/1.7 with a 5MP Samsung S5K5E9 at f/2.4, while the 25MP f/2.0 IMX576 front camera carries AI Beauty with eight adjustable modes. The secondary rear lens does not take images at all — it feeds the AI engine, giving scene recognition coverage of 21 independent scenes and 800 scene combinations. On the outside, OPPO invented the \"Condensed Light Gradient\" process, adding a light-condensing layer with fine S-shaped etching so colour flows across the surface like light through water, and pushed beyond the Neon Purple three-colour gradient into the Mist Gradient direction, whose AG frosted-etch surface produces a hazy, light-through-fog look while resisting fingerprints.\n\nInside, the R17 follows a classic three-section layout: mainboard, battery and sub-board, with a U-shaped mainboard corridor running through the middle. Lifting the back glass reveals large graphite sheets spread above the board and battery for heat spreading. The display flex passes through a slot in the mid-frame to the sub-board, held and protected by a silicone sleeve. The under-display fingerprint module, the infrared sensor and the ambient light sensor all crowd into the narrow space beneath the waterdrop cutout, making it the densest region of the teardown. Notably, the ambient light sensor does not sit against the display at all — a light guide tube runs it straight through to the front of the phone, which is the single most distinctive structural detail to annotate. Waterproofing is concentrated in the silicone grommets on the USB Type-C port and 3.5mm jack, the foam sealing the board-to-board connectors, and the extensive adhesive across the rear cover.",
+    "specs": [
+      {
+        "key": "品牌 Brand",
+        "value": "OPPO（欧珀）"
+      },
+      {
+        "key": "型号 Model",
+        "value": "OPPO R17"
+      },
+      {
+        "key": "型号编号 Model Number",
+        "value": "CPH1879（国际版）；国行入网型号未在官方口径中公开"
+      },
+      {
+        "key": "系列定位 Series Positioning",
+        "value": "R 系列 · 时尚设计与创新科技的结合"
+      },
+      {
+        "key": "发布日期 Release Date",
+        "value": "2018-08-23（上海「新品奇妙夜」）"
+      },
+      {
+        "key": "开售日期 On Sale",
+        "value": "2018-08-30 上午 10:00，OPPO 官网 / 京东 / 天猫 / 苏宁 / 唯品会同步首发；6GB+128GB 版 2018-09-07 发售"
+      },
+      {
+        "key": "官方售价 Official Price",
+        "value": "6GB+128GB 3199 元｜8GB+128GB 流光蓝·霓光紫 3499 元｜8GB+128GB 雾光渐变 3599 元"
+      },
+      {
+        "key": "配色 Colors",
+        "value": "流光蓝 Streamer Blue｜霓光紫 Neon Purple｜雾光渐变 Mist Gradient｜雾光金 Mist Gold｜新年版·中国红（2018-12 发布）"
+      },
+      {
+        "key": "机身高 Height",
+        "value": "157.5 毫米 (mm)"
+      },
+      {
+        "key": "机身宽 Width",
+        "value": "74.9 毫米 (mm)"
+      },
+      {
+        "key": "机身厚 Thickness",
+        "value": "7.5 毫米 (mm)"
+      },
+      {
+        "key": "机身重 Weight",
+        "value": "约 182 克 (g)"
+      },
+      {
+        "key": "移动平台 Platform",
+        "value": "高通骁龙 670 (Qualcomm SDM670)"
+      },
+      {
+        "key": "CPU",
+        "value": "64 位八核，最高主频 2.0GHz（2×Kryo 360 Gold + 6×Kryo 360 Silver）"
+      },
+      {
+        "key": "GPU",
+        "value": "Adreno 615"
+      },
+      {
+        "key": "制程节点 Process",
+        "value": "10nm LPP FinFET（高通官方产品简介口径）"
+      },
+      {
+        "key": "运行内存 RAM",
+        "value": "6GB / 8GB，LPDDR4X"
+      },
+      {
+        "key": "机身存储 ROM",
+        "value": "128GB UFS"
+      },
+      {
+        "key": "存储扩展 Expandable",
+        "value": "不支持 (Not supported)"
+      },
+      {
+        "key": "操作系统 OS",
+        "value": "ColorOS 5.2（基于 Android 8.1）"
+      },
+      {
+        "key": "屏幕尺寸 Display Size",
+        "value": "6.4 英寸 (6.4-inch)"
+      },
+      {
+        "key": "屏幕类型 Display Type",
+        "value": "水滴屏 / Super AMOLED（曲面边缘，on-cell 触控）"
+      },
+      {
+        "key": "屏幕供应商 Panel Supplier",
+        "value": "三星（三星显示）——面板型号 641RW 01（拆解口径，待实物核对）"
+      },
+      {
+        "key": "分辨率 Resolution",
+        "value": "2340 × 1080 像素，402 PPI"
+      },
+      {
+        "key": "屏幕比例 Aspect Ratio",
+        "value": "19.5:9"
+      },
+      {
+        "key": "屏占比 Screen-to-body",
+        "value": "91.5%"
+      },
+      {
+        "key": "屏幕边框 Bezel",
+        "value": "左右 1.63mm｜上 1.85mm｜下 4.0mm"
+      },
+      {
+        "key": "屏幕亮度 Brightness",
+        "value": "430 尼特典型值"
+      },
+      {
+        "key": "屏幕对比度 Contrast Ratio",
+        "value": "60000:1"
+      },
+      {
+        "key": "屏幕色彩 Gamut",
+        "value": "1600 万色，100% NTSC 典型值"
+      },
+      {
+        "key": "覆盖玻璃 Cover Glass",
+        "value": "康宁第六代大猩猩玻璃 (Corning Gorilla Glass 6)"
+      },
+      {
+        "key": "后置主摄 Rear Main",
+        "value": "1600 万像素，F/1.7，Sony IMX519"
+      },
+      {
+        "key": "后置副摄 Rear Secondary",
+        "value": "500 万像素，F/2.4，Samsung S5K5E9（为 AI 引擎采集场景信息）"
+      },
+      {
+        "key": "前置摄像头 Front Camera",
+        "value": "2500 万像素，F/2.0，Sony IMX576，AI 智慧美颜"
+      },
+      {
+        "key": "闪光灯 Flash",
+        "value": "LED 补光灯"
+      },
+      {
+        "key": "镜头组合 Lens",
+        "value": "后置主摄 6 片式镜头，副摄 5 片式，前置 5 片式（拆解口径）"
+      },
+      {
+        "key": "最高变焦 Zoom",
+        "value": "10X 数码变焦"
+      },
+      {
+        "key": "对焦 Focus",
+        "value": "PDAF 相位对焦"
+      },
+      {
+        "key": "防抖 Stabilization",
+        "value": "EIS 电子防抖"
+      },
+      {
+        "key": "视频拍摄 Video",
+        "value": "4K / 1080P / 720P"
+      },
+      {
+        "key": "AI 场景识别 AI Scene",
+        "value": "21 个独立场景、800 种场景组合（发布口径）"
+      },
+      {
+        "key": "美颜功能 Beauty",
+        "value": "AI 智慧美颜 2.1，自定义美颜 8 种模式（瘦脸、补妆等），支持实时预览"
+      },
+      {
+        "key": "生物识别 Biometrics",
+        "value": "光感屏幕指纹（屏下镜头方案）+ 面部识别"
+      },
+      {
+        "key": "指纹传感器规格 Fingerprint Sensor",
+        "value": "传感器尺寸 2mm × 2mm｜镜头组合 3P 镜头｜MicroLens 微透镜"
+      },
+      {
+        "key": "解锁速度 Unlock Speed",
+        "value": "最快 0.41 秒"
+      },
+      {
+        "key": "指纹支付 Fingerprint Payment",
+        "value": "支持微信支付与支付宝支付"
+      },
+      {
+        "key": "出厂防窥膜 Privacy Film",
+        "value": "出厂即贴专用 2.5D「光学指纹膜」，防止贴膜偏振影响识别"
+      },
+      {
+        "key": "电池容量 Battery",
+        "value": "3500mAh 典型值（最小/额定 3415mAh）"
+      },
+      {
+        "key": "电池参数 Battery Spec",
+        "value": "锂聚合物电池，标称电压 3.85V，电芯厂商 ATL"
+      },
+      {
+        "key": "充电规格 Charging",
+        "value": "VOOC 闪充，5V / 4A（20W）"
+      },
+      {
+        "key": "充电卖点 Charging Claim",
+        "value": "充电 5 分钟，通话 2 小时；支持五芯防护与边玩边充"
+      },
+      {
+        "key": "电池型号 Battery Model",
+        "value": "BLP681（锂离子聚合物）"
+      },
+      {
+        "key": "电池能量 Energy",
+        "value": "额定 13.14Wh ／ 典型 13.47Wh"
+      },
+      {
+        "key": "充电限制电压 Charge Limit",
+        "value": "4.4V"
+      },
+      {
+        "key": "电池循环寿命 Cycle Life",
+        "value": "500–800 次"
+      },
+      {
+        "key": "理论通话时长 Talk Time",
+        "value": "约 30 小时"
+      },
+      {
+        "key": "理论待机时长 Standby",
+        "value": "约 350 小时"
+      },
+      {
+        "key": "音乐播放续航 Music Playback",
+        "value": "约 28 小时"
+      },
+      {
+        "key": "视频播放续航 Video Playback",
+        "value": "约 11.5 小时"
+      },
+      {
+        "key": "满电耗时 Full Charge Time",
+        "value": "实测 10%→100% 约 1 小时 28 分钟；另一组实测充满 80 分钟"
+      },
+      {
+        "key": "闪充前段速率 Charge Curve",
+        "value": "前 30 分钟 10%→62%；前 40 分钟维持高速充电；1 小时充入超过 90%"
+      },
+      {
+        "key": "边玩边充 Charge While Gaming",
+        "value": "低压快充方案支持游戏中闪充，实测《刺激战场》1 小时耗电 20%"
+      },
+      {
+        "key": "重度使用续航 Heavy Use",
+        "value": "视频、刷微博、看新闻、看抖音、游戏五项连续 3 小时，总耗电 39%"
+      },
+      {
+        "key": "连续使用续航 Continuous Use",
+        "value": "游戏、视频、网页浏览、碎片化使用各 1 小时后剩余 70% 电量，连续 8 小时使用无压力"
+      },
+      {
+        "key": "闪充测试条件 Test Conditions",
+        "value": "中国赛宝实验室检验报告；温度 20℃–30℃、湿度 45%–75%、气压 86kPa–106kPa；1% 电量起充并关闭除通话外全部功能（含 VoLTE），充电后于信号满格、黑屏、音量 50%、音筒非外放状态通话 2 小时"
+      },
+      {
+        "key": "有线接口 Port",
+        "value": "USB Type-C（R 系列首款 Type-C 机型）"
+      },
+      {
+        "key": "耳机接口 Headphone",
+        "value": "3.5mm 耳机接口"
+      },
+      {
+        "key": "SIM 卡 SIM",
+        "value": "双卡双待 Nano SIM，右侧侧边卡托（塑料材质，无橡胶保护套）"
+      },
+      {
+        "key": "无线连接 Wireless",
+        "value": "WiFi 2.4G / 5.1G / 5.8G｜蓝牙 5.0｜WLAN Display｜OTG｜FM 收音"
+      },
+      {
+        "key": "定位导航 Navigation",
+        "value": "GPS / A-GPS / GLONASS / 北斗 (Beidou)"
+      },
+      {
+        "key": "NFC",
+        "value": "不支持 (Not supported)"
+      },
+      {
+        "key": "传感器 Sensors",
+        "value": "重力感应器｜光线传感器｜距离传感器｜陀螺仪｜地磁传感器｜计步器"
+      },
+      {
+        "key": "音频增强 Audio",
+        "value": "Real 原声技术（Dirac Research AB 联合开发）· 双麦降噪 · 空间化三维声场"
+      },
+      {
+        "key": "音频技术 Audio Tech",
+        "value": "Real Sound Technology（Real 原声技术），由 Dirac Research AB 与 OPPO 联合开发"
+      },
+      {
+        "key": "音效特性 Audio Feature",
+        "value": "空间化三维声场，可按场景切换声音表现；高保真效果覆盖外放（不限耳机）"
+      },
+      {
+        "key": "耳机监听 Headphones Monitor",
+        "value": "开启后可通过耳机实时体验卡拉OK；官方提示卡拉OK应用内应关闭默认耳机监听以避免声音问题"
+      },
+      {
+        "key": "扬声器类型 Loudspeaker",
+        "value": "底部单扬声器（无立体声双扬声器），音腔底部设滤网保护"
+      },
+      {
+        "key": "听筒方案 Earpiece",
+        "value": "隐藏式听筒，正面顶部仅留一条缝隙，发声经盖板导音结构传出"
+      },
+      {
+        "key": "麦克风降噪 Mic Noise Reduction",
+        "value": "双麦降噪（主麦 + 副麦），机身顶部设降噪麦克风开孔，紧邻信号溢出带"
+      },
+      {
+        "key": "音频格式 Audio Formats",
+        "value": "MP3 / APE / AMR / WAV / MID / OGG / FLAC / WMA"
+      },
+      {
+        "key": "视频格式 Video Formats",
+        "value": "AVI / 3GP / MP4 / WMV / MKV / MOV / ASF / FLV"
+      },
+      {
+        "key": "录音格式 Recording Format",
+        "value": "MP3"
+      },
+      {
+        "key": "视频录制格式 Video Record",
+        "value": "MP4"
+      },
+      {
+        "key": "铃声格式 Ringtone",
+        "value": "MP3 / AMR / APE / OGG / FLAC / WAV / MID / WMA"
+      },
+      {
+        "key": "FM 收音",
+        "value": "支持"
+      },
+      {
+        "key": "HD 高清格式播放",
+        "value": "支持"
+      },
+      {
+        "key": "包装内音频配件",
+        "value": "耳机 ×1（3.5mm 有线）"
+      },
+      {
+        "key": "系统特性 System Features",
+        "value": "智能负一屏（18 类卡片）｜智能侧边栏｜智慧识屏｜智能扫一扫｜AI 预加载｜小欧语音助手｜智能解锁｜游戏空间｜Hyper Boost 加速引擎｜AR 实景导航｜AI 智慧美颜｜SOS 紧急呼叫"
+      },
+      {
+        "key": "AR 平台 AR Platform",
+        "value": "OPPO ARunit 开放平台（2018 年 4 月推出）"
+      },
+      {
+        "key": "AR 导航技术 AR Navigation Tech",
+        "value": "SLAM（simultaneous localization and mapping，同步定位与地图构建），业内首个引入 SLAM 的 AR 导航"
+      },
+      {
+        "key": "AR 导航传感器 Sensors Used",
+        "value": "GPS 定位 + 陀螺仪等多传感器辅助，实时获取视觉信息、深度信息与自身加速度数据，结合地理坐标系构建真实虚拟空间"
+      },
+      {
+        "key": "AR 导航交互 AR Interactions",
+        "value": "路面指引线 + 拐弯标志；转向错误时显示虚线箭头提示转动屏幕方向；多路口复杂场景由「小欧」跳出屏幕引路，走慢时停下挥手示意"
+      },
+      {
+        "key": "AR 导航版本要求 Version",
+        "value": "需将高德地图升级至 V8.70 版后使用（2018 年 9 月下旬起推送）"
+      },
+      {
+        "key": "语音助手 Voice Assistant",
+        "value": "小欧语音助手，长按电源键 0.5 秒唤醒；支持发微信、打电话、来电语音控制、导航、点歌、搜索及快捷指令"
+      },
+      {
+        "key": "AI 预加载 AI Preload",
+        "value": "系统通过 AI 算法分析使用习惯，预判用户下一步可能使用的应用并在后台提前打开"
+      },
+      {
+        "key": "智慧识屏 Smart Screen",
+        "value": "拇指按压屏幕即识别区域内文字或图片，可快速复制、翻译、搜索并提取地址等信息"
+      },
+      {
+        "key": "智能扫一扫 Smart Scan",
+        "value": "支持扫文档、拍照翻译、扫词翻译、智能识物、扫题、扫名片"
+      },
+      {
+        "key": "SOS 紧急呼叫 SOS",
+        "value": "连按 5 次电源键发起 SOS 紧急呼叫，可报警或致电紧急联系人并短信通知"
+      },
+      {
+        "key": "智能负一屏 Negative One Screen",
+        "value": "18 类卡片信息，含常用快捷功能、行程、快递、航班火车信息等，可学习使用习惯"
+      },
+      {
+        "key": "智能侧边栏 Smart Sidebar",
+        "value": "由「全屏多任务」升级而来，可浮窗全局打开并查看回复微信、QQ、短信，快速切换常用应用与分享最近内容"
+      },
+      {
+        "key": "智能解锁 Smart Unlock",
+        "value": "根据地点、Wi-Fi、蓝牙等信息识别常用地点，智能关闭手机锁定"
+      },
+      {
+        "key": "游戏空间 Game Space",
+        "value": "游戏助手、游戏加速与网络加速功能；来电语音由用户决定接听，避免团战被中断"
+      },
+      {
+        "key": "指纹解锁动画 Fingerprint Animation",
+        "value": "5 种解锁动画：虚空力场、镜花水月、能量光束、灵光闪耀、腾云驾雾"
+      },
+      {
+        "key": "人像光效 Portrait Lighting",
+        "value": "新增彩虹光等光效，配合 AI 引擎生成更精致的人像打光效果"
+      },
+      {
+        "key": "AI 引擎 AI Engine",
+        "value": "第三代 AI 引擎，官方称 AI 性能提升至上一代 1.8 倍"
+      },
+      {
+        "key": "DSP",
+        "value": "Qualcomm Hexagon 685（第三代向量扩展）"
+      },
+      {
+        "key": "ISP 图像信号处理器",
+        "value": "Qualcomm Spectra 250（第二代架构），骁龙 600 系首发；支持单 2500 万或双 1600 万像素"
+      },
+      {
+        "key": "基带 Modem",
+        "value": "骁龙 X12 LTE 调制解调器，下行最高 600Mbps（Cat 15，3×20MHz 载波聚合）、上行 150Mbps（Cat 13）"
+      },
+      {
+        "key": "快充协议快充支持",
+        "value": "支持 Quick Charge 4+ 协议（实际以 OPPO 标配 VOOC 充电器为准）"
+      },
+      {
+        "key": "Hyper Boost 系统引擎",
+        "value": "覆盖 20+ 软件场景、20+ 用户行为，提供 50+ 优化方案；含应用启动/开机/按键唤醒/人脸识别/指纹识别/触摸滑动/内存回收加速"
+      },
+      {
+        "key": "Hyper Boost 游戏引擎",
+        "value": "与腾讯、网易及 Unreal 虚幻、Unity、Cocos 三大引擎合作，优化 11 款头部游戏；官方公布《王者荣耀》60.04fps、《刺激战场》39.7fps；多态网络加速支持蜂窝与 Wi-Fi 同时工作"
+      },
+      {
+        "key": "Hyper Boost 应用引擎",
+        "value": "与微信（11 个场景）、手机淘宝（19 个场景）、手机 QQ（13 个场景）协同优化；官方数据：微信进出会话流畅度 +29.8%、朋友圈滑动 +19.9%、进入未读群 +23.5%、GIF 表情 +35.9%"
+      },
+      {
+        "key": "Hyper Boost 启动提升",
+        "value": "应用启动速度最高提升 31.91%"
+      },
+      {
+        "key": "Hyper Boost 研发周期",
+        "value": "OPPO 历时三年自研（自 2015 年起布局），2018-10-11 正式发布"
+      },
+      {
+        "key": "跑分 Benchmark",
+        "value": "安兔兔 v7 约 15.5 万（不同样本 13.5 万–15.7 万）｜Geekbench 单核 1666–1708、多核 5781–5818｜AndroBench 随机读写 113.32 / 23.85 MB/s｜SOGI 实测连续读写 511.17 / 196.46 MB/s"
+      },
+      {
+        "key": "安兔兔硬件测试",
+        "value": "v2.5 测试：初始 25.6℃，运行 1 小时后余电 90%、机身 38℃；约 6 小时结束得分 10,647、末温 32.6℃"
+      },
+      {
+        "key": "游戏帧率 Game FPS",
+        "value": "《王者荣耀》最高画质 + 高帧率多线程基本全程 60fps（团战偶有短暂掉帧）；《刺激战场》最高 30fps 满帧稳定"
+      },
+      {
+        "key": "散热表现 Thermal",
+        "value": "40 分钟游戏后电池温度 +3℃、CPU 温度 +8℃、机身无明显发热；另有评测称半小时游戏后机身最高 40℃"
+      },
+      {
+        "key": "ZOL 续航测试",
+        "value": "5 小时重度使用（拍照/视频/刷微博/微信/浏览网页/游戏/听音乐/电子书）后余 49% 电量；30 分钟充电充入 54%"
+      },
+      {
+        "key": "天线技术 Antenna",
+        "value": "双核智能切换分布式天线（源自 Find X）+ 首创双可变电容联调技术，握持时 360 度无信号死角"
+      },
+      {
+        "key": "天线净空区 Antenna Clearance",
+        "value": "顶部传感器区域较 R15 缩小 45.8%，中框顶部与底部各设两条「信号溢出带」"
+      },
+      {
+        "key": "包装清单 Box Contents",
+        "value": "主机 ×1｜数据线 ×1｜充电器 ×1｜耳机 ×1｜保护套 ×1｜SIM 卡通针 ×1｜说明书与保修卡"
+      },
+      {
+        "key": "屏幕面板 Panel",
+        "value": "Super AMOLED（三星供应，型号 641RW 01，拆解口径）"
+      },
+      {
+        "key": "触控技术 Touch Tech",
+        "value": "on-cell 触控（in-cell 工艺）"
+      },
+      {
+        "key": "窄边框对比 Bezel vs R15",
+        "value": "顶部 1.85mm / 左右 1.63mm / 底部 4.0mm（R15 为 1.95mm / 1.78mm / 5.05mm）"
+      },
+      {
+        "key": "跌落测试 Drop Test",
+        "value": "可经受高达 15 次从 1 米高度跌落至粗糙表面的坠落测试，比上一代提升两倍"
+      },
+      {
+        "key": "屏下指纹单像素 Fingerprint Pixel",
+        "value": "12.5μm，分辨率 160×160"
+      },
+      {
+        "key": "指纹膜 Fingerprint Film",
+        "value": "出厂预装「光学指纹膜」，规避第三方贴膜偏振方向不一致导致的解锁失灵"
+      },
+      {
+        "key": "距离传感方案 Proximity Scheme",
+        "value": "TP + 屏下红外（源自 Find X 方案）"
+      }
+    ],
+    "featureTags": [
+      "光感屏幕指纹",
+      "91.5% 屏占比",
+      "康宁第六代大猩猩玻璃",
+      "凝光渐变工艺",
+      "雾光渐变",
+      "AI 智能双摄",
+      "AI 智慧美颜 2.1",
+      "骁龙 670 移动平台",
+      "VOOC 闪充",
+      "AR 实景导航",
+      "Hyper Boost 加速引擎",
+      "ColorOS 5.2",
+      "Real 原声技术",
+      "小欧语音助手与智慧识屏"
+    ],
+    "timeline": [
+      {
+        "date": "2018-08-13",
+        "title": "OPPO 官方宣布 R17 系列",
+        "desc": "官方正式公布 OPPO R17，为系列首款屏下指纹机型预热。",
+        "en": "OPPO officially announced the R17, the first in the series with an under-display fingerprint."
+      },
+      {
+        "date": "2018-08-23",
+        "title": "上海「新品奇妙夜」发布",
+        "desc": "OPPO 在上海举办「新品奇妙夜」，正式发布 R17，确立 R 系列「时尚设计与创新科技结合」的新定位。沈义人表示 R 系列要在设计与科技两个维度塑造产品之「美」。",
+        "en": "OPPO released the R17 at the \"Night Matters\" event in Shanghai, repositioning the R series as a fusion of fashionable design and technology innovation."
+      },
+      {
+        "date": "2018-08-30",
+        "title": "R17 正式开售",
+        "desc": "流光蓝与霓光紫（8GB+128GB，3499 元）当日上午 10 点在 OPPO 官网、京东、天猫、苏宁、唯品会同步首发；雾光渐变版（8GB+128GB，3599 元）同期开售。",
+        "en": "The R17 went on sale in Streamer Blue and Neon Purple at 3499 RMB, with the Mist Gradient edition at 3599 RMB."
+      },
+      {
+        "date": "2018-09-07",
+        "title": "6GB+128GB 版本开售",
+        "desc": "流光蓝、霓光紫推出 6GB+128GB 版本，售价 3199 元。",
+        "en": "The 6GB+128GB variant in Streamer Blue and Neon Purple launched at 3199 RMB."
+      },
+      {
+        "date": "2018-09-25",
+        "title": "汇顶与 OPPO 供应纠纷公开",
+        "desc": "汇顶科技因供货延迟事件被 OPPO 列入供应商禁用名单并公开致歉，双方随后发布公告和好。R17 的屏下指纹芯片供应方由此成为行业公开讨论的话题。",
+        "en": "A public supply-chain dispute between OPPO and Goodix surfaced; both parties later issued reconciliatory statements."
+      },
+      {
+        "date": "2018-10-11",
+        "title": "Hyper Boost 加速引擎发布",
+        "desc": "OPPO 发布全场景、系统级资源调度优化方案 Hyper Boost 加速引擎，将全面搭载于 R17 系列。",
+        "en": "OPPO announced the Hyper Boost engine, a system-level resource scheduling solution, to be carried in full by the R17 series."
+      },
+      {
+        "date": "2018-12-17",
+        "title": "R17 新年版发布",
+        "desc": "OPPO 奇幻新年大秀推出 R17 新年定制版，由西班牙艺术家 Ignasi Monreal 参与设计，摄像头装饰圈以 18K 金点缀，机身采用中国红专属配色。",
+        "en": "OPPO launched a New Year edition of the R17 designed in collaboration with Spanish artist Ignasi Monreal, with 18K gold detailing on the camera ring."
+      }
+    ],
+    "categories": [
+      {
+        "name": "屏幕与显示总成",
+        "en": "Screen & Display Assembly",
+        "icon": "display",
+        "color": "#111111",
+        "components": [
+          {
+            "name": "AMOLED 屏幕总成",
+            "en": "AMOLED Display Assembly",
+            "desc": "三星 6.4 英寸 Super AMOLED 水滴屏，面板型号 641RW 01，2340×1080 分辨率、402 PPI，对比度 60000:1，典型亮度 430 尼特。",
+            "descEn": "A 6.4-inch Super AMOLED waterdrop panel from Samsung, model 641RW 01, at 2340×1080 and 402 PPI.",
+            "note": "面板型号为拆解口径，需以实物丝印核对后再定稿标注。",
+            "noteEn": "Panel model comes from a teardown report and should be confirmed against the physical part before final labelling.",
+            "tags": [
+              "三星显示",
+              "AMOLED",
+              "水滴屏",
+              "2340×1080"
+            ]
+          },
+          {
+            "name": "康宁第六代大猩猩玻璃盖板",
+            "en": "Corning Gorilla Glass 6 Cover",
+            "desc": "覆盖在 AMOLED 之上的盖板玻璃，行业首发第六代大猩猩玻璃，官方强调其更坚固耐摔。",
+            "descEn": "The cover glass over the AMOLED panel — the industry's first Gorilla Glass 6.",
+            "note": "⚠ 盖板与面板为两层结构，装裱标注时务必分别引线，不可合并为一处。",
+            "noteEn": "Cover glass and panel are two distinct layers — label them separately.",
+            "tags": [
+              "康宁",
+              "盖板玻璃",
+              "第六代"
+            ]
+          },
+          {
+            "name": "屏下指纹识别模组",
+            "en": "Under-Display Fingerprint Module",
+            "desc": "封装于屏幕下方的光感屏下指纹模组，屏下镜头方案，传感器尺寸 2mm×2mm，3P 镜头组并采用 MicroLens 微透镜。",
+            "descEn": "An optical fingerprint module housed beneath the display, 2mm × 2mm sensor with a 3P lens and MicroLens micro-lens array.",
+            "note": "⚠ 需暴力拆解屏幕才能见到实物；供应方存在公开分歧（思立微／汇顶／新思三说），标注时只写官方口径「光感屏幕指纹」，不写供应商。",
+            "noteEn": "Requires destructive screen separation to expose. Public sources disagree on the supplier, so label only the official term.",
+            "tags": [
+              "光感屏幕指纹",
+              "屏下镜头",
+              "MicroLens",
+              "2mm×2mm"
+            ]
+          },
+          {
+            "name": "水滴形切割区",
+            "en": "Waterdrop Notch Cutout",
+            "desc": "屏幕顶部居中的水滴形开孔，容纳前置摄像头、距离传感器与红外接收器件，造型取自水滴将落未落的瞬间。",
+            "descEn": "The central waterdrop cutout housing the front camera, proximity sensor and infrared receiver.",
+            "note": "开孔周围是屏下指纹与红外透光区，拆解照片中呈现为密集小孔区域，是关键可拆解看点。",
+            "noteEn": "This dense perforation area around the cutout is a key teardown highlight.",
+            "tags": [
+              "水滴屏",
+              "开孔",
+              "前置摄像头"
+            ]
+          },
+          {
+            "name": "屏幕软板 (FPC)",
+            "en": "Display Flex Cable",
+            "desc": "连接屏幕总成与副板的柔性排线，穿过内支撑上的专用缝隙延伸到底部。",
+            "descEn": "The flex cable linking the display assembly to the sub-board, routed through a slot in the mid-frame.",
+            "note": "⚠ 缝隙处加有硅胶套固定保护；软板走向是装裱画面中「上下贯通」的视觉主线，务必拍到完整路径。",
+            "noteEn": "Protected by a silicone sleeve in the slot; its routing forms the main vertical visual line in the layout.",
+            "tags": [
+              "排线",
+              "FPC",
+              "硅胶套"
+            ]
+          },
+          {
+            "name": "屏下红外传感器",
+            "en": "Infrared Sensor (under display)",
+            "desc": "封装于屏幕内的红外发射与接收器件，亮屏到息屏依靠触控检测，息屏到亮屏依靠红外检测。",
+            "descEn": "Infrared emitter and receiver under the panel, detecting proximity through the transmissive AMOLED.",
+            "note": "红外需透过 AMOLED 工作，是屏下指纹与息屏显示能够共存的技术前提。",
+            "noteEn": "Infrared sensing through transmissive AMOLED enables always-on display alongside fingerprint scanning.",
+            "tags": [
+              "红外",
+              "息屏显示",
+              "传感器"
+            ]
+          },
+          {
+            "name": "距离传感器",
+            "en": "Proximity Sensor",
+            "desc": "位于水滴区上方的距离传感器，用于通话时自动熄屏。",
+            "descEn": "The proximity sensor above the waterdrop cutout, blanking the display during calls.",
+            "note": "R17 将前置距离传感器与光线传感器一并隐藏到屏幕下方，是水滴屏实现高屏占比的前提。",
+            "noteEn": "OPPO hid both the proximity and ambient light sensors beneath the display for the high screen-to-body ratio.",
+            "tags": [
+              "距离传感器",
+              "通话熄屏"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "影像系统",
+        "en": "Imaging System",
+        "icon": "camera",
+        "color": "#C8102E",
+        "components": [
+          {
+            "name": "后置主摄模组",
+            "en": "Rear Main Camera Module",
+            "desc": "1600 万像素 Sony IMX519 主摄，F/1.7 光圈，6 片式镜头，是 R17 全部成像质量的承担者。",
+            "descEn": "The 16MP Sony IMX519 main camera at f/1.7 with a six-element lens.",
+            "note": "⚠ 拆解稿将主摄像素写作「1200 万」，与官方规格 1600 万及 IMX519 传感器规格矛盾，标注一律以官方 1600 万为准。",
+            "noteEn": "Some teardown articles state 12MP; the official spec and the IMX519 sensor both confirm 16MP — use the official figure.",
+            "tags": [
+              "IMX519",
+              "1600万",
+              "F/1.7",
+              "6片式"
+            ]
+          },
+          {
+            "name": "后置副摄模组",
+            "en": "Rear Secondary Camera Module",
+            "desc": "500 万像素 Samsung S5K5E9，F/2.4 光圈，5 片式镜头，职责不为成像而是向 AI 引擎提供场景信息。",
+            "descEn": "A 5MP Samsung S5K5E9 at f/2.4 whose role is to feed scene data to the AI engine rather than to capture images.",
+            "note": "⚠ 这是 R17 相机模组里最容易被误标的一颗——它不是「景深虚化镜头」，标注时应写明 AI 场景采集用途。",
+            "noteEn": "This lens feeds the AI engine — it is not a depth-of-field camera.",
+            "tags": [
+              "S5K5E9",
+              "500万",
+              "AI场景采集"
+            ]
+          },
+          {
+            "name": "前置摄像头模组",
+            "en": "Front Camera Module",
+            "desc": "2500 万像素 Sony IMX576，F/2.0 光圈，5 片式镜头，位于水滴开孔内，负责自拍与 AI 智慧美颜、面部识别。",
+            "descEn": "The 25MP Sony IMX576 at f/2.0 with a five-element lens inside the waterdrop cutout.",
+            "note": "前置同时承担面部识别解锁与美颜两项功能，是拆解照片中「一颗镜头多任务」的重点。",
+            "noteEn": "One module serving selfie capture, face unlock and AI beautification.",
+            "tags": [
+              "IMX576",
+              "2500万",
+              "F/2.0",
+              "面部识别"
+            ]
+          },
+          {
+            "name": "LED 闪光灯",
+            "en": "LED Flash",
+            "desc": "后置单色温 LED 补光灯，位于竖排双摄模组下方，为拍照提供补光。",
+            "descEn": "A single-tone LED flash below the vertical dual-camera module.",
+            "note": "📌 装裱提示：闪光灯位于镜头下方，切勿误标为第三颗摄像头。",
+            "noteEn": "The flash sits below the lenses — do not label it as a third camera.",
+            "tags": [
+              "闪光灯",
+              "补光"
+            ]
+          },
+          {
+            "name": "摄像头保护盖板",
+            "en": "Camera Cover Glass",
+            "desc": "覆盖后置镜头的保护镜片与金属装饰圈，装饰圈随配色渐变，是幻色渐变设计延伸到相机模组的体现。",
+            "descEn": "The lens cover and decorative ring above the rear cameras, carrying the gradient finish into the camera module.",
+            "note": "⚠ 后盖玻璃与摄像头保护盖是两件料，装裱时需分别归位，避免重叠。",
+            "noteEn": "The rear glass and the camera cover are separate parts and must not be overlapped when mounted.",
+            "tags": [
+              "保护盖",
+              "装饰圈",
+              "渐变"
+            ]
+          },
+          {
+            "name": "摄像头模组散热贴",
+            "en": "Camera Thermal Pad",
+            "desc": "前后摄像头模组背部贴覆的散热石墨贴，用于压制持续录像时的模组温升。",
+            "descEn": "Graphite thermal pads applied to the back of the camera modules.",
+            "note": "属结构件上的功能性辅料，装裱时可保留作为工艺细节呈现。",
+            "noteEn": "Functional thermal padding worth keeping as a process detail in the layout.",
+            "tags": [
+              "石墨贴",
+              "散热"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "主板与核心器件",
+        "en": "Mainboard & Core Devices",
+        "icon": "chip",
+        "color": "#1A1A1A",
+        "components": [
+          {
+            "name": "U 形主板",
+            "en": "U-Shaped Mainboard",
+            "desc": "主板整体呈「U」字形，向上方摄像头区与主板区延伸、底部留出副板区，是三段式结构的核心承载件。",
+            "descEn": "The mainboard forms a U shape, extending upward around the camera area while leaving the lower section for the sub-board.",
+            "note": "⚠ U 形走线是 R17 拆解画面最独特的几何特征，装裱版面宜保留其完整轮廓而非拆散标注。",
+            "noteEn": "The distinctive U-shaped routing should be presented whole rather than fragmented.",
+            "tags": [
+              "主板",
+              "U形",
+              "三段式"
+            ]
+          },
+          {
+            "name": "骁龙 670 移动平台",
+            "en": "Qualcomm SDM670",
+            "desc": "高通骁龙 670 八核移动平台（Qualcomm SDM670），全球首发机型。按高通官方产品简介：10nm LPP 工艺，Kryo 360 架构 8 核（2×Kryo 360 Gold 最高 2.0GHz + 6×Kryo 360 Silver 最高 1.7GHz），官方称较骁龙 660 性能提升 15%；GPU 为 Adreno 615（较骁龙 660 的 Adreno 512 提升 25% 以上）；DSP 为 Hexagon 685，AI 引擎为第三代，官方称 AI 性能提升 1.8 倍。",
+            "descEn": "The Qualcomm SDM670 octa-core SoC built on a 10nm FinFET process.",
+            "note": "📌 官方表述是「高通新一代 10nm 移动处理平台」。制程以高通官方产品简介的 10nm LPP 为准——个别评测稿写「12nm」为媒体笔误，标注时勿采用。",
+            "noteEn": "The official wording is \"new-generation 10nm mobile platform\". Use the 10nm LPP figure from Qualcomm's own product brief — 12nm in some reviews is an error.",
+            "tags": [
+              "高通",
+              "骁龙670",
+              "10nm LPP",
+              "Kryo360",
+              "AI引擎1.8倍",
+              "全球首发"
+            ]
+          },
+          {
+            "name": "电源管理芯片 PM670",
+            "en": "Qualcomm PM670",
+            "desc": "高通 PM670 电源管理芯片，负责移动平台核心供电与电压域管理。",
+            "descEn": "Qualcomm's PM670 power management IC supplying the SoC rails.",
+            "note": "",
+            "noteEn": "",
+            "tags": [
+              "PMIC",
+              "供电"
+            ]
+          },
+          {
+            "name": "电源管理芯片 PM6790A",
+            "en": "Qualcomm PM6790A",
+            "desc": "位于主板背面的第二颗电源管理芯片，负责射频与外设链路的供电转换。",
+            "descEn": "A second PMIC on the board's reverse side handling RF and peripheral power rails.",
+            "note": "",
+            "noteEn": "",
+            "tags": [
+              "PMIC",
+              "射频供电"
+            ]
+          },
+          {
+            "name": "射频收发芯片 SDR660",
+            "en": "Qualcomm SDR660",
+            "desc": "高通 SDR660 射频收发芯片，是 LTE 与无线连接的基带射频前端核心。",
+            "descEn": "The SDR660 RF transceiver underpinning LTE and wireless connectivity.",
+            "note": "",
+            "noteEn": "",
+            "tags": [
+              "射频",
+              "基带",
+              "SDR660"
+            ]
+          },
+          {
+            "name": "WiFi / 蓝牙芯片 WCN3990",
+            "en": "Qualcomm WCN3990",
+            "desc": "高通 WCN3990 无线连接芯片，整合 WiFi、蓝牙与 FM 收音功能。",
+            "descEn": "The WCN3990 combining WiFi, Bluetooth and FM.",
+            "note": "",
+            "noteEn": "",
+            "tags": [
+              "WiFi",
+              "蓝牙5.0",
+              "WCN3990"
+            ]
+          },
+          {
+            "name": "射频前端模块 SKY77920-21",
+            "en": "Skyworks SKY77920-21",
+            "desc": "Skyworks SKY77920-21 射频模拟前端模块，配 16 路线性 TRx 开关与双频 TD-SCDMA 支持。",
+            "descEn": "A Skyworks RF front-end module with a 16-port linear transceiver switch.",
+            "note": "",
+            "noteEn": "",
+            "tags": [
+              "射频前端",
+              "Skyworks"
+            ]
+          },
+          {
+            "name": "射频前端模块 QM56022",
+            "desc": "QORVO QM56022 射频模拟前端模块，与 SKY77920-21 共同构成射频链路。",
+            "en": "QORVO QM56022",
+            "descEn": "A QORVO RF front-end module working alongside the Skyworks device.",
+            "note": "",
+            "noteEn": "",
+            "tags": [
+              "射频前端",
+              "QORVO"
+            ]
+          },
+          {
+            "name": "显示电源管理芯片 TPS65633",
+            "en": "TI TPS65633",
+            "desc": "德州仪器 TPS65633 显示电源管理芯片，为 AMOLED 面板的驱动与电源轨提供转换。",
+            "descEn": "TI's TPS65633 display power management IC driving the AMOLED panel rails.",
+            "note": "",
+            "noteEn": "",
+            "tags": [
+              "显示PMIC",
+              "AMOLED驱动"
+            ]
+          },
+          {
+            "name": "存储芯片 KM2V7001CM",
+            "en": "Samsung KM2V7001CM",
+            "desc": "三星 KM2V7001CM MCP 混合封装存储器，在单封装内垂直堆叠 6GB LPDDR4X 内存与 128GB UFS 闪存。",
+            "descEn": "Samsung's KM2V7001CM MCP package stacking 6GB LPDDR4X and 128GB UFS in a single package.",
+            "note": "⚠ 这是 R17 整机上物料成本占比最高的单颗芯片，装裱可作为「BOM 主角」单独标注。",
+            "noteEn": "The highest-value single component in the R17 bill of materials.",
+            "tags": [
+              "三星",
+              "MCP",
+              "LPDDR4X",
+              "UFS"
+            ]
+          },
+          {
+            "name": "六轴加速度计与陀螺仪",
+            "en": "STMicroelectronics 6-Axis IMU",
+            "desc": "意法半导体六轴加速度计 + 陀螺仪组合器件，为传感器罗盘提供惯性数据。",
+            "descEn": "An STMicroelectronics six-axis accelerometer and gyroscope combo.",
+            "note": "",
+            "noteEn": "",
+            "tags": [
+              "ST",
+              "六轴",
+              "IMU"
+            ]
+          },
+          {
+            "name": "三轴电子罗盘",
+            "en": "MEMSIC MMC3530KJ",
+            "desc": "美新 MEMSIC MMC3530KJ 三轴电子罗盘，与加速度计配合完成方向与姿态解算。",
+            "descEn": "A MEMSIC MMC3530KJ three-axis electronic compass.",
+            "note": "",
+            "noteEn": "",
+            "tags": [
+              "MEMSIC",
+              "罗盘",
+              "地磁"
+            ]
+          },
+          {
+            "name": "主板金属盖板",
+            "en": "Mainboard Shield Cover",
+            "desc": "覆盖主板上表面的金属屏蔽罩，除保护元件外，更重要的功能是压住主板上的 BTB 连接器接口。",
+            "descEn": "A metal shield can over the board that also presses down on the BTB connectors.",
+            "note": "⚠ 盖板中部为摄像头区域镂空，是拆解照片里的天然视觉锚点，装裱可据此定位。",
+            "noteEn": "Its camera cutout provides a natural anchor point in the layout.",
+            "tags": [
+              "屏蔽罩",
+              "BTB",
+              "镂空"
+            ]
+          },
+          {
+            "name": "导光管（光线传感器光路）",
+            "en": "Light Guide Tube",
+            "desc": "横跨内支撑的透明导光管，把光线传感器「直通」到机身正面接收环境光，是 R17 结构上最具设计感的一处细节。",
+            "descEn": "A transparent light guide carrying ambient light from the front of the phone to the sensor on the mainboard.",
+            "note": "⚠ 全机最值得单独标注的零件——光线传感器位置与导光管走向重合但两者可分离，切勿混为一物。",
+            "noteEn": "The sensor and its light guide overlap in position but are separate parts.",
+            "tags": [
+              "导光管",
+              "光线传感器",
+              "结构亮点",
+              "必标"
+            ]
+          },
+          {
+            "name": "Hexagon 685 DSP",
+            "en": "Qualcomm Hexagon 685 DSP",
+            "desc": "骁龙 670 搭载的第三代 AI 引擎核心数字信号处理器，配备第三代向量扩展与 Always Aware 传感器中枢，常驻低功耗运行以支撑 AI 感知与实时响应。",
+            "descEn": "The DSP behind the Snapdragon 670's third-generation AI Engine, with third-generation vector extensions and the always-on sensor hub.",
+            "note": "💡 装裱标注可与「骁龙 670 移动平台」组成一组处理器核心器件簇，与 CPU、GPU 并列引线。",
+            "noteEn": "Label this alongside the SoC as part of the processor core cluster.",
+            "tags": [
+              "Hexagon685",
+              "DSP",
+              "AI引擎",
+              "第三代"
+            ]
+          },
+          {
+            "name": "Spectra 250 ISP",
+            "en": "Qualcomm Spectra 250 ISP",
+            "desc": "第二代架构的 Qualcomm Spectra 250 图像信号处理器，是骁龙 600 系首次搭载，支持单颗 2500 万像素或双 1600 万像素配置、最高 4K 30fps 视频录制，并支持多帧降噪与混合自动对焦。",
+            "descEn": "The second-generation Qualcomm Spectra 250 ISP, the first in the Snapdragon 600 tier, supporting 4K 30fps capture and hybrid autofocus.",
+            "note": "📌 这颗 ISP 对应到影像能力，是「相机模组」与「主板器件」两个标注簇之间的关联点。",
+            "noteEn": "This ISP links the camera module and mainboard callout groups.",
+            "tags": [
+              "Spectra250",
+              "ISP",
+              "第二代",
+              "4K30fps"
+            ]
+          },
+          {
+            "name": "骁龙 X12 LTE 调制解调器",
+            "en": "Snapdragon X12 LTE Modem",
+            "desc": "骁龙 X12 LTE 基带，下行最高 600Mbps（Cat 15，3×20MHz 载波聚合）、上行最高 150Mbps（Cat 13），支持在 LTE 与 Wi-Fi 之间按信号质量自动切换，也支持两者 bonding 叠加提速。",
+            "descEn": "The X12 LTE modem with 600Mbps downlink and 150Mbps uplink, automatically switching between LTE and Wi-Fi by signal quality.",
+            "note": "💡 可与「双核智能切换分布式天线」组成一组通信能力标注，配合「信号溢出带」呈现天线净空设计。",
+            "noteEn": "Pair this with the distributed antenna callout to show the antenna clearance design.",
+            "tags": [
+              "X12LTE",
+              "基带",
+              "600Mbps",
+              "Cat15"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "供电与电池",
+        "en": "Power & Battery",
+        "icon": "battery",
+        "color": "#2E7D32",
+        "components": [
+          {
+            "name": "3500mAh 锂电池",
+            "en": "3500mAh Li-Polymer Battery",
+            "desc": "ATL 出品的锂聚合物电池，型号 BLP681。额定容量 3415mAh / 13.14Wh，典型容量 3500mAh / 13.47Wh，标称电压 3.85V，充电限制电压 4.4V，循环寿命约 500–800 次。以双面胶固定于内支撑，侧边附易拉条。",
+            "descEn": "An ATL Li-polymer cell rated 3500mAh typical (3415mAh rated minimum) at 3.85V, glued to the mid-frame.",
+            "note": "⚠ 官方标称 3500mAh，拆解稿常写 3415mAh（那是额定/最小值），标注时必须写 3500mAh。另可标注电池型号 BLP681 与充电限制电压 4.4V，这两项在装裱中属加分细节。",
+            "noteEn": "The official rating is 3500mAh; 3415mAh found in teardowns is the rated minimum. The BLP681 part number and 4.4V charge limit are useful detail to label.",
+            "tags": [
+              "ATL",
+              "BLP681",
+              "3500mAh",
+              "3.85V",
+              "4.4V",
+              "锂聚合物"
+            ]
+          },
+          {
+            "name": "电池易拉条",
+            "en": "Battery Pull Tab",
+            "desc": "电池侧边附设的易拉胶条，配合双面胶固定方式实现免工具拆卸电池。R17 的电池是全机最好拆的部件之一，可作为整版拆解顺序中的第一个动作。",
+            "descEn": "A pull strip along the battery edge allowing tool-free removal.",
+            "note": "R17 的电池是全机最好拆的部件之一，易拉条是设计上的人性化细节。",
+            "noteEn": "One of the easiest batteries to remove thanks to the pull tab.",
+            "tags": [
+              "易拉条",
+              "双面胶",
+              "可维修性",
+              "BLP681"
+            ]
+          },
+          {
+            "name": "VOOC 闪充电路",
+            "en": "VOOC Flash Charge Circuit",
+            "desc": "支撑 5V/4A（20W）VOOC 闪充的充电电路与低压快充方案。低压路径允许边玩边充，配合五芯防护实现低温快充下的温控与安全保障。实测 10%→100% 约 1 小时 28 分钟，前 30 分钟 10%→62%。",
+            "descEn": "The 20W VOOC charging circuit with five-chip protection enabling charge-while-playing.",
+            "note": "💡 装裱可标注：这是 R 系列首次采用 Type-C 接口的机型，充电口与闪充电路同在副板区域，与副板零件构成一组完整的「接口与供电」标注簇。",
+            "noteEn": "Worth labelling: this is the first R-series phone with a Type-C port, and the charging circuitry sits on the sub-board alongside the port.",
+            "tags": [
+              "VOOC",
+              "20W",
+              "低压快充",
+              "边玩边充",
+              "五芯防护"
+            ]
+          },
+          {
+            "name": "电池盖板排线",
+            "en": "Battery Connector Flex",
+            "desc": "连接电池与主板的电源排线，拆解前需先断开以保证安全。",
+            "descEn": "The power flex between battery and mainboard, disconnected first during teardown.",
+            "note": "⚠ 排线连接器上包有泡棉用于防水防尘，撕开即破坏，拆解需谨慎。",
+            "noteEn": "Foam seals the connector; peeling it is irreversible.",
+            "tags": [
+              "排线",
+              "泡棉",
+              "防水"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "结构件与散热",
+        "en": "Structure & Thermal",
+        "icon": "structure",
+        "color": "#5D4037",
+        "components": [
+          {
+            "name": "幻色渐变玻璃后盖",
+            "en": "Gradient Glass Back Cover",
+            "desc": "双面玻璃 + 金属中框的三明治结构后盖，背面以凝光层呈现流动的渐变光影，与中框颜色融为一体。",
+            "descEn": "The gradient glass back cover in a glass-metal-glass sandwich, its colour flowing into the frame.",
+            "note": "⚠ 后盖与主板之间没有排线（屏下指纹方案无需），因此可整片直接取下，是拆解展示的最佳开场件。",
+            "noteEn": "With no flex to the board, the back cover lifts off in one piece — ideal as the opening piece.",
+            "tags": [
+              "后盖",
+              "渐变",
+              "凝光层",
+              "无排线"
+            ]
+          },
+          {
+            "name": "雾面蚀刻层（雾光渐变）",
+            "en": "AG Frosted Etched Layer",
+            "desc": "雾光渐变版特有，通过 AG 雾面蚀砂工艺在玻璃表面形成磨砂质地，呈现光穿过雾的朦胧观感且不易沾染指纹。",
+            "descEn": "The Mist Gradient finish, an AG frosted-etch layer that produces a hazy, fingerprint-resistant surface.",
+            "note": "⚠ 该层仅存在于雾光渐变配色，流光蓝与霓光紫为普通幻色渐变——装裱必须先确认配色再决定是否标注。",
+            "noteEn": "Present only on the Mist Gradient colourway — confirm the finish before labelling it.",
+            "tags": [
+              "雾光渐变",
+              "AG蚀刻",
+              "磨砂",
+              "配色专属"
+            ]
+          },
+          {
+            "name": "金属中框",
+            "en": "Metal Mid-Frame",
+            "desc": "承载双面玻璃与全部内部件的中部金属框架，R17 的中框同样采用渐变设计并与背板色彩衔接。",
+            "descEn": "The mid-frame carrying both glass panels, itself gradient-finished to blend with the back.",
+            "note": "中框与后盖在拆解中是分离的，装裱需按实际结构摆位。",
+            "noteEn": "The frame separates from the back cover during teardown.",
+            "tags": [
+              "中框",
+              "金属",
+              "渐变"
+            ]
+          },
+          {
+            "name": "内支撑框架",
+            "en": "Internal Support Frame",
+            "desc": "承载主板、电池与副板的骨架结构件，其上开有屏幕软板穿越的专用缝隙。",
+            "descEn": "The skeleton frame carrying the mainboard, battery and sub-board, slotted for the display flex.",
+            "note": "⚠ 缝隙处以硅胶套保护屏幕排线，是拆解图中「结构工艺细节」的看点之一。",
+            "noteEn": "The slot is protected by a silicone sleeve around the display flex.",
+            "tags": [
+              "内支撑",
+              "骨架",
+              "硅胶套"
+            ]
+          },
+          {
+            "name": "大面积石墨散热片",
+            "en": "Graphite Thermal Sheet",
+            "desc": "覆盖后盖内侧对应主板与电池位置的大面积石墨片，以及内支撑上的另一块石墨片，用于机身内部散热。",
+            "descEn": "Large-area graphite sheets lining the back cover above the board and battery, plus another on the mid-frame.",
+            "note": "石墨片的轮廓与内部布局高度吻合，是拆解图中层次最丰富的黑色色块之一。",
+            "noteEn": "Their contours mirror the internal layout, creating one of the richest dark shapes in the layout.",
+            "tags": [
+              "石墨片",
+              "散热",
+              "黑色块面"
+            ]
+          },
+          {
+            "name": "散热硅脂与铜箔",
+            "en": "Thermal Paste & Copper Foil",
+            "desc": "主板与屏蔽罩之间的散热硅脂及辅助铜箔，用于压制骁龙 670 的持续负载温升。",
+            "descEn": "Thermal paste and copper foil between the board and shield can.",
+            "note": "",
+            "noteEn": "",
+            "tags": [
+              "硅脂",
+              "铜箔",
+              "散热"
+            ]
+          },
+          {
+            "name": "贴合胶与卡扣",
+            "en": "Adhesive & Clips",
+            "desc": "后盖、中框、屏幕与内支撑之间大量使用贴合胶配合卡扣固定，是拆解难度评定为「中等」的主要原因。",
+            "descEn": "Extensive adhesive combined with clips secures the cover, frame, display and support.",
+            "note": "⚠ 后盖用胶量较大，兼顾一定防水；强行撬动会拉伤后盖边缘，装裱成品需保护边角。",
+            "noteEn": "Heavy adhesive on the cover aids water resistance but risks chipping the edges when pried.",
+            "tags": [
+              "贴合胶",
+              "卡扣",
+              "防水"
+            ]
+          },
+          {
+            "name": "固定螺丝",
+            "en": "Mounting Screws",
+            "desc": "整机采用 2 种规格共 23 颗螺丝固定，拆解逻辑清晰，难度评定为中等偏上。",
+            "descEn": "The handset is held together by 23 screws in two sizes, giving a clear and moderate teardown path.",
+            "note": "📌 装裱提示：拆解时按规格分区域收纳，避免两种规格混装。",
+            "noteEn": "Keep the two screw sizes separated during disassembly.",
+            "tags": [
+              "螺丝",
+              "23颗",
+              "两种规格"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "音频系统",
+        "en": "Audio System",
+        "icon": "audio",
+        "color": "#0277BD",
+        "components": [
+          {
+            "name": "隐藏式听筒模块",
+            "en": "Hidden Earpiece Module",
+            "desc": "顶部采用隐藏式听筒设计，为把上边框压至 1.85mm，整机正面顶部只留一条缝隙，听筒发声经盖板导音结构传出声音。",
+            "descEn": "A hidden earpiece leaves only a slim slit across the top of the front face, letting the top bezel shrink to 1.85mm; sound is conducted out through the cover plate.",
+            "note": "⚠ 听筒位置与顶部边框缝隙是同一个视觉点，标注时需分清「缝隙位置」与「听筒本体」；这是水滴屏成立的前提之一，值得单独引线。",
+            "noteEn": "The slit and the earpiece module are the same visual point — give them separate leader lines. It is one of the preconditions for the waterdrop display.",
+            "tags": [
+              "隐藏式听筒",
+              "导音结构",
+              "顶部缝隙",
+              "必标"
+            ]
+          },
+          {
+            "name": "底部扬声器单元",
+            "en": "Bottom Loudspeaker",
+            "desc": "位于机身底部的单扬声器，与副板一同由螺丝固定；音腔底部设有滤网保护，取下时可见其与副板盖板的固定关系。",
+            "descEn": "A single bottom-mounted loudspeaker fixed to the sub-board, with a mesh filter protecting the acoustic chamber.",
+            "note": "💡 扬声器与 Type-C 口、麦克风、3.5mm 耳机孔同在副板区域，装裱宜以副板为圆心放射标注。",
+            "noteEn": "The loudspeaker shares the sub-board with the Type-C port, microphones and the 3.5mm jack — radiate these callouts from the board.",
+            "tags": [
+              "单扬声器",
+              "底部",
+              "防尘滤网",
+              "副板"
+            ]
+          },
+          {
+            "name": "双麦克风与降噪",
+            "en": "Dual Microphones & Noise Reduction",
+            "desc": "主麦克风与副麦克风组成双麦降噪方案，机身顶部设降噪麦克风开孔，紧邻顶部的「信号溢出带」天线净空设计。",
+            "descEn": "A primary and secondary microphone provide dual-mic noise reduction; the noise-cancelling aperture sits on the top edge beside the signal overflow band.",
+            "note": "📌 顶部降噪麦克风孔与信号溢出带位置相邻，拆解图上容易混淆，两者需分别标注。",
+            "noteEn": "The top noise-cancelling aperture and the antenna band sit close together and are easily confused in teardown photos — label them separately.",
+            "tags": [
+              "双麦降噪",
+              "主麦+副麦",
+              "顶部开孔",
+              "信号溢出带"
+            ]
+          },
+          {
+            "name": "Real 原声技术（Dirac）",
+            "en": "Real Sound Technology (Dirac)",
+            "desc": "OPPO 官方称其为「Real 原声技术」，由瑞典 Dirac Research AB 与 OPPO 联合开发，官方手册表述为「完整保真地呈现原声，营造空间化的三维声场」。其特点是让高保真体验不再局限于耳机，外放同样可获得 Real 原声效果，并支持按场景切换声音表现。",
+            "descEn": "OPPO calls it Real Sound Technology, co-developed with Dirac Research AB. The manual describes it as delivering original sound in full fidelity within a spatial three-dimensional sound arena, and it extends high-fidelity playback to the loudspeaker rather than headphones alone.",
+            "note": "📌 官方术语是「Real 原声技术 / Real Sound Technology」，不是「Dirac 音效」——Dirac 是合作方，官方规格表的「音频类型」一栏才填 dirac。标注时用官方叫法。",
+            "noteEn": "The official term is Real Sound Technology, not \"Dirac audio\" — Dirac is the partner. Use the official naming when labelling.",
+            "tags": [
+              "Real原声",
+              "Dirac",
+              "三维声场",
+              "外放",
+              "官方术语"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "传感器与射频",
+        "en": "Sensors & RF",
+        "icon": "sensor",
+        "color": "#6A1B9A",
+        "components": [
+          {
+            "name": "光线传感器",
+            "en": "Ambient Light Sensor",
+            "desc": "位于主板正面最上方的方形器件，通过导光管直通机身正面接收环境光，用于自动亮度调节。",
+            "descEn": "A square device at the top of the mainboard's front face, receiving ambient light through the light guide tube.",
+            "note": "⚠ 它与导光管位置重合但并非一体，拆解标注务必分开两条引线。",
+            "noteEn": "It overlaps the light guide in position but is a separate part — give it its own leader line.",
+            "tags": [
+              "光线传感器",
+              "自动亮度",
+              "必标"
+            ]
+          },
+          {
+            "name": "陀螺仪与加速度计",
+            "en": "Gyroscope & Accelerometer",
+            "desc": "六轴惯性传感器组合，配合三轴电子罗盘完成方向与姿态感知。",
+            "descEn": "The six-axis inertial combo paired with the three-axis compass.",
+            "note": "",
+            "noteEn": "",
+            "tags": [
+              "六轴",
+              "姿态"
+            ]
+          },
+          {
+            "name": "地磁传感器 / 电子罗盘",
+            "en": "Magnetometer / Compass",
+            "desc": "MEMSIC MMC3530KJ 三轴电子罗盘，对应官方规格中的地磁传感器。",
+            "descEn": "The MEMSIC MMC3530KJ compass, corresponding to the magnetometer in the official spec.",
+            "note": "",
+            "noteEn": "",
+            "tags": [
+              "地磁",
+              "罗盘"
+            ]
+          },
+          {
+            "name": "计步器",
+            "en": "Pedometer",
+            "desc": "由加速度计与系统算法共同实现的计步功能，对应官方规格的记步功能。",
+            "descEn": "Step counting derived from the accelerometer and system algorithms.",
+            "note": "",
+            "noteEn": "",
+            "tags": [
+              "计步",
+              "记步"
+            ]
+          },
+          {
+            "name": "射频天线模块",
+            "en": "RF Antenna Modules",
+            "desc": "分布在机身各处的天线模块与同轴线，配合 SDR660 与射频前端完成全网通通信。",
+            "descEn": "Antenna modules and coax runs distributed through the chassis, working with the SDR660 and RF front-ends.",
+            "note": "⚠ 天线与同轴线是装裱中最易被忽略的细长零件，缺失会破坏「结构完整度」的可信度。",
+            "noteEn": "Antenna and coax runs are easily overlooked; omitting them undermines the sense of structural completeness.",
+            "tags": [
+              "天线",
+              "同轴线",
+              "全网通"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "接口与连接",
+        "en": "Interfaces & Connectivity",
+        "icon": "port",
+        "color": "#37474F",
+        "components": [
+          {
+            "name": "USB Type-C 接口",
+            "en": "USB Type-C Port",
+            "desc": "R 系列首款 Type-C 数据接口，接口母座上套有防水防尘硅胶套。",
+            "descEn": "The first USB Type-C port in the R series, its receptacle sleeved with a silicone gasket.",
+            "note": "⚠ 硅胶套是 R17 防水设计的直观证据之一，务必单独拍到并标注。",
+            "noteEn": "The silicone gasket is direct visual evidence of the R17's water-resistance design.",
+            "tags": [
+              "Type-C",
+              "硅胶套",
+              "防水"
+            ]
+          },
+          {
+            "name": "3.5mm 耳机孔",
+            "en": "3.5mm Headphone Jack",
+            "desc": "保留的 3.5mm 耳机接口，孔位同样设有硅胶防水套。",
+            "descEn": "The retained 3.5mm headphone jack, likewise protected by a silicone gasket.",
+            "note": "",
+            "noteEn": "",
+            "tags": [
+              "耳机孔",
+              "3.5mm"
+            ]
+          },
+          {
+            "name": "SIM 卡托",
+            "en": "SIM Card Tray",
+            "desc": "位于机身右侧的塑料材质卡托，支持双 Nano SIM，不支持存储卡扩展。",
+            "descEn": "A plastic dual-nano-SIM tray on the right side, with no memory card expansion.",
+            "note": "⚠ 塑料卡托且无橡胶保护套，是拆解评测中明确指出的减分项，标注时如实呈现即可，不必回避。",
+            "noteEn": "The plastic tray without a gasket is a noted weakness — worth showing honestly.",
+            "tags": [
+              "SIM卡托",
+              "塑料",
+              "双卡"
+            ]
+          },
+          {
+            "name": "BTB 排线连接器",
+            "en": "BTB Connectors",
+            "desc": "主板与副板、主板与摄像头模组之间采用 BTB（板对板）连接器，由金属盖板压紧固定。",
+            "descEn": "Board-to-board connectors between the mainboard, sub-board and camera module, clamped by the shield can.",
+            "note": "⚠ 连接器上包有泡棉，拆解时需先揭泡棉，容易扯断。",
+            "noteEn": "Foam wraps the connectors and tears easily when peeled.",
+            "tags": [
+              "BTB",
+              "连接器",
+              "泡棉"
+            ]
+          },
+          {
+            "name": "副板",
+            "en": "Sub-Board",
+            "desc": "机身底部的副板集中了 Type-C 数据接口、扬声器、麦克风、3.5mm 耳机孔，以及通往屏幕的屏下指纹排线接口。",
+            "descEn": "The bottom sub-board carrying the USB Type-C port, loudspeaker, microphones, headphone jack and the display-side fingerprint flex connector.",
+            "note": "副板是「一板多件」的典型代表，装裱标注宜以板为圆心放射引出，而非逐件平铺。",
+            "noteEn": "A multi-component board — radiate the callouts from the board itself rather than laying them flat.",
+            "tags": [
+              "副板",
+              "接口集中",
+              "放射标注"
+            ]
+          },
+          {
+            "name": "侧键组件",
+            "en": "Side Keys",
+            "desc": "右侧电源键与音量键（音量键为上下双键），左侧无按键布局。",
+            "descEn": "The power key and split volume keys on the right rail.",
+            "note": "",
+            "noteEn": "",
+            "tags": [
+              "电源键",
+              "音量键"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "系统与其他",
+        "en": "System & Accessories",
+        "icon": "system",
+        "color": "#00838F",
+        "components": [
+          {
+            "name": "ColorOS 5.2",
+            "en": "ColorOS 5.2",
+            "desc": "基于 Android 8.1 定制的系统版本，带智能负一屏、智能侧边栏、自由收藏与智能检测优化机制。",
+            "descEn": "ColorOS 5.2 on Android 8.1 with smart negative-one screen, smart sidebar and per-app optimisation.",
+            "note": "⚠ 软件信息不属于硬件拆解内容，装裱若需涉及应作为「系统能力」单独一栏，不混进零件标注。",
+            "noteEn": "Software belongs in a separate capability block, not among the part callouts.",
+            "tags": [
+              "ColorOS",
+              "Android 8.1"
+            ]
+          },
+          {
+            "name": "Hyper Boost 加速引擎",
+            "en": "Hyper Boost Engine",
+            "desc": "OPPO 自研的系统级资源调度优化方案，含系统引擎、游戏引擎与应用引擎三层，2018-10-11 发布并全量搭载于 R17 系列。",
+            "descEn": "OPPO's system-level resource scheduling engine spanning system, game and app boosts.",
+            "note": "",
+            "noteEn": "",
+            "tags": [
+              "Hyper Boost",
+              "性能优化"
+            ]
+          },
+          {
+            "name": "原厂充电器",
+            "en": "VOOC Charger",
+            "desc": "配套 VOOC 闪充充电器与 Type-C 数据线，为 5V/4A 闪充方案供电。",
+            "descEn": "The bundled VOOC charger and Type-C cable powering the 20W fast-charge scheme.",
+            "note": "",
+            "noteEn": "",
+            "tags": [
+              "充电器",
+              "VOOC",
+              "配件"
+            ]
+          },
+          {
+            "name": "出厂光学指纹膜",
+            "en": "Factory-Applied Optical Fingerprint Film",
+            "desc": "出厂即贴装的 2.5D「光学指纹膜」，用于避免用户后续贴膜带来的光线偏振影响识别准确度。",
+            "descEn": "A 2.5D optical fingerprint film applied at the factory to keep third-party films from degrading recognition accuracy.",
+            "note": "⚠ 若成品机上仍保留此膜，拆解时不要撕除，它是官方为屏下指纹专门设计的方案。",
+            "noteEn": "Do not peel this film during teardown — it is part of the official fingerprint solution.",
+            "tags": [
+              "指纹膜",
+              "出厂",
+              "2.5D",
+              "必留"
+            ]
+          },
+          {
+            "name": "保护套",
+            "en": "Protective Case",
+            "desc": "包装内附赠的透明保护套，为渐变背板提供日常防刮保护。",
+            "descEn": "A bundled clear protective case guarding the gradient back panel.",
+            "note": "",
+            "noteEn": "",
+            "tags": [
+              "配件",
+              "保护套"
+            ]
+          }
+        ]
+      }
+    ],
+    "usageNotes": "装裱用途：本机为 OPPO 首款屏下指纹机型，拆解视觉重心应放在「屏下指纹 + 水滴屏 + 幻色渐变 + 导光管光线传感器」四组关系上。推荐叙事顺序为「后盖开场 → 屏幕总成与屏下指纹 → U 形主板与光路 → 电池 → 副板接口」五段递进。",
+    "framingNotes": {
+      "canDisassemble": "可拆解（三段式结构，玻璃后盖无排线可直接掀开；电池带易拉条可免工具取下；主板与副板由独立螺丝固定）",
+      "recommendedFrame": "A3 竖版（297×420mm）或 30×40cm，装裱留出屏幕总成与主板区的呼吸空间",
+      "frameSize": "建议内框 297×420mm，可用 350×480mm 外框；屏幕总成与 U 形主板纵向并置时需保证软板走线完整可见",
+      "customFrame": "可选——用亚克力柱悬浮固定，屏幕总成与主板前后错位约 20mm 制造纵深，后盖单独悬浮于顶部作为开场件",
+      "notes": "⚠ 关键提示：①光感屏幕指纹模组装在屏幕下方，需破坏性拆解屏幕才能取到，若不想损伤屏体，建议保留屏幕总成完整不拆，只标注位置；②光线传感器与导光管是两件物，位置重合但必须分别标注；③电池官方标称 3500mAh，拆解稿上的 3415mAh 是额定最小值；④后置主摄官方 1600 万像素，拆解稿「1200 万」为笔误；⑤屏下指纹芯片供应方存在公开分歧，装裱只写官方口径「光感屏幕指纹」；⑥雾面蚀刻层只存在于雾光渐变配色，标注前须先确认本机配色；⑦后盖用胶量大，撬动易崩边，成品装框需做边角保护。",
+      "notesEn": "Key cautions: (1) the optical fingerprint module sits beneath the display and requires destructive separation — leave the display intact if edge damage is unacceptable; (2) the ambient light sensor and its light guide tube are separate parts and need separate callouts; (3) the official battery rating is 3500mAh, with 3415mAh being the rated minimum; (4) the official rear main camera is 16MP — the 12MP figure in teardown articles is an error; (5) public sources disagree on the fingerprint chip supplier, so use only the official term; (6) the frosted etched layer exists only on the Mist Gradient colourway; (7) the adhesive-heavy back cover chips easily during prying and needs edge protection.",
+      "appearanceBlock": "幻色渐变 / 凝光渐变工艺、雾光渐变（AG 雾面蚀刻）、水滴屏 91.5% 屏占比、康宁第六代大猩猩玻璃、渐变金属中框",
+      "displayBlock": "6.4 英寸 Super AMOLED 水滴屏、2340×1080、402PPI、60000:1、430 尼特、屏占比 91.5%、边框 1.63/1.85/4.0mm、光感屏幕指纹（2mm×2mm、3P 镜头、MicroLens）",
+      "processorBlock": "骁龙 670（SDM670，10nm LPE FinFET）、八核 2.0GHz、Adreno 615、LPDDR4X + UFS、Hyper Boost 加速引擎",
+      "batteryBlock": "3500mAh 典型值（额定 3415mAh）、3.85V、ATL 锂聚合物、易拉条拆卸",
+      "chargingBlock": "VOOC 闪充 5V/4A（20W）、充电 5 分钟通话 2 小时、五芯防护、边玩边充",
+      "wirelessBlock": "WiFi 2.4/5.1/5.8GHz、蓝牙 5.0、WLAN Display、OTG、FM、GPS/北斗/GLONASS"
+    },
+    "parts": [],
+    "pinterest": [],
+    "dataSources": [
+      {
+        "source": "OPPO 官方新闻稿（中文）· 时尚创新双突破 OPPO R17系列正式发布",
+        "url": "https://www.153shouji.com/html/news/pc/2018/0902/95281.html",
+        "用途": "官方发布口径：幻色渐变与凝光渐变工艺、水滴屏与 91.5% 屏占比、康宁六代玻璃、SuperVOOC、价格与上市日期"
+      },
+      {
+        "source": "OPPO 官方新闻稿（英文）· OPPO Released R17 Series, a Fusion of Fashionable Design and Technology Innovation",
+        "url": "https://techielobang.com/blog/2018/08/30/oppo-launches-the-oppo-r17-and-r17-pro",
+        "用途": "官方英文原文与沈义人（Brian Shen）引述，含 three-color and bi/quad-direction gradient、Hidden Fingerprint Unlock、AI Ultra-clear Engine 等表述"
+      },
+      {
+        "source": "中国新闻网 · OPPO R17 正式发布 全新定位彰显强劲科技力",
+        "url": "https://m.chinanews.com/wap/detail/zw/it/2018/08-24/8609176.shtml",
+        "用途": "官方通稿转载：价格口径、0.41 秒解锁、91.5% 屏占比"
+      },
+      {
+        "source": "OPPO 官方规格参数表（OPPO Parts 官方零件站 · R17 规格页）",
+        "url": "https://oppo-parts.trackit.co.in/support/tabel-parameter-fungsi-r17",
+        "用途": "官方规格逐字段基线：边框 1.63/1.85/4.0mm、亮度 430nit、对比度 60000:1、电池 3500/3415mAh、5V4A、指纹 2mm×2mm 与 3P 镜头、LPDDR4X/UFS、尺寸 157.5×74.9×7.5mm"
+      },
+      {
+        "source": "爱集微 · 集微拆评《光线传感器位置设计独特，OPPO R17 拆解》",
+        "url": "https://m.ijiwei.com/n/702694",
+        "用途": "内部结构与主板器件清单：三段式布局、石墨片、导光管光线传感器、BTB 泡棉、硅胶套、23 颗螺丝、主板正面背面全部 IC 型号"
+      },
+      {
+        "source": "集微拆评 · eWisetech《OPPO R17 拆解》",
+        "url": "http://shengshun-dg.com/news/news302.html",
+        "用途": "内部结构与器件细节：三段式布局、石墨片、导光管光线传感器、BTB 泡棉、硅胶套、23 颗螺丝、屏幕型号 641RW 01"
+      },
+      {
+        "source": "迅维技能培训 · OPPO R17 拆机图解全过程",
+        "url": "https://www.xinxunwei.com/wxjs/sjcjjc/09108776.html",
+        "用途": "拆解顺序与细节：塑料 SIM 卡托、电池额定 3415mAh/3.85V/ATL、TP+屏下红外、导光管与光线传感器可分设计、防水硅胶套"
+      },
+      {
+        "source": "中关村在线 · OPPO R17 参数页",
+        "url": "https://wap.zol.com.cn/1226/1225806/index.html",
+        "用途": "官方规格转录交叉验证：后置 1600 万 F/1.7 + 500 万 F/2.4、前置 2500 万 F/2.0、指纹 2mm×2mm、第六代大猩猩玻璃"
+      },
+      {
+        "source": "OPPO 服务官方账号（知乎）产品说明",
+        "url": "https://zhidao.baidu.com/question/397489865552692365.html",
+        "用途": "官方七条卖点原文：幻色渐变、水滴屏、AI 智慧美颜、AI 智能双摄 23 场景 864 组合、光感屏幕指纹、8GB+128GB、VOOC 闪充"
+      },
+      {
+        "source": "太平洋电脑网 / IT之家 · OPPO R17 雾光渐变与流光蓝图赏",
+        "url": "https://tu.pcpop.com/pic-5013319_1.shtml",
+        "用途": "配色与工艺外观描述：雾面蚀刻磨砂质感、凝光层、IMX519 确认、前置 2500 万"
+      },
+      {
+        "source": "中国经济网 / 中新经纬 · 汇顶与 OPPO 供应链纠纷报道",
+        "url": "https://www.jwview.com/jingwei/html/09-18/183263.shtml",
+        "用途": "屏下指纹芯片供应方分歧的第三方记录（思立微／汇顶／新思三说），仅作留档不进入标注"
+      },
+      {
+        "source": "IT之家评测室 · OPPO R17 全网首发评测：一台精致的「性感」美机",
+        "url": "https://www.ithome.com/html/win10/378742.htm",
+        "用途": "屏幕与屏下指纹的权威细节：边框对比数据、屏幕点胶工艺、光线传感器导光柱、TP+屏下红外方案、指纹单像素 12.5μm 与 160×160 分辨率、光学指纹膜与偏振问题"
+      },
+      {
+        "source": "百度百科 TA说 · 续航怪兽，OPPO R17 实测重度使用畅玩一天无压力（上官喵酱，2018-09-04）",
+        "url": "https://baike.baidu.com/tashuo/browse/content?id=095968e1e59397b822d6aa76",
+        "用途": "续航与闪充实测：五项重度使用 3 小时总耗电 39%、刺激战场 1 小时耗电 20%、闪充 30 分钟 60%、前 40 分钟高速、1 小时超 90%、充满 80 分钟"
+      },
+      {
+        "source": "OPPO 服务官方账号（百度知道）· oppo r17 待机满电能多久，连续玩能玩多长时间（2018-11-26）",
+        "url": "https://zhidao.baidu.com/question/1697037540973354988",
+        "用途": "官方账号发布的续航测评：4 小时连续使用余 70%、8 小时无压力、10%→100% 耗时 1 小时 28 分钟、前 30 分钟 10%→62%"
+      },
+      {
+        "source": "电池规格件 · OPPO R17 BLP681 替换电池规格页",
+        "url": "https://www.polekemarket.com/Product-Details?IC=2187&IqOPPO-F9-F9-Pro-R17-(BLP681)-Li-ion-Polymer-Replacement-Battery",
+        "用途": "电芯规格交叉验证：额定 3415mAh/13.14Wh、典型 3500mAh/13.47Wh、标称 3.85V、充电限制电压 4.4V"
+      },
+      {
+        "source": "大河新闻 · 「充电 5 分钟，通话 2 小时」真靠谱吗（律师告 OPPO 案开庭）",
+        "url": "https://news.dahebao.cn/dahe/appcommunity/1412507",
+        "用途": "官方广告脚注全文留存：充电 5 分钟通话 2 小时的中国赛宝实验室检验报告、检验环境与测试条件完整表述，以及 3500mAh 为典型值的口径"
+      },
+      {
+        "source": "OPPO R17 官方用户手册（英文版 386 页）· 声音功能章节",
+        "url": "https://www.petunjuk.co.id/oppo/r17/petunjuk?p=169",
+        "用途": "官方一手信源：Real Sound Technology 与 Dirac Research AB 联合开发的逐字表述、三维声场描述、耳机监听实时卡拉OK功能及其关闭提示"
+      },
+      {
+        "source": "中关村在线 · 《OPPO R17 深度拆解，水滴屏下另有惊喜》（杨吴睿，2018-08-31）",
+        "url": "http://mp.weixin.qq.com/s?__biz=MzAwNDcwMDgzMA==&mid=2651032280&idx=2&sn=3afaa8924a3b7ddea0f61482331a45e2",
+        "用途": "音频相关拆解实证：隐藏式听筒设计、顶部降噪麦克风与信号溢出带、扬声器底部滤网保护音腔、耳机孔与排线连接器橡胶聚合物防护、电源排线橡胶圈防水防沙"
+      },
+      {
+        "source": "新浪科技 · OPPO R17 评测 渐变之美邂逅「激进」秘技",
+        "url": "https://tech.sina.com.cn/mobile/2018-08-24/doc-ihicsiav9495989.shtml",
+        "用途": "音频与结构交叉验证：G3 曲线水滴屏、隐藏式听筒、屏下光线传感器导光管、背部竖排双摄与补光灯布局"
+      },
+      {
+        "source": "电脑之家 · 回顾 OPPO 屏占比进化史 看 R17 水滴屏如何成为最美屏幕",
+        "url": "https://article.pchome.net/content-2079143.html",
+        "用途": "顶部传感器区域较 R15 缩小 45.8%、隐藏式听筒仅留顶部一条缝、屏幕点胶工艺与封装优化对边框收窄的贡献"
+      },
+      {
+        "source": "Qualcomm 官方 · Snapdragon 670 Mobile Platform 产品简介（Product Brief PDF）",
+        "url": "https://www.qualcomm.com/content/dam/qcomm-martech/dm-assets/documents/snapdragon_product_brief_670.pdf",
+        "用途": "制程与规格的最终裁决源：10nm LPP、Kryo 360 最高 2.0GHz、Hexagon 685、Spectra 250 ISP、X12 LTE（600/150Mbps）、LPDDR4X、Quick Charge 4+"
+      },
+      {
+        "source": "Qualcomm 官方新闻稿 · Introducing Snapdragon 670 for superior performance, camera capabilities, and AI tech",
+        "url": "https://www.qualcomm.com/news/onq/2018/08/08/introducing-snapdragon-670-superior-performance-camera-capabilities-and-ai-tech",
+        "用途": "官方性能提升口径：CPU 较上代提升 15%、第三代 AI 引擎性能提升至 1.8 倍、X12 LTE 下行 600Mbps 上行 150Mbps、LTE 与 Wi-Fi 自动切换"
+      },
+      {
+        "source": "OPPO 官方发布 · OPPO 发布 Hyper Boost 加速引擎，全面优化用户体验（2018-10-11）",
+        "url": "https://www.toutiao.com/article/6611009010667618824/",
+        "用途": "Hyper Boost 官方口径：三大引擎架构、系统/游戏/应用三层覆盖、OPPO 研究院软件研究中心负责人陈岩引述"
+      },
+      {
+        "source": "雷锋网 · 对标华为 GPU Turbo，OPPO 推出 Hyper Boost 手机加速引擎",
+        "url": "http://mp.weixin.qq.com/s?__biz=MTM2ODM0ODYyMQ==&mid=2651443389&idx=2&sn=4b20ec31c4d304f995b50d59a7d933d7",
+        "用途": "Hyper Boost 三大引擎具体数字：系统引擎 20+/20+/50+、游戏引擎 11 款头部优化、应用引擎微信 11 / 淘宝 19 / QQ 13 个用户场景"
+      },
+      {
+        "source": "天极网 · OPPO R17 系列正式亮相 外观配置诚意满满",
+        "url": "https://mobile.yesky.com/129/1539987129.shtml",
+        "用途": "Hyper Boost 官方发布数据：行为感知调度（BAS）以 0.2 毫秒为单位动态调频、应用启动速度提升 31.91%、王者荣耀稳定 60 帧"
+      },
+      {
+        "source": "中关村在线 · OPPO R17 评测（凤凰网科技转载）· 首发神 U 高通 670，还有光感屏幕指纹",
+        "url": "https://tech.ifeng.com/c/7fbrGYGBQzN",
+        "usage": "",
+        "用途": "性能实测：Geekbench 单核 1666 / 多核 5781、安兔兔 156295、AndroBench 113.32 与 23.85MB/s、王者荣耀全程 60 帧、刺激战场 30 帧满帧"
+      },
+      {
+        "source": "SOGI 手机王 · 高通 S670、屏幕指纹规格 OPPO R17 台湾版本开箱",
+        "url": "https://www.sogi.com.tw/articles/oppo_r17/6251881",
+        "用途": "台湾版实测：安兔兔 v7.1 得 156824、Geekbench v4.3 单核 1708 多核 5798、存储连续读写 511.17 / 196.46MB/s、安兔兔硬件测试 v2.5 温度与得分曲线"
+      },
+      {
+        "source": "天极网 · 生动视界的点睛之笔 全面解析 OPPO R17 水滴屏设计",
+        "url": "https://mobile.yesky.com/403/1976249903.shtml",
+        "用途": "通信技术：双核智能切换分布式天线 + 首创双可变电容联调技术、360 度无信号死角、天线净空区被挤压的原因"
+      },
+      {
+        "source": "电脑报资讯网 · OPPO R17 首发体验：附赠手机功能的时尚潮品",
+        "url": "https://www.cpcw.com/019/w9tnHdxEV9.html",
+        "用途": "架构分析：骁龙 670 核心配置与骁龙 710 相同、主频由 2.2GHz 降至 2.0GHz、安兔兔 15.7 万、Geekbench 1708/5818、核心调度策略与温控"
+      },
+      {
+        "source": "凤凰网科技 · 拯救「路痴」，OPPO 联手高德地图推 AR 实景导航（2018-08-28）",
+        "url": "https://tech.ifeng.com/c/7fjdpsgQn0o",
+        "用途": "AR 导航技术口径：ARunit 平台、SLAM 与普通 GPS 导航的本质差异、高德地图官方人员表述、V8.70 版本要求"
+      },
+      {
+        "source": "中关村在线 · OPPO AR 步行导航实测 两大绝招拯救路盲症（吴迅，2018-10-15）",
+        "url": "https://m.zol.com.cn/miparticle/7009538.html",
+        "用途": "AR 导航交互细节实测：路面指引线、拐弯标志、方向错误时的虚线箭头、小欧跳出屏幕引路与停下挥手示意"
+      },
+      {
+        "source": "OPPO 官方公众号 · 了解这 9 大功能，就能迅速玩转 OPPO R17",
+        "url": "http://mp.weixin.qq.com/s?__biz=MzkzMDY0NzUyMw==&mid=2247495688&idx=3&sn=b0e6b645eba965fc82eff0b07cee3f40",
+        "用途": "官方功能清单逐条原文：光感屏幕指纹、AI 智慧美颜、后置 AI 双摄与人像光效、AR 贴纸、O-moji 动态表情、智能扫一扫、智慧识屏、小欧语音助手、游戏模式、SOS 紧急呼叫、5 种指纹解锁动画"
+      },
+      {
+        "source": "网易科技 · ColorOS 变智能 OPPO R17 堪称生活小秘书（2018-08-24）",
+        "url": "https://tech.163.com/18/0824/11/DPVJ28AF00099504.html",
+        "用途": "系统功能细节：AI 预加载机制与预测准确率随使用提升、快捷指令、智能解锁按地点与 Wi-Fi 识别、智慧识屏按压识别与信息提取、负一屏智能助手"
+      }
+    ],
+    "images": [],
+    "framedPhotos": [],
+    "createdAt": "2026-11-20",
+    "status": "已结案（设计稿审核终审闭环，可付印；parts 待拆解补充）",
+    "conflicts": [
+      {
+        "item": "后置主摄像素",
+        "official": "1600 万像素 F/1.7（Sony IMX519）",
+        "conflict": "集微拆评 / eWisetech 拆解稿写作「1200 万 + 500 万」",
+        "resolution": "以官方规格为准写 1600 万；IMX519 传感器本身即 1600 万，拆解稿为笔误"
+      },
+      {
+        "item": "屏下指纹芯片供应方",
+        "official": "官方规格仅标「光感屏幕指纹／光感屏幕指纹传感器／MicroLens 微透镜」，未公布供应商",
+        "conflict": "集微拆评称汇顶第四代方案；迅维拆机图解称新思方案；财经媒体报道称思立微独家供应",
+        "resolution": "官方未披露，三方说法不一且无法从官方渠道裁决，标注时只写「光感屏幕指纹」，不写供应商"
+      },
+      {
+        "item": "电池容量",
+        "official": "3500mAh 典型值（最小 3415mAh）",
+        "conflict": "拆解稿直接写 3415mAh",
+        "resolution": "以官方标称 3500mAh 标注，3415mAh 为额定最小值"
+      },
+      {
+        "item": "机身尺寸重量",
+        "official": "157.5 × 74.9 × 7.5mm / 约 182g",
+        "conflict": "个别实测稿件称整机重约 181g",
+        "resolution": "以官方规格 182g 为准"
+      },
+      {
+        "item": "R17 售价",
+        "official": "3199 / 3499 / 3599 元（发布价）",
+        "conflict": "电商与拆解稿出现 2499 / 2599 / 2799 元",
+        "resolution": "为 2799 元",
+        "resolutionNote": "发布价为官方口径，2499/2599/2799 元为后续促销价，标注时写「发布价 3199 元起」"
+      },
+      {
+        "item": "AI 场景识别数量",
+        "official": "发布口径 21 个独立场景、800 种场景组合",
+        "conflict": "官方社区后期升级表述为 23 个场景、864 种组合",
+        "resolution": "按发布口径写 21 个场景、800 种组合"
+      }
+    ],
+    "featureTagDetails": [
+      {
+        "name": "光感屏幕指纹",
+        "en": "Optical Screen Fingerprint",
+        "desc": "OPPO 首创屏下镜头方案：CMOS 传感器结合 MicroLens 微透镜与 3P 镜头组，感光面积 2mm×2mm、单像素 12.5μm、分辨率 160×160，借 OLED 自发光将指纹图像反射至屏下识别，息屏最快 0.41 秒解锁，支持指纹支付与应用加密。"
+      },
+      {
+        "name": "91.5% 屏占比",
+        "en": "91.5% Screen-to-Body Ratio",
+        "desc": "6.4 英寸 19.5:9 Super AMOLED 水滴屏，2340×1080 / 402 PPI。四边收窄至顶部 1.85mm、左右 1.63mm、底部 4.0mm，额头仅留一颗前置摄像头的开孔。"
+      },
+      {
+        "name": "康宁第六代大猩猩玻璃",
+        "en": "Corning Gorilla Glass 6",
+        "desc": "全球首发机型，可经受高达 15 次从一米高度跌落至粗糙表面的坠落测试，比上一代提升两倍；也正因如此取消了历代沿用的塑料包边，面板直接嵌入铝合金中框。"
+      },
+      {
+        "name": "凝光渐变工艺",
+        "en": "Condensed Light Gradient",
+        "desc": "OPPO 首创的渐变工艺：在原有叠层流光点彩工艺基础上，于流光层与点彩层之间增加透明的「凝光层」，通过镭雕工艺蚀刻细密 S 型曲线，曲线越密集处凝光程度越高，从而让光在机身表面流动。霓光紫版首次采用三色渐变，并在纵向渐变之外带来横向渐变与四向渐变两种新方案。"
+      },
+      {
+        "name": "雾光渐变",
+        "en": "Mist Gradient",
+        "desc": "OPPO 在幻色渐变之外开辟的全新配色方向，采用 AG 雾面蚀刻工艺，在玻璃表面形成磨砂质地产生类似光穿过雾的朦胧观感，同时带来丝绸般顺滑手感且不易沾染指纹，与 3D 雾光玻璃、凝光渐变工艺共同构成雾光渐变版的完整质感表达。"
+      },
+      {
+        "name": "AI 智能双摄",
+        "en": "AI Dual Camera",
+        "desc": "后置 1600 万 F/1.7 主摄搭配 500 万 F/2.4 副摄，副摄不承担成像，专为 AI 引擎采集场景信息，使相机可识别并优化 21 类独立场景、800 种场景组合，自动匹配对应的拍照模式；主摄索尼 IMX519 支持 RAW HDR，避免压缩处理造成的数据损失，为后期保留更大处理空间。"
+      },
+      {
+        "name": "AI 智慧美颜 2.1",
+        "en": "AI Beauty 2.1",
+        "desc": "前置 2500 万像素搭载 AI 智慧美颜，通过 296 个面部识别点辨识五官，并从年龄、性别、肤色、肤质、人种等维度分析，提出 800 万种美颜方案，且针对黄色人种、棕色人种做专门优化；新增立体自定义美颜，提供磨皮、瘦脸、小脸、下巴、大眼、瘦鼻、补妆、立体 8 种模式可实时预览，并能基于使用习惯持续学习，越拍越美。"
+      },
+      {
+        "name": "骁龙 670 移动平台",
+        "en": "Snapdragon 670",
+        "desc": "骁龙 670 全球首发，10nm LPP 工艺 Kryo 360 八核（2×2.0GHz + 6×1.7GHz），官方称较骁龙 660 性能提升 15%；GPU 升级至 Adreno 615 提升 25% 以上；Hexagon 685 DSP 与第三代 AI 引擎，AI 性能提升至 1.8 倍；骁龙 600 系首个 Spectra 250 ISP，支持 4K 30fps 录制；X12 LTE 下行 600Mbps。"
+      },
+      {
+        "name": "VOOC 闪充",
+        "en": "VOOC Flash Charge",
+        "desc": "5V/4A（20W）低压闪充，低压方案允许边玩边充。官方口径「充电 5 分钟，通话 2 小时」（中国赛宝实验室检验报告，1% 电量起充、关闭除通话外全部功能）。实测 10%→100% 约 1 小时 28 分钟，前 30 分钟充至 62%，前 40 分钟维持高速充电，1 小时超 90%。"
+      },
+      {
+        "name": "AR 实景导航",
+        "en": "OPPO AR Real-Scene Navigation",
+        "desc": "OPPO 与高德地图深度合作，基于 ARunit 开放平台打造的「真」AR 步行导航，是业内首个引入 SLAM（同步定位与地图构建）技术的 AR 导航方案。它在 GPS 与陀螺仪等传感器辅助之外，实时获取视觉信息、深度信息与自身加速度数据，结合地理坐标系构建真实虚拟空间：路面画出指引线并叠加拐弯标志，转向错误时屏幕浮现虚线箭头提示把屏幕转向正确方向；遇到多路口等复杂场景，虚拟形象「小欧」会跳出屏幕在前方引路，走慢时还会停下挥手示意跟上。R17 需将高德地图升级至 V8.70 版后使用。"
+      },
+      {
+        "name": "Hyper Boost 加速引擎",
+        "en": "Hyper Boost",
+        "desc": "OPPO 历时三年自研的系统级资源调度方案，2018-10-11 发布并全面搭载于 R17 系列。系统引擎覆盖 20+ 软件场景、20+ 用户行为、50+ 优化方案；游戏引擎与腾讯、网易及 Unreal/Unity/Cocos 合作优化 11 款头部游戏；应用引擎与微信、淘宝、QQ 协同优化，应用启动速度最高提升 31.91%。"
+      },
+      {
+        "name": "ColorOS 5.2",
+        "en": "ColorOS 5.2",
+        "desc": "基于 Android 8.1，智能检测优化机制针对 TOP 应用与热门游戏做一对一专项优化，可识别应用安装、启动、触屏感应、游戏团战等场景并动态调度 CPU 与 GPU；配套智能负一屏 18 类卡片、智能侧边栏与自由收藏功能。"
+      },
+      {
+        "name": "Real 原声技术",
+        "en": "Real Sound Technology",
+        "desc": "由瑞典 Dirac Research AB 与 OPPO 联合开发，官方手册称其「完整保真地呈现原声，营造空间化的三维声场」，并可将高保真体验带至外放。配套耳机监听功能支持实时卡拉OK体验，官方另标注支持 FM 收音与 HD 高清格式播放。"
+      },
+      {
+        "name": "小欧语音助手与智慧识屏",
+        "en": "Breeno Assistant & Smart Screen Recognition",
+        "desc": "长按电源键 0.5 秒唤醒「小欧」语音助手，可完成发微信、打电话、来电语音控制、导航、点歌、搜索等操作，并支持快捷指令与 AI 预加载——系统通过算法分析使用习惯，预判下一步可能使用的应用并在后台提前打开；智慧识屏则支持拇指按压屏幕即识别区域内文字或图片，可快速复制、翻译、搜索并提取地址等信息；智能扫一扫覆盖扫文档、拍照翻译、扫词翻译、智能识物、扫题、扫名片；另有 SOS 紧急呼叫支持连按 5 次电源键发起。"
+      }
+    ]
+  }
   ];
   const SAMPLE_REVIEWS = [{
       id:"r001", productId:"p001", productName:"Canon EOS 40D",
@@ -11447,6 +13229,15 @@ function initSampleData(){
       clientConfirmed:true,
       reviewResult:"三轮审核闭环（2026-11-17）：一审 18 项 → 已改 7（A2 散热鳍片语序 / B2 徽章 / C3 AURA RGB / C4 USB 3.2 Gen1 / C6 半透明断行 / C7 ROG 专属图腾 / C8 WiFi 7）；撤回 5（A1 详情页 688 / B1 详情页「流畅」/ B3 我方误报「端」字原在 / C5 零件隔断为刻意排版）；关闭 6（C1/C2 脚注按用户裁定只写大字 / C9 备忘 / D1-D4）。E 段 28 项逐字无误，全稿可付印。\n报告：ROG八爪鱼7_20周年版_设计稿审核报告.html（一审）/ _二审.html / _终审.html",
       notes:"官网三件套 + 天猫详情页 + 客户 PPT 三路信源；两处官方口径差异留档（2.4GHz 规格页1376/详情页688；配比 详情页68/20/10/2/系列页70/18/10/2）。我方误报 3 起全部撤回（银色→金色、吐吐→吞吐、多场景→多端）。"
+    },
+{
+      id:"r005", productId:"p013", productName:"Samsung Galaxy Z Flip3 5G 国行版",
+      designName:"Galaxy Z Flip3 装裱设计稿（通版）", dueDate:"2026-11-18",
+      status:"passed",
+      checks:{ typos:false, contentError:false, patternError:false, paramCorrect:false, other:"", doneCount:4 },
+      clientConfirmed:false,
+      reviewResult:"三轮审核闭环（2026-11-18）：一审 12 项 → 已改 3（A1 封面重复句 / B2 线性马达 / C2 屏幕 prose）；我方 copy 责任 1（A2 前置镜头快拍文案——图鉴原文带「用后置」限定词，设计稿转引丢失，已按方案① 补回，终审 5 倍放大逐字实证）；裁定关闭 8（A3 布局有意 / B1 填充贴题 / B3 老大实物实证上下两块电池 / C1 客户要求除专业名词外全中文 / D1-D4 实物判定优先）。E 段 13 项逐字无误，全稿定稿可付印。\n报告：Galaxy Z Flip3_设计稿审核报告.html（一审）/ _二审.html / _终审.html",
+      notes:"图鉴 JSON 无需改动（方案① 即回到图鉴原口径，JSON 原文本就带「用后置」）；parts 待老大拆解照片补齐；C1 客户全中文口径记录在案，通用双语标注规范本项目不适用。"
     }
   ];
   const SAMPLE_CHATS = [];
